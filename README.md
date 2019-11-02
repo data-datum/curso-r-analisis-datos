@@ -1,4 +1,4 @@
-# curso-r-analisis-datos
+# Programación en R para análisis de datos
 
 ## Tema 1
 Generalidades y nociones de programación. R e interfaz de Rstudio. Trabajo con proyectos. Paquetes. Programación orientada a objetos. Cómo obtener ayuda. Tipos de datos. Acceso a los elementos de los diferentes tipos de datos. Funciones. Estructuras de control. Programación modelo tidyverse y uso del operador %>%. Nociones de programación funcional y uso del paquete purrr. Ejercicios de aplicación
