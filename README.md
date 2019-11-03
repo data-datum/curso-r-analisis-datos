@@ -1,4 +1,4 @@
-# Programación en R para análisis de datos
+# Programación en R para análisis de datos :bar_chart: :chart_with_upwards_trend: :chart_with_downwards_trend:
 
 ## Tema 1
 Generalidades y nociones de programación. R e interfaz de Rstudio. Trabajo con proyectos. Paquetes. Programación orientada a objetos. Cómo obtener ayuda. Tipos de datos. Acceso a los elementos de los diferentes tipos de datos. Funciones. Estructuras de control. Programación modelo tidyverse y uso del operador %>%. Nociones de programación funcional y uso del paquete purrr. Ejercicios de aplicación
@@ -11,7 +11,7 @@ Modelización.  Generalidades de la modelización de datos. Nociones de regresi�
 ## Tema 5
 Documentación y ciencia reproducible. El camino hacia la ciencia reproducible: algunas prácticas deseables al momento de generar código para nuestras publicaciones. Reportes en RMarkdown y una introducción al control de versiones. Comunidades de usuarios.
 
-# Bibliografía
+# Bibliografía :books:
 
 * Bryan, J. (2015) How to name files. Disponible en https://speakerdeck.com/jennybc/how-to-name-files Visitado el 20/06/2019
 * Bryan, J. (2017) Happy Git and GitHub for useR. Disponible en https://happygitwithr.com/ Visitado el  20/06/2019. 
