@@ -28,11 +28,11 @@ library(emo)
 
 ---
 
-<img src="img/welcome.png" width="80%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/welcome.png" width="80%" align="center" />
 
 ---
 
-<img src="img/r_first_then.png" width="70%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/r_first_then.png" width="70%" align="center" />
 
 ---
 
@@ -236,7 +236,7 @@ Podemos indexar elementos mediante **corchetes[]**
 
 En el universo *Tidyverse*, los factores se procesan con la librería **forcats**
 
-<img src="img/forcats.jpg"  width="100" height="100", align="right">
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/forcats.jpg"  width="100" height="100", align="right">
 
 
 
@@ -288,7 +288,7 @@ Para operar con listas en *Tidyvserse* se utiliza el paquete **purrr**
 # Indexación en Listas con [[ en `r fa("r-project", fill = 'steelblue')`
 
 
-<img src="img/pep.png" width="70%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/pep.png" width="70%" align="center" />
 
 .footnote[Fuente: *Purrr workshop en LatinR2018* https://speakerdeck.com/jennybc/purrr-workshop
 ]
@@ -331,25 +331,24 @@ Los dataframes son los tipos de datos más comunes con los que se trabaja en R, 
 .content-box-yellow[Para importar datos]
 
 <br><br>
-<img src="img/readxl.png" width="10%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/readxl.png" width="10%" align="right" />
 
 - Que están en excel ---> librería **readxl**
 
 
 <br><br>
-<img src="img/readr.png" width="10%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/readr.png" width="10%" align="right" />
 
 - Si están en .csv o .txt ---> desde r base o mediante **readr**
 
 
 <br><br>
-<img src="img/data.table.png" width="10%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/data.table.png" width="10%" align="right" />
 
 - Si el volumen de datos es grande ---> *fread* de **datatable**
 
 - Si estamos en orden de GB ---> **vroom** 
 Mas información en: https://www.tidyverse.org/blog/2019/05/vroom-1-0-0/ 
-
 
 
 ---
@@ -358,45 +357,18 @@ Mas información en: https://www.tidyverse.org/blog/2019/05/vroom-1-0-0/
 
 Los dataframes al ser un tipo especial de lista se puede acceder a sus elementos mediante [], [[]], y $
 
-```{r } 
-library(ggplot2)
-head(mpg, 3)
-```
 
-```{r } 
-mpg[1:3] #seleccionamos las primeras columnas
-```
+
 ---
 
-# Indexación en dataframes con `r fa("r-project", fill = 'steelblue')`
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text2.png)
+background-size: cover
+class: center, middle, inverse
 
-```{r } 
-mpg[1,] #seleccionamos una fila
-```
+ 
 
-```{r } 
-mpg[,3] #seleccionamos una columna
-```
----
+# `r emo::ji("computer")` DEMO `r emo::ji("computer")`
 
-
-# Indexación en dataframes con `r fa("r-project", fill = 'steelblue')`
-
-```{r } 
-mpg[3,2] #seleccionamos un elemento concreto 
-```
-
-```{r } 
-mpg[[4]] #seleccionamos una columna
-```
----
-
-
-# Indexación en dataframes con `r fa("r-project", fill = 'steelblue')`
-
-```{r } 
-mpg$year #seleccionamos una columna mediante el nombre de la variable
-```
 
 
 ---
@@ -520,12 +492,12 @@ iris %>% .[["Sepal.Length"]]
 
 
 ---
-<img src="img/tidyverse.png" width="10%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyverse.png" width="10%" align="right" />
 
 
 # Opciones de Tidyverse 
 
-<img src="img/data-types-tidyverse.png" width="90%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/data-types-tidyverse.png" width="90%" align="center" />
 
 
 ---
