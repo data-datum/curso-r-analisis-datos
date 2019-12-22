@@ -28,7 +28,13 @@ library(emo)
 
 ---
 
-class: animated, lightSpeedIn
+<img src="img/welcome.png" width="80%" align="center" />
+
+---
+
+<img src="img/r_first_then.png" width="70%" align="center" />
+
+---
 
 # Tipos de datos en `r fa("r-project", fill = 'steelblue')`
 
@@ -45,7 +51,6 @@ class: animated, lightSpeedIn
 ]
 
 ---
-class: animated, lightSpeedIn
 
 # Datos atómicos en `r fa("r-project", fill = 'steelblue')`
 
@@ -79,13 +84,12 @@ class: center, middle
 
 
 ---
-class: animated, lightSpeedIn
 
 # Vectores `r fa("r-project", fill = 'steelblue')`
 
 Conjunto de datos que puede ser numérico, de caracteres o booleano. 
 <br>
-Se crean mediante la función .content-box-yellow[**c()**]
+Se crean mediante la función **c()**.
 .pull-left[
 ```{r } 
 num<-c(1,2,3)
@@ -98,11 +102,10 @@ boolean
 
 ]
 .pull-right[
-![](C:/Users/Roxana/curso-r-analisis-datos/img/vector-atomic.png)
+
 ]
 
 ---
-class: animated, lightSpeedIn
 
 # Vectores `r fa("r-project", fill = 'steelblue')`
 
@@ -130,7 +133,6 @@ z
 ```
 
 ---
-class: animated, lightSpeedIn
 
 # Funciones de vectores `r fa("r-project", fill = 'steelblue')`
 
@@ -156,8 +158,6 @@ class: center, middle, inverse
 
 ---
 
-class: animated, lightSpeedIn
-
 # Matrices en `r fa("r-project", fill = 'steelblue')`
 
 Desde el punto de vista del lenguaje, una matriz es un vector con un atributo adicional: dim(). 
@@ -177,23 +177,21 @@ class(m) # tipo de objeto en R
 ```
 
 ---
-class: animated, lightSpeedIn
 
 # Matrices en `r fa("r-project", fill = 'steelblue')`
 
 Podemos crear matrices con la función .content-box-yellow[**matrix()**]
 
 ```{r } 
-matrix(11:30, nrow=5, ncol=4)
+matrix(11:30, nrow=5, ncol=4) #las columnas se crean según columnas por defecto
 ```
 
 
 ```{r } 
-matrix(11:30, nrow=5, ncol=4, byrow=T)
+matrix(11:30, nrow=5, ncol=4, byrow=T) # las creo según las filas
 ```
 
 ---
-class: animated, lightSpeedIn
 
 # Matrices en `r fa("r-project", fill = 'steelblue')`
 
@@ -209,7 +207,6 @@ m1 <- cbind(c(1.5, 3.2, -5.5), c(0, -1.1, 60)) #unir columnas
 m1
 ```
 ---
-class: animated, lightSpeedIn
 
 # Funciones útiles en Matrices con `r fa("r-project", fill = 'steelblue')`
 
@@ -218,7 +215,6 @@ class: animated, lightSpeedIn
 
 
 ---
-class: animated, lightSpeedIn
 
 # Factores en `r fa("r-project", fill = 'steelblue')`
 
@@ -254,7 +250,6 @@ class: center, middle, inverse
 
 
 ---
-class: animated, lightSpeedIn
 
 # Listas en `r fa("r-project", fill = 'steelblue')`
 
@@ -271,7 +266,6 @@ familia
 
 Para operar con listas en *Tidyvserse* se utiliza el paquete **purrr**
 ---
-class: animated, lightSpeedIn
 
 # Indexación en Listas con [[ en `r fa("r-project", fill = 'steelblue')`
 
@@ -281,7 +275,6 @@ class: animated, lightSpeedIn
 ]
 ---
 
-class: animated, lightSpeedIn
 
 # Indexación en Listas con [[ en `r fa("r-project", fill = 'steelblue')`
 
@@ -291,12 +284,11 @@ class: animated, lightSpeedIn
 .footnote[Fuente: *R Advanced de Hadley Wickham* https://adv-r.hadley.nz/
 ]
 ---
-class: animated, lightSpeedIn
 
 # Indexación en Listas con [[ en `r fa("r-project", fill = 'steelblue')`
 
 
-![](C:/Users/Roxana/curso-r-analisis-datos/img/pep.png)
+<img src="img/pep.png" width="70%" align="center" />
 
 .footnote[Fuente: *Purrr workshop en LatinR2018* https://speakerdeck.com/jennybc/purrr-workshop
 ]
@@ -311,20 +303,25 @@ class: center, middle, animated, lightSpeedIn
 
 
 ---
-class: animated, lightSpeedIn
+
 
 # Dataframes en  `r fa("r-project", fill = 'steelblue')`
 
-Un dataframe es una lista cuyos componentes pueden ser vectores, matrices o factores. El número de filas y de columnas coinciden, lo que hace que tenga apariencia de una tabla. 
+- Un dataframe es una lista cuyos componentes pueden ser vectores, matrices o factores. 
+- El número de filas y de columnas coinciden, lo que hace que tenga apariencia de una tabla. 
 
 Se puede crear un dataframe con la función .content-box-yellow[**data.frame()**]
 
 ```{r } 
-data.frame(sitios=1:4, muestreado=c(T,F,F,T))
+sitios<-data.frame(sitios=1:4, muestreado=c(T,F,F,T))
+sitios
+```
+
+```{r } 
+is.data.frame(sitios) # permite saber que tipo de dato es 
 ```
 
 ---
-class: animated, lightSpeedIn
 
 # Dataframes en  `r fa("r-project", fill = 'steelblue')`
 
@@ -334,17 +331,28 @@ Los dataframes son los tipos de datos más comunes con los que se trabaja en R, 
 .content-box-yellow[Para importar datos]
 
 <br><br>
+<img src="img/readxl.png" width="10%" align="right" />
+
 - Que están en excel ---> librería **readxl**
 
+
 <br><br>
+<img src="img/readr.png" width="10%" align="right" />
+
 - Si están en .csv o .txt ---> desde r base o mediante **readr**
+
+
 <br><br>
+<img src="img/data.table.png" width="10%" align="right" />
+
 - Si el volumen de datos es grande ---> *fread* de **datatable**
+
+- Si estamos en orden de GB ---> **vroom** 
+Mas información en: https://www.tidyverse.org/blog/2019/05/vroom-1-0-0/ 
 
 
 
 ---
-class: animated, lightSpeedIn
 
 # Indexación en dataframes con `r fa("r-project", fill = 'steelblue')`
 
@@ -359,7 +367,6 @@ head(mpg, 3)
 mpg[1:3] #seleccionamos las primeras columnas
 ```
 ---
-class: animated, lightSpeedIn
 
 # Indexación en dataframes con `r fa("r-project", fill = 'steelblue')`
 
@@ -372,7 +379,6 @@ mpg[,3] #seleccionamos una columna
 ```
 ---
 
-class: animated, lightSpeedIn
 
 # Indexación en dataframes con `r fa("r-project", fill = 'steelblue')`
 
@@ -385,7 +391,6 @@ mpg[[4]] #seleccionamos una columna
 ```
 ---
 
-class: animated, lightSpeedIn
 
 # Indexación en dataframes con `r fa("r-project", fill = 'steelblue')`
 
@@ -403,7 +408,6 @@ class: center, middle, inverse
 # `r emo::ji("sparkles")` Arrays
 
 ---
-class: animated, lightSpeedIn
 
 # Arrays con `r fa("r-project", fill = 'steelblue')`
 
@@ -417,7 +421,6 @@ class: center, middle
 # `r emo::ji("sparkles")` Recapitulamos
 
 ---
-class: animated, lightSpeedIn
 
 # `r emo::ji("cherries")`Recapitulando (tipos de datos) `r fa("r-project", fill = 'steelblue')`
 
@@ -432,7 +435,6 @@ class: animated, lightSpeedIn
 .footnote[Fuente: *R Advanced de Hadley Wickham* https://adv-r.hadley.nz/
 ]
 ---
-class: animated, lightSpeedIn
 
 # `r emo::ji("cherries")`Recapitulando (tipos de datos) `r fa("r-project", fill = 'steelblue')`
 
@@ -440,14 +442,14 @@ class: animated, lightSpeedIn
 
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/data-types.png)
 ---
-class: animated, lightSpeedIn
 
 # `r emo::ji("cherries")`Recapitulando `r fa("r-project", fill = 'steelblue')`
 
 
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/comp.png)
 
-
+.footnote[Fuente: *R Advanced de Hadley Wickham* https://adv-r.hadley.nz/
+]
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/pc7.jpg)
 background-size: cover
@@ -457,23 +459,52 @@ class: center, middle
 
 
 ---
-class: animated, lightSpeedIn
+
+<img src="img/tibble.png" width="10%" align="right" />
+
 
 # Tibbles en `r fa("r-project", fill = 'steelblue')`
 
+- Tibble es parte de **Tidyverse**. Presenta una estructura tabular, en filas y columnas. Los tibbles eliminan los rownames por defecto, para tener una mejor compatibilidad con bases SQL. 
+
+- Dataframe sin embargo, es una estructura nativa de **rbase**, sin necesidad de instalar ningún paquete adicional. Se puede acceder a los elementos mediante **colnames()** o **rownames()**. 
+
+- Ambas formas son intercambiables mediante los comandos 
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+rbase::as.data.frame()
+tidyverse::as_tibble()
+```
+
+--
+- Slicing
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+iris$Sepal.Length #usando rbase
+iris[["Sepal.Length"]]
+```
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE, echo=FALSE}
+tibble::as_tibble(iris)
+```
+
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+iris %>% .$Sepal.Length #usando pipes
+iris %>% .[["Sepal.Length"]]
+```
+
 
 ---
-class: animated, lightSpeedIn
+<img src="img/tidyverse.png" width="10%" align="right" />
+
 
 # Opciones de Tidyverse 
 
+<img src="img/data-types-tidyverse.png" width="90%" align="center" />
 
-`r library(knitr)`
-![](C:/Users/Roxana/curso-r-analisis-datos/img/data-types-tidyverse.png){width=50%}
 
 ---
 
-class: animated, lightSpeedIn
 
 # Bibliografía `r emo::ji("books")`de consulta `r fa("r-project", fill = 'steelblue')`
 
