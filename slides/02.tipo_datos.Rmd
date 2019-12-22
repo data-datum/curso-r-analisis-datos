@@ -297,7 +297,7 @@ Para operar con listas en *Tidyvserse* se utiliza el paquete **purrr**
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/pc3.jpg)
 background-size: cover
-class: center, middle, animated, lightSpeedIn
+class: center, middle, 
 
 # `r emo::ji("sparkles")` Dataframes
 
@@ -411,6 +411,31 @@ class: center, middle, inverse
 
 # Arrays con `r fa("r-project", fill = 'steelblue')`
 
+
+---
+# Coerción en `r fa("r-project", fill = 'steelblue')`
+
+- Algunos tipos de datos admiten su conversión a otros tipos, para ello, el lenguaje provee de un conjunto de funciones de la forma:
+
+```{r eval=FALSE}
+as.<tipo>
+```
+--
+```{r }
+a <- c("1000", "2013.1", "0") #caracteres ya que estan en ""
+class(a)
+```
+--
+```{r }
+b <- as.numeric(a) #convierto a dato numérico
+b
+class(b)
+```
+--
+```{r }
+c <- as.logical(b) #convierto a dato lógico/booleano
+c
+```
 
 ---
 
