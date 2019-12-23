@@ -104,6 +104,14 @@ library(tidymodels)
 ```
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
+background-size: cover
+class: center, middle
+
+# ✨ Clases Desbalanceadas
+
+
+---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
 # Dataset: diamonds
@@ -111,34 +119,21 @@ Como podemos ver las clases están desbalanceadas
 
 
 ```r
-summary(diamonds)
+str(diamonds)
 ```
 
 ```
-##      carat               cut        color        clarity          depth      
-##  Min.   :0.2000   Fair     : 1610   D: 6775   SI1    :13065   Min.   :43.00  
-##  1st Qu.:0.4000   Good     : 4906   E: 9797   VS2    :12258   1st Qu.:61.00  
-##  Median :0.7000   Very Good:12082   F: 9542   SI2    : 9194   Median :61.80  
-##  Mean   :0.7979   Premium  :13791   G:11292   VS1    : 8171   Mean   :61.75  
-##  3rd Qu.:1.0400   Ideal    :21551   H: 8304   VVS2   : 5066   3rd Qu.:62.50  
-##  Max.   :5.0100                     I: 5422   VVS1   : 3655   Max.   :79.00  
-##                                     J: 2808   (Other): 2531                  
-##      table           price             x                y         
-##  Min.   :43.00   Min.   :  326   Min.   : 0.000   Min.   : 0.000  
-##  1st Qu.:56.00   1st Qu.:  950   1st Qu.: 4.710   1st Qu.: 4.720  
-##  Median :57.00   Median : 2401   Median : 5.700   Median : 5.710  
-##  Mean   :57.46   Mean   : 3933   Mean   : 5.731   Mean   : 5.735  
-##  3rd Qu.:59.00   3rd Qu.: 5324   3rd Qu.: 6.540   3rd Qu.: 6.540  
-##  Max.   :95.00   Max.   :18823   Max.   :10.740   Max.   :58.900  
-##                                                                   
-##        z         
-##  Min.   : 0.000  
-##  1st Qu.: 2.910  
-##  Median : 3.530  
-##  Mean   : 3.539  
-##  3rd Qu.: 4.040  
-##  Max.   :31.800  
-## 
+## Classes 'tbl_df', 'tbl' and 'data.frame':	53940 obs. of  10 variables:
+##  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
+##  $ cut    : Ord.factor w/ 5 levels "Fair"&lt;"Good"&lt;..: 5 4 2 4 2 3 3 3 1 3 ...
+##  $ color  : Ord.factor w/ 7 levels "D"&lt;"E"&lt;"F"&lt;"G"&lt;..: 2 2 2 6 7 7 6 5 2 5 ...
+##  $ clarity: Ord.factor w/ 8 levels "I1"&lt;"SI2"&lt;"SI1"&lt;..: 2 3 5 4 2 6 7 3 4 5 ...
+##  $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
+##  $ table  : num  55 61 65 58 58 57 57 55 61 61 ...
+##  $ price  : int  326 326 327 334 335 336 336 337 337 338 ...
+##  $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
+##  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
+##  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...
 ```
 
 
@@ -254,18 +249,18 @@ diamonds_training
 
 ```
 ## # A tibble: 32,364 x 5
-##      depth  table  price     y cut      
-##      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt;    
-##  1  0.447   0.244 -0.906 -1.31 Premium  
-##  2  0.0986 -1.10  -0.906 -1.41 Very Good
-##  3 -1.64    1.59  -0.905 -1.46 Very Good
-##  4  0.726  -0.651 -0.905 -1.59 Ideal    
-##  5 -0.947   1.59  -0.904 -1.65 Premium  
-##  6  0.308  -1.55  -0.904 -1.19 Ideal    
-##  7 -1.09    2.03  -0.904 -1.72 Premium  
-##  8 -0.599   0.244 -0.904 -1.14 Premium  
-##  9  0.168  -1.55  -0.903 -1.21 Ideal    
-## 10 -1.64    2.03  -0.902 -1.13 Very Good
+##     depth  table  price     y cut      
+##     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt;    
+##  1 -1.35   1.58  -0.906 -1.63 Premium  
+##  2  0.733 -0.211 -0.903 -1.53 Very Good
+##  3  0.108 -1.11  -0.903 -1.40 Very Good
+##  4 -1.63   1.58  -0.903 -1.45 Very Good
+##  5  1.57  -1.11  -0.903 -1.26 Good     
+##  6  0.733 -0.659 -0.902 -1.58 Ideal    
+##  7 -1.07   2.03  -0.901 -1.71 Premium  
+##  8  0.177 -1.56  -0.900 -1.20 Ideal    
+##  9  0.664  0.685 -0.900 -1.26 Very Good
+## 10  1.08  -0.659 -0.900 -1.24 Good     
 ## # ... with 32,354 more rows
 ```
 
@@ -284,16 +279,16 @@ diamonds_testing
 ## # A tibble: 21,576 x 5
 ##    cut        depth  table  price     y
 ##    &lt;ord&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 Ideal     -0.180 -1.10  -0.908 -1.52
-##  2 Premium   -1.37   1.59  -0.908 -1.65
-##  3 Good      -3.39   3.37  -0.908 -1.45
-##  4 Good       1.07   0.244 -0.906 -1.20
-##  5 Very Good  0.726 -0.203 -0.906 -1.54
-##  6 Very Good  0.377 -0.203 -0.906 -1.52
-##  7 Fair       2.33   1.59  -0.906 -1.70
-##  8 Good       1.56  -1.10  -0.905 -1.26
-##  9 Good       1.14  -1.55  -0.902 -1.26
-## 10 Good       1.42  -0.651 -0.902 -1.28
+##  1 Ideal     -0.170 -1.11  -0.906 -1.51
+##  2 Good      -3.37   3.37  -0.906 -1.44
+##  3 Premium    0.455  0.237 -0.904 -1.30
+##  4 Good       1.08   0.237 -0.904 -1.20
+##  5 Very Good  0.386 -0.211 -0.903 -1.51
+##  6 Fair       2.33   1.58  -0.903 -1.69
+##  7 Premium   -0.935  1.58  -0.902 -1.63
+##  8 Ideal      0.316 -1.56  -0.901 -1.18
+##  9 Premium   -0.587  0.237 -0.901 -1.14
+## 10 Good       1.15  -1.56  -0.900 -1.25
 ## # ... with 21,566 more rows
 ```
 
@@ -333,7 +328,7 @@ diam_ranger
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.2238999
+## OOB prediction error (Brier s.):  0.2223904
 ```
 
 ---
@@ -359,14 +354,14 @@ diam_rf
 ##                      Number of trees: 100
 ## No. of variables tried at each split: 2
 ## 
-##         OOB estimate of  error rate: 28.09%
+##         OOB estimate of  error rate: 27.83%
 ## Confusion matrix:
 ##           Fair Good Very Good Premium Ideal class.error
-## Fair       858   65        16      23    11   0.1181912
-## Good       107 1868       607     301    56   0.3644097
-## Very Good   12  475      2948    2209  1613   0.5937715
-## Premium      1   82      1198    6032   924   0.2676945
-## Ideal       10   34       671     676 11567   0.1073468
+## Fair       847   62        17      24    10   0.1177083
+## Good        90 1921       589     310    66   0.3545027
+## Very Good    8  454      2982    2191  1671   0.5918423
+## Premium      2  120      1201    6066   866   0.2651726
+## Ideal        6   28       667     624 11542   0.1029766
 ```
 
 ---
@@ -381,15 +376,15 @@ predict(diam_ranger, diamonds_testing)
 ## # A tibble: 21,576 x 1
 ##    .pred_class
 ##    &lt;fct&gt;      
-##  1 Ideal      
-##  2 Premium    
-##  3 Good       
+##  1 Very Good  
+##  2 Good       
+##  3 Very Good  
 ##  4 Good       
-##  5 Ideal      
-##  6 Very Good  
-##  7 Good       
-##  8 Good       
-##  9 Good       
+##  5 Very Good  
+##  6 Good       
+##  7 Premium    
+##  8 Ideal      
+##  9 Premium    
 ## 10 Good       
 ## # ... with 21,566 more rows
 ```
@@ -410,16 +405,16 @@ diam_ranger %&gt;%
 ## # A tibble: 21,576 x 6
 ##    .pred_class cut        depth  table  price     y
 ##    &lt;fct&gt;       &lt;ord&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 Ideal       Ideal     -0.180 -1.10  -0.908 -1.52
-##  2 Premium     Premium   -1.37   1.59  -0.908 -1.65
-##  3 Good        Good      -3.39   3.37  -0.908 -1.45
-##  4 Good        Good       1.07   0.244 -0.906 -1.20
-##  5 Ideal       Very Good  0.726 -0.203 -0.906 -1.54
-##  6 Very Good   Very Good  0.377 -0.203 -0.906 -1.52
-##  7 Good        Fair       2.33   1.59  -0.906 -1.70
-##  8 Good        Good       1.56  -1.10  -0.905 -1.26
-##  9 Good        Good       1.14  -1.55  -0.902 -1.26
-## 10 Good        Good       1.42  -0.651 -0.902 -1.28
+##  1 Very Good   Ideal     -0.170 -1.11  -0.906 -1.51
+##  2 Good        Good      -3.37   3.37  -0.906 -1.44
+##  3 Very Good   Premium    0.455  0.237 -0.904 -1.30
+##  4 Good        Good       1.08   0.237 -0.904 -1.20
+##  5 Very Good   Very Good  0.386 -0.211 -0.903 -1.51
+##  6 Good        Fair       2.33   1.58  -0.903 -1.69
+##  7 Premium     Premium   -0.935  1.58  -0.902 -1.63
+##  8 Ideal       Ideal      0.316 -1.56  -0.901 -1.18
+##  9 Premium     Premium   -0.587  0.237 -0.901 -1.14
+## 10 Good        Good       1.15  -1.56  -0.900 -1.25
 ## # ... with 21,566 more rows
 ```
 
@@ -441,7 +436,7 @@ diam_ranger %&gt;%
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy multiclass     0.737
-## 2 kap      multiclass     0.627
+## 2 kap      multiclass     0.625
 ```
 
 ---
@@ -461,8 +456,8 @@ diam_rf %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.726
-## 2 kap      multiclass     0.612
+## 1 accuracy multiclass     0.723
+## 2 kap      multiclass     0.606
 ```
 
 ---
@@ -479,16 +474,16 @@ diam_ranger %&gt;%
 ## # A tibble: 21,576 x 5
 ##    .pred_Fair .pred_Good `.pred_Very Good` .pred_Premium .pred_Ideal
 ##         &lt;dbl&gt;      &lt;dbl&gt;             &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
-##  1    0           0                 0.439         0.0622     0.499  
-##  2    0.0045      0.0322            0.0485        0.911      0.00421
-##  3    0.231       0.505             0.251         0.0132     0      
-##  4    0           0.904             0.0960        0          0      
-##  5    0           0.0101            0.432         0.106      0.452  
-##  6    0           0                 0.424         0.187      0.389  
-##  7    0.343       0.569             0.0528        0.0348     0      
-##  8    0           0.934             0.0657        0          0      
-##  9    0           0.854             0.146         0          0      
-## 10    0.00143     0.946             0.053         0          0      
+##  1      0        0.001              0.537         0.0394      0.422 
+##  2      0.263    0.462              0.261         0.0143      0     
+##  3      0        0.0345             0.603         0.334       0.0285
+##  4      0        0.764              0.235         0           0.001 
+##  5      0        0.00994            0.507         0.171       0.312 
+##  6      0.344    0.557              0.0871        0.0112      0     
+##  7      0        0.0352             0.213         0.752       0     
+##  8      0        0                  0.0869        0           0.913 
+##  9      0        0                  0.433         0.485       0.0821
+## 10      0        0.887              0.113         0           0     
 ## # ... with 21,566 more rows
 ```
 ---
@@ -507,16 +502,16 @@ diam_probs
 ## # A tibble: 21,576 x 10
 ##    .pred_Fair .pred_Good `.pred_Very Goo~ .pred_Premium .pred_Ideal cut    depth
 ##         &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;ord&gt;  &lt;dbl&gt;
-##  1    0           0                0.439         0.0622     0.499   Ideal -0.180
-##  2    0.0045      0.0322           0.0485        0.911      0.00421 Prem~ -1.37 
-##  3    0.231       0.505            0.251         0.0132     0       Good  -3.39 
-##  4    0           0.904            0.0960        0          0       Good   1.07 
-##  5    0           0.0101           0.432         0.106      0.452   Very~  0.726
-##  6    0           0                0.424         0.187      0.389   Very~  0.377
-##  7    0.343       0.569            0.0528        0.0348     0       Fair   2.33 
-##  8    0           0.934            0.0657        0          0       Good   1.56 
-##  9    0           0.854            0.146         0          0       Good   1.14 
-## 10    0.00143     0.946            0.053         0          0       Good   1.42 
+##  1      0        0.001             0.537         0.0394      0.422  Ideal -0.170
+##  2      0.263    0.462             0.261         0.0143      0      Good  -3.37 
+##  3      0        0.0345            0.603         0.334       0.0285 Prem~  0.455
+##  4      0        0.764             0.235         0           0.001  Good   1.08 
+##  5      0        0.00994           0.507         0.171       0.312  Very~  0.386
+##  6      0.344    0.557             0.0871        0.0112      0      Fair   2.33 
+##  7      0        0.0352            0.213         0.752       0      Prem~ -0.935
+##  8      0        0                 0.0869        0           0.913  Ideal  0.316
+##  9      0        0                 0.433         0.485       0.0821 Prem~ -0.587
+## 10      0        0.887             0.113         0           0      Good   1.15 
 ## # ... with 21,566 more rows, and 3 more variables: table &lt;dbl&gt;, price &lt;dbl&gt;,
 ## #   y &lt;dbl&gt;
 ```
@@ -534,13 +529,13 @@ diam_probs%&gt;%
 ```
 
 ```
-## Observations: 63,356
+## Observations: 63,225
 ## Variables: 5
 ## $ .level          &lt;chr&gt; "Fair", "Fair", "Fair", "Fair", "Fair", "Fair", "Fa...
-## $ .n              &lt;dbl&gt; 0, 5, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 2...
-## $ .n_events       &lt;dbl&gt; 0, 5, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 2...
-## $ .percent_tested &lt;dbl&gt; 0.00000000, 0.02317390, 0.04634779, 0.05098257, 0.0...
-## $ .percent_found  &lt;dbl&gt; 0.0000000, 0.7849294, 1.5698587, 1.7268446, 1.88383...
+## $ .n              &lt;dbl&gt; 0, 5, 6, 7, 8, 12, 13, 14, 15, 16, 18, 19, 20, 21, ...
+## $ .n_events       &lt;dbl&gt; 0, 4, 5, 6, 7, 11, 12, 13, 14, 15, 17, 18, 19, 20, ...
+## $ .percent_tested &lt;dbl&gt; 0.00000000, 0.02317390, 0.02780868, 0.03244346, 0.0...
+## $ .percent_found  &lt;dbl&gt; 0.0000000, 0.6153846, 0.7692308, 0.9230769, 1.07692...
 ```
 
 
@@ -587,9 +582,9 @@ predict(diam_ranger, diamonds_testing, type = "prob") %&gt;%
 ##   .metric     .estimator .estimate
 ##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy    multiclass     0.737
-## 2 kap         multiclass     0.627
-## 3 mn_log_loss multiclass     0.770
-## 4 roc_auc     hand_till      0.912
+## 2 kap         multiclass     0.625
+## 3 mn_log_loss multiclass     0.773
+## 4 roc_auc     hand_till      0.913
 ```
 
 

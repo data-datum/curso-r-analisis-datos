@@ -74,13 +74,21 @@ library(tidymodels)
 ```
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
+background-size: cover
+class: center, middle
+
+# `r emo::ji("sparkles")` Clases Desbalanceadas
+
+
+---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
 # Dataset: diamonds
 Como podemos ver las clases están desbalanceadas
 
 ```{r } 
-summary(diamonds)
+str(diamonds)
 ```
 
 
