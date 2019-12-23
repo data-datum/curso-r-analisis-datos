@@ -25,8 +25,682 @@ class: inverse, center
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt; Slides disponibles en &lt;https://bit.ly/curso-r-fca&gt; ✨
 &lt;br&gt; Página web del curso en &lt;https://curso-r-fca.netlify.com&gt; 🌟
 
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="center" /&gt;
 
 ---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+&lt;br&gt;&lt;br&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym1.png" width="100%" align="center" /&gt;
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+&lt;br&gt;&lt;br&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym2.png" width="100%" align="center" /&gt;
+
+--
+
+### Documentación
+- Tidymodels https://github.com/tidymodels/tidymodels
+- Rsample https://tidymodels.github.io/rsample/
+- Recipes https://tidymodels.github.io/recipes/reference/index.html
+- Parsnip https://tidymodels.github.io/parsnip/
+- Yardstick https://tidymodels.github.io/yardstick/ 
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+
+# En primer lugar instalamos tidymodels
+
+```r
+install.packages(tidymodels)
+```
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+
+# Librerías de Tidymodels
+
+```r
+library(tidymodels)
+```
+
+```
+## Registered S3 method overwritten by 'xts':
+##   method     from
+##   as.zoo.xts zoo
+```
+
+```
+## -- Attaching packages ---------------------------------------- tidymodels 0.0.3 --
+```
+
+```
+## v broom     0.5.2       v purrr     0.3.3  
+## v dials     0.0.4       v recipes   0.1.7  
+## v dplyr     0.8.3       v rsample   0.0.5  
+## v ggplot2   3.2.1       v tibble    2.1.3  
+## v infer     0.5.1       v yardstick 0.0.4  
+## v parsnip   0.0.3.1
+```
+
+```
+## -- Conflicts ------------------------------------------- tidymodels_conflicts() --
+## x purrr::discard()  masks scales::discard()
+## x dplyr::filter()   masks stats::filter()
+## x dplyr::lag()      masks stats::lag()
+## x ggplot2::margin() masks dials::margin()
+## x recipes::step()   masks stats::step()
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Dataset: diamonds
+Como podemos ver las clases están desbalanceadas
+
+
+```r
+summary(diamonds)
+```
+
+```
+##      carat               cut        color        clarity          depth      
+##  Min.   :0.2000   Fair     : 1610   D: 6775   SI1    :13065   Min.   :43.00  
+##  1st Qu.:0.4000   Good     : 4906   E: 9797   VS2    :12258   1st Qu.:61.00  
+##  Median :0.7000   Very Good:12082   F: 9542   SI2    : 9194   Median :61.80  
+##  Mean   :0.7979   Premium  :13791   G:11292   VS1    : 8171   Mean   :61.75  
+##  3rd Qu.:1.0400   Ideal    :21551   H: 8304   VVS2   : 5066   3rd Qu.:62.50  
+##  Max.   :5.0100                     I: 5422   VVS1   : 3655   Max.   :79.00  
+##                                     J: 2808   (Other): 2531                  
+##      table           price             x                y         
+##  Min.   :43.00   Min.   :  326   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.:56.00   1st Qu.:  950   1st Qu.: 4.710   1st Qu.: 4.720  
+##  Median :57.00   Median : 2401   Median : 5.700   Median : 5.710  
+##  Mean   :57.46   Mean   : 3933   Mean   : 5.731   Mean   : 5.735  
+##  3rd Qu.:59.00   3rd Qu.: 5324   3rd Qu.: 6.540   3rd Qu.: 6.540  
+##  Max.   :95.00   Max.   :18823   Max.   :10.740   Max.   :58.900  
+##                                                                   
+##        z         
+##  Min.   : 0.000  
+##  1st Qu.: 2.910  
+##  Median : 3.530  
+##  Mean   : 3.539  
+##  3rd Qu.: 4.040  
+##  Max.   :31.800  
+## 
+```
+
+
+---
+
+
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
+
+# 1° Paso: Dividir los datos
+
+### Crear un set de datos training / testing con la librería *rsamples*
+
+
+```r
+library(dplyr)
+diamonds &lt;- select(diamonds, -color, -clarity)
+```
+
+
+
+```r
+diamonds_split &lt;- rsample::initial_split(diamonds, prop = 0.6)
+diamonds_split
+```
+
+```
+## &lt;32364/21576/53940&gt;
+```
+
+
+Estos son los datos de training/testing/total 
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes_allison.png" width="100%" align="center" /&gt;
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+
+# 2° Paso: Preprocesamiento
+
+- **recipe()**: empieza una lista de transformaciones a ser aplicadas
+- **prep()**: Indica que hay que ejecutar todos los pasos anteriores. 
+&lt;br&gt;
+- **step_corr()**: remueve todas las variables con alta correlación
+- **step_center()**: centrar los datos con media igual a 0. 
+- **step_scale()**: Normaliza con desvío estándar igual a 1. 
+&lt;br&gt;
+- **all_predictors()** y **all_outcomes()** son las variables predictivas y predictoras
+
+
+
+```r
+diamonds_recipe &lt;- training(diamonds_split) %&gt;%
+  recipe(cut~.) %&gt;%
+  step_corr(all_predictors()) %&gt;%
+  step_center(all_predictors(), -all_outcomes()) %&gt;%
+  step_scale(all_predictors(), -all_outcomes()) %&gt;%
+  prep()
+```
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+
+
+```r
+diamonds_recipe &lt;- training(diamonds_split) %&gt;%
+  recipe(cut~.) %&gt;%
+  step_corr(all_predictors()) %&gt;%
+  step_center(all_predictors(), -all_outcomes()) %&gt;%
+  step_scale(all_predictors(), -all_outcomes()) %&gt;%
+  prep()
+```
+
+
+```r
+diamonds_recipe
+```
+
+```
+## Data Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor          7
+## 
+## Training data contained 32364 data points and no missing data.
+## 
+## Operations:
+## 
+## Correlation filter removed x, z, carat [trained]
+## Centering for depth, table, price, y [trained]
+## Scaling for depth, table, price, y [trained]
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+
+
+```r
+diamonds_training &lt;- juice(diamonds_recipe)
+
+diamonds_training
+```
+
+```
+## # A tibble: 32,364 x 5
+##      depth  table  price     y cut      
+##      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt;    
+##  1  0.447   0.244 -0.906 -1.31 Premium  
+##  2  0.0986 -1.10  -0.906 -1.41 Very Good
+##  3 -1.64    1.59  -0.905 -1.46 Very Good
+##  4  0.726  -0.651 -0.905 -1.59 Ideal    
+##  5 -0.947   1.59  -0.904 -1.65 Premium  
+##  6  0.308  -1.55  -0.904 -1.19 Ideal    
+##  7 -1.09    2.03  -0.904 -1.72 Premium  
+##  8 -0.599   0.244 -0.904 -1.14 Premium  
+##  9  0.168  -1.55  -0.903 -1.21 Ideal    
+## 10 -1.64    2.03  -0.902 -1.13 Very Good
+## # ... with 32,354 more rows
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+
+
+```r
+diamonds_testing &lt;- diamonds_recipe %&gt;%
+  bake(testing(diamonds_split)) 
+
+diamonds_testing
+```
+
+```
+## # A tibble: 21,576 x 5
+##    cut        depth  table  price     y
+##    &lt;ord&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 Ideal     -0.180 -1.10  -0.908 -1.52
+##  2 Premium   -1.37   1.59  -0.908 -1.65
+##  3 Good      -3.39   3.37  -0.908 -1.45
+##  4 Good       1.07   0.244 -0.906 -1.20
+##  5 Very Good  0.726 -0.203 -0.906 -1.54
+##  6 Very Good  0.377 -0.203 -0.906 -1.52
+##  7 Fair       2.33   1.59  -0.906 -1.70
+##  8 Good       1.56  -1.10  -0.905 -1.26
+##  9 Good       1.14  -1.55  -0.902 -1.26
+## 10 Good       1.42  -0.651 -0.902 -1.28
+## # ... with 21,566 more rows
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_allison.png" width="100%" align="center" /&gt;
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+## 3° Entrenamiento
+
+Para a entrenar un modelo de random forest con librería {ranger}
+
+```r
+diam_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+  set_engine("ranger") %&gt;%
+  fit(cut~., data = diamonds_training)
+
+diam_ranger
+```
+
+```
+## parsnip model object
+## 
+## Ranger result
+## 
+## Call:
+##  ranger::ranger(formula = formula, data = data, num.trees = ~100,      num.threads = 1, verbose = FALSE, seed = sample.int(10^5,          1), probability = TRUE) 
+## 
+## Type:                             Probability estimation 
+## Number of trees:                  100 
+## Sample size:                      32364 
+## Number of independent variables:  4 
+## Mtry:                             2 
+## Target node size:                 10 
+## Variable importance mode:         none 
+## Splitrule:                        gini 
+## OOB prediction error (Brier s.):  0.2238999
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+{randomForest}
+
+```r
+diam_rf &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+  set_engine("randomForest") %&gt;%
+  fit(cut~., data = diamonds_training)
+
+diam_rf
+```
+
+```
+## parsnip model object
+## 
+## 
+## Call:
+##  randomForest(x = as.data.frame(x), y = y, ntree = ~100) 
+##                Type of random forest: classification
+##                      Number of trees: 100
+## No. of variables tried at each split: 2
+## 
+##         OOB estimate of  error rate: 28.09%
+## Confusion matrix:
+##           Fair Good Very Good Premium Ideal class.error
+## Fair       858   65        16      23    11   0.1181912
+## Good       107 1868       607     301    56   0.3644097
+## Very Good   12  475      2948    2209  1613   0.5937715
+## Premium      1   82      1198    6032   924   0.2676945
+## Ideal       10   34       671     676 11567   0.1073468
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+
+```r
+predict(diam_ranger, diamonds_testing)
+```
+
+```
+## # A tibble: 21,576 x 1
+##    .pred_class
+##    &lt;fct&gt;      
+##  1 Ideal      
+##  2 Premium    
+##  3 Good       
+##  4 Good       
+##  5 Ideal      
+##  6 Very Good  
+##  7 Good       
+##  8 Good       
+##  9 Good       
+## 10 Good       
+## # ... with 21,566 more rows
+```
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+
+```r
+diam_ranger %&gt;%
+  predict(diamonds_testing) %&gt;%
+  bind_cols(diamonds_testing) 
+```
+
+```
+## # A tibble: 21,576 x 6
+##    .pred_class cut        depth  table  price     y
+##    &lt;fct&gt;       &lt;ord&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 Ideal       Ideal     -0.180 -1.10  -0.908 -1.52
+##  2 Premium     Premium   -1.37   1.59  -0.908 -1.65
+##  3 Good        Good      -3.39   3.37  -0.908 -1.45
+##  4 Good        Good       1.07   0.244 -0.906 -1.20
+##  5 Ideal       Very Good  0.726 -0.203 -0.906 -1.54
+##  6 Very Good   Very Good  0.377 -0.203 -0.906 -1.52
+##  7 Good        Fair       2.33   1.59  -0.906 -1.70
+##  8 Good        Good       1.56  -1.10  -0.905 -1.26
+##  9 Good        Good       1.14  -1.55  -0.902 -1.26
+## 10 Good        Good       1.42  -0.651 -0.902 -1.28
+## # ... with 21,566 more rows
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+### 4° Validación
+
+
+```r
+diam_ranger %&gt;%
+  predict(diamonds_testing) %&gt;%
+  bind_cols(diamonds_testing) %&gt;%
+  metrics(truth=cut, estimate=.pred_class)
+```
+
+```
+## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy multiclass     0.737
+## 2 kap      multiclass     0.627
+```
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+
+```r
+diam_rf %&gt;%
+  predict(diamonds_testing) %&gt;%
+  bind_cols(diamonds_testing) %&gt;%
+  metrics(truth=cut, estimate=.pred_class)
+```
+
+```
+## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy multiclass     0.726
+## 2 kap      multiclass     0.612
+```
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+```r
+diam_ranger %&gt;%
+  predict(diamonds_testing, type="prob")
+```
+
+```
+## # A tibble: 21,576 x 5
+##    .pred_Fair .pred_Good `.pred_Very Good` .pred_Premium .pred_Ideal
+##         &lt;dbl&gt;      &lt;dbl&gt;             &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+##  1    0           0                 0.439         0.0622     0.499  
+##  2    0.0045      0.0322            0.0485        0.911      0.00421
+##  3    0.231       0.505             0.251         0.0132     0      
+##  4    0           0.904             0.0960        0          0      
+##  5    0           0.0101            0.432         0.106      0.452  
+##  6    0           0                 0.424         0.187      0.389  
+##  7    0.343       0.569             0.0528        0.0348     0      
+##  8    0           0.934             0.0657        0          0      
+##  9    0           0.854             0.146         0          0      
+## 10    0.00143     0.946             0.053         0          0      
+## # ... with 21,566 more rows
+```
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+
+```r
+diam_probs &lt;- diam_ranger %&gt;%
+  predict(diamonds_testing, type = "prob") %&gt;%
+  bind_cols(diamonds_testing)
+diam_probs
+```
+
+```
+## # A tibble: 21,576 x 10
+##    .pred_Fair .pred_Good `.pred_Very Goo~ .pred_Premium .pred_Ideal cut    depth
+##         &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;ord&gt;  &lt;dbl&gt;
+##  1    0           0                0.439         0.0622     0.499   Ideal -0.180
+##  2    0.0045      0.0322           0.0485        0.911      0.00421 Prem~ -1.37 
+##  3    0.231       0.505            0.251         0.0132     0       Good  -3.39 
+##  4    0           0.904            0.0960        0          0       Good   1.07 
+##  5    0           0.0101           0.432         0.106      0.452   Very~  0.726
+##  6    0           0                0.424         0.187      0.389   Very~  0.377
+##  7    0.343       0.569            0.0528        0.0348     0       Fair   2.33 
+##  8    0           0.934            0.0657        0          0       Good   1.56 
+##  9    0           0.854            0.146         0          0       Good   1.14 
+## 10    0.00143     0.946            0.053         0          0       Good   1.42 
+## # ... with 21,566 more rows, and 3 more variables: table &lt;dbl&gt;, price &lt;dbl&gt;,
+## #   y &lt;dbl&gt;
+```
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+
+```r
+diam_probs%&gt;%
+  gain_curve(cut, .pred_Fair:.pred_Ideal) %&gt;%
+  glimpse()
+```
+
+```
+## Observations: 63,356
+## Variables: 5
+## $ .level          &lt;chr&gt; "Fair", "Fair", "Fair", "Fair", "Fair", "Fair", "Fa...
+## $ .n              &lt;dbl&gt; 0, 5, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 2...
+## $ .n_events       &lt;dbl&gt; 0, 5, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 2...
+## $ .percent_tested &lt;dbl&gt; 0.00000000, 0.02317390, 0.04634779, 0.05098257, 0.0...
+## $ .percent_found  &lt;dbl&gt; 0.0000000, 0.7849294, 1.5698587, 1.7268446, 1.88383...
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+```r
+diam_probs%&gt;%
+  gain_curve(cut, .pred_Fair:.pred_Ideal) %&gt;%
+  autoplot()
+```
+
+![](ml-fundamentals_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+```r
+diam_probs%&gt;%
+  roc_curve(cut, .pred_Fair:.pred_Ideal) %&gt;%
+  autoplot()
+```
+
+![](ml-fundamentals_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+
+```r
+predict(diam_ranger, diamonds_testing, type = "prob") %&gt;%
+  bind_cols(predict(diam_ranger, diamonds_testing)) %&gt;%
+  bind_cols(select(diamonds_testing, cut)) %&gt;%
+  metrics(cut, .pred_Fair:.pred_Ideal, estimate = .pred_class)
+```
+
+```
+## # A tibble: 4 x 3
+##   .metric     .estimator .estimate
+##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy    multiclass     0.737
+## 2 kap         multiclass     0.627
+## 3 mn_log_loss multiclass     0.770
+## 4 roc_auc     hand_till      0.912
+```
+
+
+---
+# Si miramos con atención las clases no están balanceadas
+
+
+```r
+summary(diamonds)
+```
+
+```
+##      carat               cut            depth           table      
+##  Min.   :0.2000   Fair     : 1610   Min.   :43.00   Min.   :43.00  
+##  1st Qu.:0.4000   Good     : 4906   1st Qu.:61.00   1st Qu.:56.00  
+##  Median :0.7000   Very Good:12082   Median :61.80   Median :57.00  
+##  Mean   :0.7979   Premium  :13791   Mean   :61.75   Mean   :57.46  
+##  3rd Qu.:1.0400   Ideal    :21551   3rd Qu.:62.50   3rd Qu.:59.00  
+##  Max.   :5.0100                     Max.   :79.00   Max.   :95.00  
+##      price             x                y                z         
+##  Min.   :  326   Min.   : 0.000   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.:  950   1st Qu.: 4.710   1st Qu.: 4.720   1st Qu.: 2.910  
+##  Median : 2401   Median : 5.700   Median : 5.710   Median : 3.530  
+##  Mean   : 3933   Mean   : 5.731   Mean   : 5.735   Mean   : 3.539  
+##  3rd Qu.: 5324   3rd Qu.: 6.540   3rd Qu.: 6.540   3rd Qu.: 4.040  
+##  Max.   :18823   Max.   :10.740   Max.   :58.900   Max.   :31.800
+```
+
+---
+
+
+
+---
+# Bibliografía
+
+- Tutorial de Tidymodels
+https://rviews.rstudio.com/2019/06/19/a-gentle-intro-to-tidymodels/
+- 
+
+
+
+
+
+---
+
+
+```r
+sessionInfo() 
+```
+
+```
+## R version 3.6.1 (2019-07-05)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18362)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Spanish_Argentina.1252  LC_CTYPE=Spanish_Argentina.1252   
+## [3] LC_MONETARY=Spanish_Argentina.1252 LC_NUMERIC=C                      
+## [5] LC_TIME=Spanish_Argentina.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] yardstick_0.0.4   tibble_2.1.3      rsample_0.0.5     tidyr_1.0.0      
+##  [5] recipes_0.1.7     purrr_0.3.3       parsnip_0.0.3.1   infer_0.5.1      
+##  [9] ggplot2_3.2.1     dplyr_0.8.3       dials_0.0.4       scales_1.0.0     
+## [13] broom_0.5.2       tidymodels_0.0.3  emo_0.0.0.9000    fontawesome_0.1.0
+## 
+## loaded via a namespace (and not attached):
+##   [1] minqa_1.2.4           colorspace_1.4-1      class_7.3-15         
+##   [4] ggridges_0.5.1        rsconnect_0.8.15      markdown_1.1         
+##   [7] base64enc_0.1-3       tidytext_0.2.2        rstudioapi_0.10      
+##  [10] listenv_0.7.0         furrr_0.1.0           xaringan_0.11        
+##  [13] rstan_2.19.2          SnowballC_0.6.0       DT_0.8               
+##  [16] fansi_0.4.0           prodlim_2018.04.18    lubridate_1.7.4      
+##  [19] ranger_0.11.2         codetools_0.2-16      splines_3.6.1        
+##  [22] knitr_1.26            shinythemes_1.1.2     zeallot_0.1.0        
+##  [25] bayesplot_1.7.0       nloptr_1.2.1          pROC_1.15.3          
+##  [28] shiny_1.3.2           compiler_3.6.1        backports_1.1.5      
+##  [31] assertthat_0.2.1      Matrix_1.2-17         lazyeval_0.2.2       
+##  [34] cli_1.1.0             later_1.0.0           htmltools_0.4.0      
+##  [37] prettyunits_1.0.2     tools_3.6.1           igraph_1.2.4.1       
+##  [40] gtable_0.3.0          glue_1.3.1            reshape2_1.4.3       
+##  [43] Rcpp_1.0.3            DiceDesign_1.8-1      vctrs_0.2.0          
+##  [46] nlme_3.1-140          crosstalk_1.0.0       timeDate_3043.102    
+##  [49] gower_0.2.1           xfun_0.11             stringr_1.4.0        
+##  [52] globals_0.12.4        ps_1.3.0              lme4_1.1-21          
+##  [55] mime_0.7              miniUI_0.1.1.1        lifecycle_0.1.0      
+##  [58] gtools_3.8.1          tidypredict_0.4.3     future_1.14.0        
+##  [61] MASS_7.3-51.4         zoo_1.8-6             ipred_0.9-9          
+##  [64] rstanarm_2.18.2       colourpicker_1.0      promises_1.0.1       
+##  [67] parallel_3.6.1        inline_0.3.15         shinystan_2.5.0      
+##  [70] tidyposterior_0.0.2   yaml_2.2.0            gridExtra_2.3        
+##  [73] loo_2.1.0             StanHeaders_2.18.1-10 rpart_4.1-15         
+##  [76] stringi_1.4.3         tokenizers_0.2.1      dygraphs_1.1.1.6     
+##  [79] randomForest_4.6-14   boot_1.3-22           pkgbuild_1.0.4       
+##  [82] lava_1.6.6            matrixStats_0.54.0    rlang_0.4.2          
+##  [85] pkgconfig_2.0.3       evaluate_0.14         lattice_0.20-38      
+##  [88] labeling_0.3          rstantools_1.5.1      htmlwidgets_1.3      
+##  [91] tidyselect_0.2.5      processx_3.4.1        plyr_1.8.4           
+##  [94] magrittr_1.5          R6_2.4.0              generics_0.0.2       
+##  [97] pillar_1.4.2          withr_2.1.2           xts_0.11-2           
+## [100] survival_2.44-1.1     nnet_7.3-12           janeaustenr_0.1.5    
+## [103] crayon_1.3.4          utf8_1.1.4            rmarkdown_2.0        
+## [106] grid_3.6.1            callr_3.3.1           threejs_0.3.1        
+## [109] digest_0.6.23         xtable_1.8-4          httpuv_1.5.1         
+## [112] stats4_3.6.1          munsell_0.5.0         shinyjs_1.0
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

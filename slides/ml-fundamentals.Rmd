@@ -27,5 +27,320 @@ library(emo)
 
 ---
 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="center" />
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+<br><br>
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym1.png" width="100%" align="center" />
 
 
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+<br><br>
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym2.png" width="100%" align="center" />
+
+--
+
+### Documentación
+- Tidymodels https://github.com/tidymodels/tidymodels
+- Rsample https://tidymodels.github.io/rsample/
+- Recipes https://tidymodels.github.io/recipes/reference/index.html
+- Parsnip https://tidymodels.github.io/parsnip/
+- Yardstick https://tidymodels.github.io/yardstick/ 
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+
+# En primer lugar instalamos tidymodels
+```{r eval=FALSE} 
+install.packages(tidymodels)
+```
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+
+# Librerías de Tidymodels
+```{r } 
+library(tidymodels)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Dataset: diamonds
+Como podemos ver las clases están desbalanceadas
+
+```{r } 
+summary(diamonds)
+```
+
+
+---
+
+
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
+
+# 1° Paso: Dividir los datos
+
+### Crear un set de datos training / testing con la librería *rsamples*
+
+```{r }
+library(dplyr)
+diamonds <- select(diamonds, -color, -clarity)
+```
+
+
+```{r } 
+diamonds_split <- rsample::initial_split(diamonds, prop = 0.6)
+diamonds_split
+```
+
+
+Estos son los datos de training/testing/total 
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes_allison.png" width="100%" align="center" />
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+
+# 2° Paso: Preprocesamiento
+
+- **recipe()**: empieza una lista de transformaciones a ser aplicadas
+- **prep()**: Indica que hay que ejecutar todos los pasos anteriores. 
+<br>
+- **step_corr()**: remueve todas las variables con alta correlación
+- **step_center()**: centrar los datos con media igual a 0. 
+- **step_scale()**: Normaliza con desvío estándar igual a 1. 
+<br>
+- **all_predictors()** y **all_outcomes()** son las variables predictivas y predictoras
+
+
+```{r eval=FALSE} 
+diamonds_recipe <- training(diamonds_split) %>%
+  recipe(cut~.) %>%
+  step_corr(all_predictors()) %>%
+  step_center(all_predictors(), -all_outcomes()) %>%
+  step_scale(all_predictors(), -all_outcomes()) %>%
+  prep()
+
+```
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+
+```{r } 
+diamonds_recipe <- training(diamonds_split) %>%
+  recipe(cut~.) %>%
+  step_corr(all_predictors()) %>%
+  step_center(all_predictors(), -all_outcomes()) %>%
+  step_scale(all_predictors(), -all_outcomes()) %>%
+  prep()
+
+```
+
+```{r } 
+diamonds_recipe
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+
+```{r } 
+diamonds_training <- juice(diamonds_recipe)
+
+diamonds_training
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+
+```{r } 
+diamonds_testing <- diamonds_recipe %>%
+  bake(testing(diamonds_split)) 
+
+diamonds_testing
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_allison.png" width="100%" align="center" />
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+## 3° Entrenamiento
+
+Para a entrenar un modelo de random forest con librería {ranger}
+```{r } 
+diam_ranger <- rand_forest(trees = 100, mode = "classification") %>%
+  set_engine("ranger") %>%
+  fit(cut~., data = diamonds_training)
+
+diam_ranger
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+{randomForest}
+```{r } 
+diam_rf <- rand_forest(trees = 100, mode = "classification") %>%
+  set_engine("randomForest") %>%
+  fit(cut~., data = diamonds_training)
+
+diam_rf
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+```{r } 
+predict(diam_ranger, diamonds_testing)
+
+```
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+```{r } 
+diam_ranger %>%
+  predict(diamonds_testing) %>%
+  bind_cols(diamonds_testing) 
+
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+### 4° Validación
+
+```{r } 
+diam_ranger %>%
+  predict(diamonds_testing) %>%
+  bind_cols(diamonds_testing) %>%
+  metrics(truth=cut, estimate=.pred_class)
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+
+```{r } 
+diam_rf %>%
+  predict(diamonds_testing) %>%
+  bind_cols(diamonds_testing) %>%
+  metrics(truth=cut, estimate=.pred_class)
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+```{r } 
+diam_ranger %>%
+  predict(diamonds_testing, type="prob")
+```
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+
+```{r } 
+diam_probs <- diam_ranger %>%
+  predict(diamonds_testing, type = "prob") %>%
+  bind_cols(diamonds_testing)
+diam_probs
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+
+```{r } 
+diam_probs%>%
+  gain_curve(cut, .pred_Fair:.pred_Ideal) %>%
+  glimpse()
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+```{r } 
+diam_probs%>%
+  gain_curve(cut, .pred_Fair:.pred_Ideal) %>%
+  autoplot()
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+```{r } 
+diam_probs%>%
+  roc_curve(cut, .pred_Fair:.pred_Ideal) %>%
+  autoplot()
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+
+```{r } 
+predict(diam_ranger, diamonds_testing, type = "prob") %>%
+  bind_cols(predict(diam_ranger, diamonds_testing)) %>%
+  bind_cols(select(diamonds_testing, cut)) %>%
+  metrics(cut, .pred_Fair:.pred_Ideal, estimate = .pred_class)
+
+```
+
+
+---
+# Si miramos con atención las clases no están balanceadas
+
+```{r } 
+summary(diamonds)
+```
+
+---
+
+
+
+---
+# Bibliografía
+
+- Tutorial de Tidymodels
+https://rviews.rstudio.com/2019/06/19/a-gentle-intro-to-tidymodels/
+- 
+
+
+
+
+
+---
+
+```{r } 
+sessionInfo() 
+```
