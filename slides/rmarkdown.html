@@ -166,6 +166,7 @@ class: center, middle
 Esto es una lista
 - Mañana 
 - Tarde
+- Noche
 Esto es una lista
 1. Mañana
 1. Tarde
@@ -189,6 +190,17 @@ Esto es una lista
 ]
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# Links
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# Imágenes
+
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros5-msg.png)
 background-size: cover
 class: center, middle
@@ -204,15 +216,177 @@ class: center, middle
 # CÓDIGO R
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# Código R (Code chunks)
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# Opciones por defecto
+
+
+```r
+str(knitr::opts_chunk$get())
+```
+
+```
+## List of 53
+##  $ eval         : logi TRUE
+##  $ echo         : logi TRUE
+##  $ results      : chr "markup"
+##  $ tidy         : logi FALSE
+##  $ tidy.opts    : NULL
+##  $ collapse     : logi FALSE
+##  $ prompt       : logi FALSE
+##  $ comment      : chr "##"
+##  $ highlight    : logi TRUE
+##  $ strip.white  : logi TRUE
+##  $ size         : chr "normalsize"
+##  $ background   : chr "#F7F7F7"
+##  $ cache        : logi FALSE
+##  $ cache.path   : chr "rmarkdown_cache/html/"
+##  $ cache.vars   : NULL
+##  $ cache.lazy   : logi TRUE
+##  $ dependson    : NULL
+##  $ autodep      : logi FALSE
+##  $ cache.rebuild: logi FALSE
+##  $ fig.keep     : chr "high"
+##  $ fig.show     : chr "asis"
+##  $ fig.align    : chr "default"
+##  $ fig.path     : chr "rmarkdown_files/figure-html/"
+##  $ dev          : chr "png"
+##  $ dev.args     : NULL
+##  $ dpi          : num 72
+##  $ fig.ext      : NULL
+##  $ fig.width    : num 7
+##  $ fig.height   : num 7
+##  $ fig.env      : chr "figure"
+##  $ fig.cap      : NULL
+##  $ fig.scap     : NULL
+##  $ fig.lp       : chr "fig:"
+##  $ fig.subcap   : NULL
+##  $ fig.pos      : chr ""
+##  $ out.width    : NULL
+##  $ out.height   : NULL
+##  $ out.extra    : NULL
+##  $ fig.retina   : num 1
+##  $ external     : logi TRUE
+##  $ sanitize     : logi FALSE
+##  $ interval     : num 1
+##  $ aniopts      : chr "controls,loop"
+##  $ warning      : logi TRUE
+##  $ error        : logi FALSE
+##  $ message      : logi TRUE
+##  $ render       : NULL
+##  $ ref.label    : NULL
+##  $ child        : NULL
+##  $ engine       : chr "R"
+##  $ split        : logi FALSE
+##  $ include      : logi TRUE
+##  $ purl         : logi TRUE
+```
+
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros5-msg.png)
+background-size: cover
+class: center, middle
+
+# Demo
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros4-msg.png)
 background-size: cover
 class: center, middle
 
 # 4
-# SALIDA
+# SALIDAS
 
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# Presentaciones con xaringan
+--
+
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# Blogs con Blogdown
+
+--
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# Libros con bookdown
+--
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# CV con Vitae o Pagedown
+
+--
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# Póster con posterdown
+--
+
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" /&gt;
+
+# Bibliografía
+
+
+
+---
+
+
+```r
+sessionInfo() 
+```
+
+```
+## R version 3.6.1 (2019-07-05)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18362)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Spanish_Argentina.1252  LC_CTYPE=Spanish_Argentina.1252   
+## [3] LC_MONETARY=Spanish_Argentina.1252 LC_NUMERIC=C                      
+## [5] LC_TIME=Spanish_Argentina.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] emo_0.0.0.9000    fontawesome_0.1.0
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.3       lubridate_1.7.4  crayon_1.3.4     digest_0.6.23   
+##  [5] assertthat_0.2.1 magrittr_1.5     evaluate_0.14    xaringan_0.11   
+##  [9] rlang_0.4.2      stringi_1.4.3    rmarkdown_2.0    tools_3.6.1     
+## [13] stringr_1.4.0    glue_1.3.1       purrr_0.3.3      xfun_0.11       
+## [17] yaml_2.2.0       compiler_3.6.1   htmltools_0.4.0  knitr_1.26
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

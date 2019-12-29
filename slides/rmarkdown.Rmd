@@ -165,6 +165,7 @@ class: center, middle
 Esto es una lista
 - Mañana 
 - Tarde
+- Noche
 Esto es una lista
 1. Mañana
 1. Tarde
@@ -218,17 +219,88 @@ class: center, middle
 
 # Código R (Code chunks)
 
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
+# Opciones por defecto
 
+```{r } 
+str(knitr::opts_chunk$get())
+```
+
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros5-msg.png)
+background-size: cover
+class: center, middle
+
+# Demo
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros4-msg.png)
 background-size: cover
 class: center, middle
 
 # 4
-# SALIDA
+# SALIDAS
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Presentaciones con xaringan
+--
+
 
 
 ---
 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Blogs con Blogdown
+
+--
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Libros con bookdown
+--
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# CV con Vitae o Pagedown
+
+--
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Póster con posterdown
+--
+
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Tutoriales con learnr 
+--
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Bibliografía
+
+
+
+---
+
+```{r } 
+sessionInfo() 
+```
 
