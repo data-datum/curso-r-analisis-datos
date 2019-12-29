@@ -16,7 +16,7 @@ library(emo)
 
 # `r fa("r-project", fill = 'steelblue')`  para análisis de datos `r emo::ji("rocket")`<br> <br> 
 
-## `r emo::ji("tada")`Rmarkdown `r emo::ji("computer")`<br> <br> <br> 
+## `r emo::ji("tada")` Reportes con Rmarkdown `r emo::ji("computer")`<br> <br> <br> 
 
 .large[Roxana N. Villafañe | LEMyP | <a href='http://twitter.com/data_datum'>`r fa("twitter", fill = 'steelblue')` @data_datum</a>] <br> 
 .large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
@@ -26,6 +26,209 @@ library(emo)
 <br> Página web del curso en <https://curso-r-fca.netlify.com> `r emo::ji("star2")`
 
 ---
+class: inverse, center
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="70%" align="center" />
 
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown_horst.png" width="100%" align="center" />
+
+.footnote[https://github.com/allisonhorst/stats-illustrations]
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# RMarkdown
+
+### Un marco de autoría para ciencia de datos. 
+### Un paquete llamado RMarkdown
+### Un documento de formato .Rmd
+### Un formato de archivo para hacer documentos dinámicos con R. 
+### Una herramienta para integrar código, texto, gráficos y resultados. 
+
+.footnote[bit.ly/r4med-allison]
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/bosque-msg.png)
+background-size: cover
+class: center, middle
+
+# RMarkdown 
+# permite generación de informes, presentaciones, páginas web, tesis, libros, póster, etc. 
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Partes de un archivo .Rmd
+
+1. Metadata o YAML
+2. Texto
+3. Código de R
+4. Salidas
+
+
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros-msg.png)
+background-size: cover
+class: center, middle
+# 1
+# METADATA
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+
+
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros2-msg.png)
+background-size: cover
+class: center, middle
+# 2
+# TEXTO
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Títulos
+
+.pull-left[
+```{r } 
+# Título 1
+
+## Título 2
+
+### Título 3
+
+#### Título 4
+
+##### Título 5
+
+###### Título 6
+```
+
+]
+--
+.pull-right[
+
+# Título 1
+
+## Título 2
+
+### Título 3
+
+#### Título 4
+
+##### Título 5
+
+###### Título 6
+
+
+]
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Texto
+
+.pull-left[
+```{r } 
+### Esto es una **negrita**
+
+### Esto es _cursiva_
+
+```
+
+]
+--
+.pull-right[
+
+### Esto es una **negrita**
+
+### Esto es _cursiva_
+
+
+]
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Listas
+
+.pull-left[
+```
+Esto es una lista
+- Mañana 
+- Tarde
+Esto es una lista
+1. Mañana
+1. Tarde
+1. Noche
+```
+]
+--
+.pull-right[
+
+Esto es una lista
+- Mañana
+- Tarde
+- Noche
+  
+
+Esto es una lista
+1. Mañana
+1. Tarde
+1. Noche
+
+]
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Links
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Imágenes
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros5-msg.png)
+background-size: cover
+class: center, middle
+
+# Demo
+
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros3-msg.png)
+background-size: cover
+class: center, middle
+# 3
+# CÓDIGO R
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Código R (Code chunks)
+
+
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros4-msg.png)
+background-size: cover
+class: center, middle
+
+# 4
+# SALIDA
+
+
+---
 
 
