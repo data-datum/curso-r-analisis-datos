@@ -1,0 +1,31 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css:  ["default", "default-fonts", "animate.css",  "hygge"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+class: inverse, center
+```{r , message=FALSE, warning=FALSE, include=FALSE} 
+library(fontawesome)
+library(emo)
+```
+
+# `r fa("r-project", fill = 'steelblue')`  para análisis de datos `r emo::ji("rocket")`<br> <br> 
+
+## `r emo::ji("tada")`Rmarkdown `r emo::ji("computer")`<br> <br> <br> 
+
+.large[Roxana N. Villafañe | LEMyP | <a href='http://twitter.com/data_datum'>`r fa("twitter", fill = 'steelblue')` @data_datum</a>] <br> 
+.large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
+
+
+<br><br><br><br><br> Slides disponibles en <https://bit.ly/curso-r-fca> `r emo::ji("sparkles")`
+<br> Página web del curso en <https://curso-r-fca.netlify.com> `r emo::ji("star2")`
+
+---
+
+
+

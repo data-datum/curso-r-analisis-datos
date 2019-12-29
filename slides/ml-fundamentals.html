@@ -26,15 +26,27 @@ class: inverse, center
 &lt;br&gt; Página web del curso en &lt;https://curso-r-fca.netlify.com&gt; 🌟
 
 ---
+class:center, inverse
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="center" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" /&gt;
 
 ---
+
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
 &lt;br&gt;&lt;br&gt;
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym1.png" width="100%" align="center" /&gt;
+
+
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
+
+# Tidymodels es un grupo de paquetes centrado en las tareas de modelización de datos. 
+# La modelización consta de varios pasos, la idea es que cada paso lo realice una librería diferente. 
 
 
 ---
@@ -108,40 +120,146 @@ background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
 background-size: cover
 class: center, middle
 
-# ✨ Clases Desbalanceadas
+# ✨ 
 
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
-# Dataset: diamonds
-Como podemos ver las clases están desbalanceadas
+# Dataset: Sonar
+Como podemos ver las clases están prácticamente balanceadas
 
 
 ```r
-str(diamonds)
+library(mlbench)
+data(Sonar)
+```
+
+
+
+```r
+summary(Sonar)
 ```
 
 ```
-## Classes 'tbl_df', 'tbl' and 'data.frame':	53940 obs. of  10 variables:
-##  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
-##  $ cut    : Ord.factor w/ 5 levels "Fair"&lt;"Good"&lt;..: 5 4 2 4 2 3 3 3 1 3 ...
-##  $ color  : Ord.factor w/ 7 levels "D"&lt;"E"&lt;"F"&lt;"G"&lt;..: 2 2 2 6 7 7 6 5 2 5 ...
-##  $ clarity: Ord.factor w/ 8 levels "I1"&lt;"SI2"&lt;"SI1"&lt;..: 2 3 5 4 2 6 7 3 4 5 ...
-##  $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
-##  $ table  : num  55 61 65 58 58 57 57 55 61 61 ...
-##  $ price  : int  326 326 327 334 335 336 336 337 337 338 ...
-##  $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
-##  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
-##  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...
+##        V1                V2                V3                V4         
+##  Min.   :0.00150   Min.   :0.00060   Min.   :0.00150   Min.   :0.00580  
+##  1st Qu.:0.01335   1st Qu.:0.01645   1st Qu.:0.01895   1st Qu.:0.02438  
+##  Median :0.02280   Median :0.03080   Median :0.03430   Median :0.04405  
+##  Mean   :0.02916   Mean   :0.03844   Mean   :0.04383   Mean   :0.05389  
+##  3rd Qu.:0.03555   3rd Qu.:0.04795   3rd Qu.:0.05795   3rd Qu.:0.06450  
+##  Max.   :0.13710   Max.   :0.23390   Max.   :0.30590   Max.   :0.42640  
+##        V5                V6                V7               V8         
+##  Min.   :0.00670   Min.   :0.01020   Min.   :0.0033   Min.   :0.00550  
+##  1st Qu.:0.03805   1st Qu.:0.06703   1st Qu.:0.0809   1st Qu.:0.08042  
+##  Median :0.06250   Median :0.09215   Median :0.1070   Median :0.11210  
+##  Mean   :0.07520   Mean   :0.10457   Mean   :0.1217   Mean   :0.13480  
+##  3rd Qu.:0.10028   3rd Qu.:0.13412   3rd Qu.:0.1540   3rd Qu.:0.16960  
+##  Max.   :0.40100   Max.   :0.38230   Max.   :0.3729   Max.   :0.45900  
+##        V9               V10              V11              V12        
+##  Min.   :0.00750   Min.   :0.0113   Min.   :0.0289   Min.   :0.0236  
+##  1st Qu.:0.09703   1st Qu.:0.1113   1st Qu.:0.1293   1st Qu.:0.1335  
+##  Median :0.15225   Median :0.1824   Median :0.2248   Median :0.2490  
+##  Mean   :0.17800   Mean   :0.2083   Mean   :0.2360   Mean   :0.2502  
+##  3rd Qu.:0.23342   3rd Qu.:0.2687   3rd Qu.:0.3016   3rd Qu.:0.3312  
+##  Max.   :0.68280   Max.   :0.7106   Max.   :0.7342   Max.   :0.7060  
+##       V13              V14              V15              V16        
+##  Min.   :0.0184   Min.   :0.0273   Min.   :0.0031   Min.   :0.0162  
+##  1st Qu.:0.1661   1st Qu.:0.1752   1st Qu.:0.1646   1st Qu.:0.1963  
+##  Median :0.2640   Median :0.2811   Median :0.2817   Median :0.3047  
+##  Mean   :0.2733   Mean   :0.2966   Mean   :0.3202   Mean   :0.3785  
+##  3rd Qu.:0.3513   3rd Qu.:0.3862   3rd Qu.:0.4529   3rd Qu.:0.5357  
+##  Max.   :0.7131   Max.   :0.9970   Max.   :1.0000   Max.   :0.9988  
+##       V17              V18              V19              V20        
+##  Min.   :0.0349   Min.   :0.0375   Min.   :0.0494   Min.   :0.0656  
+##  1st Qu.:0.2059   1st Qu.:0.2421   1st Qu.:0.2991   1st Qu.:0.3506  
+##  Median :0.3084   Median :0.3683   Median :0.4350   Median :0.5425  
+##  Mean   :0.4160   Mean   :0.4523   Mean   :0.5048   Mean   :0.5630  
+##  3rd Qu.:0.6594   3rd Qu.:0.6791   3rd Qu.:0.7314   3rd Qu.:0.8093  
+##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+##       V21              V22              V23              V24        
+##  Min.   :0.0512   Min.   :0.0219   Min.   :0.0563   Min.   :0.0239  
+##  1st Qu.:0.3997   1st Qu.:0.4069   1st Qu.:0.4502   1st Qu.:0.5407  
+##  Median :0.6177   Median :0.6649   Median :0.6997   Median :0.6985  
+##  Mean   :0.6091   Mean   :0.6243   Mean   :0.6470   Mean   :0.6727  
+##  3rd Qu.:0.8170   3rd Qu.:0.8320   3rd Qu.:0.8486   3rd Qu.:0.8722  
+##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+##       V25              V26              V27              V28        
+##  Min.   :0.0240   Min.   :0.0921   Min.   :0.0481   Min.   :0.0284  
+##  1st Qu.:0.5258   1st Qu.:0.5442   1st Qu.:0.5319   1st Qu.:0.5348  
+##  Median :0.7211   Median :0.7545   Median :0.7456   Median :0.7319  
+##  Mean   :0.6754   Mean   :0.6999   Mean   :0.7022   Mean   :0.6940  
+##  3rd Qu.:0.8737   3rd Qu.:0.8938   3rd Qu.:0.9171   3rd Qu.:0.9003  
+##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+##       V29              V30              V31              V32        
+##  Min.   :0.0144   Min.   :0.0613   Min.   :0.0482   Min.   :0.0404  
+##  1st Qu.:0.4637   1st Qu.:0.4114   1st Qu.:0.3456   1st Qu.:0.2814  
+##  Median :0.6808   Median :0.6071   Median :0.4904   Median :0.4296  
+##  Mean   :0.6421   Mean   :0.5809   Mean   :0.5045   Mean   :0.4390  
+##  3rd Qu.:0.8521   3rd Qu.:0.7352   3rd Qu.:0.6420   3rd Qu.:0.5803  
+##  Max.   :1.0000   Max.   :1.0000   Max.   :0.9657   Max.   :0.9306  
+##       V33              V34              V35              V36        
+##  Min.   :0.0477   Min.   :0.0212   Min.   :0.0223   Min.   :0.0080  
+##  1st Qu.:0.2579   1st Qu.:0.2176   1st Qu.:0.1794   1st Qu.:0.1543  
+##  Median :0.3912   Median :0.3510   Median :0.3127   Median :0.3211  
+##  Mean   :0.4172   Mean   :0.4032   Mean   :0.3926   Mean   :0.3848  
+##  3rd Qu.:0.5561   3rd Qu.:0.5961   3rd Qu.:0.5934   3rd Qu.:0.5565  
+##  Max.   :1.0000   Max.   :0.9647   Max.   :1.0000   Max.   :1.0000  
+##       V37              V38              V39              V40        
+##  Min.   :0.0351   Min.   :0.0383   Min.   :0.0371   Min.   :0.0117  
+##  1st Qu.:0.1601   1st Qu.:0.1743   1st Qu.:0.1740   1st Qu.:0.1865  
+##  Median :0.3063   Median :0.3127   Median :0.2835   Median :0.2781  
+##  Mean   :0.3638   Mean   :0.3397   Mean   :0.3258   Mean   :0.3112  
+##  3rd Qu.:0.5189   3rd Qu.:0.4405   3rd Qu.:0.4349   3rd Qu.:0.4244  
+##  Max.   :0.9497   Max.   :1.0000   Max.   :0.9857   Max.   :0.9297  
+##       V41              V42              V43              V44        
+##  Min.   :0.0360   Min.   :0.0056   Min.   :0.0000   Min.   :0.0000  
+##  1st Qu.:0.1631   1st Qu.:0.1589   1st Qu.:0.1552   1st Qu.:0.1269  
+##  Median :0.2595   Median :0.2451   Median :0.2225   Median :0.1777  
+##  Mean   :0.2893   Mean   :0.2783   Mean   :0.2465   Mean   :0.2141  
+##  3rd Qu.:0.3875   3rd Qu.:0.3842   3rd Qu.:0.3245   3rd Qu.:0.2717  
+##  Max.   :0.8995   Max.   :0.8246   Max.   :0.7733   Max.   :0.7762  
+##       V45               V46               V47               V48         
+##  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+##  1st Qu.:0.09448   1st Qu.:0.06855   1st Qu.:0.06425   1st Qu.:0.04512  
+##  Median :0.14800   Median :0.12135   Median :0.10165   Median :0.07810  
+##  Mean   :0.19723   Mean   :0.16063   Mean   :0.12245   Mean   :0.09142  
+##  3rd Qu.:0.23155   3rd Qu.:0.20037   3rd Qu.:0.15443   3rd Qu.:0.12010  
+##  Max.   :0.70340   Max.   :0.72920   Max.   :0.55220   Max.   :0.33390  
+##       V49               V50               V51                V52          
+##  Min.   :0.00000   Min.   :0.00000   Min.   :0.000000   Min.   :0.000800  
+##  1st Qu.:0.02635   1st Qu.:0.01155   1st Qu.:0.008425   1st Qu.:0.007275  
+##  Median :0.04470   Median :0.01790   Median :0.013900   Median :0.011400  
+##  Mean   :0.05193   Mean   :0.02042   Mean   :0.016069   Mean   :0.013420  
+##  3rd Qu.:0.06853   3rd Qu.:0.02527   3rd Qu.:0.020825   3rd Qu.:0.016725  
+##  Max.   :0.19810   Max.   :0.08250   Max.   :0.100400   Max.   :0.070900  
+##       V53                V54                V55               V56          
+##  Min.   :0.000500   Min.   :0.001000   Min.   :0.00060   Min.   :0.000400  
+##  1st Qu.:0.005075   1st Qu.:0.005375   1st Qu.:0.00415   1st Qu.:0.004400  
+##  Median :0.009550   Median :0.009300   Median :0.00750   Median :0.006850  
+##  Mean   :0.010709   Mean   :0.010941   Mean   :0.00929   Mean   :0.008222  
+##  3rd Qu.:0.014900   3rd Qu.:0.014500   3rd Qu.:0.01210   3rd Qu.:0.010575  
+##  Max.   :0.039000   Max.   :0.035200   Max.   :0.04470   Max.   :0.039400  
+##       V57               V58                V59                V60          
+##  Min.   :0.00030   Min.   :0.000300   Min.   :0.000100   Min.   :0.000600  
+##  1st Qu.:0.00370   1st Qu.:0.003600   1st Qu.:0.003675   1st Qu.:0.003100  
+##  Median :0.00595   Median :0.005800   Median :0.006400   Median :0.005300  
+##  Mean   :0.00782   Mean   :0.007949   Mean   :0.007941   Mean   :0.006507  
+##  3rd Qu.:0.01043   3rd Qu.:0.010350   3rd Qu.:0.010325   3rd Qu.:0.008525  
+##  Max.   :0.03550   Max.   :0.044000   Max.   :0.036400   Max.   :0.043900  
+##  Class  
+##  M:111  
+##  R: 97  
+##         
+##         
+##         
+## 
 ```
-
 
 ---
+class: inverse, center
 
-
-
-
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="50%" align="center" /&gt;
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
@@ -151,24 +269,35 @@ str(diamonds)
 ### Crear un set de datos training / testing con la librería *rsamples*
 
 
-```r
-library(dplyr)
-diamonds &lt;- select(diamonds, -color, -clarity)
-```
-
-
 
 ```r
-diamonds_split &lt;- rsample::initial_split(diamonds, prop = 0.6)
-diamonds_split
+sonar_split &lt;- rsample::initial_split(Sonar, prop = 0.6)
+sonar_split
 ```
 
 ```
-## &lt;32364/21576/53940&gt;
+## &lt;125/83/208&gt;
 ```
 
 
 Estos son los datos de training/testing/total 
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text2.png)
+background-size: cover
+class: center, middle, inverse
+
+ 
+
+# 💻 DEMO 💻
+
+
+
+---
+class: inverse, center
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="60%" align="center" /&gt;
+
 ---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes_allison.png" width="100%" align="center" /&gt;
@@ -186,13 +315,13 @@ Estos son los datos de training/testing/total
 - **step_center()**: centrar los datos con media igual a 0. 
 - **step_scale()**: Normaliza con desvío estándar igual a 1. 
 &lt;br&gt;
-- **all_predictors()** y **all_outcomes()** son las variables predictivas y predictoras
+- **all_predictors()** y **all_outcomes()** son todas las variables predictivas y predictoras
 
 
 
 ```r
-diamonds_recipe &lt;- training(diamonds_split) %&gt;%
-  recipe(cut~.) %&gt;%
+sonar_recipe &lt;- training(sonar_split) %&gt;%
+  recipe(Class~.) %&gt;%
   step_corr(all_predictors()) %&gt;%
   step_center(all_predictors(), -all_outcomes()) %&gt;%
   step_scale(all_predictors(), -all_outcomes()) %&gt;%
@@ -206,8 +335,8 @@ diamonds_recipe &lt;- training(diamonds_split) %&gt;%
 
 
 ```r
-diamonds_recipe &lt;- training(diamonds_split) %&gt;%
-  recipe(cut~.) %&gt;%
+sonar_recipe &lt;- training(sonar_split) %&gt;%
+  recipe(Class~.) %&gt;%
   step_corr(all_predictors()) %&gt;%
   step_center(all_predictors(), -all_outcomes()) %&gt;%
   step_scale(all_predictors(), -all_outcomes()) %&gt;%
@@ -216,7 +345,7 @@ diamonds_recipe &lt;- training(diamonds_split) %&gt;%
 
 
 ```r
-diamonds_recipe
+sonar_recipe
 ```
 
 ```
@@ -226,72 +355,95 @@ diamonds_recipe
 ## 
 ##       role #variables
 ##    outcome          1
-##  predictor          7
+##  predictor         60
 ## 
-## Training data contained 32364 data points and no missing data.
+## Training data contained 125 data points and no missing data.
 ## 
 ## Operations:
 ## 
-## Correlation filter removed x, z, carat [trained]
-## Centering for depth, table, price, y [trained]
-## Scaling for depth, table, price, y [trained]
+## Correlation filter removed V10, V11, V18, V15, V16, V20, V48 [trained]
+## Centering for V1, V2, V3, V4, V5, V6, V7, V8, V9, V12, ... [trained]
+## Scaling for V1, V2, V3, V4, V5, V6, V7, V8, V9, V12, ... [trained]
 ```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+
+- **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
+
+
+```r
+sonar_training &lt;- juice(sonar_recipe)
+
+head(sonar_training)
+```
+
+```
+## # A tibble: 6 x 54
+##        V1      V2     V3     V4     V5     V6      V7     V8     V9    V12
+##     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 -0.0487  0.746   1.79   1.16   0.475  2.44   2.15    2.99   3.21   3.20 
+## 2  2.30    1.02    0.176 -0.274 -0.244 -0.631  0.0429  1.42   1.51   1.01 
+## 3 -0.232   0.0709  0.183 -0.106 -0.137 -0.740 -0.745  -1.43  -0.910 -0.612
+## 4 -0.510  -0.588  -0.174 -0.946 -0.998 -0.589 -0.221  -0.713 -0.677 -1.03 
+## 5 -1.10   -0.947  -0.682 -0.394 -0.768 -1.32  -1.36   -1.22  -1.21  -1.08 
+## 6 -0.909  -0.872  -0.935 -0.573 -0.704 -0.825 -1.13   -0.399 -0.637 -0.921
+## # ... with 44 more variables: V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;,
+## #   V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;,
+## #   V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;,
+## #   V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;,
+## #   V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;,
+## #   V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;,
+## #   V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;,
+## #   V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
+```
+
+
+.footnote[https://tidymodels.github.io/recipes/reference/juice.html
+]
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
 
 
 ```r
-diamonds_training &lt;- juice(diamonds_recipe)
+sonar_testing &lt;- sonar_recipe %&gt;%
+  bake(testing(sonar_split)) 
 
-diamonds_training
+sonar_testing
 ```
 
 ```
-## # A tibble: 32,364 x 5
-##     depth  table  price     y cut      
-##     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt;    
-##  1 -1.35   1.58  -0.906 -1.63 Premium  
-##  2  0.733 -0.211 -0.903 -1.53 Very Good
-##  3  0.108 -1.11  -0.903 -1.40 Very Good
-##  4 -1.63   1.58  -0.903 -1.45 Very Good
-##  5  1.57  -1.11  -0.903 -1.26 Good     
-##  6  0.733 -0.659 -0.902 -1.58 Ideal    
-##  7 -1.07   2.03  -0.901 -1.71 Premium  
-##  8  0.177 -1.56  -0.900 -1.20 Ideal    
-##  9  0.664  0.685 -0.900 -1.26 Very Good
-## 10  1.08  -0.659 -0.900 -1.24 Good     
-## # ... with 32,354 more rows
+## # A tibble: 83 x 54
+##         V1      V2      V3     V4     V5       V6      V7      V8     V9    V12
+##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 -0.340   0.0579  0.0373 -0.662  0.437  0.00348  0.613   0.375   1.13  -0.662
+##  2  0.849   0.554   1.12    0.338  0.866  3.01     1.68    2.64    1.32   2.85 
+##  3 -0.810  -0.594   0.546  -0.666 -0.964 -1.16    -0.149  -0.0160 -0.982 -0.373
+##  4  0.0641  0.325  -0.356  -0.730 -0.629  0.0110   0.0291  0.654   0.283  1.22 
+##  5  0.210   1.97    2.37    1.83   1.78   1.37    -0.783   0.134   0.264 -1.31 
+##  6  1.16    0.635   1.12   -0.430  0.819 -0.117   -0.272  -0.814  -0.255  0.399
+##  7 -0.702  -0.144  -0.638  -0.442 -0.678 -1.66    -1.73   -0.855  -0.543 -1.18 
+##  8  0.121   0.854   0.616   0.819  1.67   2.47     1.71    0.895  -0.260  0.794
+##  9 -0.378   0.828  -0.0930  0.514  1.25  -0.330   -1.06   -1.29   -0.614 -0.649
+## 10  0.943   0.508   1.06    1.51   1.99   3.93     3.15    1.29    1.73   0.274
+## # ... with 73 more rows, and 44 more variables: V13 &lt;dbl&gt;, V14 &lt;dbl&gt;,
+## #   V17 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;,
+## #   V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;,
+## #   V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;,
+## #   V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;,
+## #   V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V49 &lt;dbl&gt;,
+## #   V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;,
+## #   V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
 ```
 
+
+.footnote[https://tidymodels.github.io/recipes/reference/bake.html
+]
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+class: inverse, center
 
-
-```r
-diamonds_testing &lt;- diamonds_recipe %&gt;%
-  bake(testing(diamonds_split)) 
-
-diamonds_testing
-```
-
-```
-## # A tibble: 21,576 x 5
-##    cut        depth  table  price     y
-##    &lt;ord&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 Ideal     -0.170 -1.11  -0.906 -1.51
-##  2 Good      -3.37   3.37  -0.906 -1.44
-##  3 Premium    0.455  0.237 -0.904 -1.30
-##  4 Good       1.08   0.237 -0.904 -1.20
-##  5 Very Good  0.386 -0.211 -0.903 -1.51
-##  6 Fair       2.33   1.58  -0.903 -1.69
-##  7 Premium   -0.935  1.58  -0.902 -1.63
-##  8 Ideal      0.316 -1.56  -0.901 -1.18
-##  9 Premium   -0.587  0.237 -0.901 -1.14
-## 10 Good       1.15  -1.56  -0.900 -1.25
-## # ... with 21,566 more rows
-```
-
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_h.png" width="70%" align="center" /&gt;
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_allison.png" width="100%" align="center" /&gt;
@@ -302,14 +454,27 @@ diamonds_testing
 
 ## 3° Entrenamiento
 
-Para a entrenar un modelo de random forest con librería {ranger}
+- Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
+- Se puede entrenar cualquier modelo de clasificación
 
 ```r
-diam_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+sonar_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
   set_engine("ranger") %&gt;%
-  fit(cut~., data = diamonds_training)
+  fit(Class~., data = sonar_training)
 
-diam_ranger
+sonar_ranger
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+{ranger}
+
+```r
+sonar_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+  set_engine("ranger") %&gt;%
+  fit(Class~., data = sonar_training)
+
+sonar_ranger
 ```
 
 ```
@@ -322,14 +487,15 @@ diam_ranger
 ## 
 ## Type:                             Probability estimation 
 ## Number of trees:                  100 
-## Sample size:                      32364 
-## Number of independent variables:  4 
-## Mtry:                             2 
+## Sample size:                      125 
+## Number of independent variables:  53 
+## Mtry:                             7 
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.2223904
+## OOB prediction error (Brier s.):  0.139991
 ```
+
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
@@ -337,11 +503,11 @@ diam_ranger
 {randomForest}
 
 ```r
-diam_rf &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+sonar_rf &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
   set_engine("randomForest") %&gt;%
-  fit(cut~., data = diamonds_training)
+  fit(Class~., data = sonar_training)
 
-diam_rf
+sonar_rf
 ```
 
 ```
@@ -352,16 +518,13 @@ diam_rf
 ##  randomForest(x = as.data.frame(x), y = y, ntree = ~100) 
 ##                Type of random forest: classification
 ##                      Number of trees: 100
-## No. of variables tried at each split: 2
+## No. of variables tried at each split: 7
 ## 
-##         OOB estimate of  error rate: 27.83%
+##         OOB estimate of  error rate: 21.6%
 ## Confusion matrix:
-##           Fair Good Very Good Premium Ideal class.error
-## Fair       847   62        17      24    10   0.1177083
-## Good        90 1921       589     310    66   0.3545027
-## Very Good    8  454      2982    2191  1671   0.5918423
-## Premium      2  120      1201    6066   866   0.2651726
-## Ideal        6   28       667     624 11542   0.1029766
+##    M  R class.error
+## M 58  8   0.1212121
+## R 19 40   0.3220339
 ```
 
 ---
@@ -369,24 +532,24 @@ diam_rf
 
 
 ```r
-predict(diam_ranger, diamonds_testing)
+predict(sonar_ranger, sonar_testing)
 ```
 
 ```
-## # A tibble: 21,576 x 1
+## # A tibble: 83 x 1
 ##    .pred_class
 ##    &lt;fct&gt;      
-##  1 Very Good  
-##  2 Good       
-##  3 Very Good  
-##  4 Good       
-##  5 Very Good  
-##  6 Good       
-##  7 Premium    
-##  8 Ideal      
-##  9 Premium    
-## 10 Good       
-## # ... with 21,566 more rows
+##  1 R          
+##  2 M          
+##  3 R          
+##  4 R          
+##  5 M          
+##  6 M          
+##  7 R          
+##  8 M          
+##  9 M          
+## 10 M          
+## # ... with 73 more rows
 ```
 
 
@@ -396,27 +559,42 @@ predict(diam_ranger, diamonds_testing)
 
 
 ```r
-diam_ranger %&gt;%
-  predict(diamonds_testing) %&gt;%
-  bind_cols(diamonds_testing) 
+sonar_ranger %&gt;%
+  predict(sonar_testing) %&gt;%
+  bind_cols(sonar_testing) 
 ```
 
 ```
-## # A tibble: 21,576 x 6
-##    .pred_class cut        depth  table  price     y
-##    &lt;fct&gt;       &lt;ord&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 Very Good   Ideal     -0.170 -1.11  -0.906 -1.51
-##  2 Good        Good      -3.37   3.37  -0.906 -1.44
-##  3 Very Good   Premium    0.455  0.237 -0.904 -1.30
-##  4 Good        Good       1.08   0.237 -0.904 -1.20
-##  5 Very Good   Very Good  0.386 -0.211 -0.903 -1.51
-##  6 Good        Fair       2.33   1.58  -0.903 -1.69
-##  7 Premium     Premium   -0.935  1.58  -0.902 -1.63
-##  8 Ideal       Ideal      0.316 -1.56  -0.901 -1.18
-##  9 Premium     Premium   -0.587  0.237 -0.901 -1.14
-## 10 Good        Good       1.15  -1.56  -0.900 -1.25
-## # ... with 21,566 more rows
+## # A tibble: 83 x 55
+##    .pred_class      V1      V2      V3     V4     V5       V6      V7      V8
+##    &lt;fct&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 R           -0.340   0.0579  0.0373 -0.662  0.437  0.00348  0.613   0.375 
+##  2 M            0.849   0.554   1.12    0.338  0.866  3.01     1.68    2.64  
+##  3 R           -0.810  -0.594   0.546  -0.666 -0.964 -1.16    -0.149  -0.0160
+##  4 R            0.0641  0.325  -0.356  -0.730 -0.629  0.0110   0.0291  0.654 
+##  5 M            0.210   1.97    2.37    1.83   1.78   1.37    -0.783   0.134 
+##  6 M            1.16    0.635   1.12   -0.430  0.819 -0.117   -0.272  -0.814 
+##  7 R           -0.702  -0.144  -0.638  -0.442 -0.678 -1.66    -1.73   -0.855 
+##  8 M            0.121   0.854   0.616   0.819  1.67   2.47     1.71    0.895 
+##  9 M           -0.378   0.828  -0.0930  0.514  1.25  -0.330   -1.06   -1.29  
+## 10 M            0.943   0.508   1.06    1.51   1.99   3.93     3.15    1.29  
+## # ... with 73 more rows, and 46 more variables: V9 &lt;dbl&gt;, V12 &lt;dbl&gt;, V13 &lt;dbl&gt;,
+## #   V14 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;,
+## #   V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;,
+## #   V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;,
+## #   V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;,
+## #   V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;,
+## #   V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;,
+## #   V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;,
+## #   Class &lt;fct&gt;
 ```
+
+---
+class: inverse, center
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.png" width="60%" align="center" /&gt;
+
+
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
@@ -425,18 +603,18 @@ diam_ranger %&gt;%
 
 
 ```r
-diam_ranger %&gt;%
-  predict(diamonds_testing) %&gt;%
-  bind_cols(diamonds_testing) %&gt;%
-  metrics(truth=cut, estimate=.pred_class)
+sonar_ranger %&gt;%
+  predict(sonar_testing) %&gt;%
+  bind_cols(sonar_testing) %&gt;%
+  metrics(truth=Class, estimate=.pred_class)
 ```
 
 ```
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.737
-## 2 kap      multiclass     0.625
+## 1 accuracy binary         0.783
+## 2 kap      binary         0.556
 ```
 
 ---
@@ -446,18 +624,18 @@ diam_ranger %&gt;%
 
 
 ```r
-diam_rf %&gt;%
-  predict(diamonds_testing) %&gt;%
-  bind_cols(diamonds_testing) %&gt;%
-  metrics(truth=cut, estimate=.pred_class)
+sonar_rf %&gt;%
+  predict(sonar_testing) %&gt;%
+  bind_cols(sonar_testing) %&gt;%
+  metrics(truth=Class, estimate=.pred_class)
 ```
 
 ```
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.723
-## 2 kap      multiclass     0.606
+## 1 accuracy binary         0.783
+## 2 kap      binary         0.554
 ```
 
 ---
@@ -466,25 +644,25 @@ diam_rf %&gt;%
 
 
 ```r
-diam_ranger %&gt;%
-  predict(diamonds_testing, type="prob")
+sonar_ranger %&gt;%
+  predict(sonar_testing, type="prob")
 ```
 
 ```
-## # A tibble: 21,576 x 5
-##    .pred_Fair .pred_Good `.pred_Very Good` .pred_Premium .pred_Ideal
-##         &lt;dbl&gt;      &lt;dbl&gt;             &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
-##  1      0        0.001              0.537         0.0394      0.422 
-##  2      0.263    0.462              0.261         0.0143      0     
-##  3      0        0.0345             0.603         0.334       0.0285
-##  4      0        0.764              0.235         0           0.001 
-##  5      0        0.00994            0.507         0.171       0.312 
-##  6      0.344    0.557              0.0871        0.0112      0     
-##  7      0        0.0352             0.213         0.752       0     
-##  8      0        0                  0.0869        0           0.913 
-##  9      0        0                  0.433         0.485       0.0821
-## 10      0        0.887              0.113         0           0     
-## # ... with 21,566 more rows
+## # A tibble: 83 x 2
+##    .pred_M .pred_R
+##      &lt;dbl&gt;   &lt;dbl&gt;
+##  1   0.447   0.553
+##  2   0.589   0.411
+##  3   0.328   0.672
+##  4   0.380   0.620
+##  5   0.555   0.445
+##  6   0.717   0.283
+##  7   0.414   0.586
+##  8   0.521   0.479
+##  9   0.509   0.491
+## 10   0.596   0.404
+## # ... with 73 more rows
 ```
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
@@ -492,28 +670,35 @@ diam_ranger %&gt;%
 
 
 ```r
-diam_probs &lt;- diam_ranger %&gt;%
-  predict(diamonds_testing, type = "prob") %&gt;%
-  bind_cols(diamonds_testing)
-diam_probs
+sonar_probs &lt;- sonar_ranger %&gt;%
+  predict(sonar_testing, type = "prob") %&gt;%
+  bind_cols(sonar_testing)
+sonar_probs
 ```
 
 ```
-## # A tibble: 21,576 x 10
-##    .pred_Fair .pred_Good `.pred_Very Goo~ .pred_Premium .pred_Ideal cut    depth
-##         &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;ord&gt;  &lt;dbl&gt;
-##  1      0        0.001             0.537         0.0394      0.422  Ideal -0.170
-##  2      0.263    0.462             0.261         0.0143      0      Good  -3.37 
-##  3      0        0.0345            0.603         0.334       0.0285 Prem~  0.455
-##  4      0        0.764             0.235         0           0.001  Good   1.08 
-##  5      0        0.00994           0.507         0.171       0.312  Very~  0.386
-##  6      0.344    0.557             0.0871        0.0112      0      Fair   2.33 
-##  7      0        0.0352            0.213         0.752       0      Prem~ -0.935
-##  8      0        0                 0.0869        0           0.913  Ideal  0.316
-##  9      0        0                 0.433         0.485       0.0821 Prem~ -0.587
-## 10      0        0.887             0.113         0           0      Good   1.15 
-## # ... with 21,566 more rows, and 3 more variables: table &lt;dbl&gt;, price &lt;dbl&gt;,
-## #   y &lt;dbl&gt;
+## # A tibble: 83 x 56
+##    .pred_M .pred_R      V1      V2      V3     V4     V5       V6      V7
+##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1   0.447   0.553 -0.340   0.0579  0.0373 -0.662  0.437  0.00348  0.613 
+##  2   0.589   0.411  0.849   0.554   1.12    0.338  0.866  3.01     1.68  
+##  3   0.328   0.672 -0.810  -0.594   0.546  -0.666 -0.964 -1.16    -0.149 
+##  4   0.380   0.620  0.0641  0.325  -0.356  -0.730 -0.629  0.0110   0.0291
+##  5   0.555   0.445  0.210   1.97    2.37    1.83   1.78   1.37    -0.783 
+##  6   0.717   0.283  1.16    0.635   1.12   -0.430  0.819 -0.117   -0.272 
+##  7   0.414   0.586 -0.702  -0.144  -0.638  -0.442 -0.678 -1.66    -1.73  
+##  8   0.521   0.479  0.121   0.854   0.616   0.819  1.67   2.47     1.71  
+##  9   0.509   0.491 -0.378   0.828  -0.0930  0.514  1.25  -0.330   -1.06  
+## 10   0.596   0.404  0.943   0.508   1.06    1.51   1.99   3.93     3.15  
+## # ... with 73 more rows, and 47 more variables: V8 &lt;dbl&gt;, V9 &lt;dbl&gt;, V12 &lt;dbl&gt;,
+## #   V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;,
+## #   V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;,
+## #   V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;,
+## #   V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;,
+## #   V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;,
+## #   V47 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;,
+## #   V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;,
+## #   V60 &lt;dbl&gt;, Class &lt;fct&gt;
 ```
 
 ---
@@ -523,19 +708,18 @@ diam_probs
 
 
 ```r
-diam_probs%&gt;%
-  gain_curve(cut, .pred_Fair:.pred_Ideal) %&gt;%
+sonar_probs %&gt;%
+  gain_curve(.pred_M, truth=Class) %&gt;%
   glimpse()
 ```
 
 ```
-## Observations: 63,225
-## Variables: 5
-## $ .level          &lt;chr&gt; "Fair", "Fair", "Fair", "Fair", "Fair", "Fair", "Fa...
-## $ .n              &lt;dbl&gt; 0, 5, 6, 7, 8, 12, 13, 14, 15, 16, 18, 19, 20, 21, ...
-## $ .n_events       &lt;dbl&gt; 0, 4, 5, 6, 7, 11, 12, 13, 14, 15, 17, 18, 19, 20, ...
-## $ .percent_tested &lt;dbl&gt; 0.00000000, 0.02317390, 0.02780868, 0.03244346, 0.0...
-## $ .percent_found  &lt;dbl&gt; 0.0000000, 0.6153846, 0.7692308, 0.9230769, 1.07692...
+## Observations: 84
+## Variables: 4
+## $ .n              &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
+## $ .n_events       &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
+## $ .percent_tested &lt;dbl&gt; 0.000000, 1.204819, 2.409639, 3.614458, 4.819277, 6...
+## $ .percent_found  &lt;dbl&gt; 0.000000, 2.222222, 4.444444, 6.666667, 8.888889, 1...
 ```
 
 
@@ -544,26 +728,26 @@ diam_probs%&gt;%
 
 
 ```r
-diam_probs%&gt;%
-  gain_curve(cut, .pred_Fair:.pred_Ideal) %&gt;%
-  autoplot()
-```
-
-![](ml-fundamentals_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
-
-
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
-
-
-```r
-diam_probs%&gt;%
-  roc_curve(cut, .pred_Fair:.pred_Ideal) %&gt;%
+sonar_probs%&gt;%
+  gain_curve(.pred_M, truth=Class) %&gt;%
   autoplot()
 ```
 
 ![](ml-fundamentals_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+```r
+sonar_probs%&gt;%
+  roc_curve(.pred_M, truth=Class) %&gt;%
+  autoplot()
+```
+
+![](ml-fundamentals_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+
 ---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
@@ -571,50 +755,21 @@ diam_probs%&gt;%
 
 
 ```r
-predict(diam_ranger, diamonds_testing, type = "prob") %&gt;%
-  bind_cols(predict(diam_ranger, diamonds_testing)) %&gt;%
-  bind_cols(select(diamonds_testing, cut)) %&gt;%
-  metrics(cut, .pred_Fair:.pred_Ideal, estimate = .pred_class)
+predict(sonar_ranger, sonar_testing, type = "prob") %&gt;%
+  bind_cols(predict(sonar_ranger, sonar_testing)) %&gt;%
+  bind_cols(select(sonar_testing, Class)) %&gt;%
+  metrics(Class, .pred_M, estimate = .pred_class)
 ```
 
 ```
 ## # A tibble: 4 x 3
 ##   .metric     .estimator .estimate
 ##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy    multiclass     0.737
-## 2 kap         multiclass     0.625
-## 3 mn_log_loss multiclass     0.773
-## 4 roc_auc     hand_till      0.913
+## 1 accuracy    binary         0.783
+## 2 kap         binary         0.556
+## 3 mn_log_loss binary         0.484
+## 4 roc_auc     binary         0.887
 ```
-
-
----
-# Si miramos con atención las clases no están balanceadas
-
-
-```r
-summary(diamonds)
-```
-
-```
-##      carat               cut            depth           table      
-##  Min.   :0.2000   Fair     : 1610   Min.   :43.00   Min.   :43.00  
-##  1st Qu.:0.4000   Good     : 4906   1st Qu.:61.00   1st Qu.:56.00  
-##  Median :0.7000   Very Good:12082   Median :61.80   Median :57.00  
-##  Mean   :0.7979   Premium  :13791   Mean   :61.75   Mean   :57.46  
-##  3rd Qu.:1.0400   Ideal    :21551   3rd Qu.:62.50   3rd Qu.:59.00  
-##  Max.   :5.0100                     Max.   :79.00   Max.   :95.00  
-##      price             x                y                z         
-##  Min.   :  326   Min.   : 0.000   Min.   : 0.000   Min.   : 0.000  
-##  1st Qu.:  950   1st Qu.: 4.710   1st Qu.: 4.720   1st Qu.: 2.910  
-##  Median : 2401   Median : 5.700   Median : 5.710   Median : 3.530  
-##  Mean   : 3933   Mean   : 5.731   Mean   : 5.735   Mean   : 3.539  
-##  3rd Qu.: 5324   3rd Qu.: 6.540   3rd Qu.: 6.540   3rd Qu.: 4.040  
-##  Max.   :18823   Max.   :10.740   Max.   :58.900   Max.   :31.800
-```
-
----
-
 
 
 ---
@@ -622,7 +777,13 @@ summary(diamonds)
 
 - Tutorial de Tidymodels
 https://rviews.rstudio.com/2019/06/19/a-gentle-intro-to-tidymodels/
-- 
+- Tutorial de Tidymodels (español)
+https://diegokoz.github.io/EEA2019/clase%208/tidymodels.nb.html
+- parsnip: A tidy model interface - Max Kuhn (video)
+bit.ly/parsnip-rstudioconf2019 
+- Recipes for data Preprocessing - Max Kuhn (video)
+bit.ly/recipes-useR2018
+
 
 
 
@@ -651,10 +812,11 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] yardstick_0.0.4   tibble_2.1.3      rsample_0.0.5     tidyr_1.0.0      
-##  [5] recipes_0.1.7     purrr_0.3.3       parsnip_0.0.3.1   infer_0.5.1      
-##  [9] ggplot2_3.2.1     dplyr_0.8.3       dials_0.0.4       scales_1.0.0     
-## [13] broom_0.5.2       tidymodels_0.0.3  emo_0.0.0.9000    fontawesome_0.1.0
+##  [1] mlbench_2.1-1     yardstick_0.0.4   tibble_2.1.3      rsample_0.0.5    
+##  [5] tidyr_1.0.0       recipes_0.1.7     purrr_0.3.3       parsnip_0.0.3.1  
+##  [9] infer_0.5.1       ggplot2_3.2.1     dplyr_0.8.3       dials_0.0.4      
+## [13] scales_1.0.0      broom_0.5.2       tidymodels_0.0.3  emo_0.0.0.9000   
+## [17] fontawesome_0.1.0
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] minqa_1.2.4           colorspace_1.4-1      class_7.3-15         
