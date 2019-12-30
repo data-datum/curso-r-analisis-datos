@@ -38,13 +38,13 @@ class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
-# RMarkdown
+# `r emo::ji("sparkles")` RMarkdown 
 
-### Un marco de autoría para ciencia de datos. 
-### Un paquete llamado RMarkdown
-### Un documento de formato .Rmd
-### Un formato de archivo para hacer documentos dinámicos con R. 
-### Una herramienta para integrar código, texto, gráficos y resultados. 
+### `r emo::ji("star2")`Un marco de autoría para ciencia de datos.
+### `r emo::ji("star2")`Un paquete llamado RMarkdown
+### `r emo::ji("star2")`Un documento de formato .Rmd
+### `r emo::ji("star2")`Un formato de archivo para hacer documentos dinámicos con R. 
+### `r emo::ji("star2")`Una herramienta para integrar código, texto, gráficos y resultados. 
 
 .footnote[bit.ly/r4med-allison]
 
@@ -74,8 +74,7 @@ class: center, middle
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros-msg.png)
 background-size: cover
 class: center, middle
-# 1
-# METADATA
+# 1. METADATA
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
@@ -87,8 +86,7 @@ class: center, middle
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros2-msg.png)
 background-size: cover
 class: center, middle
-# 2
-# TEXTO
+# 2. TEXTO
 
 ---
 
@@ -158,7 +156,7 @@ class: center, middle
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
-# Listas
+# Listas `r emo::ji("clipboard")`
 
 .pull-left[
 ```
@@ -191,33 +189,56 @@ Esto es una lista
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
-# Links
+# Links `r emo::ji("link")`
+
+
+
+
 
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
-# Imágenes
+# Imágenes `r emo::ji("camera")`
+
+
+.pull-left[
+```{r eval=FALSE}
+Imagen de unsplash
+```
+]
+--
+.pull-right[
+
+<img src="https://unsplash.com/photos/yblFb1Yvj9w" width="50%" align="right" />
+]
+
 
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros5-msg.png)
 background-size: cover
 class: center, middle
 
-# Demo
+# Demo `r fa("r-project", fill = 'steelblue')`
 
 ---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros3-msg.png)
 background-size: cover
 class: center, middle
-# 3
-# CÓDIGO R
+# 3. CÓDIGO `r fa("r-project", fill = 'steelblue')`
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
-# Código R (Code chunks)
+# Código `r fa("r-project", fill = 'steelblue')` (Code chunks)
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/chunks.png" width="90%" align="center" />
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
@@ -234,14 +255,13 @@ background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros5-msg.png
 background-size: cover
 class: center, middle
 
-# Demo
+# Demo `r fa("r-project", fill = 'steelblue')`
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros4-msg.png)
 background-size: cover
 class: center, middle
 
-# 4
-# SALIDAS
+# 4. SALIDAS
 
 
 ---
