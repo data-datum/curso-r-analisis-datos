@@ -182,11 +182,14 @@ class: inverse, middle
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
+## Martin desea tener una copia del repositorio remoto, va a realizar un __git clone__
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/clone.png" width="90%" align="center" />
 
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+## Lucy también desea una copia del repositorio remoto, va a realizar un __git clone__
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/clone2.png" width="90%" align="center" />
 ---
@@ -204,11 +207,15 @@ git clone [url] #<<
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
+## Lucy realiza un cambio en su repositorio local, se encuentra con una actualización por sobre el repositorio remoto
+
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/cambio1.png" width="90%" align="center" />
 
 ---
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+## Para que esos cambios que Lucy realizó se guarden en el repositorio remoto, Lucy necesita hacer un __git push__
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/push.png" width="90%" align="center" />
 
@@ -229,6 +236,8 @@ _Pushing_ es como se transfieren commits desde el repositorio local a un reposit
 ---
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+## Ahora Martin se encuentra con una actualización menos que el repositorio remoto, para bajar esos cambios a su repositorio local, va a hacer un __git pull__
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/pull.png" width="90%" align="center" />
 
@@ -362,8 +371,28 @@ class: inverse, middle
 # Git Branch
 
 ---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
 
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/master.png" width="100%" align="center" />
+
+---
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/master-add.png" width="100%" align="center" />
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/master-other-branch.png" width="100%" align="center" />
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/git-merge.png" width="100%" align="center" />
 
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
@@ -419,15 +448,15 @@ Hay muchas formas de crear un apropiado flujo de trabajo. Debemos asegurarnos qu
 
 # Qué nos permite hacer git
 
-### - Saber la historia de un proyecto
+## - Saber la historia de un proyecto
 
-### - Volver en el tiempo para ver cambios
+## - Volver en el tiempo para ver cambios
 
-### - Experimentar con los cambios
+## - Experimentar con los cambios
 
-### - Hacer un backup de nuestro trabajo
+## - Hacer un backup de nuestro trabajo
 
-### - Colaborar con otros proyectos
+## - Colaborar con otros proyectos
 
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
@@ -458,8 +487,18 @@ https://www.keycdn.com/blog/git-cheat-sheet
 ### Comandos básicos [inglés]
 https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html
 
-### Mas links (README de este repo)
-https://github.com/data-datum/git-class 
+### Git for Humans
+http://bit.ly/2PwPjbr
+
+
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/git-final.jpg)
+background-size: cover
+class: inverse, left
+
+# Muchas Gracias
+
 
 ---
 
