@@ -298,6 +298,9 @@ class: inverse, middle
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
 # Fork
+
+__No es un comando per se de Git, ya que es propio del trabajo en Github__ 
+
 Fork es para copiar un repositorio remoto ajeno a nuestra lista de repositorios remotos. 
 Se realiza desde Github siempre, ya que se están trabajando con repositorios remotos. 
 
@@ -357,6 +360,10 @@ git diff #<<
 class: inverse, middle
 
 # Git Branch
+
+---
+
+
 
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
@@ -429,13 +436,14 @@ Hay muchas formas de crear un apropiado flujo de trabajo. Debemos asegurarnos qu
 
 ### **Repositorio**: la carpeta de tu proyecto.
 ### **Commit**: una captura del repositorio
+### **Clone(clonar)**: obtener un repositorio remoto por primera vez. 
+### **Push**: mandar cambios (commits) a un repositorio remoto desde local.
+### **Pull**: bajar los cambios (commits) de un repositorio remoto a local. 
 ### **Hash**: un id para un commit
 ### **Branch(rama)**: permite trabajar de manera aislada cuando se trabaja en un grupo de trabajo grande. 
 ### **Merge(unión)**: nos permite unir un cambio a la rama master
 ### **Remote(remoto)**: una computadora con un repositorio
-### **Clone(clonar)**: obtener un repositorio remoto por primera vez. 
-### **Push**: mandar cambios (commits) a un repositorio remoto desde local.
-### **Pull**: bajar los cambios (commits) de un repositorio remoto a local. 
+
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
