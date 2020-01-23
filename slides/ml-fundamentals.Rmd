@@ -86,11 +86,23 @@ library(tidymodels)
 ```
 
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Modelización supervisada
+
+### Clasificación: la variable respuesta es una clase, es decir, una variable cualitativa 
+En el dataset iris, el tipo de flor, iris setosa, versicolor, virginica.
+### Regresión: la variable respuesta es un valor cuantitativo (un valor numérico a predecir). 
+Predicción de precios de casas, según variables como el barrio en el que pertenecen, número de cuartos, si es de más de un piso, etc. 
+
+
+
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
 background-size: cover
 class: center, middle
 
-# `r emo::ji("sparkles")` 
+# `r emo::ji("sparkles")` Data Desbalanceada
 
 
 ---
@@ -104,10 +116,19 @@ library(mlbench)
 data(Sonar)
 ```
 
-
-```{r } 
-summary(Sonar)
+```{r warning=FALSE, message=FALSE, eval=FALSE} 
+skimr::skim(Sonar)
 ```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+```{r warning=FALSE, message=FALSE} 
+skimr::skim(Sonar)
+```
+
+
 
 ---
 class: inverse, center
@@ -117,7 +138,23 @@ class: inverse, center
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
 
-# 1° Paso: Dividir los datos
+# 1°Paso: a) Balancear el dataset 
+
+### Como el dataset está desbalanceado, vamos a balancearlos de la siguiente forma
+
+```{r } 
+sonar_balanc <- recipes::recipe( ~ ., data = Sonar) %>%
+  step_downsample(Sonar) %>%
+  prep(training=Sonar)
+
+
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
+
+# 1° Paso: b) Dividir los datos
 
 ### Crear un set de datos training / testing con la librería *rsamples*
 

@@ -233,6 +233,14 @@ class: center, middle
 
 # Código `r fa("r-project", fill = 'steelblue')` (Code chunks)
 
+En un chunk se puede ejecutar código igualmente como se realiza en la consola de R. 
+
+```{r message=FALSE}
+library(gapminder)
+library(dplyr)
+gapminder %>%
+  unique()
+```
 
 ---
 
@@ -280,6 +288,10 @@ class: center, middle
 
 --
 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/blogdown-ej.png" width="90%" align="center" />
+
+
+.footnote[más información en https://bookdown.org/yihui/blogdown/]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
@@ -287,12 +299,15 @@ class: center, middle
 --
 
 
+
+.footnote[más información en https://bookdown.org/yihui/bookdown/]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
 # CV con Vitae o Pagedown
 
 --
+
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
@@ -309,6 +324,17 @@ class: center, middle
 # Tutoriales con learnr 
 --
 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/learnr-ej.png" width="90%" align="right" />
+
+.footnote[más información en
+https://rstudio.cloud/learn/primers y 
+https://rstudio.github.io/learnr/]
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# RMarkdown cheatsheet 
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdwon-cheat.png" width="90%" align="center" />
 
 
 ---

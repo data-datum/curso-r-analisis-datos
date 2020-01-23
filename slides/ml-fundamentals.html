@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title></title>
+    <title>ml-fundamentals.utf8</title>
     <meta charset="utf-8" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
@@ -88,26 +88,31 @@ library(tidymodels)
 ```
 
 ```
+## This version of Shiny is designed to work with 'htmlwidgets' &gt;= 1.5.
+##     Please upgrade via install.packages('htmlwidgets').
+```
+
+```
 ## Registered S3 method overwritten by 'xts':
 ##   method     from
 ##   as.zoo.xts zoo
 ```
 
 ```
-## -- Attaching packages ---------------------------------------- tidymodels 0.0.3 --
+## -- Attaching packages -------------------------------------- tidymodels 0.0.3 --
 ```
 
 ```
-## v broom     0.5.2       v purrr     0.3.3  
-## v dials     0.0.4       v recipes   0.1.7  
-## v dplyr     0.8.3       v rsample   0.0.5  
-## v ggplot2   3.2.1       v tibble    2.1.3  
-## v infer     0.5.1       v yardstick 0.0.4  
-## v parsnip   0.0.3.1
+## v broom     0.5.3     v purrr     0.3.3
+## v dials     0.0.4     v recipes   0.1.7
+## v dplyr     0.8.3     v rsample   0.0.5
+## v ggplot2   3.2.1     v tibble    2.1.3
+## v infer     0.5.1     v yardstick 0.0.4
+## v parsnip   0.0.4
 ```
 
 ```
-## -- Conflicts ------------------------------------------- tidymodels_conflicts() --
+## -- Conflicts ----------------------------------------- tidymodels_conflicts() --
 ## x purrr::discard()  masks scales::discard()
 ## x dplyr::filter()   masks stats::filter()
 ## x dplyr::lag()      masks stats::lag()
@@ -116,11 +121,23 @@ library(tidymodels)
 ```
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Modelización supervisada
+
+### Clasificación: la variable respuesta es una clase, es decir, una variable cualitativa 
+En el dataset iris, el tipo de flor, iris setosa, versicolor, virginica.
+### Regresión: la variable respuesta es un valor cuantitativo (un valor numérico a predecir). 
+Predicción de precios de casas, según variables como el barrio en el que pertenecen, número de cuartos, si es de más de un piso, etc. 
+
+
+
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
 background-size: cover
 class: center, middle
 
-# ✨ 
+# ✨ Data Desbalanceada
 
 
 ---
@@ -136,125 +153,109 @@ data(Sonar)
 ```
 
 
+```r
+skimr::skim(Sonar)
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
 
 ```r
-summary(Sonar)
+skimr::skim(Sonar)
 ```
 
-```
-##        V1                V2                V3                V4         
-##  Min.   :0.00150   Min.   :0.00060   Min.   :0.00150   Min.   :0.00580  
-##  1st Qu.:0.01335   1st Qu.:0.01645   1st Qu.:0.01895   1st Qu.:0.02438  
-##  Median :0.02280   Median :0.03080   Median :0.03430   Median :0.04405  
-##  Mean   :0.02916   Mean   :0.03844   Mean   :0.04383   Mean   :0.05389  
-##  3rd Qu.:0.03555   3rd Qu.:0.04795   3rd Qu.:0.05795   3rd Qu.:0.06450  
-##  Max.   :0.13710   Max.   :0.23390   Max.   :0.30590   Max.   :0.42640  
-##        V5                V6                V7               V8         
-##  Min.   :0.00670   Min.   :0.01020   Min.   :0.0033   Min.   :0.00550  
-##  1st Qu.:0.03805   1st Qu.:0.06703   1st Qu.:0.0809   1st Qu.:0.08042  
-##  Median :0.06250   Median :0.09215   Median :0.1070   Median :0.11210  
-##  Mean   :0.07520   Mean   :0.10457   Mean   :0.1217   Mean   :0.13480  
-##  3rd Qu.:0.10028   3rd Qu.:0.13412   3rd Qu.:0.1540   3rd Qu.:0.16960  
-##  Max.   :0.40100   Max.   :0.38230   Max.   :0.3729   Max.   :0.45900  
-##        V9               V10              V11              V12        
-##  Min.   :0.00750   Min.   :0.0113   Min.   :0.0289   Min.   :0.0236  
-##  1st Qu.:0.09703   1st Qu.:0.1113   1st Qu.:0.1293   1st Qu.:0.1335  
-##  Median :0.15225   Median :0.1824   Median :0.2248   Median :0.2490  
-##  Mean   :0.17800   Mean   :0.2083   Mean   :0.2360   Mean   :0.2502  
-##  3rd Qu.:0.23342   3rd Qu.:0.2687   3rd Qu.:0.3016   3rd Qu.:0.3312  
-##  Max.   :0.68280   Max.   :0.7106   Max.   :0.7342   Max.   :0.7060  
-##       V13              V14              V15              V16        
-##  Min.   :0.0184   Min.   :0.0273   Min.   :0.0031   Min.   :0.0162  
-##  1st Qu.:0.1661   1st Qu.:0.1752   1st Qu.:0.1646   1st Qu.:0.1963  
-##  Median :0.2640   Median :0.2811   Median :0.2817   Median :0.3047  
-##  Mean   :0.2733   Mean   :0.2966   Mean   :0.3202   Mean   :0.3785  
-##  3rd Qu.:0.3513   3rd Qu.:0.3862   3rd Qu.:0.4529   3rd Qu.:0.5357  
-##  Max.   :0.7131   Max.   :0.9970   Max.   :1.0000   Max.   :0.9988  
-##       V17              V18              V19              V20        
-##  Min.   :0.0349   Min.   :0.0375   Min.   :0.0494   Min.   :0.0656  
-##  1st Qu.:0.2059   1st Qu.:0.2421   1st Qu.:0.2991   1st Qu.:0.3506  
-##  Median :0.3084   Median :0.3683   Median :0.4350   Median :0.5425  
-##  Mean   :0.4160   Mean   :0.4523   Mean   :0.5048   Mean   :0.5630  
-##  3rd Qu.:0.6594   3rd Qu.:0.6791   3rd Qu.:0.7314   3rd Qu.:0.8093  
-##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
-##       V21              V22              V23              V24        
-##  Min.   :0.0512   Min.   :0.0219   Min.   :0.0563   Min.   :0.0239  
-##  1st Qu.:0.3997   1st Qu.:0.4069   1st Qu.:0.4502   1st Qu.:0.5407  
-##  Median :0.6177   Median :0.6649   Median :0.6997   Median :0.6985  
-##  Mean   :0.6091   Mean   :0.6243   Mean   :0.6470   Mean   :0.6727  
-##  3rd Qu.:0.8170   3rd Qu.:0.8320   3rd Qu.:0.8486   3rd Qu.:0.8722  
-##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
-##       V25              V26              V27              V28        
-##  Min.   :0.0240   Min.   :0.0921   Min.   :0.0481   Min.   :0.0284  
-##  1st Qu.:0.5258   1st Qu.:0.5442   1st Qu.:0.5319   1st Qu.:0.5348  
-##  Median :0.7211   Median :0.7545   Median :0.7456   Median :0.7319  
-##  Mean   :0.6754   Mean   :0.6999   Mean   :0.7022   Mean   :0.6940  
-##  3rd Qu.:0.8737   3rd Qu.:0.8938   3rd Qu.:0.9171   3rd Qu.:0.9003  
-##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
-##       V29              V30              V31              V32        
-##  Min.   :0.0144   Min.   :0.0613   Min.   :0.0482   Min.   :0.0404  
-##  1st Qu.:0.4637   1st Qu.:0.4114   1st Qu.:0.3456   1st Qu.:0.2814  
-##  Median :0.6808   Median :0.6071   Median :0.4904   Median :0.4296  
-##  Mean   :0.6421   Mean   :0.5809   Mean   :0.5045   Mean   :0.4390  
-##  3rd Qu.:0.8521   3rd Qu.:0.7352   3rd Qu.:0.6420   3rd Qu.:0.5803  
-##  Max.   :1.0000   Max.   :1.0000   Max.   :0.9657   Max.   :0.9306  
-##       V33              V34              V35              V36        
-##  Min.   :0.0477   Min.   :0.0212   Min.   :0.0223   Min.   :0.0080  
-##  1st Qu.:0.2579   1st Qu.:0.2176   1st Qu.:0.1794   1st Qu.:0.1543  
-##  Median :0.3912   Median :0.3510   Median :0.3127   Median :0.3211  
-##  Mean   :0.4172   Mean   :0.4032   Mean   :0.3926   Mean   :0.3848  
-##  3rd Qu.:0.5561   3rd Qu.:0.5961   3rd Qu.:0.5934   3rd Qu.:0.5565  
-##  Max.   :1.0000   Max.   :0.9647   Max.   :1.0000   Max.   :1.0000  
-##       V37              V38              V39              V40        
-##  Min.   :0.0351   Min.   :0.0383   Min.   :0.0371   Min.   :0.0117  
-##  1st Qu.:0.1601   1st Qu.:0.1743   1st Qu.:0.1740   1st Qu.:0.1865  
-##  Median :0.3063   Median :0.3127   Median :0.2835   Median :0.2781  
-##  Mean   :0.3638   Mean   :0.3397   Mean   :0.3258   Mean   :0.3112  
-##  3rd Qu.:0.5189   3rd Qu.:0.4405   3rd Qu.:0.4349   3rd Qu.:0.4244  
-##  Max.   :0.9497   Max.   :1.0000   Max.   :0.9857   Max.   :0.9297  
-##       V41              V42              V43              V44        
-##  Min.   :0.0360   Min.   :0.0056   Min.   :0.0000   Min.   :0.0000  
-##  1st Qu.:0.1631   1st Qu.:0.1589   1st Qu.:0.1552   1st Qu.:0.1269  
-##  Median :0.2595   Median :0.2451   Median :0.2225   Median :0.1777  
-##  Mean   :0.2893   Mean   :0.2783   Mean   :0.2465   Mean   :0.2141  
-##  3rd Qu.:0.3875   3rd Qu.:0.3842   3rd Qu.:0.3245   3rd Qu.:0.2717  
-##  Max.   :0.8995   Max.   :0.8246   Max.   :0.7733   Max.   :0.7762  
-##       V45               V46               V47               V48         
-##  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
-##  1st Qu.:0.09448   1st Qu.:0.06855   1st Qu.:0.06425   1st Qu.:0.04512  
-##  Median :0.14800   Median :0.12135   Median :0.10165   Median :0.07810  
-##  Mean   :0.19723   Mean   :0.16063   Mean   :0.12245   Mean   :0.09142  
-##  3rd Qu.:0.23155   3rd Qu.:0.20037   3rd Qu.:0.15443   3rd Qu.:0.12010  
-##  Max.   :0.70340   Max.   :0.72920   Max.   :0.55220   Max.   :0.33390  
-##       V49               V50               V51                V52          
-##  Min.   :0.00000   Min.   :0.00000   Min.   :0.000000   Min.   :0.000800  
-##  1st Qu.:0.02635   1st Qu.:0.01155   1st Qu.:0.008425   1st Qu.:0.007275  
-##  Median :0.04470   Median :0.01790   Median :0.013900   Median :0.011400  
-##  Mean   :0.05193   Mean   :0.02042   Mean   :0.016069   Mean   :0.013420  
-##  3rd Qu.:0.06853   3rd Qu.:0.02527   3rd Qu.:0.020825   3rd Qu.:0.016725  
-##  Max.   :0.19810   Max.   :0.08250   Max.   :0.100400   Max.   :0.070900  
-##       V53                V54                V55               V56          
-##  Min.   :0.000500   Min.   :0.001000   Min.   :0.00060   Min.   :0.000400  
-##  1st Qu.:0.005075   1st Qu.:0.005375   1st Qu.:0.00415   1st Qu.:0.004400  
-##  Median :0.009550   Median :0.009300   Median :0.00750   Median :0.006850  
-##  Mean   :0.010709   Mean   :0.010941   Mean   :0.00929   Mean   :0.008222  
-##  3rd Qu.:0.014900   3rd Qu.:0.014500   3rd Qu.:0.01210   3rd Qu.:0.010575  
-##  Max.   :0.039000   Max.   :0.035200   Max.   :0.04470   Max.   :0.039400  
-##       V57               V58                V59                V60          
-##  Min.   :0.00030   Min.   :0.000300   Min.   :0.000100   Min.   :0.000600  
-##  1st Qu.:0.00370   1st Qu.:0.003600   1st Qu.:0.003675   1st Qu.:0.003100  
-##  Median :0.00595   Median :0.005800   Median :0.006400   Median :0.005300  
-##  Mean   :0.00782   Mean   :0.007949   Mean   :0.007941   Mean   :0.006507  
-##  3rd Qu.:0.01043   3rd Qu.:0.010350   3rd Qu.:0.010325   3rd Qu.:0.008525  
-##  Max.   :0.03550   Max.   :0.044000   Max.   :0.036400   Max.   :0.043900  
-##  Class  
-##  M:111  
-##  R: 97  
-##         
-##         
-##         
-## 
-```
+
+Table: Data summary
+
+                                 
+-------------------------  ------
+Name                       Sonar 
+Number of rows             208   
+Number of columns          61    
+_______________________          
+Column type frequency:           
+factor                     1     
+numeric                    60    
+________________________         
+Group variables            None  
+-------------------------  ------
+
+
+**Variable type: factor**
+
+skim_variable    n_missing   complete_rate  ordered    n_unique  top_counts    
+--------------  ----------  --------------  --------  ---------  --------------
+Class                    0               1  FALSE             2  M: 111, R: 97 
+
+
+**Variable type: numeric**
+
+skim_variable    n_missing   complete_rate   mean     sd     p0    p25    p50    p75   p100  hist  
+--------------  ----------  --------------  -----  -----  -----  -----  -----  -----  -----  ------
+V1                       0               1   0.03   0.02   0.00   0.01   0.02   0.04   0.14  ▇▃▁▁▁ 
+V2                       0               1   0.04   0.03   0.00   0.02   0.03   0.05   0.23  ▇▂▁▁▁ 
+V3                       0               1   0.04   0.04   0.00   0.02   0.03   0.06   0.31  ▇▂▁▁▁ 
+V4                       0               1   0.05   0.05   0.01   0.02   0.04   0.06   0.43  ▇▁▁▁▁ 
+V5                       0               1   0.08   0.06   0.01   0.04   0.06   0.10   0.40  ▇▃▁▁▁ 
+V6                       0               1   0.10   0.06   0.01   0.07   0.09   0.13   0.38  ▇▇▂▁▁ 
+V7                       0               1   0.12   0.06   0.00   0.08   0.11   0.15   0.37  ▃▇▃▁▁ 
+V8                       0               1   0.13   0.09   0.01   0.08   0.11   0.17   0.46  ▆▇▂▁▁ 
+V9                       0               1   0.18   0.12   0.01   0.10   0.15   0.23   0.68  ▇▆▂▁▁ 
+V10                      0               1   0.21   0.13   0.01   0.11   0.18   0.27   0.71  ▇▇▃▁▁ 
+V11                      0               1   0.24   0.13   0.03   0.13   0.22   0.30   0.73  ▆▇▂▁▁ 
+V12                      0               1   0.25   0.14   0.02   0.13   0.25   0.33   0.71  ▇▇▆▂▁ 
+V13                      0               1   0.27   0.14   0.02   0.17   0.26   0.35   0.71  ▅▇▅▂▁ 
+V14                      0               1   0.30   0.16   0.03   0.18   0.28   0.39   1.00  ▇▇▃▁▁ 
+V15                      0               1   0.32   0.21   0.00   0.16   0.28   0.45   1.00  ▇▇▅▂▁ 
+V16                      0               1   0.38   0.23   0.02   0.20   0.30   0.54   1.00  ▇▇▅▃▁ 
+V17                      0               1   0.42   0.26   0.03   0.21   0.31   0.66   1.00  ▇▇▃▅▃ 
+V18                      0               1   0.45   0.26   0.04   0.24   0.37   0.68   1.00  ▆▇▂▅▃ 
+V19                      0               1   0.50   0.26   0.05   0.30   0.43   0.73   1.00  ▃▇▃▅▅ 
+V20                      0               1   0.56   0.26   0.07   0.35   0.54   0.81   1.00  ▅▇▆▆▇ 
+V21                      0               1   0.61   0.26   0.05   0.40   0.62   0.82   1.00  ▃▅▆▇▇ 
+V22                      0               1   0.62   0.26   0.02   0.41   0.66   0.83   1.00  ▂▅▃▇▇ 
+V23                      0               1   0.65   0.25   0.06   0.45   0.70   0.85   1.00  ▂▃▃▆▇ 
+V24                      0               1   0.67   0.24   0.02   0.54   0.70   0.87   1.00  ▂▂▅▇▇ 
+V25                      0               1   0.68   0.24   0.02   0.53   0.72   0.87   1.00  ▁▂▃▆▇ 
+V26                      0               1   0.70   0.24   0.09   0.54   0.75   0.89   1.00  ▂▂▃▅▇ 
+V27                      0               1   0.70   0.25   0.05   0.53   0.75   0.92   1.00  ▁▂▃▃▇ 
+V28                      0               1   0.69   0.24   0.03   0.53   0.73   0.90   1.00  ▁▂▃▅▇ 
+V29                      0               1   0.64   0.24   0.01   0.46   0.68   0.85   1.00  ▁▃▆▅▇ 
+V30                      0               1   0.58   0.22   0.06   0.41   0.61   0.74   1.00  ▂▆▇▇▅ 
+V31                      0               1   0.50   0.21   0.05   0.35   0.49   0.64   0.97  ▂▇▇▅▃ 
+V32                      0               1   0.44   0.21   0.04   0.28   0.43   0.58   0.93  ▅▇▇▅▂ 
+V33                      0               1   0.42   0.21   0.05   0.26   0.39   0.56   1.00  ▅▇▆▃▁ 
+V34                      0               1   0.40   0.23   0.02   0.22   0.35   0.60   0.96  ▆▇▅▅▂ 
+V35                      0               1   0.39   0.26   0.02   0.18   0.31   0.59   1.00  ▇▇▃▅▂ 
+V36                      0               1   0.38   0.26   0.01   0.15   0.32   0.56   1.00  ▇▆▅▃▂ 
+V37                      0               1   0.36   0.24   0.04   0.16   0.31   0.52   0.95  ▇▆▅▂▂ 
+V38                      0               1   0.34   0.21   0.04   0.17   0.31   0.44   1.00  ▇▇▃▂▁ 
+V39                      0               1   0.33   0.20   0.04   0.17   0.28   0.43   0.99  ▇▇▃▂▁ 
+V40                      0               1   0.31   0.18   0.01   0.19   0.28   0.42   0.93  ▅▇▃▂▁ 
+V41                      0               1   0.29   0.17   0.04   0.16   0.26   0.39   0.90  ▇▇▃▂▁ 
+V42                      0               1   0.28   0.17   0.01   0.16   0.25   0.38   0.82  ▆▇▅▂▁ 
+V43                      0               1   0.25   0.14   0.00   0.16   0.22   0.32   0.77  ▃▇▃▁▁ 
+V44                      0               1   0.21   0.13   0.00   0.13   0.18   0.27   0.78  ▇▇▂▁▁ 
+V45                      0               1   0.20   0.15   0.00   0.09   0.15   0.23   0.70  ▇▆▁▂▁ 
+V46                      0               1   0.16   0.13   0.00   0.07   0.12   0.20   0.73  ▇▃▁▁▁ 
+V47                      0               1   0.12   0.09   0.00   0.06   0.10   0.15   0.55  ▇▅▁▁▁ 
+V48                      0               1   0.09   0.06   0.00   0.05   0.08   0.12   0.33  ▇▇▃▁▁ 
+V49                      0               1   0.05   0.04   0.00   0.03   0.04   0.07   0.20  ▇▆▂▁▁ 
+V50                      0               1   0.02   0.01   0.00   0.01   0.02   0.03   0.08  ▇▇▂▁▁ 
+V51                      0               1   0.02   0.01   0.00   0.01   0.01   0.02   0.10  ▇▃▁▁▁ 
+V52                      0               1   0.01   0.01   0.00   0.01   0.01   0.02   0.07  ▇▃▁▁▁ 
+V53                      0               1   0.01   0.01   0.00   0.01   0.01   0.01   0.04  ▇▆▂▁▁ 
+V54                      0               1   0.01   0.01   0.00   0.01   0.01   0.01   0.04  ▇▇▂▂▁ 
+V55                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▃▁▁▁ 
+V56                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▅▁▁▁ 
+V57                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▅▁▁▁ 
+V58                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▃▁▁▁ 
+V59                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▃▁▁▁ 
+V60                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▂▁▁▁ 
+
+
 
 ---
 class: inverse, center
@@ -264,7 +265,27 @@ class: inverse, center
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
 
-# 1° Paso: Dividir los datos
+# 1°Paso: a) Balancear el dataset 
+
+### Como el dataset está desbalanceado, vamos a balancearlos de la siguiente forma
+
+
+```r
+sonar_balanc &lt;- recipes::recipe( ~ ., data = Sonar) %&gt;%
+  step_downsample(Sonar)
+summary(sonar_balanc$Class)
+```
+
+```
+## Length  Class   Mode 
+##      0   NULL   NULL
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
+
+# 1° Paso: b) Dividir los datos
 
 ### Crear un set de datos training / testing con la librería *rsamples*
 
@@ -361,9 +382,9 @@ sonar_recipe
 ## 
 ## Operations:
 ## 
-## Correlation filter removed V10, V11, V18, V15, V16, V20, V48 [trained]
-## Centering for V1, V2, V3, V4, V5, V6, V7, V8, V9, V12, ... [trained]
-## Scaling for V1, V2, V3, V4, V5, V6, V7, V8, V9, V12, ... [trained]
+## Correlation filter removed V18, V37, V20 [trained]
+## Centering for V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, ... [trained]
+## Scaling for V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, ... [trained]
 ```
 
 ---
@@ -379,23 +400,24 @@ head(sonar_training)
 ```
 
 ```
-## # A tibble: 6 x 54
-##        V1      V2     V3     V4     V5     V6      V7     V8     V9    V12
-##     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1 -0.0487  0.746   1.79   1.16   0.475  2.44   2.15    2.99   3.21   3.20 
-## 2  2.30    1.02    0.176 -0.274 -0.244 -0.631  0.0429  1.42   1.51   1.01 
-## 3 -0.232   0.0709  0.183 -0.106 -0.137 -0.740 -0.745  -1.43  -0.910 -0.612
-## 4 -0.510  -0.588  -0.174 -0.946 -0.998 -0.589 -0.221  -0.713 -0.677 -1.03 
-## 5 -1.10   -0.947  -0.682 -0.394 -0.768 -1.32  -1.36   -1.22  -1.21  -1.08 
-## 6 -0.909  -0.872  -0.935 -0.573 -0.704 -0.825 -1.13   -0.399 -0.637 -0.921
-## # ... with 44 more variables: V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;,
-## #   V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;,
-## #   V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;,
-## #   V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;,
-## #   V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;,
-## #   V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;,
-## #   V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;,
-## #   V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
+## # A tibble: 6 x 58
+##        V1      V2      V3     V4     V5     V6     V7      V8     V9     V10
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1 -0.372  -0.0956 -0.0736 -0.713  0.317 -0.183  0.352  0.168   0.917 -0.0678
+## 2 -0.117   0.477   1.54    1.03   0.352  1.96   1.67   2.44    2.85   2.98  
+## 3  1.94    0.705   0.0536 -0.340 -0.314 -0.740 -0.136  1.08    1.27   1.68  
+## 4 -0.0184  0.127  -0.436  -0.779 -0.672 -0.176 -0.148  0.411   0.137  0.625 
+## 5  0.109   1.49    2.07    1.68   1.57   1.01  -0.844 -0.0412  0.120  0.978 
+## 6 -1.03   -0.932  -0.736  -0.456 -0.800 -1.34  -1.34  -1.22   -1.25  -1.31  
+## # ... with 48 more variables: V11 &lt;dbl&gt;, V12 &lt;dbl&gt;, V13 &lt;dbl&gt;, V14 &lt;dbl&gt;,
+## #   V15 &lt;dbl&gt;, V16 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;,
+## #   V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;,
+## #   V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;,
+## #   V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;,
+## #   V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;,
+## #   V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;,
+## #   V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;,
+## #   V60 &lt;dbl&gt;, Class &lt;fct&gt;
 ```
 
 
@@ -414,27 +436,28 @@ sonar_testing
 ```
 
 ```
-## # A tibble: 83 x 54
-##         V1      V2      V3     V4     V5       V6      V7      V8     V9    V12
-##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1 -0.340   0.0579  0.0373 -0.662  0.437  0.00348  0.613   0.375   1.13  -0.662
-##  2  0.849   0.554   1.12    0.338  0.866  3.01     1.68    2.64    1.32   2.85 
-##  3 -0.810  -0.594   0.546  -0.666 -0.964 -1.16    -0.149  -0.0160 -0.982 -0.373
-##  4  0.0641  0.325  -0.356  -0.730 -0.629  0.0110   0.0291  0.654   0.283  1.22 
-##  5  0.210   1.97    2.37    1.83   1.78   1.37    -0.783   0.134   0.264 -1.31 
-##  6  1.16    0.635   1.12   -0.430  0.819 -0.117   -0.272  -0.814  -0.255  0.399
-##  7 -0.702  -0.144  -0.638  -0.442 -0.678 -1.66    -1.73   -0.855  -0.543 -1.18 
-##  8  0.121   0.854   0.616   0.819  1.67   2.47     1.71    0.895  -0.260  0.794
-##  9 -0.378   0.828  -0.0930  0.514  1.25  -0.330   -1.06   -1.29   -0.614 -0.649
-## 10  0.943   0.508   1.06    1.51   1.99   3.93     3.15    1.29    1.73   0.274
-## # ... with 73 more rows, and 44 more variables: V13 &lt;dbl&gt;, V14 &lt;dbl&gt;,
-## #   V17 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;,
-## #   V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;,
-## #   V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;,
-## #   V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;,
-## #   V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V49 &lt;dbl&gt;,
-## #   V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;,
-## #   V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
+## # A tibble: 83 x 58
+##        V1      V2      V3     V4      V5     V6     V7     V8     V9    V10
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1  0.669  0.317   0.923   0.248  0.714   2.46   1.27   2.14   1.09   0.500
+##  2 -0.784 -0.638   0.395  -0.717 -0.982  -1.20  -0.300 -0.172 -1.03  -0.700
+##  3  0.940  0.385   0.920  -0.490  0.671  -0.289 -0.406 -0.867 -0.361  0.475
+##  4 -0.278 -0.0847  0.0608 -0.179 -0.216  -0.836 -0.811 -1.41  -0.968 -0.533
+##  5 -0.520 -0.633  -0.268  -0.986 -1.01   -0.704 -0.363 -0.779 -0.752 -1.46 
+##  6 -0.689 -0.264  -0.695  -0.502 -0.717  -1.64  -1.66  -0.902 -0.627 -1.02 
+##  7 -0.870 -0.869  -0.969  -0.627 -0.741  -0.910 -1.14  -0.505 -0.715 -0.718
+##  8 -0.825 -0.934  -0.494  -0.151  0.739   0.814  0.135 -0.475 -0.757 -0.229
+##  9  0.253 -0.788  -0.643  -0.191 -0.0595  0.146  0.565  0.105 -0.360  0.530
+## 10 -0.368 -1.03   -0.770  -1.00  -1.11   -1.56  -1.12  -1.29  -1.11  -0.824
+## # ... with 73 more rows, and 48 more variables: V11 &lt;dbl&gt;, V12 &lt;dbl&gt;,
+## #   V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V15 &lt;dbl&gt;, V16 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;,
+## #   V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;,
+## #   V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;,
+## #   V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;,
+## #   V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;,
+## #   V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;,
+## #   V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;,
+## #   V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
 ```
 
 
@@ -480,7 +503,7 @@ sonar_ranger
 ```
 ## parsnip model object
 ## 
-## Ranger result
+## Fit in:  51msRanger result
 ## 
 ## Call:
 ##  ranger::ranger(formula = formula, data = data, num.trees = ~100,      num.threads = 1, verbose = FALSE, seed = sample.int(10^5,          1), probability = TRUE) 
@@ -488,12 +511,12 @@ sonar_ranger
 ## Type:                             Probability estimation 
 ## Number of trees:                  100 
 ## Sample size:                      125 
-## Number of independent variables:  53 
+## Number of independent variables:  57 
 ## Mtry:                             7 
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.139991
+## OOB prediction error (Brier s.):  0.1576798
 ```
 
 
@@ -513,18 +536,18 @@ sonar_rf
 ```
 ## parsnip model object
 ## 
-## 
+## Fit in:  61ms
 ## Call:
 ##  randomForest(x = as.data.frame(x), y = y, ntree = ~100) 
 ##                Type of random forest: classification
 ##                      Number of trees: 100
 ## No. of variables tried at each split: 7
 ## 
-##         OOB estimate of  error rate: 21.6%
+##         OOB estimate of  error rate: 20.8%
 ## Confusion matrix:
 ##    M  R class.error
-## M 58  8   0.1212121
-## R 19 40   0.3220339
+## M 62  9   0.1267606
+## R 17 37   0.3148148
 ```
 
 ---
@@ -539,16 +562,16 @@ predict(sonar_ranger, sonar_testing)
 ## # A tibble: 83 x 1
 ##    .pred_class
 ##    &lt;fct&gt;      
-##  1 R          
-##  2 M          
-##  3 R          
-##  4 R          
-##  5 M          
-##  6 M          
+##  1 M          
+##  2 R          
+##  3 M          
+##  4 M          
+##  5 R          
+##  6 R          
 ##  7 R          
-##  8 M          
+##  8 R          
 ##  9 M          
-## 10 M          
+## 10 R          
 ## # ... with 73 more rows
 ```
 
@@ -565,28 +588,28 @@ sonar_ranger %&gt;%
 ```
 
 ```
-## # A tibble: 83 x 55
-##    .pred_class      V1      V2      V3     V4     V5       V6      V7      V8
-##    &lt;fct&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-##  1 R           -0.340   0.0579  0.0373 -0.662  0.437  0.00348  0.613   0.375 
-##  2 M            0.849   0.554   1.12    0.338  0.866  3.01     1.68    2.64  
-##  3 R           -0.810  -0.594   0.546  -0.666 -0.964 -1.16    -0.149  -0.0160
-##  4 R            0.0641  0.325  -0.356  -0.730 -0.629  0.0110   0.0291  0.654 
-##  5 M            0.210   1.97    2.37    1.83   1.78   1.37    -0.783   0.134 
-##  6 M            1.16    0.635   1.12   -0.430  0.819 -0.117   -0.272  -0.814 
-##  7 R           -0.702  -0.144  -0.638  -0.442 -0.678 -1.66    -1.73   -0.855 
-##  8 M            0.121   0.854   0.616   0.819  1.67   2.47     1.71    0.895 
-##  9 M           -0.378   0.828  -0.0930  0.514  1.25  -0.330   -1.06   -1.29  
-## 10 M            0.943   0.508   1.06    1.51   1.99   3.93     3.15    1.29  
-## # ... with 73 more rows, and 46 more variables: V9 &lt;dbl&gt;, V12 &lt;dbl&gt;, V13 &lt;dbl&gt;,
-## #   V14 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;,
-## #   V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;,
-## #   V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;,
-## #   V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;,
-## #   V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;,
-## #   V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;,
-## #   V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;,
-## #   Class &lt;fct&gt;
+## # A tibble: 83 x 59
+##    .pred_class     V1      V2      V3     V4      V5     V6     V7     V8     V9
+##    &lt;fct&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 M            0.669  0.317   0.923   0.248  0.714   2.46   1.27   2.14   1.09 
+##  2 R           -0.784 -0.638   0.395  -0.717 -0.982  -1.20  -0.300 -0.172 -1.03 
+##  3 M            0.940  0.385   0.920  -0.490  0.671  -0.289 -0.406 -0.867 -0.361
+##  4 M           -0.278 -0.0847  0.0608 -0.179 -0.216  -0.836 -0.811 -1.41  -0.968
+##  5 R           -0.520 -0.633  -0.268  -0.986 -1.01   -0.704 -0.363 -0.779 -0.752
+##  6 R           -0.689 -0.264  -0.695  -0.502 -0.717  -1.64  -1.66  -0.902 -0.627
+##  7 R           -0.870 -0.869  -0.969  -0.627 -0.741  -0.910 -1.14  -0.505 -0.715
+##  8 R           -0.825 -0.934  -0.494  -0.151  0.739   0.814  0.135 -0.475 -0.757
+##  9 M            0.253 -0.788  -0.643  -0.191 -0.0595  0.146  0.565  0.105 -0.360
+## 10 R           -0.368 -1.03   -0.770  -1.00  -1.11   -1.56  -1.12  -1.29  -1.11 
+## # ... with 73 more rows, and 49 more variables: V10 &lt;dbl&gt;, V11 &lt;dbl&gt;,
+## #   V12 &lt;dbl&gt;, V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V15 &lt;dbl&gt;, V16 &lt;dbl&gt;, V17 &lt;dbl&gt;,
+## #   V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;,
+## #   V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;,
+## #   V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V38 &lt;dbl&gt;,
+## #   V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;,
+## #   V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;,
+## #   V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;,
+## #   V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
 ```
 
 ---
@@ -613,8 +636,8 @@ sonar_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.783
-## 2 kap      binary         0.556
+## 1 accuracy binary         0.831
+## 2 kap      binary         0.665
 ```
 
 ---
@@ -634,8 +657,8 @@ sonar_rf %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.783
-## 2 kap      binary         0.554
+## 1 accuracy binary         0.819
+## 2 kap      binary         0.642
 ```
 
 ---
@@ -652,16 +675,16 @@ sonar_ranger %&gt;%
 ## # A tibble: 83 x 2
 ##    .pred_M .pred_R
 ##      &lt;dbl&gt;   &lt;dbl&gt;
-##  1   0.447   0.553
-##  2   0.589   0.411
-##  3   0.328   0.672
-##  4   0.380   0.620
-##  5   0.555   0.445
-##  6   0.717   0.283
-##  7   0.414   0.586
-##  8   0.521   0.479
-##  9   0.509   0.491
-## 10   0.596   0.404
+##  1   0.521   0.479
+##  2   0.456   0.544
+##  3   0.709   0.291
+##  4   0.571   0.429
+##  5   0.382   0.618
+##  6   0.412   0.588
+##  7   0.464   0.536
+##  8   0.329   0.671
+##  9   0.685   0.315
+## 10   0.307   0.693
 ## # ... with 73 more rows
 ```
 ---
@@ -677,28 +700,28 @@ sonar_probs
 ```
 
 ```
-## # A tibble: 83 x 56
-##    .pred_M .pred_R      V1      V2      V3     V4     V5       V6      V7
-##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-##  1   0.447   0.553 -0.340   0.0579  0.0373 -0.662  0.437  0.00348  0.613 
-##  2   0.589   0.411  0.849   0.554   1.12    0.338  0.866  3.01     1.68  
-##  3   0.328   0.672 -0.810  -0.594   0.546  -0.666 -0.964 -1.16    -0.149 
-##  4   0.380   0.620  0.0641  0.325  -0.356  -0.730 -0.629  0.0110   0.0291
-##  5   0.555   0.445  0.210   1.97    2.37    1.83   1.78   1.37    -0.783 
-##  6   0.717   0.283  1.16    0.635   1.12   -0.430  0.819 -0.117   -0.272 
-##  7   0.414   0.586 -0.702  -0.144  -0.638  -0.442 -0.678 -1.66    -1.73  
-##  8   0.521   0.479  0.121   0.854   0.616   0.819  1.67   2.47     1.71  
-##  9   0.509   0.491 -0.378   0.828  -0.0930  0.514  1.25  -0.330   -1.06  
-## 10   0.596   0.404  0.943   0.508   1.06    1.51   1.99   3.93     3.15  
-## # ... with 73 more rows, and 47 more variables: V8 &lt;dbl&gt;, V9 &lt;dbl&gt;, V12 &lt;dbl&gt;,
-## #   V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;,
-## #   V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;,
-## #   V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;,
-## #   V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;,
-## #   V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;,
-## #   V47 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;,
-## #   V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;,
-## #   V60 &lt;dbl&gt;, Class &lt;fct&gt;
+## # A tibble: 83 x 60
+##    .pred_M .pred_R     V1      V2      V3     V4      V5     V6     V7     V8
+##      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1   0.521   0.479  0.669  0.317   0.923   0.248  0.714   2.46   1.27   2.14 
+##  2   0.456   0.544 -0.784 -0.638   0.395  -0.717 -0.982  -1.20  -0.300 -0.172
+##  3   0.709   0.291  0.940  0.385   0.920  -0.490  0.671  -0.289 -0.406 -0.867
+##  4   0.571   0.429 -0.278 -0.0847  0.0608 -0.179 -0.216  -0.836 -0.811 -1.41 
+##  5   0.382   0.618 -0.520 -0.633  -0.268  -0.986 -1.01   -0.704 -0.363 -0.779
+##  6   0.412   0.588 -0.689 -0.264  -0.695  -0.502 -0.717  -1.64  -1.66  -0.902
+##  7   0.464   0.536 -0.870 -0.869  -0.969  -0.627 -0.741  -0.910 -1.14  -0.505
+##  8   0.329   0.671 -0.825 -0.934  -0.494  -0.151  0.739   0.814  0.135 -0.475
+##  9   0.685   0.315  0.253 -0.788  -0.643  -0.191 -0.0595  0.146  0.565  0.105
+## 10   0.307   0.693 -0.368 -1.03   -0.770  -1.00  -1.11   -1.56  -1.12  -1.29 
+## # ... with 73 more rows, and 50 more variables: V9 &lt;dbl&gt;, V10 &lt;dbl&gt;, V11 &lt;dbl&gt;,
+## #   V12 &lt;dbl&gt;, V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V15 &lt;dbl&gt;, V16 &lt;dbl&gt;, V17 &lt;dbl&gt;,
+## #   V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;,
+## #   V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;,
+## #   V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V38 &lt;dbl&gt;,
+## #   V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;,
+## #   V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;,
+## #   V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;,
+## #   V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
 ```
 
 ---
@@ -719,7 +742,7 @@ sonar_probs %&gt;%
 ## $ .n              &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
 ## $ .n_events       &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
 ## $ .percent_tested &lt;dbl&gt; 0.000000, 1.204819, 2.409639, 3.614458, 4.819277, 6...
-## $ .percent_found  &lt;dbl&gt; 0.000000, 2.222222, 4.444444, 6.666667, 8.888889, 1...
+## $ .percent_found  &lt;dbl&gt; 0.0, 2.5, 5.0, 7.5, 10.0, 12.5, 15.0, 17.5, 20.0, 2...
 ```
 
 
@@ -733,7 +756,7 @@ sonar_probs%&gt;%
   autoplot()
 ```
 
-![](ml-fundamentals_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](ml-fundamentals_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -746,7 +769,7 @@ sonar_probs%&gt;%
   autoplot()
 ```
 
-![](ml-fundamentals_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+![](ml-fundamentals_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -765,10 +788,10 @@ predict(sonar_ranger, sonar_testing, type = "prob") %&gt;%
 ## # A tibble: 4 x 3
 ##   .metric     .estimator .estimate
 ##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy    binary         0.783
-## 2 kap         binary         0.556
-## 3 mn_log_loss binary         0.484
-## 4 roc_auc     binary         0.887
+## 1 accuracy    binary         0.831
+## 2 kap         binary         0.665
+## 3 mn_log_loss binary         0.460
+## 4 roc_auc     binary         0.927
 ```
 
 
@@ -797,7 +820,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.6.1 (2019-07-05)
+## R version 3.6.2 (2019-12-12)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 18362)
 ## 
@@ -813,50 +836,52 @@ sessionInfo()
 ## 
 ## other attached packages:
 ##  [1] mlbench_2.1-1     yardstick_0.0.4   tibble_2.1.3      rsample_0.0.5    
-##  [5] tidyr_1.0.0       recipes_0.1.7     purrr_0.3.3       parsnip_0.0.3.1  
+##  [5] tidyr_1.0.0       recipes_0.1.7     purrr_0.3.3       parsnip_0.0.4    
 ##  [9] infer_0.5.1       ggplot2_3.2.1     dplyr_0.8.3       dials_0.0.4      
-## [13] scales_1.0.0      broom_0.5.2       tidymodels_0.0.3  emo_0.0.0.9000   
+## [13] scales_1.0.0      broom_0.5.3       tidymodels_0.0.3  emo_0.0.0.9000   
 ## [17] fontawesome_0.1.0
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] minqa_1.2.4           colorspace_1.4-1      class_7.3-15         
-##   [4] ggridges_0.5.1        rsconnect_0.8.15      markdown_1.1         
-##   [7] base64enc_0.1-3       tidytext_0.2.2        rstudioapi_0.10      
-##  [10] listenv_0.7.0         furrr_0.1.0           xaringan_0.11        
-##  [13] rstan_2.19.2          SnowballC_0.6.0       DT_0.8               
-##  [16] fansi_0.4.0           prodlim_2018.04.18    lubridate_1.7.4      
-##  [19] ranger_0.11.2         codetools_0.2-16      splines_3.6.1        
-##  [22] knitr_1.26            shinythemes_1.1.2     zeallot_0.1.0        
-##  [25] bayesplot_1.7.0       nloptr_1.2.1          pROC_1.15.3          
-##  [28] shiny_1.3.2           compiler_3.6.1        backports_1.1.5      
-##  [31] assertthat_0.2.1      Matrix_1.2-17         lazyeval_0.2.2       
-##  [34] cli_1.1.0             later_1.0.0           htmltools_0.4.0      
-##  [37] prettyunits_1.0.2     tools_3.6.1           igraph_1.2.4.1       
-##  [40] gtable_0.3.0          glue_1.3.1            reshape2_1.4.3       
-##  [43] Rcpp_1.0.3            DiceDesign_1.8-1      vctrs_0.2.0          
-##  [46] nlme_3.1-140          crosstalk_1.0.0       timeDate_3043.102    
-##  [49] gower_0.2.1           xfun_0.11             stringr_1.4.0        
-##  [52] globals_0.12.4        ps_1.3.0              lme4_1.1-21          
-##  [55] mime_0.7              miniUI_0.1.1.1        lifecycle_0.1.0      
-##  [58] gtools_3.8.1          tidypredict_0.4.3     future_1.14.0        
-##  [61] MASS_7.3-51.4         zoo_1.8-6             ipred_0.9-9          
-##  [64] rstanarm_2.18.2       colourpicker_1.0      promises_1.0.1       
-##  [67] parallel_3.6.1        inline_0.3.15         shinystan_2.5.0      
-##  [70] tidyposterior_0.0.2   yaml_2.2.0            gridExtra_2.3        
-##  [73] loo_2.1.0             StanHeaders_2.18.1-10 rpart_4.1-15         
-##  [76] stringi_1.4.3         tokenizers_0.2.1      dygraphs_1.1.1.6     
-##  [79] randomForest_4.6-14   boot_1.3-22           pkgbuild_1.0.4       
-##  [82] lava_1.6.6            matrixStats_0.54.0    rlang_0.4.2          
-##  [85] pkgconfig_2.0.3       evaluate_0.14         lattice_0.20-38      
-##  [88] labeling_0.3          rstantools_1.5.1      htmlwidgets_1.3      
-##  [91] tidyselect_0.2.5      processx_3.4.1        plyr_1.8.4           
-##  [94] magrittr_1.5          R6_2.4.0              generics_0.0.2       
-##  [97] pillar_1.4.2          withr_2.1.2           xts_0.11-2           
-## [100] survival_2.44-1.1     nnet_7.3-12           janeaustenr_0.1.5    
-## [103] crayon_1.3.4          utf8_1.1.4            rmarkdown_2.0        
-## [106] grid_3.6.1            callr_3.3.1           threejs_0.3.1        
-## [109] digest_0.6.23         xtable_1.8-4          httpuv_1.5.1         
-## [112] stats4_3.6.1          munsell_0.5.0         shinyjs_1.0
+##   [1] backports_1.1.5       xaringan_0.13         tidytext_0.2.2       
+##   [4] plyr_1.8.4            igraph_1.2.4.1        repr_1.0.2           
+##   [7] lazyeval_0.2.2        splines_3.6.2         crosstalk_1.0.0      
+##  [10] listenv_0.7.0         SnowballC_0.6.0       rstantools_1.5.1     
+##  [13] inline_0.3.15         digest_0.6.23         htmltools_0.4.0      
+##  [16] rsconnect_0.8.15      fansi_0.4.0           magrittr_1.5         
+##  [19] globals_0.12.4        gower_0.2.1           matrixStats_0.54.0   
+##  [22] xts_0.11-2            prettyunits_1.0.2     colorspace_1.4-1     
+##  [25] skimr_2.0.2           xfun_0.11             callr_3.3.1          
+##  [28] crayon_1.3.4          jsonlite_1.6          lme4_1.1-21          
+##  [31] zeallot_0.1.0         survival_3.1-8        zoo_1.8-6            
+##  [34] glue_1.3.1            gtable_0.3.0          ipred_0.9-9          
+##  [37] pkgbuild_1.0.4        rstan_2.19.2          miniUI_0.1.1.1       
+##  [40] Rcpp_1.0.3            xtable_1.8-4          stats4_3.6.2         
+##  [43] lava_1.6.6            StanHeaders_2.18.1-10 prodlim_2018.04.18   
+##  [46] DT_0.8                htmlwidgets_1.3       threejs_0.3.1        
+##  [49] pkgconfig_2.0.3       loo_2.1.0             nnet_7.3-12          
+##  [52] utf8_1.1.4            labeling_0.3          tidyselect_0.2.5     
+##  [55] rlang_0.4.2           DiceDesign_1.8-1      reshape2_1.4.3       
+##  [58] later_1.0.0           munsell_0.5.0         tools_3.6.2          
+##  [61] cli_1.1.0             generics_0.0.2        ranger_0.11.2        
+##  [64] ggridges_0.5.1        evaluate_0.14         stringr_1.4.0        
+##  [67] fastmap_1.0.1         yaml_2.2.0            processx_3.4.1       
+##  [70] knitr_1.26            randomForest_4.6-14   future_1.14.0        
+##  [73] nlme_3.1-142          mime_0.7              rstanarm_2.18.2      
+##  [76] tokenizers_0.2.1      compiler_3.6.2        bayesplot_1.7.0      
+##  [79] shinythemes_1.1.2     rstudioapi_0.10       tidyposterior_0.0.2  
+##  [82] stringi_1.4.3         highr_0.8             ps_1.3.0             
+##  [85] lattice_0.20-38       Matrix_1.2-18         nloptr_1.2.1         
+##  [88] markdown_1.1          shinyjs_1.0           vctrs_0.2.0          
+##  [91] pillar_1.4.2          lifecycle_0.1.0       furrr_0.1.0          
+##  [94] httpuv_1.5.2          R6_2.4.0              promises_1.1.0       
+##  [97] gridExtra_2.3         janeaustenr_0.1.5     codetools_0.2-16     
+## [100] boot_1.3-23           colourpicker_1.0      MASS_7.3-51.4        
+## [103] gtools_3.8.1          assertthat_0.2.1      withr_2.1.2          
+## [106] shinystan_2.5.0       parallel_3.6.2        grid_3.6.2           
+## [109] rpart_4.1-15          timeDate_3043.102     class_7.3-15         
+## [112] minqa_1.2.4           rmarkdown_2.0         pROC_1.15.3          
+## [115] tidypredict_0.4.3     shiny_1.4.0           lubridate_1.7.4      
+## [118] base64enc_0.1-3       dygraphs_1.1.1.6
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -904,7 +929,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

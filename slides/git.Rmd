@@ -1,0 +1,462 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css:  ["default", "default-fonts", "animate.css",  "hygge"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+class: inverse, center
+```{r , message=FALSE, warning=FALSE, include=FALSE} 
+library(fontawesome)
+library(emo)
+```
+
+# `r fa("r-project", fill = 'steelblue')`  para análisis de datos `r emo::ji("rocket")`<br> <br> 
+
+## `r emo::ji("tada")` Introducción al control de versiones `r emo::ji("computer")`<br> <br> <br> 
+
+.large[Roxana N. Villafañe | LEMyP | <a href='http://twitter.com/data_datum'>`r fa("twitter", fill = 'steelblue')` @data_datum</a>] <br> 
+.large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
+
+
+<br><br><br><br><br> Slides disponibles en <https://bit.ly/curso-r-fca> `r emo::ji("sparkles")`
+<br> Página web del curso en <https://curso-r-fca.netlify.com> `r emo::ji("star2")`
+
+---
+class: inverse, center, middle
+# ¿Qué es Git?
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="30%" align="center" />
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Git
+
+- Git es un sistema de control de versiones creado por *Linus Torvalds*.
+- Un sistema de control de versiones es una porción de software diseñada para tener seguimiento
+de los cambios a lo largo del tiempo. 
+- Git es un sistema de control de versiones *distribuido*, que significa que cada uno que trabaja con Git tiene una copia de la historia completa del proyecto. 
+
+### Ventajas de usar Git
+- La habilidad para deshacer cambios.
+- Una historia completa de todos los cambios.
+- Documentación de por que los cambios fueron hechos. 
+- La tranquilidad de cambiar cualquier cosa. 
+- Muchas lineas históricas. 
+#### Si trabajamos en equipo
+- La habilidad para resolver conflictos. 
+- Creación de ramas para trabajar de manera independiente. 
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# GitHub
+
+- GitHub es un sitio web donde puedes subir una copia de tu repositorio de GitHub. Te permite colaborar más facilmente con otras personas en el proyecto. Lo hace proveyendo una ubicación centralizada para compartir el repositorio, una interfaz basada en la web, y caraceterísticas especiales como _fork, pull requests, issues, y wikis_.
+
+--
+### Ventajas de GitHub
+- Colaborar en diferentes ramas de trabajo. 
+- Re-ver el trabajo en progreso. 
+- Ver el progreso del equipo. 
+
+---
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Conceptos Clave
+- __Commit__: cada vez que se guarda un cambio en cualquier archivo, se crea un commit. Cada vez
+que se realiza un commit se agrega un mensaje describiendo el cambio realizado. 
+- __Clone (clonar)__: cuando copiamos un repositorio de internet en nuestra computadora para realizar cambios allí. 
+- __Push__: subir cambios locales a un repositorio remoto.
+- __Pull__: bajar cambios de un repositorio remoto a un repositorio local.
+- __Fork__: cuando se crea una copia de un repositorio ajeno en nuestro perfil de GitHub. 
+- __Branch(rama)__: una serie de commits que se crean para agregar una nueva funcionalidad. 
+- __Master branch (rama master)__: cuando creamos un repositorio, es la rama creada por defecto. Es la rama en donde terminarán todos los cambios realizados cuando pasen a producción (etapa final).
+- __Topic master(rama propia)__: cuando estamos creando nuevas funcionalidades en una rama, las hacemos en una rama que hemos creado. Luego esos cambios serán o no aceptados para ser parte de la rama master. 
+- __Pull request__: se realiza para que alguien más vea los cambios realizados en una rama propia e incluirla en la rama master. 
+Si el dueño del repositorio original, acepta los cambios de un pull request, se agregan los cambios, se realiza un __merge__.
+- __Merge__: es una manera de tomar los cambios realizados de una rama e incorporarlos a otra. 
+
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Vamos a instalar Git 
+
+https://rogerdudler.github.io/git-guide/index.es.html
+
+
+---
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Configurar Git
+
+- Configurar Git en nuestra computadora (entorno local)
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+1. git config --global user.name "Roxana" #<<
+2. git config --global user.email noelia0618@gmail.com #<<
+```
+
+
+
+---
+class: inverse, middle
+
+# ¿Qué es un commit?
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Es probable que una persona que no trabaja con Git guarde de esta forma los cambios realizados en un archivo
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/guardado-commit.png" width="80%" align="middle" />
+
+
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+
+
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/commit1.png" width="100%" align="center" />
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/commit2.png" width="100%" align="center" />
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/commit3.png" width="100%" align="center" />
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/commit4.png" width="100%" align="center" />
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/commit5.png" width="100%" align="center" />
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Git Commit
+
+* Un commit guarda un cambio.
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git commit -m "nuevo cambio" #<<
+```
+Se agrega un mensaje entre comillas describiendo los cambios realizados
+
+### Ya en este punto terminan los cambios locales
+
+
+---
+class: inverse, middle
+
+# Git Clone/Git Push/Git Pull
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Como trabajar con repositorios remotos
+
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/remote.png" width="70%" align="center" />
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/clone.png" width="90%" align="center" />
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/clone2.png" width="90%" align="center" />
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Git Clone
+
+- Clonar es copiar un repositorio remoto a nuestro repositorio local, es decir, guardar una copia en nuestra computadora. 
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git clone [url] #<<
+```
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/cambio1.png" width="90%" align="center" />
+
+---
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/push.png" width="90%" align="center" />
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Git Push
+## Vamos a guardar los cambios locales en un repositorio remoto.
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git push  #<<
+```
+Con este comando se suben los cambios realizados en un repositorio local a un repositorio remoto. 
+<br><br>
+_Pushing_ es como se transfieren commits desde el repositorio local a un repositorio remoto. 
+
+---
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/pull.png" width="90%" align="center" />
+
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Git Pull 
+
+## Vamos a bajar a nuestro repositorio los cambios de un repositorio remoto.
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git pull  #<<
+```
+
+---
+class: inverse, middle
+
+# Flujo de Trabajo
+
+
+---
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Pasos
+
+* En primer lugar se realizan los cambios en un archivo. 
+* En la consola de git vamos a la carpeta de trabajo/rama de trabajo
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+cd carpeta_trabajo
+git status #<<
+```
+_git status_ nos permite conocer los cambios realizados.
+
+* Esos cambios se registran mediante el comando
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git add file.ext #<<
+```
+Se agrega el archivo con la extensión.
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Resumiendo
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-01.jpg" width="100%" align="center" />
+
+---
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Resumiendo
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-workflow.png" width="80%" align="center" />
+
+---
+
+class: inverse, middle
+
+
+# Otros comandos útiles de Git
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Fork
+Fork es para copiar un repositorio remoto ajeno a nuestra lista de repositorios remotos. 
+Se realiza desde Github siempre, ya que se están trabajando con repositorios remotos. 
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Borrar un archivo
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git rm archivo.ext #<<
+```
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Para ver los commits realizados 
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git log #<<
+```
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Ayuda
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git help #<<
+```
+
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-help.png" width="65%" align="center" />
+
+---
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Ayuda de un comando específico
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git help clone #<<
+```
+
+Nos abre un archivo html en el navegador de la ayuda de Git. 
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Git Diff
+- Nos ayuda a ver las diferencias en los archivos que todavía no han sido agregados a la etapa "stage". 
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git diff #<<
+```
+
+
+
+---
+class: inverse, middle
+
+# Git Branch
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Cómo crear una rama 
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git branch new_name #<<
+```
+
+- Con este comando listamos las ramas creadas en ese repositorio
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git branch #<<
+```
+
+- Borrar la rama creada
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git branch -d new_name #<<
+```
+
+- Crear una rama e ir a esa rama inmediatamente
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git checkout -b new_name #<<
+```
+
+- Una rama no está disponible _para los demás_ a menos que la subas al repositorio remoto. 
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git push origin <branch> #<<
+```
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Buenas prácticas en el uso de Git
+
+__1. Hacer commits a menudo__
+Esto permite ahorrar conflictos con las demás personas que trabajan en el proyecto. 
+
+__2. Testear, luego hacer el commit__
+Nunca hacer commit de trabajo incompleto. Siempre testear los cambios antes de compartirlos con los demás. 
+
+__3. Poner mensajes en el commit__
+Escribir mensajes permite que los demás sepan los cambios q se han realizado. Se recomienda ser lo más descriptivo posible.
+
+__4. Crear ramas__
+Crear ramas permite crear líneas de desarrollo, para probar cambios y experimentar ahí. 
+
+__5. Adoptar un flujo de trabajo común en Git__
+Hay muchas formas de crear un apropiado flujo de trabajo. Debemos asegurarnos que todos los miembros del equipo sigan el mismo flujo de trabajo desde el principio. 
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Qué nos permite hacer git
+
+### - Saber la historia de un proyecto
+
+### - Volver en el tiempo para ver cambios
+
+### - Experimentar con los cambios
+
+### - Hacer un backup de nuestro trabajo
+
+### - Colaborar con otros proyectos
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Conceptos de Git que hemos visto
+
+### **Repositorio**: la carpeta de tu proyecto.
+### **Commit**: una captura del repositorio
+### **Hash**: un id para un commit
+### **Branch(rama)**: permite trabajar de manera aislada cuando se trabaja en un grupo de trabajo grande. 
+### **Merge(unión)**: nos permite unir un cambio a la rama master
+### **Remote(remoto)**: una computadora con un repositorio
+### **Clone(clonar)**: obtener un repositorio remoto por primera vez. 
+### **Push**: mandar cambios (commits) a un repositorio remoto desde local.
+### **Pull**: bajar los cambios (commits) de un repositorio remoto a local. 
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Bibliografía 
+
+### git la guía sencilla [español]
+https://rogerdudler.github.io/git-guide/index.es.html
+
+### git comandos más útiles [inglés]
+https://www.keycdn.com/blog/git-cheat-sheet
+
+### Comandos básicos [inglés]
+https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html
+
+### Mas links (README de este repo)
+https://github.com/data-datum/git-class 
+
+---
+
+```{r message=FALSE, warning=FALSE}
+devtools::session_info()
+```
+
+
