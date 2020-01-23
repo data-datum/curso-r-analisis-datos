@@ -223,6 +223,13 @@ git clone [url] #<<
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/push4.png" width="90%" align="center" />
+
+
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
 # Git Push
 ## Vamos a guardar los cambios locales en un repositorio remoto.
 
@@ -241,7 +248,11 @@ _Pushing_ es como se transfieren commits desde el repositorio local a un reposit
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/pull.png" width="90%" align="center" />
 
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
+
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/pull4.png" width="90%" align="center" />
 
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
@@ -280,6 +291,15 @@ git add file.ext #<<
 ```
 Se agrega el archivo con la extensión.
 
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git commit -m "nuevo logo" #<<
+```
+_git commit -m "nuevo logo"_ nos permite agregar los cambios realizados
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+git push #<<
+```
+_git push_ subo los cambios realizados a Github
 
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
