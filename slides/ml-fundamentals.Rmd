@@ -112,8 +112,8 @@ class: center, middle
 Como podemos ver las clases están prácticamente balanceadas
 
 ```{r warning=FALSE, message=FALSE} 
-library(mlbench)
-data(Sonar)
+
+
 ```
 
 ```{r warning=FALSE, message=FALSE, eval=FALSE} 

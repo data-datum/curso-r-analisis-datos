@@ -164,6 +164,12 @@ Se agrega un mensaje entre comillas describiendo los cambios realizados
 
 ### Ya en este punto terminan los cambios locales
 
+---
+<img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
+
+# Hash
+
+* Es un id para el commit realizado
 
 ---
 class: inverse, middle
@@ -393,6 +399,7 @@ class: inverse, middle
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
+## Cuando se trabaja en proyectos grandes, generalmente se trabaja en __ramas__, la rama principal es la __rama master__
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/master.png" width="100%" align="center" />
 
@@ -400,17 +407,20 @@ class: inverse, middle
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
+## A medida que el proyecto va avanzando, cuando las mejoras son importantes actualizaciones, se agregan a la __rama master__
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/master-add.png" width="100%" align="center" />
 
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
+## Trabajar con ramas, nos permite como miembros del proyecto, no sólo tener nuestra propia rama, sino también, experimentar cambios sin que el proyecto original (alojado en la rama master), sufra cambios
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/master-other-branch.png" width="100%" align="center" />
 ---
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git-logo.png" width="10%" align="right" />
 
+## Cuando unos de los desarrolladores del proyecto, agrega actualizaciones que son significativas al proyecto, eso cambios pasan a la rama master, mediante un __merge__. 
 
 <img src="file:///C:/Users/Roxana/curso-r-analisis-datos/img/git/git-merge.png" width="100%" align="center" />
 
@@ -510,6 +520,17 @@ https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.ht
 ### Git for Humans
 http://bit.ly/2PwPjbr
 
+### Happy Git & Github for the useR
+https://happygitwithr.com/
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-size: cover
+class: center, middle, inverse
+
+ 
+
+# `r emo::ji("raising_hand")` ¿Preguntas?
 
 
 ---

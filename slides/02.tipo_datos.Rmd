@@ -259,12 +259,43 @@ No sucede esto para matrices y arrays.
 Creamos listas mediante la función .content-box-yellow[**list()**]
 
 ```{r } 
-familia <- list(madre="Maria", padre="Juan", casados=10,
-hijos=c("Hugo", "Petra"), edades=c(8, 6))
-familia
+mi_vector <- 1:10
+mi_matriz <- matrix(1:4, nrow = 2)
+mi_df     <- data.frame("num" = 1:3, "let" = c("a", "b", "c"))
+
+mi_lista <- list("un_vector" = mi_vector, "una_matriz" = mi_matriz, "un_df" = mi_df)
+
+mi_lista
 ```
 
-Para operar con listas en *Tidyvserse* se utiliza el paquete **purrr**
+Para operar con listas en *tidyvserse* se utiliza el paquete **purrr**
+---
+
+# Propiedades de las Listas
+
+La función **length()** nos indica la cantidad de elementos que están dentro de la lista, sin importar de qué tipo o clase sean. 
+```{r } 
+length(mi_lista)
+```
+
+
+Dado que tienen una sola dimensión, se obtiene NULL al aplicar la función **dim()**
+```{r } 
+dim(mi_lista)
+```
+
+Las listas tienen clase list
+
+```{r } 
+class(mi_lista)
+```
+
+No es posible vectorizar operaciones aritméticas usando listas. Al intentarlo nos es devuelto un error
+```{r eval=FALSE} 
+mi_lista/2
+```
+
+
 ---
 
 # Indexación en Listas con [[ en `r fa("r-project", fill = 'steelblue')`
@@ -381,7 +412,11 @@ class: center, middle, inverse
 
 ---
 
-# Arrays con `r fa("r-project", fill = 'steelblue')`
+# Arrays (arreglos) con `r fa("r-project", fill = 'steelblue')`
+
+* Los arrays (o arreglos) son un tipo de dato multidimensional. También son llamados tensores. 
+
+* 
 
 
 ---
