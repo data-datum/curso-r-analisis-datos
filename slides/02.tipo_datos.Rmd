@@ -123,6 +123,18 @@ class: inverse, middle
 ]
 
 ---
+
+# Estructura de datos
+
+Cuando hablamos de estructura de datos, hay dos conceptos que toman importancia: 
+* la __dimensión__ y 
+* si son __homogeneas o heterogeneas__ 
+
+![](C:/Users/Roxana/curso-r-analisis-datos/img/est_datos.png)
+
+.footnote[_Fuente:https://bookdown.org/jboscomendoza/r-principiantes4/estructuras-de-datos.html_]
+
+---
 # Subconjuntos e Índices
 
 * En R, podemos tener subconjuntos de nuestras estructuras de datos. Se pueden extraer partes de un conjunto de datos. 
@@ -476,7 +488,7 @@ class: center, middle,
 - Un dataframe es una lista cuyos componentes pueden ser vectores, matrices o factores. 
 - El número de filas y de columnas coinciden, lo que hace que tenga apariencia de una tabla. 
 
-Se puede crear un dataframe con la función .content-box-yellow[**data.frame()**]
+Se puede crear un dataframe con la función **data.frame()**
 
 ```{r } 
 sitios<-data.frame(sitios=1:4, muestreado=c(T,F,F,T))
@@ -493,8 +505,7 @@ is.data.frame(sitios) # permite saber que tipo de dato es
 
 Los dataframes son los tipos de datos más comunes con los que se trabaja en R, junto con las listas y los arrays. 
 
-<br>
-.content-box-yellow[Para importar datos]
+## Para importar datos
 
 <br><br>
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/readxl.png" width="10%" align="right" />
@@ -544,15 +555,6 @@ class: center, middle, inverse
 
 ---
 
-# Indexación en Dataframes
-
-
-
-
-
-
----
-
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/pc8.jpg)
 background-size: cover
 class: center, middle, inverse
@@ -567,6 +569,10 @@ class: center, middle, inverse
 
 * 
 
+---
+class:inverse, middle
+
+# Coerción
 
 ---
 # Coerción en `r fa("r-project", fill = 'steelblue')`
@@ -592,6 +598,24 @@ class(b)
 c <- as.logical(b) #convierto a dato lógico/booleano
 c
 ```
+
+---
+
+# Coerción
+
+
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-size: cover
+class: center, middle, inverse
+
+ 
+
+# `r emo::ji("raising_hand")` DEMO
+
+
+
 
 ---
 
