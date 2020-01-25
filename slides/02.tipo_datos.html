@@ -16,7 +16,7 @@ class: inverse, center
 
 # &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;  para análisis de datos 🚀&lt;br&gt; &lt;br&gt; 
 
-## 🎉Tipos de datos 💻&lt;br&gt; &lt;br&gt; &lt;br&gt; 
+## 🎉Tipos de datos, Estructura de datos e Índices 💻&lt;br&gt; &lt;br&gt; &lt;br&gt; 
 
 .large[Roxana N. Villafañe | LEMyP | &lt;a href='http://twitter.com/data_datum'&gt;&lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt; @data_datum&lt;/a&gt;] &lt;br&gt; 
 .large[Florencia D'Andrea | INTA-CONICET | &lt;a href="http://twitter.com/cantoflor_87"&gt; &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt; @cantoflor_87&lt;/a&gt;&lt;br&gt;] 
@@ -35,8 +35,81 @@ class: inverse, center
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/r_first_then.png" width="70%" align="center" /&gt;
 
 ---
+class: inverse, middle
 
+# Tipos de datos 
+
+---
 # Tipos de datos en &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
+
+* Entero (integer): 1
+
+* Numérico (numeric): 1.3
+
+* Cadena de texto (character): "uno"
+
+* Factor (factor): uno
+
+* Lógico (logical): TRUE
+
+* Perdido (NA): NA
+
+* Vacío (null): NULL
+
+
+---
+
+# Entero y Numérico (Integer / Numeric)
+
+* Los datos enteros son números sin la parte decimal o fraccionaria. 
+
+* Los datos numéricos representan números que tienen parte decimal o fraccionaria. También se los llama _float o double_ (flotantes), debido a que poseen una parte entera y una parte fraccionaria. 
+
+
+---
+
+# Caracter o cadena de texto (character)
+
+* El tipo caracter representa texto y se lo reconoce porque está rodeado de comillas, simples o dobles. Nos referimos a este tipo de datos como cadena de texto, es decir, secuencia de caracteres. 
+
+* Es el tipo de datos más flexible, ya que puede contener letras, números, signos de puntuación, etc.
+
+---
+
+# Factor (factor)
+
+* Un factor es un tipo de dato específico para R. 
+
+* Supongamos que tenemos dos grupos de encuestados, mujeres y varones. Ese dato se lo codifica como __factores__ en un set de datos. Podemos codificar como factores, haciendo corresponder el __1__ a _femenino_, y el __2__, a _masculino_.
+
+* Si trabajamos con dos series de suelo, Chavarría y Pampín, podemos expresar esos factores como __1__ y __2__, respectivamente. 
+
+---
+
+# Lógico
+
+* Los datos de tipo lógico tienen dos posibilidades: __TRUE__ y __FALSE__. 
+* Representa si una condición se cumple o no. 
+
+---
+
+# NA y NULL
+
+* NA representan los datos perdidos 
+* NULL significa que no hay dato disponible, representa ausencia de dato. 
+
+* Mientras que NA representan datos que por alguna razón están perdidos, omitidos o por alguna razón son faltantes, NULL aparece cuando R intenta recuperar un dato y no se encuentra. 
+
+
+---
+class: inverse, middle
+
+# Estructura de datos
+
+
+---
+
+# Estructura de datos en &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
 
 .pull-left[
 ## Vectores
@@ -44,11 +117,24 @@ class: inverse, center
 ## Factores
 ## Listas
 ## Dataframes
-## Arreglos
 ]
 .pull-right[
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/foto-compu.jpg)
 ]
+
+---
+# Subconjuntos e Índices
+
+* En R, podemos tener subconjuntos de nuestras estructuras de datos. Se pueden extraer partes de un conjunto de datos. 
+
+* Esto se realiza para extraer datos que cumplan una condición o característica específica. Por ejemplo, todos los datos que son mayores a determinado valor, o que coinciden a un valor de nuestro interés. 
+
+* En R base se utilizan índices y operadores lógicos. 
+
+* Un __índice__ en R representa una posición. Cuando usamos índices le pedimos a R que extraiga de una estructura de datos que se encuentran en una o varias posiciones específicas dentro de ella. 
+
+* A diferencia de otros lenguajes, en R, los índices empiezan en 0, y no en 1. 
+
 
 ---
 
@@ -159,7 +245,7 @@ boolean
 
 ---
 
-# Vectores &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
+# Funciones de vectores &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
 
 Otras funciones para crear vectores, en este caso, __secuencias__
 
@@ -170,7 +256,7 @@ Con el operador : se pueden crear secuencias crecientes o decrecientes
 100:50
 ```
 
-.content-box-yellow[Mediante la función **seq()**]
+* Mediante la función **seq()**
 
 
 ```r
@@ -182,7 +268,7 @@ v
 ## [1]  5  7  9 11 13 15
 ```
 
-.content-box-yellow[Mediante la función **rep()**]
+* Mediante la función **rep()**
 
 
 ```r
@@ -195,25 +281,55 @@ z
 ## [1]  4  8 -3  4  8 -3  4  8 -3
 ```
 
+* **length()** Nos permite conocer la longitud de un vector
+
+
+```r
+y &lt;- c(4, 8, -3)
+length(y)
+```
+
+```
+## [1] 3
+```
 ---
 
-# Funciones de vectores &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
+# Indexación en vectores &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
 
-.content-box-red[**length()**] Nos permite conocer la longitud de un vector
-
-
-
-Para acceder a los elementos de un vector lo hacemos mediante corchetes []
-
+* Para obtener subconjuntos con índices en vectores usamos corchetes [].
 
 
 ```r
 v&lt;-c(4,8,2,-123,-5)
-v[2]
+v[2] # Extraemos el segundo elemento
 ```
 
 ```
 ## [1] 8
+```
+
+
+```r
+v[1:3] # Extraemos del primer al tercer elemento
+```
+
+```
+## [1] 4 8 2
+```
+
+* Si intentamos esto, nos da ERROR debido a que estamos diciendo a R que busque un elemento dentro de dos dimensiones, mientras que un vector tiene una sola dimensión.
+
+```r
+v[1,3] # ERROR
+```
+
+
+```r
+dim(v)
+```
+
+```
+## NULL
 ```
 
 ---
@@ -228,7 +344,7 @@ class: center, middle, inverse
 
 # Matrices en &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
 
-Desde el punto de vista del lenguaje, una matriz es un vector con un atributo adicional: dim(). 
+Desde el punto de vista del lenguaje, una matriz es un vector con un atributo adicional: __dim()__. 
 
 
 ```r
@@ -267,7 +383,7 @@ class(m) # tipo de objeto en R
 
 # Matrices en &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
 
-Podemos crear matrices con la función .content-box-yellow[**matrix()**]
+Podemos crear matrices con la función **matrix()**
 
 
 ```r
@@ -318,8 +434,8 @@ m1
 o con **cbind()**
 
 ```r
-m1 &lt;- cbind(c(1.5, 3.2, -5.5), c(0, -1.1, 60)) #unir columnas
-m1
+m2 &lt;- cbind(c(1.5, 3.2, -5.5), c(0, -1.1, 60)) #unir columnas
+m2
 ```
 
 ```
@@ -328,6 +444,50 @@ m1
 ## [2,]  3.2 -1.1
 ## [3,] -5.5 60.0
 ```
+---
+
+# Indexación en Matrices 
+
+* Para acceder a los elementos en una matriz, usamos corchetes [].
+
+
+```r
+m1[4] #extraemos el cuarto elemento
+```
+
+```
+## [1] -1.1
+```
+
+
+
+```r
+m1[2,] #extraemos la segunda fila 
+```
+
+```
+## [1]  0.0 -1.1 60.0
+```
+
+
+
+```r
+m1[,2] #extraemos la segunda columna 
+```
+
+```
+## [1]  3.2 -1.1
+```
+
+
+```r
+m1[2,3] #extraemos la segunda fila y la tercer columna
+```
+
+```
+## [1] 60
+```
+
 ---
 
 # Funciones útiles en Matrices con &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
@@ -453,37 +613,64 @@ class(mi_lista)
 No es posible vectorizar operaciones aritméticas usando listas. Al intentarlo nos es devuelto un error
 
 ```r
-mi_lista/2
+mi_lista/2 #ERROR
 ```
 
 
 ---
 
-# Indexación en Listas con [[ en &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
+# Indexación en Listas
+
+Para indexar listas podemos usar corchetes (como en vectores y matrices), pero también doble corchetes([[]]) y signo peso ($)
 
 
+```r
+mi_lista[1]
+```
+
+```
+## $un_vector
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+
+```r
+mi_lista[[1]]
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+
+```r
+mi_lista$un_vector
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+
+---
+
+# Indexación en Listas &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
+
+### Diferencia entre corchetes y doble corchetes 
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/train1.png)
 .footnote[Fuente: *R Advanced de Hadley Wickham* https://adv-r.hadley.nz/
 ]
 ---
 
 
-# Indexación en Listas con [[ en &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
+# Indexación en Listas &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
 
-
+### Cuando usamos corchetes rige lo que vimos anteriormente
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/train2.png)
 &lt;br&gt;
 .footnote[Fuente: *R Advanced de Hadley Wickham* https://adv-r.hadley.nz/
 ]
----
 
-# Indexación en Listas con [[ en &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;
-
-
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/pep.png" width="70%" align="center" /&gt;
-
-.footnote[Fuente: *Purrr workshop en LatinR2018* https://speakerdeck.com/jennybc/purrr-workshop
-]
 
 ---
 
@@ -564,16 +751,41 @@ Mas información en: https://www.tidyverse.org/blog/2019/05/vroom-1-0-0/
 Los dataframes al ser un tipo especial de lista se puede acceder a sus elementos mediante [], [[]], y $
 
 
+```r
+head(mtcars)
+```
+
+```
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+```
+
+
+
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text2.png)
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
  
 
 # 💻 DEMO 💻
+
+
+
+---
+
+# Indexación en Dataframes
+
+
+
 
 
 
@@ -741,6 +953,10 @@ iris %&gt;% .[["Sepal.Length"]]
 
 
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/biblio.png)
+
+
+* R para Principiantes: https://bookdown.org/jboscomendoza/r-principiantes4/
+
 
 ---
 

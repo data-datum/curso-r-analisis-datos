@@ -16,7 +16,7 @@ library(emo)
 
 # `r fa("r-project", fill = 'steelblue')`  para análisis de datos `r emo::ji("rocket")`<br> <br> 
 
-## `r emo::ji("tada")`Tipos de datos `r emo::ji("computer")`<br> <br> <br> 
+## `r emo::ji("tada")`Tipos de datos, Estructura de datos e Índices `r emo::ji("computer")`<br> <br> <br> 
 
 .large[Roxana N. Villafañe | LEMyP | <a href='http://twitter.com/data_datum'>`r fa("twitter", fill = 'steelblue')` @data_datum</a>] <br> 
 .large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
@@ -35,8 +35,81 @@ library(emo)
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/r_first_then.png" width="70%" align="center" />
 
 ---
+class: inverse, middle
 
+# Tipos de datos 
+
+---
 # Tipos de datos en `r fa("r-project", fill = 'steelblue')`
+
+* Entero (integer): 1
+
+* Numérico (numeric): 1.3
+
+* Cadena de texto (character): "uno"
+
+* Factor (factor): uno
+
+* Lógico (logical): TRUE
+
+* Perdido (NA): NA
+
+* Vacío (null): NULL
+
+
+---
+
+# Entero y Numérico (Integer / Numeric)
+
+* Los datos enteros son números sin la parte decimal o fraccionaria. 
+
+* Los datos numéricos representan números que tienen parte decimal o fraccionaria. También se los llama _float o double_ (flotantes), debido a que poseen una parte entera y una parte fraccionaria. 
+
+
+---
+
+# Caracter o cadena de texto (character)
+
+* El tipo caracter representa texto y se lo reconoce porque está rodeado de comillas, simples o dobles. Nos referimos a este tipo de datos como cadena de texto, es decir, secuencia de caracteres. 
+
+* Es el tipo de datos más flexible, ya que puede contener letras, números, signos de puntuación, etc.
+
+---
+
+# Factor (factor)
+
+* Un factor es un tipo de dato específico para R. 
+
+* Supongamos que tenemos dos grupos de encuestados, mujeres y varones. Ese dato se lo codifica como __factores__ en un set de datos. Podemos codificar como factores, haciendo corresponder el __1__ a _femenino_, y el __2__, a _masculino_.
+
+* Si trabajamos con dos series de suelo, Chavarría y Pampín, podemos expresar esos factores como __1__ y __2__, respectivamente. 
+
+---
+
+# Lógico
+
+* Los datos de tipo lógico tienen dos posibilidades: __TRUE__ y __FALSE__. 
+* Representa si una condición se cumple o no. 
+
+---
+
+# NA y NULL
+
+* NA representan los datos perdidos 
+* NULL significa que no hay dato disponible, representa ausencia de dato. 
+
+* Mientras que NA representan datos que por alguna razón están perdidos, omitidos o por alguna razón son faltantes, NULL aparece cuando R intenta recuperar un dato y no se encuentra. 
+
+
+---
+class: inverse, middle
+
+# Estructura de datos
+
+
+---
+
+# Estructura de datos en `r fa("r-project", fill = 'steelblue')`
 
 .pull-left[
 ## Vectores
@@ -44,11 +117,24 @@ library(emo)
 ## Factores
 ## Listas
 ## Dataframes
-## Arreglos
 ]
 .pull-right[
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/foto-compu.jpg)
 ]
+
+---
+# Subconjuntos e Índices
+
+* En R, podemos tener subconjuntos de nuestras estructuras de datos. Se pueden extraer partes de un conjunto de datos. 
+
+* Esto se realiza para extraer datos que cumplan una condición o característica específica. Por ejemplo, todos los datos que son mayores a determinado valor, o que coinciden a un valor de nuestro interés. 
+
+* En R base se utilizan índices y operadores lógicos. 
+
+* Un __índice__ en R representa una posición. Cuando usamos índices le pedimos a R que extraiga de una estructura de datos que se encuentran en una o varias posiciones específicas dentro de ella. 
+
+* A diferencia de otros lenguajes, en R, los índices empiezan en 0, y no en 1. 
+
 
 ---
 
@@ -107,7 +193,7 @@ boolean
 
 ---
 
-# Vectores `r fa("r-project", fill = 'steelblue')`
+# Funciones de vectores `r fa("r-project", fill = 'steelblue')`
 
 Otras funciones para crear vectores, en este caso, __secuencias__
 
@@ -117,14 +203,14 @@ Con el operador : se pueden crear secuencias crecientes o decrecientes
 100:50
 ```
 
-.content-box-yellow[Mediante la función **seq()**]
+* Mediante la función **seq()**
 
 ```{r } 
 v <- seq(from = 5, to = 15, by = 2)
 v
 ```
 
-.content-box-yellow[Mediante la función **rep()**]
+* Mediante la función **rep()**
 
 ```{r } 
 y <- c(4, 8, -3)
@@ -132,20 +218,34 @@ z <- rep(y, times = 3)
 z
 ```
 
+* **length()** Nos permite conocer la longitud de un vector
+
+```{r } 
+y <- c(4, 8, -3)
+length(y)
+```
 ---
 
-# Funciones de vectores `r fa("r-project", fill = 'steelblue')`
+# Indexación en vectores `r fa("r-project", fill = 'steelblue')`
 
-.content-box-red[**length()**] Nos permite conocer la longitud de un vector
-
-
-
-Para acceder a los elementos de un vector lo hacemos mediante corchetes []
-
+* Para obtener subconjuntos con índices en vectores usamos corchetes [].
 
 ```{r } 
 v<-c(4,8,2,-123,-5)
-v[2]
+v[2] # Extraemos el segundo elemento
+```
+
+```{r } 
+v[1:3] # Extraemos del primer al tercer elemento
+```
+
+* Si intentamos esto, nos da ERROR debido a que estamos diciendo a R que busque un elemento dentro de dos dimensiones, mientras que un vector tiene una sola dimensión.
+```{r eval=FALSE} 
+v[1,3] # ERROR
+```
+
+```{r } 
+dim(v)
 ```
 
 ---
@@ -160,7 +260,7 @@ class: center, middle, inverse
 
 # Matrices en `r fa("r-project", fill = 'steelblue')`
 
-Desde el punto de vista del lenguaje, una matriz es un vector con un atributo adicional: dim(). 
+Desde el punto de vista del lenguaje, una matriz es un vector con un atributo adicional: __dim()__. 
 
 ```{r } 
 m <- 11:30 # creo una secuencia ascendente
@@ -180,7 +280,7 @@ class(m) # tipo de objeto en R
 
 # Matrices en `r fa("r-project", fill = 'steelblue')`
 
-Podemos crear matrices con la función .content-box-yellow[**matrix()**]
+Podemos crear matrices con la función **matrix()**
 
 ```{r } 
 matrix(11:30, nrow=5, ncol=4) #las columnas se crean según columnas por defecto
@@ -203,9 +303,33 @@ m1
 
 o con **cbind()**
 ```{r } 
-m1 <- cbind(c(1.5, 3.2, -5.5), c(0, -1.1, 60)) #unir columnas
-m1
+m2 <- cbind(c(1.5, 3.2, -5.5), c(0, -1.1, 60)) #unir columnas
+m2
 ```
+---
+
+# Indexación en Matrices 
+
+* Para acceder a los elementos en una matriz, usamos corchetes [].
+
+```{r } 
+m1[4] #extraemos el cuarto elemento
+```
+
+
+```{r } 
+m1[2,] #extraemos la segunda fila 
+```
+
+
+```{r } 
+m1[,2] #extraemos la segunda columna 
+```
+
+```{r } 
+m1[2,3] #extraemos la segunda fila y la tercer columna
+```
+
 ---
 
 # Funciones útiles en Matrices con `r fa("r-project", fill = 'steelblue')`
@@ -292,37 +416,48 @@ class(mi_lista)
 
 No es posible vectorizar operaciones aritméticas usando listas. Al intentarlo nos es devuelto un error
 ```{r eval=FALSE} 
-mi_lista/2
+mi_lista/2 #ERROR
 ```
 
 
 ---
 
-# Indexación en Listas con [[ en `r fa("r-project", fill = 'steelblue')`
+# Indexación en Listas
+
+Para indexar listas podemos usar corchetes (como en vectores y matrices), pero también doble corchetes([[]]) y signo peso ($)
+
+```{r } 
+mi_lista[1]
+```
+
+```{r } 
+mi_lista[[1]]
+```
+
+```{r } 
+mi_lista$un_vector
+```
 
 
+---
+
+# Indexación en Listas `r fa("r-project", fill = 'steelblue')`
+
+### Diferencia entre corchetes y doble corchetes 
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/train1.png)
 .footnote[Fuente: *R Advanced de Hadley Wickham* https://adv-r.hadley.nz/
 ]
 ---
 
 
-# Indexación en Listas con [[ en `r fa("r-project", fill = 'steelblue')`
+# Indexación en Listas `r fa("r-project", fill = 'steelblue')`
 
-
+### Cuando usamos corchetes rige lo que vimos anteriormente
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/train2.png)
 <br>
 .footnote[Fuente: *R Advanced de Hadley Wickham* https://adv-r.hadley.nz/
 ]
----
 
-# Indexación en Listas con [[ en `r fa("r-project", fill = 'steelblue')`
-
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/pep.png" width="70%" align="center" />
-
-.footnote[Fuente: *Purrr workshop en LatinR2018* https://speakerdeck.com/jennybc/purrr-workshop
-]
 
 ---
 
@@ -388,17 +523,31 @@ Mas información en: https://www.tidyverse.org/blog/2019/05/vroom-1-0-0/
 
 Los dataframes al ser un tipo especial de lista se puede acceder a sus elementos mediante [], [[]], y $
 
+```{r } 
+head(mtcars)
+```
+
+
 
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text2.png)
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
  
 
 # `r emo::ji("computer")` DEMO `r emo::ji("computer")`
+
+
+
+---
+
+# Indexación en Dataframes
+
+
+
 
 
 
@@ -542,6 +691,10 @@ iris %>% .[["Sepal.Length"]]
 
 
 ![](C:/Users/Roxana/curso-r-analisis-datos/img/biblio.png)
+
+
+* R para Principiantes: https://bookdown.org/jboscomendoza/r-principiantes4/
+
 
 ---
 
