@@ -13,3 +13,5 @@ sw_people[[1]][[1]] # accedemos al primer elemento de la lista
 sw_people[1] 
 sw_people[[1]][[2]] #accedemos al segundo elemento de la lista
 sw_people$people #error
+sw_people[[1:2]]
+sw_people[["uno", "dos"]]

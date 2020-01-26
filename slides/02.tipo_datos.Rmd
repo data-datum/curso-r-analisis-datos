@@ -145,7 +145,7 @@ Cuando hablamos de estructura de datos, hay dos conceptos que toman importancia:
 
 * Un __índice__ en R representa una posición. Cuando usamos índices le pedimos a R que extraiga de una estructura de datos que se encuentran en una o varias posiciones específicas dentro de ella. 
 
-* A diferencia de otros lenguajes, en R, los índices empiezan en 0, y no en 1. 
+* A diferencia de otros lenguajes, en R, los índices empiezan en 1, y no en 0. 
 
 
 ---
@@ -551,23 +551,6 @@ class: center, middle, inverse
 
 # `r emo::ji("computer")` DEMO `r emo::ji("computer")`
 
-
-
----
-
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/pc8.jpg)
-background-size: cover
-class: center, middle, inverse
-
-# `r emo::ji("sparkles")` Arrays
-
----
-
-# Arrays (arreglos) con `r fa("r-project", fill = 'steelblue')`
-
-* Los arrays (o arreglos) son un tipo de dato multidimensional. También son llamados tensores. 
-
-* 
 
 ---
 class:inverse, middle
