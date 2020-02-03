@@ -49,9 +49,9 @@ class: inverse, center
 
 Cuando hablamos de datos ordenados son referimos a:
 
-## 1. Cada línea es una observación
-## 2. Cada columna es una variable
-## 3. Cada unidad de experimentación está en una tabla separada
+### 1. Cada línea es una observación
+### 2. Cada columna es una variable
+### 3. Cada unidad de experimentación está en una tabla separada
 
 
 
@@ -63,11 +63,11 @@ Cuando hablamos de datos ordenados son referimos a:
 # Ordenando datos desordenados
 
 
-## 1. Los títulos de las columnas son números, no variables
-## 2. Múltiples variables están guardadas en una columna. 
-## 3. Las variables están guardadas en filas y columnas. 
-## 4. Múltiples unidades de experimentación en la misma tabla.
-## 5. Una única unidad de experimentación en diferentes tablas. 
+### 1. Los títulos de las columnas son números, no variables
+### 2. Múltiples variables están guardadas en una columna. 
+### 3. Las variables están guardadas en filas y columnas. 
+### 4. Múltiples unidades de experimentación en la misma tabla.
+### 5. Una única unidad de experimentación en diferentes tablas. 
 
 
 .footnote[https://vita.had.co.nz/papers/tidy-data.pdf]
@@ -87,8 +87,12 @@ Cuando hablamos de datos ordenados son referimos a:
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
 
-## Cuando los nombres de las columnas no representan nombres de las variables, sino números
+### Cuando los nombres de las columnas no representan nombres de las variables, sino números
+
+--
+
 # pivot_longer()
+--
 
 ```{r message=FALSE}
 library(tidyr)
@@ -110,8 +114,13 @@ pivot_longer(relig_income, -religion, names_to = "income", values_to = "count")
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
 
-## Multiples variables están en una sola columna
+### Multiples variables están en una sola columna
+#### (esas variables pasarán a ser las nuevas variables)
+
+--
+
 # pivot_wider()
+--
 
 ```{r message=FALSE} 
 fish_encounters
@@ -155,6 +164,24 @@ class: center, middle, inverse
 
 * Lo utilizamos para separar columnas
 
+```{r eval=FALSE}
+install.packages("devtools")
+devtools::install_github("rstudio/EDAWR")
+```
+
+```{r }
+storms<-EDAWR::storms
+storms
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+
+<br> <br>
+```{r }
+str2<-tidyr::separate(storms, date, c("year", "month", "day"), sep="-")
+str2
+```
 
 ---
 
@@ -163,6 +190,120 @@ class: center, middle, inverse
 # unite()
 
 * Lo utilizamos para unir columnas
+
+```{r }
+unite(str2, "date", year, month, day, sep="-")
+```
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Dataset 
+
+```{r eval=FALSE}
+install.packages(gapminder)
+```
+
+```{r }
+library(gapminder)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Funciones útiles
+
+## head()
+```{r }
+head(gapminder)
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+#Funciones Útiles 
+
+## tail()
+
+
+```{r }
+tail(gapminder)
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+#Funciones Útiles
+
+## glimpse()
+```{r message=FALSE}
+dplyr::glimpse(gapminder)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+#Funciones Útiles
+
+## slice()
+
+```{r gapminder, warning=FALSE}
+dplyr::slice(gapminder, 5L)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /> 
+
+#Funciones Útiles
+
+## str()
+
+```{r }
+str(gapminder)
+```
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+#Funciones Útiles
+
+## summary()
+
+```{r }
+summary(gapminder)
+```
+
+---
+class: inverse, center
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/pipe.png" width="40%" align="center" />
+
+# Operador pipe
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/pipe.png" width="10%" align="right" />
+
+# Operador pipe
+
+El operador pipe nos permite concatenar funciones y objetos en R, de forma que el código tenga un aspecto más ordenado, siguiendo la filosofía de tidyverse. 
+#### Con el operador pipe
+```{r warning=FALSE, message=FALSE, eval=FALSE}
+library(magrittr)
+gapminder %>%
+  filter(country=="Argentina")%>%
+  select(gdpPercap, year) %>%
+  head(3)
+```
+
+#### Sin el operador pipe
+```{r warning=FALSE, message=FALSE, eval=FALSE}
+head(select(filter(gapminder, country=="Argentina"), gdpPercap, year), 3)
+```
+
 
 
 ---
@@ -173,15 +314,22 @@ class: inverse, center
 # Manipular datos con dplyr
 
 ---
-
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 # select()
 
 * La función select() nos permite extraer columnas 
 
+```{r message=FALSE}
+library(dplyr)
+gapminder %>%
+  select(country, lifeExp, gdpPercap) %>%
+  head()
+```
 
 
+.footnote[[*]
+Mas información en https://dplyr.tidyverse.org/reference/select.html]
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
@@ -190,12 +338,43 @@ class: inverse, center
 
 * La función filter() nos permite extraer filas mediante un criterio lógico
 
+Para ello utilizamos los siguientes operadores: >, >=, <, =<, ==, !=
+
+```{r }
+gapminder %>%
+  filter(lifeExp > 80) %>%
+  head(3)
+```
+
+
+.footnote[[*]
+Mas información en https://dplyr.tidyverse.org/reference/filter.html]
 
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
-# Operadores lógicos en R
+# filter()
+
+
+Podemos filtrar según múltiples condiciones:
+- Se cumplen ambas condiciones 
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+filter(condicion1, condicion2)
+```
+- Se cumple la condición 1 solamente
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+filter(condicion1, !condicion2)
+```
+- Se cumplen la condición 1 y/ o la condición 2
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+filter(condicion1 | condicion2)
+```
+- Se cumple una u otra condición, pero no ambas (disyunción exclusiva)
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+filter(xor(condicion1, condicion2))
+```
+
 
 
 ---
@@ -215,35 +394,44 @@ class: center, middle, inverse
 
 * Permite crear nuevas variables
 
+```{r }
+gapminder %>%
+  mutate(gdp = pop * gdpPercap) %>%
+  head()
+```
 
 
----
-
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
-background-size: cover
-class: center, middle, inverse
-
-
-# `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
+.footnote[[*] 
+Más información en https://dplyr.tidyverse.org/reference/mutate.html]
 
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
-# summarize()
+# summarize() y group_by()
 
+```{r message=FALSE, warning=FALSE}
+gdp_bycontinents <- gapminder %>%
+    group_by(continent) %>%
+    summarize(mean_gdpPercap=mean(gdpPercap))
+gdp_bycontinents
+```
 
-
+.footnote[[*] 
+Más información en https://dplyr.tidyverse.org/reference/summarise.html] 
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 # arrange()
 
+```{r message=FALSE, warning=FALSE}
+gapminder %>%
+  arrange(year, country)
+```
 
-
-
-
+.footnote[[*] 
+Más información en https://dplyr.tidyverse.org/reference/arrange.html]
 ---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
@@ -255,12 +443,29 @@ class: center, middle, inverse
 
 ---
 
+class: middle, center
+
+## select(): extraer columnas
+## filter(): extraer filas siguiendo una restricción lógica
+## mutate(): crea nuevas variables
+## summarize(): cambiar la unidad de análisis
+## group_by(): agrupar según un determinado criterio
+## arrange(): ordenar filas por variables
 
 
 
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-size: cover
+class: center, middle, inverse
 
 
+# `r emo::ji("wrench")` Ejercicios `r emo::ji("computer")`
 
 
+---
 
+```{r message=FALSE, warning=FALSE}
+devtools::session_info()
+```
 

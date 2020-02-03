@@ -1,0 +1,54 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css:  ["default", "default-fonts", "animate.css",  "hygge"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+class: inverse, center
+```{r , message=FALSE, warning=FALSE, include=FALSE} 
+library(fontawesome)
+library(emo)
+```
+
+# `r fa("r-project", fill = 'steelblue')`  para análisis de datos `r emo::ji("rocket")`<br> <br> 
+
+## `r emo::ji("wrench")`Manipulación de datos `r emo::ji("computer")` 
+### Ejercicios
+
+.large[Roxana N. Villafañe | LEMyP | <a href='http://twitter.com/data_datum'>`r fa("twitter", fill = 'steelblue')` @data_datum</a>] <br> 
+.large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
+
+
+<br><br><br><br><br> Slides disponibles en <https://bit.ly/curso-r-fca> `r emo::ji("sparkles")`
+<br> Página web del curso en <https://curso-r-fca.netlify.com> `r emo::ji("star2")`
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Dataset 
+
+## Coronavirus 2020
+
+```{r message=FALSE} 
+library(readr)
+corona <-read.csv("C://Users/Roxana/curso-r-analisis-datos/data/2019_nCov_data.csv")
+```
+---
+
+# 1. Realizamos un análasis exploratorio con las funciones útiles que vimos.
+
+### head()
+### tail()
+### glimpse()
+### str()
+### summary()
+
+---
+
+# 2. 
+
