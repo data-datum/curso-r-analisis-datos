@@ -27,12 +27,18 @@ library(emo)
 
 ---
 class: inverse, center
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="70%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown.png" width="50%" align="center" />
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown_horst.png" width="100%" align="center" />
 
 .footnote[https://github.com/allisonhorst/stats-illustrations]
+
+---
+# Flujo de Ciencia de Datos `r emo::ji("pushpin")`
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos.png" width="100%" align="center" />
 
 ---
 
@@ -58,26 +64,48 @@ class: center, middle
 
 
 ---
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
-
-# Partes de un archivo .Rmd
-
-1. Metadata o YAML
-2. Texto
-3. Código de R
-4. Salidas
-
-
----
-
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros-msg.png)
 background-size: cover
 class: center, middle
 # 1. METADATA
 
+
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Inicio de un archivo .Rmd
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/inicio-rmarkdown.png" width="90%" align="center" />
+
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Inicio de un archivo .Rmd
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/inicio-rmarkdown2.png" width="80%" align="center" />
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+# Partes de un archivo .Rmd
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/inicio-rmarkd.png" width="100%" align="center" />
+
+
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-size: cover
+class: center, middle, inverse
+
+
+# `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
 
 
 
@@ -170,7 +198,7 @@ Esto es una lista
 1. Noche
 ```
 ]
---
+
 .pull-right[
 
 Esto es una lista
@@ -186,14 +214,6 @@ Esto es una lista
 
 ]
 
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
-
-# Links `r emo::ji("link")`
-
-
-
-
 
 ---
 
@@ -202,24 +222,30 @@ Esto es una lista
 # Imágenes `r emo::ji("camera")`
 
 
+Se puede insertar como código html 
+
+
 .pull-left[
-```{r eval=FALSE}
-Imagen de unsplash
-```
+
+< img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown_horst2.png" width="100%" align="center" />
+
 ]
---
+
 .pull-right[
 
-<img src="https://unsplash.com/photos/yblFb1Yvj9w" width="50%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown_horst2.png" width="100%" align="center" />
+
 ]
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros5-msg.png)
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
 background-size: cover
-class: center, middle
+class: center, middle, inverse
 
-# Demo `r fa("r-project", fill = 'steelblue')`
+
+# `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
+
 
 ---
 
@@ -259,11 +285,14 @@ str(knitr::opts_chunk$get())
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros5-msg.png)
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
 background-size: cover
-class: center, middle
+class: center, middle, inverse
 
-# Demo `r fa("r-project", fill = 'steelblue')`
+
+# `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
+
+
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/libros4-msg.png)
 background-size: cover
@@ -276,8 +305,9 @@ class: center, middle
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
 # Presentaciones con xaringan
---
 
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/meetup.png" width="90%" align="center" />
 
 
 ---
@@ -286,7 +316,6 @@ class: center, middle
 
 # Blogs con Blogdown
 
---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/blogdown-ej.png" width="90%" align="center" />
 
@@ -296,33 +325,40 @@ class: center, middle
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
 # Libros con bookdown
---
 
 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/r4ds-es.png" width="90%" align="center" />
 
-.footnote[más información en https://bookdown.org/yihui/bookdown/]
+
+.footnote[más información en https://bookdown.org/yihui/bookdown/ y https://es.r4ds.hadley.nz/]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
 # CV con Vitae o Pagedown
 
---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/pagedown.png" width="90%" align="center" />
+
+.footnote[[*] 
+Más información en https://github.com/nstrayer/cv]
 
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
 # Póster con posterdown
---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/posterdown.png" width="80%" align="center" />
 
 
+.footnote[[*] 
+Más información en https://github.com/brentthorne/posterdown]
 
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
 # Tutoriales con learnr 
---
+
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/learnr-ej.png" width="90%" align="right" />
 
@@ -340,7 +376,10 @@ https://rstudio.github.io/learnr/]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
-# Bibliografía
+# Material de consulta
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/consulta-rmarkdown.png" width="100%" align="center" />
+
 
 
 
