@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ml-03.utf8</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link rel="stylesheet" href="animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: inverse, center
+
+
+# &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;  para análisis de datos 🚀&lt;br&gt; &lt;br&gt; 
+
+## 🎉Modelización con tidymodels 💻
+# Sonar
+
+&lt;br&gt; &lt;br&gt; &lt;br&gt; 
+
+.large[Roxana N. Villafañe | LEMyP | &lt;a href='http://twitter.com/data_datum'&gt;&lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt; @data_datum&lt;/a&gt;] &lt;br&gt; 
+.large[Florencia D'Andrea | INTA-CONICET | &lt;a href="http://twitter.com/cantoflor_87"&gt; &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt; @cantoflor_87&lt;/a&gt;&lt;br&gt;] 
+
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt; Slides disponibles en &lt;https://bit.ly/curso-r-fca&gt; ✨
+&lt;br&gt; Página web del curso en &lt;https://curso-r-fca.netlify.com&gt; 🌟
+
+---
+class:center, inverse
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" /&gt;
+
+---
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+&lt;br&gt;&lt;br&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym1.png" width="100%" align="center" /&gt;
+
+
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
+background-size: cover
+class: center, middle
+
+# ✨ Data Desbalanceada
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Dataset: Sonar
+Como podemos ver las clases están prácticamente balanceadas
+
+
+```r
+library(mlbench)
+data(Sonar)
+```
+
+
+```r
+skimr::skim(Sonar)
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+
+```r
+skimr::skim(Sonar)
+```
+
+
+Table: Data summary
+
+                                 
+-------------------------  ------
+Name                       Sonar 
+Number of rows             208   
+Number of columns          61    
+_______________________          
+Column type frequency:           
+factor                     1     
+numeric                    60    
+________________________         
+Group variables            None  
+-------------------------  ------
+
+
+**Variable type: factor**
+
+skim_variable    n_missing   complete_rate  ordered    n_unique  top_counts    
+--------------  ----------  --------------  --------  ---------  --------------
+Class                    0               1  FALSE             2  M: 111, R: 97 
+
+
+**Variable type: numeric**
+
+skim_variable    n_missing   complete_rate   mean     sd     p0    p25    p50    p75   p100  hist  
+--------------  ----------  --------------  -----  -----  -----  -----  -----  -----  -----  ------
+V1                       0               1   0.03   0.02   0.00   0.01   0.02   0.04   0.14  ▇▃▁▁▁ 
+V2                       0               1   0.04   0.03   0.00   0.02   0.03   0.05   0.23  ▇▂▁▁▁ 
+V3                       0               1   0.04   0.04   0.00   0.02   0.03   0.06   0.31  ▇▂▁▁▁ 
+V4                       0               1   0.05   0.05   0.01   0.02   0.04   0.06   0.43  ▇▁▁▁▁ 
+V5                       0               1   0.08   0.06   0.01   0.04   0.06   0.10   0.40  ▇▃▁▁▁ 
+V6                       0               1   0.10   0.06   0.01   0.07   0.09   0.13   0.38  ▇▇▂▁▁ 
+V7                       0               1   0.12   0.06   0.00   0.08   0.11   0.15   0.37  ▃▇▃▁▁ 
+V8                       0               1   0.13   0.09   0.01   0.08   0.11   0.17   0.46  ▆▇▂▁▁ 
+V9                       0               1   0.18   0.12   0.01   0.10   0.15   0.23   0.68  ▇▆▂▁▁ 
+V10                      0               1   0.21   0.13   0.01   0.11   0.18   0.27   0.71  ▇▇▃▁▁ 
+V11                      0               1   0.24   0.13   0.03   0.13   0.22   0.30   0.73  ▆▇▂▁▁ 
+V12                      0               1   0.25   0.14   0.02   0.13   0.25   0.33   0.71  ▇▇▆▂▁ 
+V13                      0               1   0.27   0.14   0.02   0.17   0.26   0.35   0.71  ▅▇▅▂▁ 
+V14                      0               1   0.30   0.16   0.03   0.18   0.28   0.39   1.00  ▇▇▃▁▁ 
+V15                      0               1   0.32   0.21   0.00   0.16   0.28   0.45   1.00  ▇▇▅▂▁ 
+V16                      0               1   0.38   0.23   0.02   0.20   0.30   0.54   1.00  ▇▇▅▃▁ 
+V17                      0               1   0.42   0.26   0.03   0.21   0.31   0.66   1.00  ▇▇▃▅▃ 
+V18                      0               1   0.45   0.26   0.04   0.24   0.37   0.68   1.00  ▆▇▂▅▃ 
+V19                      0               1   0.50   0.26   0.05   0.30   0.43   0.73   1.00  ▃▇▃▅▅ 
+V20                      0               1   0.56   0.26   0.07   0.35   0.54   0.81   1.00  ▅▇▆▆▇ 
+V21                      0               1   0.61   0.26   0.05   0.40   0.62   0.82   1.00  ▃▅▆▇▇ 
+V22                      0               1   0.62   0.26   0.02   0.41   0.66   0.83   1.00  ▂▅▃▇▇ 
+V23                      0               1   0.65   0.25   0.06   0.45   0.70   0.85   1.00  ▂▃▃▆▇ 
+V24                      0               1   0.67   0.24   0.02   0.54   0.70   0.87   1.00  ▂▂▅▇▇ 
+V25                      0               1   0.68   0.24   0.02   0.53   0.72   0.87   1.00  ▁▂▃▆▇ 
+V26                      0               1   0.70   0.24   0.09   0.54   0.75   0.89   1.00  ▂▂▃▅▇ 
+V27                      0               1   0.70   0.25   0.05   0.53   0.75   0.92   1.00  ▁▂▃▃▇ 
+V28                      0               1   0.69   0.24   0.03   0.53   0.73   0.90   1.00  ▁▂▃▅▇ 
+V29                      0               1   0.64   0.24   0.01   0.46   0.68   0.85   1.00  ▁▃▆▅▇ 
+V30                      0               1   0.58   0.22   0.06   0.41   0.61   0.74   1.00  ▂▆▇▇▅ 
+V31                      0               1   0.50   0.21   0.05   0.35   0.49   0.64   0.97  ▂▇▇▅▃ 
+V32                      0               1   0.44   0.21   0.04   0.28   0.43   0.58   0.93  ▅▇▇▅▂ 
+V33                      0               1   0.42   0.21   0.05   0.26   0.39   0.56   1.00  ▅▇▆▃▁ 
+V34                      0               1   0.40   0.23   0.02   0.22   0.35   0.60   0.96  ▆▇▅▅▂ 
+V35                      0               1   0.39   0.26   0.02   0.18   0.31   0.59   1.00  ▇▇▃▅▂ 
+V36                      0               1   0.38   0.26   0.01   0.15   0.32   0.56   1.00  ▇▆▅▃▂ 
+V37                      0               1   0.36   0.24   0.04   0.16   0.31   0.52   0.95  ▇▆▅▂▂ 
+V38                      0               1   0.34   0.21   0.04   0.17   0.31   0.44   1.00  ▇▇▃▂▁ 
+V39                      0               1   0.33   0.20   0.04   0.17   0.28   0.43   0.99  ▇▇▃▂▁ 
+V40                      0               1   0.31   0.18   0.01   0.19   0.28   0.42   0.93  ▅▇▃▂▁ 
+V41                      0               1   0.29   0.17   0.04   0.16   0.26   0.39   0.90  ▇▇▃▂▁ 
+V42                      0               1   0.28   0.17   0.01   0.16   0.25   0.38   0.82  ▆▇▅▂▁ 
+V43                      0               1   0.25   0.14   0.00   0.16   0.22   0.32   0.77  ▃▇▃▁▁ 
+V44                      0               1   0.21   0.13   0.00   0.13   0.18   0.27   0.78  ▇▇▂▁▁ 
+V45                      0               1   0.20   0.15   0.00   0.09   0.15   0.23   0.70  ▇▆▁▂▁ 
+V46                      0               1   0.16   0.13   0.00   0.07   0.12   0.20   0.73  ▇▃▁▁▁ 
+V47                      0               1   0.12   0.09   0.00   0.06   0.10   0.15   0.55  ▇▅▁▁▁ 
+V48                      0               1   0.09   0.06   0.00   0.05   0.08   0.12   0.33  ▇▇▃▁▁ 
+V49                      0               1   0.05   0.04   0.00   0.03   0.04   0.07   0.20  ▇▆▂▁▁ 
+V50                      0               1   0.02   0.01   0.00   0.01   0.02   0.03   0.08  ▇▇▂▁▁ 
+V51                      0               1   0.02   0.01   0.00   0.01   0.01   0.02   0.10  ▇▃▁▁▁ 
+V52                      0               1   0.01   0.01   0.00   0.01   0.01   0.02   0.07  ▇▃▁▁▁ 
+V53                      0               1   0.01   0.01   0.00   0.01   0.01   0.01   0.04  ▇▆▂▁▁ 
+V54                      0               1   0.01   0.01   0.00   0.01   0.01   0.01   0.04  ▇▇▂▂▁ 
+V55                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▃▁▁▁ 
+V56                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▅▁▁▁ 
+V57                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▅▁▁▁ 
+V58                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▃▁▁▁ 
+V59                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▃▁▁▁ 
+V60                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▂▁▁▁ 
+
+
+
+---
+class: inverse, center
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="50%" align="center" /&gt;
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
+
+# 1°Paso: a) Balancear el dataset 
+
+### Como el dataset está desbalanceado, vamos a balancearlos de la siguiente forma
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
+
+# 1° Paso: b) Dividir los datos
+
+### Crear un set de datos training / testing con la librería *rsamples*
+
+
+
+```r
+sonar_split &lt;- rsample::initial_split(Sonar, prop = 0.6)
+sonar_split
+```
+
+```
+## &lt;125/83/208&gt;
+```
+
+
+Estos son los datos de training/testing/total 
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+
+# 2° Paso: Preprocesamiento
+
+- **recipe()**: empieza una lista de transformaciones a ser aplicadas
+- **prep()**: Indica que hay que ejecutar todos los pasos anteriores. 
+&lt;br&gt;
+- **step_corr()**: remueve todas las variables con alta correlación
+- **step_center()**: centrar los datos con media igual a 0. 
+- **step_scale()**: Normaliza con desvío estándar igual a 1. 
+&lt;br&gt;
+- **all_predictors()** y **all_outcomes()** son todas las variables predictivas y predictoras
+
+
+
+```r
+library(tidymodels)
+library(magrittr)
+sonar_recipe &lt;- training(sonar_split) %&gt;%
+  recipe(Class~.) %&gt;%
+  step_downsample(Class) %&gt;%
+  step_corr(all_predictors()) %&gt;%
+  step_center(all_predictors(), -all_outcomes()) %&gt;%
+  step_scale(all_predictors(), -all_outcomes()) %&gt;%
+  prep()
+```
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+
+
+```r
+sonar_recipe &lt;- training(sonar_split) %&gt;%
+  recipe(Class~.) %&gt;%
+  step_downsample(Class) %&gt;%
+  step_corr(all_predictors()) %&gt;%
+  step_center(all_predictors(), -all_outcomes()) %&gt;%
+  step_scale(all_predictors(), -all_outcomes()) %&gt;%
+  prep()
+```
+
+
+```r
+sonar_recipe
+```
+
+```
+## Data Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor         60
+## 
+## Training data contained 125 data points and no missing data.
+## 
+## Operations:
+## 
+## Down-sampling based on Class [trained]
+## Correlation filter removed V16, V17, V20 [trained]
+## Centering for V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, ... [trained]
+## Scaling for V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, ... [trained]
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+
+- **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
+
+
+```r
+sonar_training &lt;- juice(sonar_recipe)
+head(sonar_training)
+```
+
+```
+## # A tibble: 6 x 58
+##        V1     V2     V3     V4     V5       V6       V7     V8     V9     V10
+##     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1 -0.0718 -0.327 -0.579  0.574  1.16   8.56e-1  0.238    0.408  0.161  0.0799
+## 2 -0.984  -1.19  -0.956 -1.13  -0.593 -2.67e-1  0.00817 -0.356  0.257  0.325 
+## 3  1.19    0.292 -0.700 -0.558 -0.721  2.64e-1  0.137   -0.147 -0.358  0.494 
+## 4  1.23    1.91   4.42   5.17   4.60   2.13e+0 -0.963    1.15  -0.622 -0.943 
+## 5  0.859   0.418  0.757  1.25   1.22   8.22e-1  0.532   -0.622 -0.432 -0.192 
+## 6 -0.815   0.349 -0.393  0.485  0.621  2.64e-4  0.737    0.950  1.19   0.821 
+## # ... with 48 more variables: V11 &lt;dbl&gt;, V12 &lt;dbl&gt;, V13 &lt;dbl&gt;, V14 &lt;dbl&gt;,
+## #   V15 &lt;dbl&gt;, V18 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;,
+## #   V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;,
+## #   V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;,
+## #   V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;,
+## #   V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;,
+## #   V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;,
+## #   V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;,
+## #   V60 &lt;dbl&gt;, Class &lt;fct&gt;
+```
+
+
+.footnote[https://tidymodels.github.io/recipes/reference/juice.html
+]
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+
+
+```r
+sonar_testing &lt;- sonar_recipe %&gt;%
+  bake(testing(sonar_split)) 
+sonar_testing
+```
+
+```
+## # A tibble: 83 x 58
+##    Class      V1    V10    V11    V12     V13    V14     V15     V18    V19
+##    &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1 R      0.854   0.770  2.25   3.12   3.25    2.94   2.12    1.60    1.05 
+##  2 R      2.35    2.04   1.62   1.16   1.18    0.676  0.638   0.593  -1.20 
+##  3 R      0.0488  0.904  0.649  1.38   2.80    3.19   3.40    1.65    0.751
+##  4 R      0.198   1.28  -0.350 -1.33  -1.74    0.439  1.09   -0.130  -1.20 
+##  5 R     -0.540  -1.34  -1.17  -1.03  -1.15   -1.33  -1.55   -0.514  -0.745
+##  6 R     -1.14   -1.17  -1.42  -1.08  -1.03   -1.14  -1.33   -1.19   -1.50 
+##  7 R     -0.950  -0.541 -0.922 -0.912 -0.679   0.211 -0.0194  0.682   0.765
+##  8 R     -0.733   0.166 -0.471 -0.394  0.218  -0.632 -1.35   -0.299   0.262
+##  9 R      0.107  -0.853  0.224  0.924  0.0243 -0.133 -0.0143 -0.0200 -0.330
+## 10 R      0.367   0.802  0.101 -0.140 -0.215  -0.916  0.114  -0.900  -1.02 
+## # ... with 73 more rows, and 48 more variables: V2 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;,
+## #   V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;,
+## #   V29 &lt;dbl&gt;, V3 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;,
+## #   V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V4 &lt;dbl&gt;, V40 &lt;dbl&gt;,
+## #   V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;,
+## #   V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V5 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;,
+## #   V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;,
+## #   V59 &lt;dbl&gt;, V6 &lt;dbl&gt;, V60 &lt;dbl&gt;, V7 &lt;dbl&gt;, V8 &lt;dbl&gt;, V9 &lt;dbl&gt;
+```
+
+
+.footnote[https://tidymodels.github.io/recipes/reference/bake.html
+]
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+## 3° Entrenamiento
+
+- Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
+- Se puede entrenar cualquier modelo de clasificación
+
+```r
+sonar_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+  set_engine("ranger") %&gt;%
+  fit(Class~., data = sonar_training)
+sonar_ranger
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+{ranger}
+
+```r
+sonar_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+  set_engine("ranger") %&gt;%
+  fit(Class~., data = sonar_training)
+sonar_ranger
+```
+
+```
+## parsnip model object
+## 
+## Fit time:  20ms 
+## Ranger result
+## 
+## Call:
+##  ranger::ranger(formula = formula, data = data, num.trees = ~100,      num.threads = 1, verbose = FALSE, seed = sample.int(10^5,          1), probability = TRUE) 
+## 
+## Type:                             Probability estimation 
+## Number of trees:                  100 
+## Sample size:                      118 
+## Number of independent variables:  57 
+## Mtry:                             7 
+## Target node size:                 10 
+## Variable importance mode:         none 
+## Splitrule:                        gini 
+## OOB prediction error (Brier s.):  0.1569487
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+{randomForest}
+
+```r
+sonar_rf &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+  set_engine("randomForest") %&gt;%
+  fit(Class~., data = sonar_training)
+sonar_rf
+```
+
+```
+## parsnip model object
+## 
+## Fit time:  31ms 
+## 
+## Call:
+##  randomForest(x = as.data.frame(x), y = y, ntree = ~100) 
+##                Type of random forest: classification
+##                      Number of trees: 100
+## No. of variables tried at each split: 7
+## 
+##         OOB estimate of  error rate: 22.03%
+## Confusion matrix:
+##    M  R class.error
+## M 49 10   0.1694915
+## R 16 43   0.2711864
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+
+```r
+predict(sonar_ranger, sonar_testing)
+```
+
+```
+## # A tibble: 83 x 1
+##    .pred_class
+##    &lt;fct&gt;      
+##  1 R          
+##  2 M          
+##  3 R          
+##  4 M          
+##  5 R          
+##  6 R          
+##  7 R          
+##  8 R          
+##  9 M          
+## 10 M          
+## # ... with 73 more rows
+```
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+
+```r
+sonar_ranger %&gt;%
+  predict(sonar_testing) %&gt;%
+  bind_cols(sonar_testing) 
+```
+
+```
+## # A tibble: 83 x 59
+##    .pred_class Class      V1    V10    V11    V12     V13    V14     V15     V18
+##    &lt;fct&gt;       &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 R           R      0.854   0.770  2.25   3.12   3.25    2.94   2.12    1.60  
+##  2 M           R      2.35    2.04   1.62   1.16   1.18    0.676  0.638   0.593 
+##  3 R           R      0.0488  0.904  0.649  1.38   2.80    3.19   3.40    1.65  
+##  4 M           R      0.198   1.28  -0.350 -1.33  -1.74    0.439  1.09   -0.130 
+##  5 R           R     -0.540  -1.34  -1.17  -1.03  -1.15   -1.33  -1.55   -0.514 
+##  6 R           R     -1.14   -1.17  -1.42  -1.08  -1.03   -1.14  -1.33   -1.19  
+##  7 R           R     -0.950  -0.541 -0.922 -0.912 -0.679   0.211 -0.0194  0.682 
+##  8 R           R     -0.733   0.166 -0.471 -0.394  0.218  -0.632 -1.35   -0.299 
+##  9 M           R      0.107  -0.853  0.224  0.924  0.0243 -0.133 -0.0143 -0.0200
+## 10 M           R      0.367   0.802  0.101 -0.140 -0.215  -0.916  0.114  -0.900 
+## # ... with 73 more rows, and 49 more variables: V19 &lt;dbl&gt;, V2 &lt;dbl&gt;, V21 &lt;dbl&gt;,
+## #   V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;,
+## #   V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V3 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;,
+## #   V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V4 &lt;dbl&gt;,
+## #   V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;,
+## #   V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V5 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;,
+## #   V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;,
+## #   V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V6 &lt;dbl&gt;, V60 &lt;dbl&gt;, V7 &lt;dbl&gt;, V8 &lt;dbl&gt;, V9 &lt;dbl&gt;
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+### 4° Validación
+
+
+```r
+sonar_ranger %&gt;%
+  predict(sonar_testing) %&gt;%
+  bind_cols(sonar_testing) %&gt;%
+  metrics(truth=Class, estimate=.pred_class)
+```
+
+```
+## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.819
+## 2 kap      binary         0.637
+```
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+
+```r
+sonar_rf %&gt;%
+  predict(sonar_testing) %&gt;%
+  bind_cols(sonar_testing) %&gt;%
+  metrics(truth=Class, estimate=.pred_class)
+```
+
+```
+## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.783
+## 2 kap      binary         0.563
+```
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+```r
+sonar_ranger %&gt;%
+  predict(sonar_testing, type="prob")
+```
+
+```
+## # A tibble: 83 x 2
+##    .pred_M .pred_R
+##      &lt;dbl&gt;   &lt;dbl&gt;
+##  1  0.474    0.526
+##  2  0.622    0.378
+##  3  0.473    0.527
+##  4  0.525    0.475
+##  5  0.153    0.847
+##  6  0.0835   0.916
+##  7  0.176    0.824
+##  8  0.352    0.648
+##  9  0.583    0.417
+## 10  0.545    0.455
+## # ... with 73 more rows
+```
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+
+```r
+sonar_probs &lt;- sonar_ranger %&gt;%
+  predict(sonar_testing, type = "prob") %&gt;%
+  bind_cols(sonar_testing)
+sonar_probs
+```
+
+```
+## # A tibble: 83 x 60
+##    .pred_M .pred_R Class      V1    V10    V11    V12     V13    V14     V15
+##      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1  0.474    0.526 R      0.854   0.770  2.25   3.12   3.25    2.94   2.12  
+##  2  0.622    0.378 R      2.35    2.04   1.62   1.16   1.18    0.676  0.638 
+##  3  0.473    0.527 R      0.0488  0.904  0.649  1.38   2.80    3.19   3.40  
+##  4  0.525    0.475 R      0.198   1.28  -0.350 -1.33  -1.74    0.439  1.09  
+##  5  0.153    0.847 R     -0.540  -1.34  -1.17  -1.03  -1.15   -1.33  -1.55  
+##  6  0.0835   0.916 R     -1.14   -1.17  -1.42  -1.08  -1.03   -1.14  -1.33  
+##  7  0.176    0.824 R     -0.950  -0.541 -0.922 -0.912 -0.679   0.211 -0.0194
+##  8  0.352    0.648 R     -0.733   0.166 -0.471 -0.394  0.218  -0.632 -1.35  
+##  9  0.583    0.417 R      0.107  -0.853  0.224  0.924  0.0243 -0.133 -0.0143
+## 10  0.545    0.455 R      0.367   0.802  0.101 -0.140 -0.215  -0.916  0.114 
+## # ... with 73 more rows, and 50 more variables: V18 &lt;dbl&gt;, V19 &lt;dbl&gt;, V2 &lt;dbl&gt;,
+## #   V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;,
+## #   V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V3 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;,
+## #   V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;,
+## #   V39 &lt;dbl&gt;, V4 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;,
+## #   V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V5 &lt;dbl&gt;, V50 &lt;dbl&gt;,
+## #   V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;,
+## #   V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V6 &lt;dbl&gt;, V60 &lt;dbl&gt;, V7 &lt;dbl&gt;, V8 &lt;dbl&gt;,
+## #   V9 &lt;dbl&gt;
+```
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+
+```r
+sonar_probs %&gt;%
+  gain_curve(.pred_M, truth=Class) %&gt;%
+  glimpse()
+```
+
+```
+## Observations: 84
+## Variables: 4
+## $ .n              &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
+## $ .n_events       &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
+## $ .percent_tested &lt;dbl&gt; 0.000000, 1.204819, 2.409639, 3.614458, 4.819277, 6...
+## $ .percent_found  &lt;dbl&gt; 0.000000, 2.222222, 4.444444, 6.666667, 8.888889, 1...
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+```r
+sonar_probs%&gt;%
+  gain_curve(.pred_M, truth=Class) %&gt;%
+  autoplot()
+```
+
+![](ml-03_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+```r
+sonar_probs%&gt;%
+  roc_curve(.pred_M, truth=Class) %&gt;%
+  autoplot()
+```
+
+![](ml-03_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+
+```r
+predict(sonar_ranger, sonar_testing, type = "prob") %&gt;%
+  bind_cols(predict(sonar_ranger, sonar_testing)) %&gt;%
+  bind_cols(select(sonar_testing, Class)) %&gt;%
+  metrics(Class, .pred_M, estimate = .pred_class)
+```
+
+```
+## # A tibble: 4 x 3
+##   .metric     .estimator .estimate
+##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy    binary         0.819
+## 2 kap         binary         0.637
+## 3 mn_log_loss binary         0.453
+## 4 roc_auc     binary         0.889
+```
+
+
+
+---
+
+
+```r
+sessionInfo() 
+```
+
+```
+## R version 3.6.2 (2019-12-12)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18362)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Spanish_Argentina.1252  LC_CTYPE=Spanish_Argentina.1252   
+## [3] LC_MONETARY=Spanish_Argentina.1252 LC_NUMERIC=C                      
+## [5] LC_TIME=Spanish_Argentina.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] magrittr_1.5      yardstick_0.0.5   tibble_2.1.3      rsample_0.0.5    
+##  [5] tidyr_1.0.2       recipes_0.1.9     purrr_0.3.3       parsnip_0.0.5    
+##  [9] infer_0.5.1       ggplot2_3.2.1     dplyr_0.8.3       dials_0.0.4      
+## [13] scales_1.1.0      broom_0.5.4       tidymodels_0.0.3  mlbench_2.1-1    
+## [17] emo_0.0.0.9000    fontawesome_0.1.0
+## 
+## loaded via a namespace (and not attached):
+##   [1] backports_1.1.5      xaringan_0.14        tidytext_0.2.2      
+##   [4] plyr_1.8.4           igraph_1.2.4.2       repr_1.1.0          
+##   [7] lazyeval_0.2.2       splines_3.6.2        crosstalk_1.0.0     
+##  [10] listenv_0.8.0        SnowballC_0.6.0      rstantools_2.0.0    
+##  [13] inline_0.3.15        digest_0.6.23        htmltools_0.4.0     
+##  [16] rsconnect_0.8.16     fansi_0.4.1          globals_0.12.5      
+##  [19] gower_0.2.1          matrixStats_0.55.0   xts_0.12-0          
+##  [22] prettyunits_1.1.1    colorspace_1.4-1     skimr_2.1           
+##  [25] xfun_0.12            callr_3.4.1          crayon_1.3.4        
+##  [28] jsonlite_1.6.1       lme4_1.1-21          survival_3.1-8      
+##  [31] zoo_1.8-7            glue_1.3.1           gtable_0.3.0        
+##  [34] ipred_0.9-9          pkgbuild_1.0.6       rstan_2.19.2        
+##  [37] miniUI_0.1.1.1       Rcpp_1.0.3           xtable_1.8-4        
+##  [40] stats4_3.6.2         lava_1.6.6           StanHeaders_2.21.0-1
+##  [43] prodlim_2019.11.13   DT_0.12              htmlwidgets_1.5.1   
+##  [46] threejs_0.3.3        farver_2.0.3         pkgconfig_2.0.3     
+##  [49] loo_2.2.0            nnet_7.3-12          utf8_1.1.4          
+##  [52] labeling_0.3         tidyselect_0.2.5     rlang_0.4.2         
+##  [55] DiceDesign_1.8-1     reshape2_1.4.3       later_1.0.0         
+##  [58] munsell_0.5.0        tools_3.6.2          cli_2.0.1           
+##  [61] generics_0.0.2       ranger_0.12.1        ggridges_0.5.2      
+##  [64] evaluate_0.14        stringr_1.4.0        fastmap_1.0.1       
+##  [67] yaml_2.2.1           processx_3.4.1       knitr_1.28          
+##  [70] randomForest_4.6-14  future_1.16.0        nlme_3.1-142        
+##  [73] mime_0.9             rstanarm_2.19.2      rstudioapi_0.11     
+##  [76] tokenizers_0.2.1     compiler_3.6.2       bayesplot_1.7.1     
+##  [79] shinythemes_1.1.2    tidyposterior_0.0.2  stringi_1.4.5       
+##  [82] highr_0.8            ps_1.3.0             lattice_0.20-38     
+##  [85] Matrix_1.2-18        nloptr_1.2.1         markdown_1.1        
+##  [88] shinyjs_1.1          vctrs_0.2.2          pillar_1.4.3        
+##  [91] lifecycle_0.1.0      furrr_0.1.0          httpuv_1.5.2        
+##  [94] R6_2.4.1             promises_1.1.0       gridExtra_2.3       
+##  [97] janeaustenr_0.1.5    codetools_0.2-16     boot_1.3-23         
+## [100] colourpicker_1.0     MASS_7.3-51.4        gtools_3.8.1        
+## [103] assertthat_0.2.1     withr_2.1.2          shinystan_2.5.0     
+## [106] parallel_3.6.2       grid_3.6.2           rpart_4.1-15        
+## [109] timeDate_3043.102    class_7.3-15         minqa_1.2.4         
+## [112] rmarkdown_2.1        pROC_1.16.1          tidypredict_0.4.3   
+## [115] shiny_1.4.0          lubridate_1.7.4      base64enc_0.1-3     
+## [118] dygraphs_1.1.1.6
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

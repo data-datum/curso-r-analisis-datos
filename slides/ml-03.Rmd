@@ -1,0 +1,333 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css:  ["default", "default-fonts", "animate.css",  "hygge"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+class: inverse, center
+```{r , message=FALSE, warning=FALSE, include=FALSE} 
+library(fontawesome)
+library(emo)
+```
+
+# `r fa("r-project", fill = 'steelblue')`  para análisis de datos `r emo::ji("rocket")`<br> <br> 
+
+## `r emo::ji("tada")`Modelización con tidymodels `r emo::ji("computer")`
+# Sonar
+
+<br> <br> <br> 
+
+.large[Roxana N. Villafañe | LEMyP | <a href='http://twitter.com/data_datum'>`r fa("twitter", fill = 'steelblue')` @data_datum</a>] <br> 
+.large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
+
+
+<br><br><br><br><br> Slides disponibles en <https://bit.ly/curso-r-fca> `r emo::ji("sparkles")`
+<br> Página web del curso en <https://curso-r-fca.netlify.com> `r emo::ji("star2")`
+
+---
+class:center, inverse
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" />
+
+---
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+<br><br>
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym1.png" width="100%" align="center" />
+
+
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
+background-size: cover
+class: center, middle
+
+# `r emo::ji("sparkles")` Data Desbalanceada
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Dataset: Sonar
+Como podemos ver las clases están prácticamente balanceadas
+
+```{r warning=FALSE, message=FALSE} 
+library(mlbench)
+data(Sonar)
+```
+
+```{r warning=FALSE, message=FALSE, eval=FALSE} 
+skimr::skim(Sonar)
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+```{r warning=FALSE, message=FALSE} 
+skimr::skim(Sonar)
+```
+
+
+
+---
+class: inverse, center
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="50%" align="center" />
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
+
+# 1°Paso: a) Balancear el dataset 
+
+### Como el dataset está desbalanceado, vamos a balancearlos de la siguiente forma
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
+
+# 1° Paso: b) Dividir los datos
+
+### Crear un set de datos training / testing con la librería *rsamples*
+
+
+```{r } 
+sonar_split <- rsample::initial_split(Sonar, prop = 0.6)
+sonar_split
+```
+
+
+Estos son los datos de training/testing/total 
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+
+# 2° Paso: Preprocesamiento
+
+- **recipe()**: empieza una lista de transformaciones a ser aplicadas
+- **prep()**: Indica que hay que ejecutar todos los pasos anteriores. 
+<br>
+- **step_corr()**: remueve todas las variables con alta correlación
+- **step_center()**: centrar los datos con media igual a 0. 
+- **step_scale()**: Normaliza con desvío estándar igual a 1. 
+<br>
+- **all_predictors()** y **all_outcomes()** son todas las variables predictivas y predictoras
+
+
+```{r message=FALSE, warning=FALSE} 
+library(tidymodels)
+library(magrittr)
+sonar_recipe <- training(sonar_split) %>%
+  recipe(Class~.) %>%
+  step_downsample(Class) %>%
+  step_corr(all_predictors()) %>%
+  step_center(all_predictors(), -all_outcomes()) %>%
+  step_scale(all_predictors(), -all_outcomes()) %>%
+  prep()
+```
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+
+```{r } 
+
+sonar_recipe <- training(sonar_split) %>%
+  recipe(Class~.) %>%
+  step_downsample(Class) %>%
+  step_corr(all_predictors()) %>%
+  step_center(all_predictors(), -all_outcomes()) %>%
+  step_scale(all_predictors(), -all_outcomes()) %>%
+  prep()
+```
+
+```{r } 
+sonar_recipe
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+
+- **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
+
+```{r } 
+sonar_training <- juice(sonar_recipe)
+head(sonar_training)
+```
+
+
+.footnote[https://tidymodels.github.io/recipes/reference/juice.html
+]
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+
+```{r } 
+sonar_testing <- sonar_recipe %>%
+  bake(testing(sonar_split)) 
+sonar_testing
+```
+
+
+.footnote[https://tidymodels.github.io/recipes/reference/bake.html
+]
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+## 3° Entrenamiento
+
+- Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
+- Se puede entrenar cualquier modelo de clasificación
+```{r eval=FALSE} 
+sonar_ranger <- rand_forest(trees = 100, mode = "classification") %>%
+  set_engine("ranger") %>%
+  fit(Class~., data = sonar_training)
+sonar_ranger
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+{ranger}
+```{r } 
+sonar_ranger <- rand_forest(trees = 100, mode = "classification") %>%
+  set_engine("ranger") %>%
+  fit(Class~., data = sonar_training)
+sonar_ranger
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+{randomForest}
+```{r } 
+sonar_rf <- rand_forest(trees = 100, mode = "classification") %>%
+  set_engine("randomForest") %>%
+  fit(Class~., data = sonar_training)
+sonar_rf
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+```{r } 
+predict(sonar_ranger, sonar_testing)
+```
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+```{r } 
+sonar_ranger %>%
+  predict(sonar_testing) %>%
+  bind_cols(sonar_testing) 
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+### 4° Validación
+
+```{r } 
+sonar_ranger %>%
+  predict(sonar_testing) %>%
+  bind_cols(sonar_testing) %>%
+  metrics(truth=Class, estimate=.pred_class)
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+
+```{r } 
+sonar_rf %>%
+  predict(sonar_testing) %>%
+  bind_cols(sonar_testing) %>%
+  metrics(truth=Class, estimate=.pred_class)
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+```{r } 
+sonar_ranger %>%
+  predict(sonar_testing, type="prob")
+```
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+
+```{r } 
+sonar_probs <- sonar_ranger %>%
+  predict(sonar_testing, type = "prob") %>%
+  bind_cols(sonar_testing)
+sonar_probs
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+
+```{r } 
+sonar_probs %>%
+  gain_curve(.pred_M, truth=Class) %>%
+  glimpse()
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+```{r } 
+sonar_probs%>%
+  gain_curve(.pred_M, truth=Class) %>%
+  autoplot()
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+```{r } 
+sonar_probs%>%
+  roc_curve(.pred_M, truth=Class) %>%
+  autoplot()
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+
+```{r } 
+predict(sonar_ranger, sonar_testing, type = "prob") %>%
+  bind_cols(predict(sonar_ranger, sonar_testing)) %>%
+  bind_cols(select(sonar_testing, Class)) %>%
+  metrics(Class, .pred_M, estimate = .pred_class)
+```
+
+
+
+---
+
+```{r } 
+sessionInfo() 
+```

@@ -35,8 +35,9 @@ class:center, inverse
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
-<br><br>
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym1.png" width="100%" align="center" />
+# Flujo de Ciencia de Datos `r emo::ji("pushpin")`
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos.png" width="100%" align="center" />
 
 
 ---
@@ -102,86 +103,87 @@ background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
 background-size: cover
 class: center, middle
 
-# `r emo::ji("sparkles")` Data Desbalanceada
+# `r emo::ji("sparkles")` Data Balanceada
 
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
-# Dataset: Sonar
-Como podemos ver las clases están prácticamente balanceadas
+# Dataset: Iris
 
+* Conjunto de datos muy popular en análisis multivariado
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/iris-species.png" width="100%" align="center" />
+
+
+.footnote[[*]
+Mas información en https://es.wikipedia.org/wiki/Conjunto_de_datos_flor_iris 
+https://archive.ics.uci.edu/ml/datasets/Iris]
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Vemos los primeros 5 casos del set de datos 
 ```{r warning=FALSE, message=FALSE} 
-
-
+head(iris)
 ```
-
-```{r warning=FALSE, message=FALSE, eval=FALSE} 
-skimr::skim(Sonar)
-```
-
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
+# Estadística descriptiva del set de datos
 ```{r warning=FALSE, message=FALSE} 
-skimr::skim(Sonar)
+summary(iris)
 ```
 
+---
 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+## Tenemos 150 casos o individuos (filas), 4 columnas o características (features) y 1 variable predictora (species)
+```{r warning=FALSE, message=FALSE} 
+str(iris)
+```
 
 ---
 class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="50%" align="center" />
 
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
-
-# 1°Paso: a) Balancear el dataset 
-
-### Como el dataset está desbalanceado, vamos a balancearlos de la siguiente forma
-
-```{r } 
-sonar_balanc <- recipes::recipe( ~ ., data = Sonar) %>%
-  step_downsample(Sonar) %>%
-  prep(training=Sonar)
-
-
-```
-
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
 
-# 1° Paso: b) Dividir los datos
+# 1° Paso: Dividir los datos
 
 ### Crear un set de datos training / testing con la librería *rsamples*
 
 
 ```{r } 
-sonar_split <- rsample::initial_split(Sonar, prop = 0.6)
-sonar_split
+iris_split <- rsample::initial_split(iris, prop = 0.6)
+iris_split
 ```
 
 
 Estos son los datos de training/testing/total 
 
+
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text2.png)
-background-size: cover
-class: center, middle, inverse
 
- 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
 
-# `r emo::ji("computer")` DEMO `r emo::ji("computer")`
+# Training / testing
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" />
 
 
 
 ---
 class: inverse, center
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="60%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="60%" align="center" />
 
 ---
 
@@ -189,23 +191,45 @@ class: inverse, center
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+
+# Preprocesamiento
+
+Dentro de esta etapa se incluyen tareas como:
+### Centrado
+### Escalado
+### Remover variables que presenten alta correlación
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+
+# Centrado y Escalado
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+
+# Remover variables que presenten alta correlación
+
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
 
 # 2° Paso: Preprocesamiento
 
 - **recipe()**: empieza una lista de transformaciones a ser aplicadas
-- **prep()**: Indica que hay que ejecutar todos los pasos anteriores. 
 <br>
 - **step_corr()**: remueve todas las variables con alta correlación
 - **step_center()**: centrar los datos con media igual a 0. 
 - **step_scale()**: Normaliza con desvío estándar igual a 1. 
 <br>
 - **all_predictors()** y **all_outcomes()** son todas las variables predictivas y predictoras
+- **prep()**: Indica que hay que ejecutar todos los pasos anteriores. 
 
-
-```{r eval=FALSE} 
-sonar_recipe <- training(sonar_split) %>%
-  recipe(Class~.) %>%
+```{r } 
+iris_recipe <- training(iris_split) %>%
+  recipe(Species~.) %>%
   step_corr(all_predictors()) %>%
   step_center(all_predictors(), -all_outcomes()) %>%
   step_scale(all_predictors(), -all_outcomes()) %>%
@@ -216,11 +240,11 @@ sonar_recipe <- training(sonar_split) %>%
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
 
 ```{r } 
-sonar_recipe <- training(sonar_split) %>%
-  recipe(Class~.) %>%
+iris_recipe <- training(iris_split) %>%
+  recipe(Species~.) %>%
   step_corr(all_predictors()) %>%
   step_center(all_predictors(), -all_outcomes()) %>%
   step_scale(all_predictors(), -all_outcomes()) %>%
@@ -229,37 +253,53 @@ sonar_recipe <- training(sonar_split) %>%
 ```
 
 ```{r } 
-sonar_recipe
+iris_recipe
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
 
+## juice()
 - **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
-
+#### juice() aplicamos a los datos de entrenamiento
 ```{r } 
-sonar_training <- juice(sonar_recipe)
-
-head(sonar_training)
+iris_training <- juice(iris_recipe)
 ```
 
+```{r } 
+head(iris_training)
+```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
 ]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+
+## bake()
+- **bake()** toma un recipiente entreanado y aplica las operaciones a un set de datos para crear la matriz de diseño. 
+
+### Matriz de diseño (Design Matrix)
+
+En estadística, una matriz de diseño (también conocida como matriz regresora, o matriz de modelo) es una matriz de valores de variables explicativas de un set de objetos, generalmente denotada por X. Cada fila representa un objeto individual, con las columnas representando a las variables y sus valores específicos para cada objeto. 
+
+.footnote[https://tidymodels.github.io/recipes/reference/bake.html y https://tidymodels.github.io/recipes/
+]
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /> 
+
+### bake() aplicamos a los datos de prueba
+```{r } 
+iris_testing <- iris_recipe %>%
+  bake(testing(iris_split)) 
+```
 
 ```{r } 
-sonar_testing <- sonar_recipe %>%
-  bake(testing(sonar_split)) 
-
-sonar_testing
+iris_testing
 ```
 
 
-.footnote[https://tidymodels.github.io/recipes/reference/bake.html
-]
 ---
 class: inverse, center
 
@@ -269,30 +309,51 @@ class: inverse, center
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_allison.png" width="100%" align="center" />
 
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# Árboles de decisión (Decision Trees)
+
+
+
+---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
-## 3° Entrenamiento
+# Bosques aleatorios (Random Forest)
+
+* Random Forest usa como algoritmo base los árboles de decisión
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="65%" align="center" />
+
+.footnote[[*]
+Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+## 3° Paso: Entrenamiento del modelo
 
 - Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
 - Se puede entrenar cualquier modelo de clasificación
-```{r eval=FALSE} 
-sonar_ranger <- rand_forest(trees = 100, mode = "classification") %>%
-  set_engine("ranger") %>%
-  fit(Class~., data = sonar_training)
 
-sonar_ranger
+```{r eval=FALSE} 
+iris_ranger <- rand_forest(trees = 100, mode = "classification") %>%
+  set_engine("ranger") %>%
+  fit(Species~., data = iris_training)
+
+iris_ranger
 ```
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 {ranger}
-```{r } 
-sonar_ranger <- rand_forest(trees = 100, mode = "classification") %>%
+```{r echo=FALSE} 
+iris_ranger <- rand_forest(trees = 100, mode = "classification") %>%
   set_engine("ranger") %>%
-  fit(Class~., data = sonar_training)
+  fit(Species~., data = iris_training)
 
-sonar_ranger
+iris_ranger
 ```
 
 
@@ -301,18 +362,36 @@ sonar_ranger
 
 {randomForest}
 ```{r } 
-sonar_rf <- rand_forest(trees = 100, mode = "classification") %>%
+iris_rf <- rand_forest(trees = 100, mode = "classification") %>%
   set_engine("randomForest") %>%
-  fit(Class~., data = sonar_training)
+  fit(Species~., data = iris_training)
 
-sonar_rf
+iris_rf
 ```
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
+# Evaluación de un clasificador 
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/eval-clasificador.png" width="100%" align="right" />
+
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# Matriz de Confusión
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" />
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
 ```{r } 
-predict(sonar_ranger, sonar_testing)
+predict(iris_ranger, iris_testing)
 
 ```
 
@@ -322,9 +401,9 @@ predict(sonar_ranger, sonar_testing)
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
 ```{r } 
-sonar_ranger %>%
-  predict(sonar_testing) %>%
-  bind_cols(sonar_testing) 
+iris_ranger %>%
+  predict(iris_testing) %>%
+  bind_cols(iris_testing) 
 
 ```
 
@@ -338,13 +417,45 @@ class: inverse, center
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
-### 4° Validación
+## 4° Paso: Validación del modelo
+
+### Random Forest con librería `ranger`
+```{r } 
+iris_ranger %>%
+  predict(iris_testing) %>%
+  bind_cols(iris_testing) %>%
+  metrics(truth=Species, estimate=.pred_class)
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+### Random Forest con librería `random forest`
+```{r } 
+iris_rf %>%
+  predict(iris_testing) %>%
+  bind_cols(iris_testing) %>%
+  metrics(truth=Species, estimate=.pred_class)
+```
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
 ```{r } 
-sonar_ranger %>%
-  predict(sonar_testing) %>%
-  bind_cols(sonar_testing) %>%
-  metrics(truth=Class, estimate=.pred_class)
+iris_ranger %>%
+  predict(iris_testing, type="prob")
+```
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+
+```{r } 
+iris_probs <- iris_ranger %>%
+  predict(iris_testing, type = "prob") %>%
+  bind_cols(iris_testing)
+iris_probs
 ```
 
 ---
@@ -353,39 +464,8 @@ sonar_ranger %>%
 
 
 ```{r } 
-sonar_rf %>%
-  predict(sonar_testing) %>%
-  bind_cols(sonar_testing) %>%
-  metrics(truth=Class, estimate=.pred_class)
-```
-
----
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
-```{r } 
-sonar_ranger %>%
-  predict(sonar_testing, type="prob")
-```
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
-
-```{r } 
-sonar_probs <- sonar_ranger %>%
-  predict(sonar_testing, type = "prob") %>%
-  bind_cols(sonar_testing)
-sonar_probs
-```
-
----
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
-
-```{r } 
-sonar_probs %>%
-  gain_curve(.pred_M, truth=Class) %>%
+iris_probs %>%
+  gain_curve(.pred_setosa:.pred_virginica, truth=Species) %>%
   glimpse()
 ```
 
@@ -394,20 +474,32 @@ sonar_probs %>%
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
 ```{r } 
-sonar_probs%>%
-  gain_curve(.pred_M, truth=Class) %>%
+library(yardstick)
+iris_probs%>%
+  gain_curve(.pred_setosa:.pred_virginica, truth=Species) %>%
   autoplot()
 ```
 
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+# Curvas ROC
+
+* Las curvas ROC son una poderosa herramienta gráfica para visualizar el desempeño de un algoritmo de aprendizaje a través de una variación en el criterio de decisión. 
+<br><br>
+* Las curvas ROC se han utilizado no sólo para __estudiar el comportamiento de un algoritmo__ sino también __identificar regiones óptimas de desempeño__, __realizar la selección de modelos__, y lo más importante para __comparar y evaluar algoritmos de aprendizaje automático__. 
+<br><br>
+* En el _eje X_ de una curva ROC tenemos el eje horizontal, que muestra la _tasa de falsos positivos (TFP)_ y el eje vertical (_eje y_) muestra la _tasa de verdaderos positivos_ de un clasificador. 
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
 ```{r } 
-sonar_probs%>%
-  roc_curve(.pred_M, truth=Class) %>%
+iris_probs%>%
+  roc_curve(.pred_setosa:.pred_virginica, truth=Species) %>%
   autoplot()
 ```
+
 
 ---
 
@@ -415,10 +507,10 @@ sonar_probs%>%
 
 
 ```{r } 
-predict(sonar_ranger, sonar_testing, type = "prob") %>%
-  bind_cols(predict(sonar_ranger, sonar_testing)) %>%
-  bind_cols(select(sonar_testing, Class)) %>%
-  metrics(Class, .pred_M, estimate = .pred_class)
+predict(iris_ranger, iris_testing, type = "prob") %>%
+  bind_cols(predict(iris_ranger, iris_testing)) %>%
+  bind_cols(select(iris_testing, Species)) %>%
+  metrics(Species, .pred_setosa:.pred_virginica, estimate = .pred_class)
 
 ```
 
@@ -434,9 +526,6 @@ https://diegokoz.github.io/EEA2019/clase%208/tidymodels.nb.html
 bit.ly/parsnip-rstudioconf2019 
 - Recipes for data Preprocessing - Max Kuhn (video)
 bit.ly/recipes-useR2018
-
-
-
 
 
 

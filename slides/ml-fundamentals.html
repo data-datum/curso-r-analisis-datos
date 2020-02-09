@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>ml-fundamentals.utf8</title>
     <meta charset="utf-8" />
@@ -35,8 +35,9 @@ class:center, inverse
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
-&lt;br&gt;&lt;br&gt;
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym1.png" width="100%" align="center" /&gt;
+# Flujo de Ciencia de Datos 📌
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos.png" width="100%" align="center" /&gt;
 
 
 ---
@@ -88,36 +89,26 @@ library(tidymodels)
 ```
 
 ```
-## This version of Shiny is designed to work with 'htmlwidgets' &gt;= 1.5.
-##     Please upgrade via install.packages('htmlwidgets').
+## -- Attaching packages -------------------------- tidymodels 0.0.3 --
 ```
 
 ```
-## Registered S3 method overwritten by 'xts':
-##   method     from
-##   as.zoo.xts zoo
-```
-
-```
-## -- Attaching packages -------------------------------------- tidymodels 0.0.3 --
-```
-
-```
-## v broom     0.5.3     v purrr     0.3.3
-## v dials     0.0.4     v recipes   0.1.7
+## v broom     0.5.4     v purrr     0.3.3
+## v dials     0.0.4     v recipes   0.1.9
 ## v dplyr     0.8.3     v rsample   0.0.5
 ## v ggplot2   3.2.1     v tibble    2.1.3
-## v infer     0.5.1     v yardstick 0.0.4
-## v parsnip   0.0.4
+## v infer     0.5.1     v yardstick 0.0.5
+## v parsnip   0.0.5
 ```
 
 ```
-## -- Conflicts ----------------------------------------- tidymodels_conflicts() --
-## x purrr::discard()  masks scales::discard()
-## x dplyr::filter()   masks stats::filter()
-## x dplyr::lag()      masks stats::lag()
-## x ggplot2::margin() masks dials::margin()
-## x recipes::step()   masks stats::step()
+## -- Conflicts ----------------------------- tidymodels_conflicts() --
+## x purrr::discard()    masks scales::discard()
+## x dplyr::filter()     masks stats::filter()
+## x dplyr::lag()        masks stats::lag()
+## x ggplot2::margin()   masks dials::margin()
+## x recipes::step()     masks stats::step()
+## x recipes::yj_trans() masks scales::yj_trans()
 ```
 
 ---
@@ -137,187 +128,131 @@ background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
 background-size: cover
 class: center, middle
 
-# ✨ Data Desbalanceada
+# ✨ Data Balanceada
 
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
-# Dataset: Sonar
-Como podemos ver las clases están prácticamente balanceadas
+# Dataset: Iris
 
+* Conjunto de datos muy popular en análisis multivariado
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/iris-species.png" width="100%" align="center" /&gt;
+
+
+.footnote[[*]
+Mas información en https://es.wikipedia.org/wiki/Conjunto_de_datos_flor_iris 
+https://archive.ics.uci.edu/ml/datasets/Iris]
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Vemos los primeros 5 casos del set de datos 
 
 ```r
-library(mlbench)
-data(Sonar)
+head(iris)
 ```
 
-
-```r
-skimr::skim(Sonar)
 ```
-
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+```
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
+# Estadística descriptiva del set de datos
 
 ```r
-skimr::skim(Sonar)
+summary(iris)
 ```
 
+```
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## 
+```
 
-Table: Data summary
+---
 
-                                 
--------------------------  ------
-Name                       Sonar 
-Number of rows             208   
-Number of columns          61    
-_______________________          
-Column type frequency:           
-factor                     1     
-numeric                    60    
-________________________         
-Group variables            None  
--------------------------  ------
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
+## Tenemos 150 casos o individuos (filas), 4 columnas o características (features) y 1 variable predictora (species)
 
-**Variable type: factor**
+```r
+str(iris)
+```
 
-skim_variable    n_missing   complete_rate  ordered    n_unique  top_counts    
---------------  ----------  --------------  --------  ---------  --------------
-Class                    0               1  FALSE             2  M: 111, R: 97 
-
-
-**Variable type: numeric**
-
-skim_variable    n_missing   complete_rate   mean     sd     p0    p25    p50    p75   p100  hist  
---------------  ----------  --------------  -----  -----  -----  -----  -----  -----  -----  ------
-V1                       0               1   0.03   0.02   0.00   0.01   0.02   0.04   0.14  ▇▃▁▁▁ 
-V2                       0               1   0.04   0.03   0.00   0.02   0.03   0.05   0.23  ▇▂▁▁▁ 
-V3                       0               1   0.04   0.04   0.00   0.02   0.03   0.06   0.31  ▇▂▁▁▁ 
-V4                       0               1   0.05   0.05   0.01   0.02   0.04   0.06   0.43  ▇▁▁▁▁ 
-V5                       0               1   0.08   0.06   0.01   0.04   0.06   0.10   0.40  ▇▃▁▁▁ 
-V6                       0               1   0.10   0.06   0.01   0.07   0.09   0.13   0.38  ▇▇▂▁▁ 
-V7                       0               1   0.12   0.06   0.00   0.08   0.11   0.15   0.37  ▃▇▃▁▁ 
-V8                       0               1   0.13   0.09   0.01   0.08   0.11   0.17   0.46  ▆▇▂▁▁ 
-V9                       0               1   0.18   0.12   0.01   0.10   0.15   0.23   0.68  ▇▆▂▁▁ 
-V10                      0               1   0.21   0.13   0.01   0.11   0.18   0.27   0.71  ▇▇▃▁▁ 
-V11                      0               1   0.24   0.13   0.03   0.13   0.22   0.30   0.73  ▆▇▂▁▁ 
-V12                      0               1   0.25   0.14   0.02   0.13   0.25   0.33   0.71  ▇▇▆▂▁ 
-V13                      0               1   0.27   0.14   0.02   0.17   0.26   0.35   0.71  ▅▇▅▂▁ 
-V14                      0               1   0.30   0.16   0.03   0.18   0.28   0.39   1.00  ▇▇▃▁▁ 
-V15                      0               1   0.32   0.21   0.00   0.16   0.28   0.45   1.00  ▇▇▅▂▁ 
-V16                      0               1   0.38   0.23   0.02   0.20   0.30   0.54   1.00  ▇▇▅▃▁ 
-V17                      0               1   0.42   0.26   0.03   0.21   0.31   0.66   1.00  ▇▇▃▅▃ 
-V18                      0               1   0.45   0.26   0.04   0.24   0.37   0.68   1.00  ▆▇▂▅▃ 
-V19                      0               1   0.50   0.26   0.05   0.30   0.43   0.73   1.00  ▃▇▃▅▅ 
-V20                      0               1   0.56   0.26   0.07   0.35   0.54   0.81   1.00  ▅▇▆▆▇ 
-V21                      0               1   0.61   0.26   0.05   0.40   0.62   0.82   1.00  ▃▅▆▇▇ 
-V22                      0               1   0.62   0.26   0.02   0.41   0.66   0.83   1.00  ▂▅▃▇▇ 
-V23                      0               1   0.65   0.25   0.06   0.45   0.70   0.85   1.00  ▂▃▃▆▇ 
-V24                      0               1   0.67   0.24   0.02   0.54   0.70   0.87   1.00  ▂▂▅▇▇ 
-V25                      0               1   0.68   0.24   0.02   0.53   0.72   0.87   1.00  ▁▂▃▆▇ 
-V26                      0               1   0.70   0.24   0.09   0.54   0.75   0.89   1.00  ▂▂▃▅▇ 
-V27                      0               1   0.70   0.25   0.05   0.53   0.75   0.92   1.00  ▁▂▃▃▇ 
-V28                      0               1   0.69   0.24   0.03   0.53   0.73   0.90   1.00  ▁▂▃▅▇ 
-V29                      0               1   0.64   0.24   0.01   0.46   0.68   0.85   1.00  ▁▃▆▅▇ 
-V30                      0               1   0.58   0.22   0.06   0.41   0.61   0.74   1.00  ▂▆▇▇▅ 
-V31                      0               1   0.50   0.21   0.05   0.35   0.49   0.64   0.97  ▂▇▇▅▃ 
-V32                      0               1   0.44   0.21   0.04   0.28   0.43   0.58   0.93  ▅▇▇▅▂ 
-V33                      0               1   0.42   0.21   0.05   0.26   0.39   0.56   1.00  ▅▇▆▃▁ 
-V34                      0               1   0.40   0.23   0.02   0.22   0.35   0.60   0.96  ▆▇▅▅▂ 
-V35                      0               1   0.39   0.26   0.02   0.18   0.31   0.59   1.00  ▇▇▃▅▂ 
-V36                      0               1   0.38   0.26   0.01   0.15   0.32   0.56   1.00  ▇▆▅▃▂ 
-V37                      0               1   0.36   0.24   0.04   0.16   0.31   0.52   0.95  ▇▆▅▂▂ 
-V38                      0               1   0.34   0.21   0.04   0.17   0.31   0.44   1.00  ▇▇▃▂▁ 
-V39                      0               1   0.33   0.20   0.04   0.17   0.28   0.43   0.99  ▇▇▃▂▁ 
-V40                      0               1   0.31   0.18   0.01   0.19   0.28   0.42   0.93  ▅▇▃▂▁ 
-V41                      0               1   0.29   0.17   0.04   0.16   0.26   0.39   0.90  ▇▇▃▂▁ 
-V42                      0               1   0.28   0.17   0.01   0.16   0.25   0.38   0.82  ▆▇▅▂▁ 
-V43                      0               1   0.25   0.14   0.00   0.16   0.22   0.32   0.77  ▃▇▃▁▁ 
-V44                      0               1   0.21   0.13   0.00   0.13   0.18   0.27   0.78  ▇▇▂▁▁ 
-V45                      0               1   0.20   0.15   0.00   0.09   0.15   0.23   0.70  ▇▆▁▂▁ 
-V46                      0               1   0.16   0.13   0.00   0.07   0.12   0.20   0.73  ▇▃▁▁▁ 
-V47                      0               1   0.12   0.09   0.00   0.06   0.10   0.15   0.55  ▇▅▁▁▁ 
-V48                      0               1   0.09   0.06   0.00   0.05   0.08   0.12   0.33  ▇▇▃▁▁ 
-V49                      0               1   0.05   0.04   0.00   0.03   0.04   0.07   0.20  ▇▆▂▁▁ 
-V50                      0               1   0.02   0.01   0.00   0.01   0.02   0.03   0.08  ▇▇▂▁▁ 
-V51                      0               1   0.02   0.01   0.00   0.01   0.01   0.02   0.10  ▇▃▁▁▁ 
-V52                      0               1   0.01   0.01   0.00   0.01   0.01   0.02   0.07  ▇▃▁▁▁ 
-V53                      0               1   0.01   0.01   0.00   0.01   0.01   0.01   0.04  ▇▆▂▁▁ 
-V54                      0               1   0.01   0.01   0.00   0.01   0.01   0.01   0.04  ▇▇▂▂▁ 
-V55                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▃▁▁▁ 
-V56                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▅▁▁▁ 
-V57                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▅▁▁▁ 
-V58                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▃▁▁▁ 
-V59                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▃▁▁▁ 
-V60                      0               1   0.01   0.01   0.00   0.00   0.01   0.01   0.04  ▇▂▁▁▁ 
-
-
+```
+## 'data.frame':	150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+```
 
 ---
 class: inverse, center
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="50%" align="center" /&gt;
 
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
-
-# 1°Paso: a) Balancear el dataset 
-
-### Como el dataset está desbalanceado, vamos a balancearlos de la siguiente forma
-
-
-```r
-sonar_balanc &lt;- recipes::recipe( ~ ., data = Sonar) %&gt;%
-  step_downsample(Sonar)
-summary(sonar_balanc$Class)
-```
-
-```
-## Length  Class   Mode 
-##      0   NULL   NULL
-```
-
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
 
-# 1° Paso: b) Dividir los datos
+# 1° Paso: Dividir los datos
 
 ### Crear un set de datos training / testing con la librería *rsamples*
 
 
 
 ```r
-sonar_split &lt;- rsample::initial_split(Sonar, prop = 0.6)
-sonar_split
+iris_split &lt;- rsample::initial_split(iris, prop = 0.6)
+iris_split
 ```
 
 ```
-## &lt;125/83/208&gt;
+## &lt;90/60/150&gt;
 ```
 
 
 Estos son los datos de training/testing/total 
 
+
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text2.png)
-background-size: cover
-class: center, middle, inverse
 
- 
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
 
-# 💻 DEMO 💻
+# Training / testing
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" /&gt;
 
 
 
 ---
 class: inverse, center
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="60%" align="center" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="60%" align="center" /&gt;
 
 ---
 
@@ -325,24 +260,46 @@ class: inverse, center
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
+
+# Preprocesamiento
+
+Dentro de esta etapa se incluyen tareas como:
+### Centrado
+### Escalado
+### Remover variables que presenten alta correlación
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
+
+# Centrado y Escalado
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
+
+# Remover variables que presenten alta correlación
+
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
 
 # 2° Paso: Preprocesamiento
 
 - **recipe()**: empieza una lista de transformaciones a ser aplicadas
-- **prep()**: Indica que hay que ejecutar todos los pasos anteriores. 
 &lt;br&gt;
 - **step_corr()**: remueve todas las variables con alta correlación
 - **step_center()**: centrar los datos con media igual a 0. 
 - **step_scale()**: Normaliza con desvío estándar igual a 1. 
 &lt;br&gt;
 - **all_predictors()** y **all_outcomes()** son todas las variables predictivas y predictoras
-
+- **prep()**: Indica que hay que ejecutar todos los pasos anteriores. 
 
 
 ```r
-sonar_recipe &lt;- training(sonar_split) %&gt;%
-  recipe(Class~.) %&gt;%
+iris_recipe &lt;- training(iris_split) %&gt;%
+  recipe(Species~.) %&gt;%
   step_corr(all_predictors()) %&gt;%
   step_center(all_predictors(), -all_outcomes()) %&gt;%
   step_scale(all_predictors(), -all_outcomes()) %&gt;%
@@ -352,12 +309,12 @@ sonar_recipe &lt;- training(sonar_split) %&gt;%
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
 
 
 ```r
-sonar_recipe &lt;- training(sonar_split) %&gt;%
-  recipe(Class~.) %&gt;%
+iris_recipe &lt;- training(iris_split) %&gt;%
+  recipe(Species~.) %&gt;%
   step_corr(all_predictors()) %&gt;%
   step_center(all_predictors(), -all_outcomes()) %&gt;%
   step_scale(all_predictors(), -all_outcomes()) %&gt;%
@@ -366,7 +323,7 @@ sonar_recipe &lt;- training(sonar_split) %&gt;%
 
 
 ```r
-sonar_recipe
+iris_recipe
 ```
 
 ```
@@ -376,93 +333,94 @@ sonar_recipe
 ## 
 ##       role #variables
 ##    outcome          1
-##  predictor         60
+##  predictor          4
 ## 
-## Training data contained 125 data points and no missing data.
+## Training data contained 90 data points and no missing data.
 ## 
 ## Operations:
 ## 
-## Correlation filter removed V18, V37, V20 [trained]
-## Centering for V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, ... [trained]
-## Scaling for V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, ... [trained]
+## Correlation filter removed Petal.Length [trained]
+## Centering for Sepal.Length, Sepal.Width, Petal.Width [trained]
+## Scaling for Sepal.Length, Sepal.Width, Petal.Width [trained]
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
 
+## juice()
 - **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
+#### juice() aplicamos a los datos de entrenamiento
+
+```r
+iris_training &lt;- juice(iris_recipe)
+```
 
 
 ```r
-sonar_training &lt;- juice(sonar_recipe)
-
-head(sonar_training)
+head(iris_training)
 ```
 
 ```
-## # A tibble: 6 x 58
-##        V1      V2      V3     V4     V5     V6     V7      V8     V9     V10
-##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-## 1 -0.372  -0.0956 -0.0736 -0.713  0.317 -0.183  0.352  0.168   0.917 -0.0678
-## 2 -0.117   0.477   1.54    1.03   0.352  1.96   1.67   2.44    2.85   2.98  
-## 3  1.94    0.705   0.0536 -0.340 -0.314 -0.740 -0.136  1.08    1.27   1.68  
-## 4 -0.0184  0.127  -0.436  -0.779 -0.672 -0.176 -0.148  0.411   0.137  0.625 
-## 5  0.109   1.49    2.07    1.68   1.57   1.01  -0.844 -0.0412  0.120  0.978 
-## 6 -1.03   -0.932  -0.736  -0.456 -0.800 -1.34  -1.34  -1.22   -1.25  -1.31  
-## # ... with 48 more variables: V11 &lt;dbl&gt;, V12 &lt;dbl&gt;, V13 &lt;dbl&gt;, V14 &lt;dbl&gt;,
-## #   V15 &lt;dbl&gt;, V16 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;,
-## #   V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;,
-## #   V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;,
-## #   V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;,
-## #   V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;,
-## #   V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;,
-## #   V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;,
-## #   V60 &lt;dbl&gt;, Class &lt;fct&gt;
+## # A tibble: 6 x 4
+##   Sepal.Length Sepal.Width Petal.Width Species
+##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+## 1       -1.14       -0.173       -1.29 setosa 
+## 2       -1.02        1.14        -1.29 setosa 
+## 3       -0.560       1.80        -1.02 setosa 
+## 4       -1.48        0.705       -1.16 setosa 
+## 5       -1.02        0.705       -1.29 setosa 
+## 6       -1.72       -0.392       -1.29 setosa
 ```
-
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
 ]
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.jpg" width="10%" align="right" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
+
+## bake()
+- **bake()** toma un recipiente entreanado y aplica las operaciones a un set de datos para crear la matriz de diseño. 
+
+### Matriz de diseño (Design Matrix)
+
+En estadística, una matriz de diseño (también conocida como matriz regresora, o matriz de modelo) es una matriz de valores de variables explicativas de un set de objetos, generalmente denotada por X. Cada fila representa un objeto individual, con las columnas representando a las variables y sus valores específicos para cada objeto. 
+
+.footnote[https://tidymodels.github.io/recipes/reference/bake.html y https://tidymodels.github.io/recipes/
+]
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt; 
+
+### bake() aplicamos a los datos de prueba
+
+```r
+iris_testing &lt;- iris_recipe %&gt;%
+  bake(testing(iris_split)) 
+```
 
 
 ```r
-sonar_testing &lt;- sonar_recipe %&gt;%
-  bake(testing(sonar_split)) 
-
-sonar_testing
+iris_testing
 ```
 
 ```
-## # A tibble: 83 x 58
-##        V1      V2      V3     V4      V5     V6     V7     V8     V9    V10
-##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1  0.669  0.317   0.923   0.248  0.714   2.46   1.27   2.14   1.09   0.500
-##  2 -0.784 -0.638   0.395  -0.717 -0.982  -1.20  -0.300 -0.172 -1.03  -0.700
-##  3  0.940  0.385   0.920  -0.490  0.671  -0.289 -0.406 -0.867 -0.361  0.475
-##  4 -0.278 -0.0847  0.0608 -0.179 -0.216  -0.836 -0.811 -1.41  -0.968 -0.533
-##  5 -0.520 -0.633  -0.268  -0.986 -1.01   -0.704 -0.363 -0.779 -0.752 -1.46 
-##  6 -0.689 -0.264  -0.695  -0.502 -0.717  -1.64  -1.66  -0.902 -0.627 -1.02 
-##  7 -0.870 -0.869  -0.969  -0.627 -0.741  -0.910 -1.14  -0.505 -0.715 -0.718
-##  8 -0.825 -0.934  -0.494  -0.151  0.739   0.814  0.135 -0.475 -0.757 -0.229
-##  9  0.253 -0.788  -0.643  -0.191 -0.0595  0.146  0.565  0.105 -0.360  0.530
-## 10 -0.368 -1.03   -0.770  -1.00  -1.11   -1.56  -1.12  -1.29  -1.11  -0.824
-## # ... with 73 more rows, and 48 more variables: V11 &lt;dbl&gt;, V12 &lt;dbl&gt;,
-## #   V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V15 &lt;dbl&gt;, V16 &lt;dbl&gt;, V17 &lt;dbl&gt;, V19 &lt;dbl&gt;,
-## #   V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;,
-## #   V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;,
-## #   V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;,
-## #   V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;,
-## #   V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;,
-## #   V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;,
-## #   V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
+## # A tibble: 60 x 4
+##    Sepal.Length Sepal.Width Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1       -0.906      0.924        -1.29 setosa 
+##  2       -1.37       0.266        -1.29 setosa 
+##  3       -1.48       0.0463       -1.29 setosa 
+##  4       -1.14       0.0463       -1.42 setosa 
+##  5       -0.560      1.36         -1.29 setosa 
+##  6       -1.25       0.705        -1.29 setosa 
+##  7       -0.906      1.58         -1.16 setosa 
+##  8       -0.560      0.705        -1.29 setosa 
+##  9       -0.906      1.36         -1.02 setosa 
+## 10       -1.48       1.14         -1.29 setosa 
+## # ... with 50 more rows
 ```
 
 
-.footnote[https://tidymodels.github.io/recipes/reference/bake.html
-]
 ---
 class: inverse, center
 
@@ -472,51 +430,65 @@ class: inverse, center
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_allison.png" width="100%" align="center" /&gt;
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+# Árboles de decisión (Decision Trees)
+
+
+
+---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 
-## 3° Entrenamiento
+# Bosques aleatorios (Random Forest)
+
+* Random Forest usa como algoritmo base los árboles de decisión
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="65%" align="center" /&gt;
+
+.footnote[[*]
+Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+## 3° Paso: Entrenamiento del modelo
 
 - Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
 - Se puede entrenar cualquier modelo de clasificación
 
-```r
-sonar_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
-  set_engine("ranger") %&gt;%
-  fit(Class~., data = sonar_training)
 
-sonar_ranger
+```r
+iris_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+  set_engine("ranger") %&gt;%
+  fit(Species~., data = iris_training)
+
+iris_ranger
 ```
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 {ranger}
 
-```r
-sonar_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
-  set_engine("ranger") %&gt;%
-  fit(Class~., data = sonar_training)
-
-sonar_ranger
-```
-
 ```
 ## parsnip model object
 ## 
-## Fit in:  51msRanger result
+## Fit time:  30ms 
+## Ranger result
 ## 
 ## Call:
 ##  ranger::ranger(formula = formula, data = data, num.trees = ~100,      num.threads = 1, verbose = FALSE, seed = sample.int(10^5,          1), probability = TRUE) 
 ## 
 ## Type:                             Probability estimation 
 ## Number of trees:                  100 
-## Sample size:                      125 
-## Number of independent variables:  57 
-## Mtry:                             7 
+## Sample size:                      90 
+## Number of independent variables:  3 
+## Mtry:                             1 
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.1576798
+## OOB prediction error (Brier s.):  0.06791024
 ```
 
 
@@ -526,53 +498,73 @@ sonar_ranger
 {randomForest}
 
 ```r
-sonar_rf &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
+iris_rf &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
   set_engine("randomForest") %&gt;%
-  fit(Class~., data = sonar_training)
+  fit(Species~., data = iris_training)
 
-sonar_rf
+iris_rf
 ```
 
 ```
 ## parsnip model object
 ## 
-## Fit in:  61ms
+## Fit time:  10ms 
+## 
 ## Call:
 ##  randomForest(x = as.data.frame(x), y = y, ntree = ~100) 
 ##                Type of random forest: classification
 ##                      Number of trees: 100
-## No. of variables tried at each split: 7
+## No. of variables tried at each split: 1
 ## 
-##         OOB estimate of  error rate: 20.8%
+##         OOB estimate of  error rate: 5.56%
 ## Confusion matrix:
-##    M  R class.error
-## M 62  9   0.1267606
-## R 17 37   0.3148148
+##            setosa versicolor virginica class.error
+## setosa         32          0         0  0.00000000
+## versicolor      0         24         2  0.07692308
+## virginica       0          3        29  0.09375000
 ```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+# Evaluación de un clasificador 
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/eval-clasificador.png" width="100%" align="right" /&gt;
+
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+# Matriz de Confusión
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" /&gt;
+
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 
 
 ```r
-predict(sonar_ranger, sonar_testing)
+predict(iris_ranger, iris_testing)
 ```
 
 ```
-## # A tibble: 83 x 1
+## # A tibble: 60 x 1
 ##    .pred_class
 ##    &lt;fct&gt;      
-##  1 M          
-##  2 R          
-##  3 M          
-##  4 M          
-##  5 R          
-##  6 R          
-##  7 R          
-##  8 R          
-##  9 M          
-## 10 R          
-## # ... with 73 more rows
+##  1 setosa     
+##  2 setosa     
+##  3 setosa     
+##  4 setosa     
+##  5 setosa     
+##  6 setosa     
+##  7 setosa     
+##  8 setosa     
+##  9 setosa     
+## 10 setosa     
+## # ... with 50 more rows
 ```
 
 
@@ -582,34 +574,26 @@ predict(sonar_ranger, sonar_testing)
 
 
 ```r
-sonar_ranger %&gt;%
-  predict(sonar_testing) %&gt;%
-  bind_cols(sonar_testing) 
+iris_ranger %&gt;%
+  predict(iris_testing) %&gt;%
+  bind_cols(iris_testing) 
 ```
 
 ```
-## # A tibble: 83 x 59
-##    .pred_class     V1      V2      V3     V4      V5     V6     V7     V8     V9
-##    &lt;fct&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1 M            0.669  0.317   0.923   0.248  0.714   2.46   1.27   2.14   1.09 
-##  2 R           -0.784 -0.638   0.395  -0.717 -0.982  -1.20  -0.300 -0.172 -1.03 
-##  3 M            0.940  0.385   0.920  -0.490  0.671  -0.289 -0.406 -0.867 -0.361
-##  4 M           -0.278 -0.0847  0.0608 -0.179 -0.216  -0.836 -0.811 -1.41  -0.968
-##  5 R           -0.520 -0.633  -0.268  -0.986 -1.01   -0.704 -0.363 -0.779 -0.752
-##  6 R           -0.689 -0.264  -0.695  -0.502 -0.717  -1.64  -1.66  -0.902 -0.627
-##  7 R           -0.870 -0.869  -0.969  -0.627 -0.741  -0.910 -1.14  -0.505 -0.715
-##  8 R           -0.825 -0.934  -0.494  -0.151  0.739   0.814  0.135 -0.475 -0.757
-##  9 M            0.253 -0.788  -0.643  -0.191 -0.0595  0.146  0.565  0.105 -0.360
-## 10 R           -0.368 -1.03   -0.770  -1.00  -1.11   -1.56  -1.12  -1.29  -1.11 
-## # ... with 73 more rows, and 49 more variables: V10 &lt;dbl&gt;, V11 &lt;dbl&gt;,
-## #   V12 &lt;dbl&gt;, V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V15 &lt;dbl&gt;, V16 &lt;dbl&gt;, V17 &lt;dbl&gt;,
-## #   V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;,
-## #   V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;,
-## #   V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V38 &lt;dbl&gt;,
-## #   V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;,
-## #   V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;,
-## #   V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;,
-## #   V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
+## # A tibble: 60 x 5
+##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
+##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1 setosa            -0.906      0.924        -1.29 setosa 
+##  2 setosa            -1.37       0.266        -1.29 setosa 
+##  3 setosa            -1.48       0.0463       -1.29 setosa 
+##  4 setosa            -1.14       0.0463       -1.42 setosa 
+##  5 setosa            -0.560      1.36         -1.29 setosa 
+##  6 setosa            -1.25       0.705        -1.29 setosa 
+##  7 setosa            -0.906      1.58         -1.16 setosa 
+##  8 setosa            -0.560      0.705        -1.29 setosa 
+##  9 setosa            -0.906      1.36         -1.02 setosa 
+## 10 setosa            -1.48       1.14         -1.29 setosa 
+## # ... with 50 more rows
 ```
 
 ---
@@ -622,43 +606,44 @@ class: inverse, center
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
 
-### 4° Validación
+## 4° Paso: Validación del modelo
 
+### Random Forest con librería `ranger`
 
 ```r
-sonar_ranger %&gt;%
-  predict(sonar_testing) %&gt;%
-  bind_cols(sonar_testing) %&gt;%
-  metrics(truth=Class, estimate=.pred_class)
+iris_ranger %&gt;%
+  predict(iris_testing) %&gt;%
+  bind_cols(iris_testing) %&gt;%
+  metrics(truth=Species, estimate=.pred_class)
 ```
 
 ```
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.831
-## 2 kap      binary         0.665
+## 1 accuracy multiclass     0.967
+## 2 kap      multiclass     0.949
 ```
 
 ---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
 
-
+### Random Forest con librería `random forest`
 
 ```r
-sonar_rf %&gt;%
-  predict(sonar_testing) %&gt;%
-  bind_cols(sonar_testing) %&gt;%
-  metrics(truth=Class, estimate=.pred_class)
+iris_rf %&gt;%
+  predict(iris_testing) %&gt;%
+  bind_cols(iris_testing) %&gt;%
+  metrics(truth=Species, estimate=.pred_class)
 ```
 
 ```
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.819
-## 2 kap      binary         0.642
+## 1 accuracy multiclass     0.967
+## 2 kap      multiclass     0.949
 ```
 
 ---
@@ -667,25 +652,25 @@ sonar_rf %&gt;%
 
 
 ```r
-sonar_ranger %&gt;%
-  predict(sonar_testing, type="prob")
+iris_ranger %&gt;%
+  predict(iris_testing, type="prob")
 ```
 
 ```
-## # A tibble: 83 x 2
-##    .pred_M .pred_R
-##      &lt;dbl&gt;   &lt;dbl&gt;
-##  1   0.521   0.479
-##  2   0.456   0.544
-##  3   0.709   0.291
-##  4   0.571   0.429
-##  5   0.382   0.618
-##  6   0.412   0.588
-##  7   0.464   0.536
-##  8   0.329   0.671
-##  9   0.685   0.315
-## 10   0.307   0.693
-## # ... with 73 more rows
+## # A tibble: 60 x 3
+##    .pred_setosa .pred_versicolor .pred_virginica
+##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
+##  1        0.999          0               0.00125
+##  2        0.984          0.00995         0.00582
+##  3        0.977          0.0193          0.00375
+##  4        0.969          0.0270          0.00375
+##  5        0.962          0.0234          0.0149 
+##  6        0.992          0               0.00833
+##  7        0.989          0               0.0109 
+##  8        0.948          0.0434          0.00833
+##  9        0.989          0               0.0109 
+## 10        0.991          0               0.00889
+## # ... with 50 more rows
 ```
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
@@ -693,35 +678,27 @@ sonar_ranger %&gt;%
 
 
 ```r
-sonar_probs &lt;- sonar_ranger %&gt;%
-  predict(sonar_testing, type = "prob") %&gt;%
-  bind_cols(sonar_testing)
-sonar_probs
+iris_probs &lt;- iris_ranger %&gt;%
+  predict(iris_testing, type = "prob") %&gt;%
+  bind_cols(iris_testing)
+iris_probs
 ```
 
 ```
-## # A tibble: 83 x 60
-##    .pred_M .pred_R     V1      V2      V3     V4      V5     V6     V7     V8
-##      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1   0.521   0.479  0.669  0.317   0.923   0.248  0.714   2.46   1.27   2.14 
-##  2   0.456   0.544 -0.784 -0.638   0.395  -0.717 -0.982  -1.20  -0.300 -0.172
-##  3   0.709   0.291  0.940  0.385   0.920  -0.490  0.671  -0.289 -0.406 -0.867
-##  4   0.571   0.429 -0.278 -0.0847  0.0608 -0.179 -0.216  -0.836 -0.811 -1.41 
-##  5   0.382   0.618 -0.520 -0.633  -0.268  -0.986 -1.01   -0.704 -0.363 -0.779
-##  6   0.412   0.588 -0.689 -0.264  -0.695  -0.502 -0.717  -1.64  -1.66  -0.902
-##  7   0.464   0.536 -0.870 -0.869  -0.969  -0.627 -0.741  -0.910 -1.14  -0.505
-##  8   0.329   0.671 -0.825 -0.934  -0.494  -0.151  0.739   0.814  0.135 -0.475
-##  9   0.685   0.315  0.253 -0.788  -0.643  -0.191 -0.0595  0.146  0.565  0.105
-## 10   0.307   0.693 -0.368 -1.03   -0.770  -1.00  -1.11   -1.56  -1.12  -1.29 
-## # ... with 73 more rows, and 50 more variables: V9 &lt;dbl&gt;, V10 &lt;dbl&gt;, V11 &lt;dbl&gt;,
-## #   V12 &lt;dbl&gt;, V13 &lt;dbl&gt;, V14 &lt;dbl&gt;, V15 &lt;dbl&gt;, V16 &lt;dbl&gt;, V17 &lt;dbl&gt;,
-## #   V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;,
-## #   V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;,
-## #   V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V38 &lt;dbl&gt;,
-## #   V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;,
-## #   V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;,
-## #   V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;,
-## #   V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
+## # A tibble: 60 x 7
+##    .pred_setosa .pred_versicolor .pred_virginica Sepal.Length Sepal.Width
+##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+##  1        0.999          0               0.00125       -0.906      0.924 
+##  2        0.984          0.00995         0.00582       -1.37       0.266 
+##  3        0.977          0.0193          0.00375       -1.48       0.0463
+##  4        0.969          0.0270          0.00375       -1.14       0.0463
+##  5        0.962          0.0234          0.0149        -0.560      1.36  
+##  6        0.992          0               0.00833       -1.25       0.705 
+##  7        0.989          0               0.0109        -0.906      1.58  
+##  8        0.948          0.0434          0.00833       -0.560      0.705 
+##  9        0.989          0               0.0109        -0.906      1.36  
+## 10        0.991          0               0.00889       -1.48       1.14  
+## # ... with 50 more rows, and 2 more variables: Petal.Width &lt;dbl&gt;, Species &lt;fct&gt;
 ```
 
 ---
@@ -731,18 +708,19 @@ sonar_probs
 
 
 ```r
-sonar_probs %&gt;%
-  gain_curve(.pred_M, truth=Class) %&gt;%
+iris_probs %&gt;%
+  gain_curve(.pred_setosa:.pred_virginica, truth=Species) %&gt;%
   glimpse()
 ```
 
 ```
-## Observations: 84
-## Variables: 4
-## $ .n              &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
-## $ .n_events       &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
-## $ .percent_tested &lt;dbl&gt; 0.000000, 1.204819, 2.409639, 3.614458, 4.819277, 6...
-## $ .percent_found  &lt;dbl&gt; 0.0, 2.5, 5.0, 7.5, 10.0, 12.5, 15.0, 17.5, 20.0, 2...
+## Observations: 135
+## Variables: 5
+## $ .level          &lt;chr&gt; "setosa", "setosa", "setosa", "setosa", "setosa", "...
+## $ .n              &lt;dbl&gt; 0, 2, 3, 5, 7, 9, 10, 12, 13, 14, 15, 16, 18, 19, 2...
+## $ .n_events       &lt;dbl&gt; 0, 2, 3, 5, 7, 9, 10, 12, 13, 14, 15, 16, 18, 18, 1...
+## $ .percent_tested &lt;dbl&gt; 0.000000, 3.333333, 5.000000, 8.333333, 11.666667, ...
+## $ .percent_found  &lt;dbl&gt; 0.00000, 11.11111, 16.66667, 27.77778, 38.88889, 50...
 ```
 
 
@@ -751,47 +729,59 @@ sonar_probs %&gt;%
 
 
 ```r
-sonar_probs%&gt;%
-  gain_curve(.pred_M, truth=Class) %&gt;%
-  autoplot()
-```
-
-![](ml-fundamentals_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
-
-
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
-
-
-```r
-sonar_probs%&gt;%
-  roc_curve(.pred_M, truth=Class) %&gt;%
+library(yardstick)
+iris_probs%&gt;%
+  gain_curve(.pred_setosa:.pred_virginica, truth=Species) %&gt;%
   autoplot()
 ```
 
 ![](ml-fundamentals_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+# Curvas ROC
+
+* Las curvas ROC son una poderosa herramienta gráfica para visualizar el desempeño de un algoritmo de aprendizaje a través de una variación en el criterio de decisión. 
+&lt;br&gt;&lt;br&gt;
+* Las curvas ROC se han utilizado no sólo para __estudiar el comportamiento de un algoritmo__ sino también __identificar regiones óptimas de desempeño__, __realizar la selección de modelos__, y lo más importante para __comparar y evaluar algoritmos de aprendizaje automático__. 
+&lt;br&gt;&lt;br&gt;
+* En el _eje X_ de una curva ROC tenemos el eje horizontal, que muestra la _tasa de falsos positivos (TFP)_ y el eje vertical (_eje y_) muestra la _tasa de verdaderos positivos_ de un clasificador. 
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+
+```r
+iris_probs%&gt;%
+  roc_curve(.pred_setosa:.pred_virginica, truth=Species) %&gt;%
+  autoplot()
+```
+
+![](ml-fundamentals_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+
+
+---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
 
 
 
 ```r
-predict(sonar_ranger, sonar_testing, type = "prob") %&gt;%
-  bind_cols(predict(sonar_ranger, sonar_testing)) %&gt;%
-  bind_cols(select(sonar_testing, Class)) %&gt;%
-  metrics(Class, .pred_M, estimate = .pred_class)
+predict(iris_ranger, iris_testing, type = "prob") %&gt;%
+  bind_cols(predict(iris_ranger, iris_testing)) %&gt;%
+  bind_cols(select(iris_testing, Species)) %&gt;%
+  metrics(Species, .pred_setosa:.pred_virginica, estimate = .pred_class)
 ```
 
 ```
 ## # A tibble: 4 x 3
 ##   .metric     .estimator .estimate
 ##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy    binary         0.831
-## 2 kap         binary         0.665
-## 3 mn_log_loss binary         0.460
-## 4 roc_auc     binary         0.927
+## 1 accuracy    multiclass     0.967
+## 2 kap         multiclass     0.949
+## 3 mn_log_loss multiclass     0.206
+## 4 roc_auc     hand_till      0.980
 ```
 
 
@@ -806,9 +796,6 @@ https://diegokoz.github.io/EEA2019/clase%208/tidymodels.nb.html
 bit.ly/parsnip-rstudioconf2019 
 - Recipes for data Preprocessing - Max Kuhn (video)
 bit.ly/recipes-useR2018
-
-
-
 
 
 
@@ -835,53 +822,51 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] mlbench_2.1-1     yardstick_0.0.4   tibble_2.1.3      rsample_0.0.5    
-##  [5] tidyr_1.0.0       recipes_0.1.7     purrr_0.3.3       parsnip_0.0.4    
-##  [9] infer_0.5.1       ggplot2_3.2.1     dplyr_0.8.3       dials_0.0.4      
-## [13] scales_1.0.0      broom_0.5.3       tidymodels_0.0.3  emo_0.0.0.9000   
-## [17] fontawesome_0.1.0
+##  [1] yardstick_0.0.5   tibble_2.1.3      rsample_0.0.5     tidyr_1.0.2      
+##  [5] recipes_0.1.9     purrr_0.3.3       parsnip_0.0.5     infer_0.5.1      
+##  [9] ggplot2_3.2.1     dplyr_0.8.3       dials_0.0.4       scales_1.1.0     
+## [13] broom_0.5.4       tidymodels_0.0.3  emo_0.0.0.9000    fontawesome_0.1.0
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] backports_1.1.5       xaringan_0.13         tidytext_0.2.2       
-##   [4] plyr_1.8.4            igraph_1.2.4.1        repr_1.0.2           
-##   [7] lazyeval_0.2.2        splines_3.6.2         crosstalk_1.0.0      
-##  [10] listenv_0.7.0         SnowballC_0.6.0       rstantools_1.5.1     
-##  [13] inline_0.3.15         digest_0.6.23         htmltools_0.4.0      
-##  [16] rsconnect_0.8.15      fansi_0.4.0           magrittr_1.5         
-##  [19] globals_0.12.4        gower_0.2.1           matrixStats_0.54.0   
-##  [22] xts_0.11-2            prettyunits_1.0.2     colorspace_1.4-1     
-##  [25] skimr_2.0.2           xfun_0.11             callr_3.3.1          
-##  [28] crayon_1.3.4          jsonlite_1.6          lme4_1.1-21          
-##  [31] zeallot_0.1.0         survival_3.1-8        zoo_1.8-6            
-##  [34] glue_1.3.1            gtable_0.3.0          ipred_0.9-9          
-##  [37] pkgbuild_1.0.4        rstan_2.19.2          miniUI_0.1.1.1       
-##  [40] Rcpp_1.0.3            xtable_1.8-4          stats4_3.6.2         
-##  [43] lava_1.6.6            StanHeaders_2.18.1-10 prodlim_2018.04.18   
-##  [46] DT_0.8                htmlwidgets_1.3       threejs_0.3.1        
-##  [49] pkgconfig_2.0.3       loo_2.1.0             nnet_7.3-12          
-##  [52] utf8_1.1.4            labeling_0.3          tidyselect_0.2.5     
-##  [55] rlang_0.4.2           DiceDesign_1.8-1      reshape2_1.4.3       
-##  [58] later_1.0.0           munsell_0.5.0         tools_3.6.2          
-##  [61] cli_1.1.0             generics_0.0.2        ranger_0.11.2        
-##  [64] ggridges_0.5.1        evaluate_0.14         stringr_1.4.0        
-##  [67] fastmap_1.0.1         yaml_2.2.0            processx_3.4.1       
-##  [70] knitr_1.26            randomForest_4.6-14   future_1.14.0        
-##  [73] nlme_3.1-142          mime_0.7              rstanarm_2.18.2      
-##  [76] tokenizers_0.2.1      compiler_3.6.2        bayesplot_1.7.0      
-##  [79] shinythemes_1.1.2     rstudioapi_0.10       tidyposterior_0.0.2  
-##  [82] stringi_1.4.3         highr_0.8             ps_1.3.0             
-##  [85] lattice_0.20-38       Matrix_1.2-18         nloptr_1.2.1         
-##  [88] markdown_1.1          shinyjs_1.0           vctrs_0.2.0          
-##  [91] pillar_1.4.2          lifecycle_0.1.0       furrr_0.1.0          
-##  [94] httpuv_1.5.2          R6_2.4.0              promises_1.1.0       
-##  [97] gridExtra_2.3         janeaustenr_0.1.5     codetools_0.2-16     
-## [100] boot_1.3-23           colourpicker_1.0      MASS_7.3-51.4        
-## [103] gtools_3.8.1          assertthat_0.2.1      withr_2.1.2          
-## [106] shinystan_2.5.0       parallel_3.6.2        grid_3.6.2           
-## [109] rpart_4.1-15          timeDate_3043.102     class_7.3-15         
-## [112] minqa_1.2.4           rmarkdown_2.0         pROC_1.15.3          
-## [115] tidypredict_0.4.3     shiny_1.4.0           lubridate_1.7.4      
-## [118] base64enc_0.1-3       dygraphs_1.1.1.6
+##   [1] minqa_1.2.4          colorspace_1.4-1     class_7.3-15        
+##   [4] ggridges_0.5.2       rsconnect_0.8.16     markdown_1.1        
+##   [7] base64enc_0.1-3      tidytext_0.2.2       rstudioapi_0.11     
+##  [10] farver_2.0.3         listenv_0.8.0        furrr_0.1.0         
+##  [13] xaringan_0.14        rstan_2.19.2         SnowballC_0.6.0     
+##  [16] DT_0.12              prodlim_2019.11.13   fansi_0.4.1         
+##  [19] lubridate_1.7.4      ranger_0.12.1        codetools_0.2-16    
+##  [22] splines_3.6.2        knitr_1.28           shinythemes_1.1.2   
+##  [25] bayesplot_1.7.1      nloptr_1.2.1         pROC_1.16.1         
+##  [28] shiny_1.4.0          compiler_3.6.2       backports_1.1.5     
+##  [31] assertthat_0.2.1     Matrix_1.2-18        fastmap_1.0.1       
+##  [34] lazyeval_0.2.2       cli_2.0.1            later_1.0.0         
+##  [37] htmltools_0.4.0      prettyunits_1.1.1    tools_3.6.2         
+##  [40] igraph_1.2.4.2       gtable_0.3.0         glue_1.3.1          
+##  [43] reshape2_1.4.3       Rcpp_1.0.3           DiceDesign_1.8-1    
+##  [46] vctrs_0.2.2          nlme_3.1-142         crosstalk_1.0.0     
+##  [49] timeDate_3043.102    gower_0.2.1          xfun_0.12           
+##  [52] stringr_1.4.0        globals_0.12.5       ps_1.3.0            
+##  [55] lme4_1.1-21          mime_0.9             miniUI_0.1.1.1      
+##  [58] lifecycle_0.1.0      gtools_3.8.1         tidypredict_0.4.3   
+##  [61] future_1.16.0        MASS_7.3-51.4        zoo_1.8-7           
+##  [64] ipred_0.9-9          rstanarm_2.19.2      colourpicker_1.0    
+##  [67] promises_1.1.0       parallel_3.6.2       inline_0.3.15       
+##  [70] shinystan_2.5.0      tidyposterior_0.0.2  yaml_2.2.1          
+##  [73] gridExtra_2.3        loo_2.2.0            StanHeaders_2.21.0-1
+##  [76] rpart_4.1-15         stringi_1.4.5        tokenizers_0.2.1    
+##  [79] dygraphs_1.1.1.6     randomForest_4.6-14  boot_1.3-23         
+##  [82] pkgbuild_1.0.6       lava_1.6.6           matrixStats_0.55.0  
+##  [85] rlang_0.4.2          pkgconfig_2.0.3      evaluate_0.14       
+##  [88] lattice_0.20-38      labeling_0.3         rstantools_2.0.0    
+##  [91] htmlwidgets_1.5.1    tidyselect_0.2.5     processx_3.4.1      
+##  [94] plyr_1.8.4           magrittr_1.5         R6_2.4.1            
+##  [97] generics_0.0.2       pillar_1.4.3         withr_2.1.2         
+## [100] xts_0.12-0           survival_3.1-8       nnet_7.3-12         
+## [103] janeaustenr_0.1.5    crayon_1.3.4         utf8_1.1.4          
+## [106] rmarkdown_2.1        grid_3.6.2           callr_3.4.1         
+## [109] threejs_0.3.3        digest_0.6.23        xtable_1.8-4        
+## [112] httpuv_1.5.2         stats4_3.6.2         munsell_0.5.0       
+## [115] shinyjs_1.1
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
