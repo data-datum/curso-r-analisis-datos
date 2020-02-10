@@ -514,6 +514,14 @@ predict(iris_ranger, iris_testing, type = "prob") %>%
 
 ```
 
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Resumiendo
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumen-tidymodels.png" width="100%" align="right" />
+
+
 
 ---
 # Bibliografía
