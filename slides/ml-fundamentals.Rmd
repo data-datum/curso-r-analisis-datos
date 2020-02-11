@@ -16,7 +16,8 @@ library(emo)
 
 # `r fa("r-project", fill = 'steelblue')`  para análisis de datos `r emo::ji("rocket")`<br> <br> 
 
-## `r emo::ji("tada")`Modelización con tidymodels `r emo::ji("computer")`<br> <br> <br> 
+## `r emo::ji("tada")`Modelización con tidymodels `r emo::ji("computer")` 
+### `Clasificación`
 
 .large[Roxana N. Villafañe | LEMyP | <a href='http://twitter.com/data_datum'>`r fa("twitter", fill = 'steelblue')` @data_datum</a>] <br> 
 .large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
@@ -89,6 +90,33 @@ library(tidymodels)
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
+# Modelado Predictivo - Definición y Ejemplos
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Partes del modelo predictivo
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Terminología
+
+* __Muestra, punto, observación, instancia__ se refiere a una unidad de análisis.
+* __Set de entrenamiento__ son los datos utilizados para el modelado. 
+* __Set de prueba__ son los datos utilizados para medir el desempeño del modelo, entre un conjunto de candidatos. 
+* __Atributos, predictores, variables independientes o descriptores__ son los datos de entrada para la ecuación de predicción.
+* __Salida, variable dependiente, variable dependiente, variable respuesta, clase, o target__ es la cantidad a ser predicha. 
+* __Datos categóricos, también conocidos como nominales, atributos o datos discretos__ toman valores específicos que no tienen escala. Ejemplo: bueno/malo, rojo/azul, etc. 
+* __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, número de baños, son datos continuos. Si bien el número de baños no puede ser fraccionaria, se considera como un dato continuo. 
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
 # Modelización supervisada
 
 ### Clasificación: la variable respuesta es una clase, es decir, una variable cualitativa 
@@ -151,6 +179,8 @@ class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="50%" align="center" />
 
+# `División de datos`
+
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
@@ -173,7 +203,7 @@ Estos son los datos de training/testing/total
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
 
-# Training / testing
+# Entrenamiento / Prueba
 
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" />
@@ -184,6 +214,8 @@ Estos son los datos de training/testing/total
 class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="60%" align="center" />
+
+# `Preprocesamiento`
 
 ---
 
@@ -305,8 +337,12 @@ class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_h.png" width="70%" align="center" />
 
+# `Modelización`
+
+
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_allison.png" width="100%" align="center" />
+
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
@@ -329,47 +365,6 @@ class: inverse, center
 Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
 
 ---
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
-
-## 3° Paso: Entrenamiento del modelo
-
-- Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
-- Se puede entrenar cualquier modelo de clasificación
-
-```{r eval=FALSE} 
-iris_ranger <- rand_forest(trees = 100, mode = "classification") %>%
-  set_engine("ranger") %>%
-  fit(Species~., data = iris_training)
-
-iris_ranger
-```
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
-{ranger}
-```{r echo=FALSE} 
-iris_ranger <- rand_forest(trees = 100, mode = "classification") %>%
-  set_engine("ranger") %>%
-  fit(Species~., data = iris_training)
-
-iris_ranger
-```
-
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
-
-{randomForest}
-```{r } 
-iris_rf <- rand_forest(trees = 100, mode = "classification") %>%
-  set_engine("randomForest") %>%
-  fit(Species~., data = iris_training)
-
-iris_rf
-```
-
----
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
 # Evaluación de un clasificador 
@@ -385,6 +380,52 @@ iris_rf
 # Matriz de Confusión
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" />
+
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+## 3° Paso: Entrenamiento del modelo
+
+- Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
+- Se puede entrenar cualquier modelo de clasificación o regresión
+- Partes:
+* Crear la especificación (create specification)
+* Establecer el motor (set engine)
+* Ajuste (fit)
+
+```{r eval=FALSE} 
+iris_ranger <- rand_forest(trees = 100, mode = "classification") %>%
+  set_engine("ranger") %>%
+  fit(Species~., data = iris_training)
+
+iris_ranger
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+{ranger}
+```{r echo=FALSE}
+iris_ranger <- rand_forest(trees = 100, mode = "classification") %>%
+  set_engine("ranger") %>%
+  fit(Species~., data = iris_training)
+iris_ranger
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+{randomForest}
+```{r } 
+iris_rf <- rand_forest(trees = 100, mode = "classification") %>%
+  set_engine("randomForest") %>%
+  fit(Species~., data = iris_training)
+
+iris_rf
+```
 
 
 ---
@@ -412,7 +453,7 @@ class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.png" width="60%" align="center" />
 
-
+# `Validación`
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
@@ -530,6 +571,8 @@ predict(iris_ranger, iris_testing, type = "prob") %>%
 https://rviews.rstudio.com/2019/06/19/a-gentle-intro-to-tidymodels/
 - Tutorial de Tidymodels (español)
 https://diegokoz.github.io/EEA2019/clase%208/tidymodels.nb.html
+- Tutorial "Modeling with parsnip and tidymodels"
+https://www.benjaminsorensen.me/post/modeling-with-parsnip-and-tidymodels/
 - parsnip: A tidy model interface - Max Kuhn (video)
 bit.ly/parsnip-rstudioconf2019 
 - Recipes for data Preprocessing - Max Kuhn (video)
