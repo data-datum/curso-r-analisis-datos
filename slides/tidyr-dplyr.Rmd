@@ -6,6 +6,7 @@ output:
     nature:
       highlightStyle: github
       highlightLines: true
+      highlightSpans: true
       countIncrementalSlides: true
 ---
 class: inverse, center
@@ -37,9 +38,9 @@ library(emo)
 
 class: inverse, center
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="30%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="50%" align="center" />
 
-# Ordenar datos con tidyr
+# `Ordenar datos con tidyr`
 
 ---
 
@@ -79,7 +80,14 @@ Cuando hablamos de datos ordenados son referimos a:
 # Funciones principales de tidyr
 
 ## pivot_longer()
+_antes spread()_
+
+--
+
 ## pivot_wider()
+_antes gather()_
+
+--
 ## unite()
 ## separate()
 
@@ -91,23 +99,41 @@ Cuando hablamos de datos ordenados son referimos a:
 
 --
 
-# pivot_longer()
+## `pivot_longer()`
 --
+
+```{r message=FALSE, eval=FALSE} 
+pivot_longer(data, #dataset
+             cols, #columnas para reordenar
+             names_to = "xxx", #a partir de columnas colapsadas
+             values_to = "yyy") #a partir de datos en celdas
+```
+
+.footnote[[*]
+Mas información en https://tidyr.tidyverse.org/reference/pivot_longer.html
+]
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
 
 ```{r message=FALSE}
 library(tidyr)
-head(relig_income)
+head(relig_income) #encabezado del dataset
 ```
+
 
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
 
-# pivot_longer()
+## `pivot_longer()`
 
 ```{r message=FALSE} 
-pivot_longer(relig_income, -religion, names_to = "income", values_to = "count")
+relig_income %>%   #datos para ordenar 
+  pivot_longer(-religion, #columnas para reordenar 
+               names_to = "income", #columnas colapsadas
+               values_to = "count") #el conteo de los casos
 ```
+
 
 
 ---
@@ -115,12 +141,24 @@ pivot_longer(relig_income, -religion, names_to = "income", values_to = "count")
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
 
 ### Multiples variables están en una sola columna
-#### (esas variables pasarán a ser las nuevas variables)
+#### (esas variables pasarán a ser las nuevas columnas)
 
 --
 
-# pivot_wider()
+## `pivot_wider()`
 --
+```{r message=FALSE, eval=FALSE} 
+pivot_wider(data, #dataset
+            names_from = #de donde se crean las columnas
+            values_from = #de donde obtengo los valores
+```
+
+
+.footnote[[*]
+Mas información en https://tidyr.tidyverse.org/reference/pivot_wider.html
+]
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
 
 ```{r message=FALSE} 
 fish_encounters
@@ -130,8 +168,9 @@ fish_encounters
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
 
 ```{r message=FALSE} 
-fish_encounters %>%
-  pivot_wider(names_from = station, values_from = seen)
+fish_encounters %>% #ingreso de los datos 
+  pivot_wider(names_from = station, 
+              values_from = seen)
 ```
 
 ---
@@ -140,9 +179,9 @@ background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png
 background-size: cover
 class: center, middle
 
-# pivot_longer() 
+# `pivot_longer()` 
 # y 
-# pivot_wider() 
+# `pivot_wider()` 
 # son operaciones inversas
 
 
@@ -160,7 +199,7 @@ class: center, middle, inverse
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
 
-# separate()
+# `separate()`
 
 * Lo utilizamos para separar columnas
 
@@ -179,8 +218,12 @@ storms
 
 <br> <br>
 ```{r }
-str2<-tidyr::separate(storms, date, c("year", "month", "day"), sep="-")
-str2
+library(tidyr)
+str2<- #creo un objeto de R
+  storms %>% # a partir del dataset ´storms`
+  separate(`date`, #la columna `date`
+           c("year", "month", "day"), sep="-") # divido en 3
+str2 #invoco el objeto creado
 ```
 
 ---
@@ -192,15 +235,28 @@ str2
 * Lo utilizamos para unir columnas
 
 ```{r }
-unite(str2, "date", year, month, day, sep="-")
+str3 <- str2 %>% #objeto creado anteriormente
+  unite("date", #se crea la columna `date`
+        year, month, day, sep="-") #a partir de otras tres 
+str3
 ```
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# `unite()` 
+# y 
+# `separate()` 
+# son operaciones inversas
 
 
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
-# Dataset 
+# Dataset: gapminder
 
 ```{r eval=FALSE}
 install.packages(gapminder)
@@ -215,7 +271,7 @@ library(gapminder)
 
 # Funciones útiles
 
-## head()
+## `head()`
 ```{r }
 head(gapminder)
 ```
@@ -226,7 +282,7 @@ head(gapminder)
 
 #Funciones Útiles 
 
-## tail()
+## `tail()`
 
 
 ```{r }
@@ -239,7 +295,7 @@ tail(gapminder)
 
 #Funciones Útiles
 
-## glimpse()
+## `glimpse()`
 ```{r message=FALSE}
 dplyr::glimpse(gapminder)
 ```
@@ -249,7 +305,7 @@ dplyr::glimpse(gapminder)
 
 #Funciones Útiles
 
-## slice()
+## `slice()`
 
 ```{r gapminder, warning=FALSE}
 dplyr::slice(gapminder, 5L)
@@ -260,7 +316,7 @@ dplyr::slice(gapminder, 5L)
 
 #Funciones Útiles
 
-## str()
+## `str()`
 
 ```{r }
 str(gapminder)
@@ -270,40 +326,11 @@ str(gapminder)
 
 #Funciones Útiles
 
-## summary()
+## `summary()`
 
 ```{r }
 summary(gapminder)
 ```
-
----
-class: inverse, center
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/pipe.png" width="40%" align="center" />
-
-# Operador pipe
-
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/pipe.png" width="10%" align="right" />
-
-# Operador pipe
-
-El operador pipe nos permite concatenar funciones y objetos en R, de forma que el código tenga un aspecto más ordenado, siguiendo la filosofía de tidyverse. 
-#### Con el operador pipe
-```{r warning=FALSE, message=FALSE, eval=FALSE}
-library(magrittr)
-gapminder %>%
-  filter(country=="Argentina")%>%
-  select(gdpPercap, year) %>%
-  head(3)
-```
-
-#### Sin el operador pipe
-```{r warning=FALSE, message=FALSE, eval=FALSE}
-head(select(filter(gapminder, country=="Argentina"), gdpPercap, year), 3)
-```
-
 
 
 ---
@@ -311,39 +338,47 @@ class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="40%" align="center" />
 
-# Manipular datos con dplyr
+# `Manipular datos con dplyr`
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
-# select()
+# `select()`
 
 * La función select() nos permite extraer columnas 
 
 ```{r message=FALSE}
 library(dplyr)
-gapminder %>%
-  select(country, lifeExp, gdpPercap) %>%
-  head()
+gapminder %>% #datos para trabajar
+  `select`(country, lifeExp, gdpPercap) %>% #elijo columnas
+  head() #encabezado con los 6 primeros casos
 ```
 
 
 .footnote[[*]
 Mas información en https://dplyr.tidyverse.org/reference/select.html]
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Operadores Lógicos
+
+
+
+
+---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
-# filter()
+# `filter()`
 
 * La función filter() nos permite extraer filas mediante un criterio lógico
 
 Para ello utilizamos los siguientes operadores: >, >=, <, =<, ==, !=
 
 ```{r }
-gapminder %>%
-  filter(lifeExp > 80) %>%
-  head(3)
+gapminder %>% #datos para trabajar
+  `filter`(lifeExp > 80) %>% #filas con expectativa mayor a 80 años
+  head(3) #encabezado de 3 primeros casos
 ```
 
 
@@ -354,25 +389,25 @@ Mas información en https://dplyr.tidyverse.org/reference/filter.html]
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
-# filter()
+# `filter()`
 
 
 Podemos filtrar según múltiples condiciones:
 - Se cumplen ambas condiciones 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
-filter(condicion1, condicion2)
+filter(condicion1`,` condicion2)
 ```
 - Se cumple la condición 1 solamente
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
-filter(condicion1, !condicion2)
+filter(condicion1, `!`condicion2)
 ```
 - Se cumplen la condición 1 y/ o la condición 2
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
-filter(condicion1 | condicion2)
+filter(condicion1 `|` condicion2)
 ```
 - Se cumple una u otra condición, pero no ambas (disyunción exclusiva)
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
-filter(xor(condicion1, condicion2))
+filter(`xor`(condicion1, condicion2))
 ```
 
 
@@ -387,16 +422,24 @@ class: center, middle, inverse
 # `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# `select()`: extraer columnas
+# `filter()`: extraer filas siguiendo una condición lógica
+
+---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
-# mutate()
+# `mutate()`
 
-* Permite crear nuevas variables
+* Permite crear nuevas variables a partir de una operación
 
 ```{r }
-gapminder %>%
-  mutate(gdp = pop * gdpPercap) %>%
+gapminder %>% 
+  `mutate`(gdp = pop * gdpPercap) %>% #creo columna `gdp`
   head()
 ```
 
@@ -408,30 +451,53 @@ Más información en https://dplyr.tidyverse.org/reference/mutate.html]
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
-# summarize() y group_by()
+# `arrange()`
+
+* Permite ordenar filas según una variable
+
+```{r message=FALSE, warning=FALSE}
+gapminder %>%
+  `arrange`(year, country) %>% #ordeno según año y país
+  head(4)
+```
+
+.footnote[[*] 
+Más información en https://dplyr.tidyverse.org/reference/arrange.html]
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-size: cover
+class: center, middle, inverse
+
+
+# `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# `mutate()`: crea nuevas variables a partir de una operación
+# `arrange()`: ordenar filas por variables
+
+
+
+---
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+#  `group_by()` y `summarize()`
 
 ```{r message=FALSE, warning=FALSE}
 gdp_bycontinents <- gapminder %>%
-    group_by(continent) %>%
-    summarize(mean_gdpPercap=mean(gdpPercap))
+    `group_by`(continent) %>% #agrupo por continentes
+    `summarize`(mean_gdpPercap=mean(gdpPercap)) #resumo
 gdp_bycontinents
 ```
 
 .footnote[[*] 
 Más información en https://dplyr.tidyverse.org/reference/summarise.html] 
----
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
-
-# arrange()
-
-```{r message=FALSE, warning=FALSE}
-gapminder %>%
-  arrange(year, country)
-```
-
-.footnote[[*] 
-Más información en https://dplyr.tidyverse.org/reference/arrange.html]
 ---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
@@ -443,14 +509,26 @@ class: center, middle, inverse
 
 ---
 
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# `group_by()`: agrupar según un determinado criterio
+# `summarize()`: cambiar la unidad de análisis
+
+
+
+---
+
 class: middle, center
 
-## select(): extraer columnas
-## filter(): extraer filas siguiendo una restricción lógica
-## mutate(): crea nuevas variables
-## summarize(): cambiar la unidad de análisis
-## group_by(): agrupar según un determinado criterio
-## arrange(): ordenar filas por variables
+## `select()`: extraer columnas
+## `filter()`: extraer filas siguiendo una condición lógica
+## `mutate()`: crea nuevas variables
+## `arrange()`: ordenar filas por variables
+## `group_by()`: agrupar según un determinado criterio
+## `summarize()`: cambiar la unidad de análisis
+
 
 
 
@@ -460,7 +538,7 @@ background-size: cover
 class: center, middle, inverse
 
 
-# `r emo::ji("wrench")` Ejercicios `r emo::ji("computer")`
+# `r emo::ji("wrench")` COFFEE BREAK `r emo::ji("computer")`
 
 
 ---

@@ -27,11 +27,7 @@ library(emo)
 <br> Página web del curso en <https://curso-r-fca.netlify.com> `r emo::ji("star2")`
 
 ---
-class:center, inverse
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" />
-
----
 
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
@@ -39,6 +35,71 @@ class:center, inverse
 # Flujo de Ciencia de Datos `r emo::ji("pushpin")`
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos.png" width="100%" align="center" />
+
+
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
+
+
+# Es el proceso de desarrollo de una herramienta matemática o modelo que genera una predicción precisa. 
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+
+
+# Ejemplos de modelos predictivos
+1. ¿Cuántas copias venderá este libro?
+1. ¿Es este mail spam?
+1. Basada en elecciones pasadas, ¿esta película interesará al usuario?
+1. ¿Tendrá este paciente una enfermedad especial?
+
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Partes del modelo predictivo
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/partes-modelo.png" width="100%" align="center" />
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Terminología
+
+* __Muestra, punto, observación, instancia__ se refiere a una unidad de análisis.
+* __Set de entrenamiento__ son los datos utilizados para el modelado. 
+* __Set de prueba__ son los datos utilizados para medir el desempeño del modelo, entre un conjunto de candidatos. 
+* __Atributos, predictores, variables independientes o descriptores__ son los datos de entrada para la ecuación de predicción.
+* __Salida, variable dependiente, variable respuesta, clase, o "target"__ es la cantidad a ser predicha. 
+* __Datos categóricos, también conocidos como nominales o atributos__ toman valores específicos que no tienen escala. Ejemplo: bueno/malo, rojo/azul, etc. 
+* __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, número de baños, son datos continuos. Si bien el número de baños no puede ser fraccionaria, se considera como un dato continuo. 
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Modelización supervisada
+
+### Clasificación: la variable respuesta es una clase, es decir, una variable cualitativa 
+En el dataset iris, el tipo de flor, iris setosa, versicolor, virginica.
+### Regresión: la variable respuesta es un valor cuantitativo (un valor numérico a predecir). 
+Predicción de precios de casas, según variables como el barrio en el que pertenecen, número de cuartos, si es de más de un piso, etc. 
+
+
+---
+class:center, inverse
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" />
 
 
 ---
@@ -87,44 +148,6 @@ install.packages(tidymodels)
 library(tidymodels)
 ```
 
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
-
-# Modelado Predictivo - Definición y Ejemplos
-
-
----
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
-
-# Partes del modelo predictivo
-
-
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
-
-# Terminología
-
-* __Muestra, punto, observación, instancia__ se refiere a una unidad de análisis.
-* __Set de entrenamiento__ son los datos utilizados para el modelado. 
-* __Set de prueba__ son los datos utilizados para medir el desempeño del modelo, entre un conjunto de candidatos. 
-* __Atributos, predictores, variables independientes o descriptores__ son los datos de entrada para la ecuación de predicción.
-* __Salida, variable dependiente, variable dependiente, variable respuesta, clase, o target__ es la cantidad a ser predicha. 
-* __Datos categóricos, también conocidos como nominales, atributos o datos discretos__ toman valores específicos que no tienen escala. Ejemplo: bueno/malo, rojo/azul, etc. 
-* __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, número de baños, son datos continuos. Si bien el número de baños no puede ser fraccionaria, se considera como un dato continuo. 
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
-
-# Modelización supervisada
-
-### Clasificación: la variable respuesta es una clase, es decir, una variable cualitativa 
-En el dataset iris, el tipo de flor, iris setosa, versicolor, virginica.
-### Regresión: la variable respuesta es un valor cuantitativo (un valor numérico a predecir). 
-Predicción de precios de casas, según variables como el barrio en el que pertenecen, número de cuartos, si es de más de un piso, etc. 
-
-
 
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
@@ -137,7 +160,7 @@ class: center, middle
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
-# Dataset: Iris
+# Datos: Iris
 
 * Conjunto de datos muy popular en análisis multivariado
 
@@ -181,6 +204,14 @@ class: inverse, center
 
 # `División de datos`
 
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
+
+# Entrenamiento / Prueba
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" />
+
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
@@ -196,21 +227,12 @@ iris_split
 ```
 
 
-Estos son los datos de training/testing/total 
+Estos son los datos de entrenamiento/prueba/total 
 
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
 
-# Entrenamiento / Prueba
-
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" />
-
-
-
----
 class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="60%" align="center" />
@@ -293,6 +315,7 @@ iris_recipe
 
 ## juice()
 - **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
+
 #### juice() aplicamos a los datos de entrenamiento
 ```{r } 
 iris_training <- juice(iris_recipe)
@@ -311,17 +334,7 @@ head(iris_training)
 ## bake()
 - **bake()** toma un recipiente entreanado y aplica las operaciones a un set de datos para crear la matriz de diseño. 
 
-### Matriz de diseño (Design Matrix)
-
-En estadística, una matriz de diseño (también conocida como matriz regresora, o matriz de modelo) es una matriz de valores de variables explicativas de un set de objetos, generalmente denotada por X. Cada fila representa un objeto individual, con las columnas representando a las variables y sus valores específicos para cada objeto. 
-
-.footnote[https://tidymodels.github.io/recipes/reference/bake.html y https://tidymodels.github.io/recipes/
-]
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /> 
-
-### bake() aplicamos a los datos de prueba
+#### bake() aplicamos a los datos de prueba
 ```{r } 
 iris_testing <- iris_recipe %>%
   bake(testing(iris_split)) 
@@ -392,9 +405,9 @@ Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
 - Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
 - Se puede entrenar cualquier modelo de clasificación o regresión
 - Partes:
-* Crear la especificación (create specification)
-* Establecer el motor (set engine)
-* Ajuste (fit)
+1. Crear la especificación (create specification)
+1. Establecer el motor (set engine)
+1. Ajuste (fit)
 
 ```{r eval=FALSE} 
 iris_ranger <- rand_forest(trees = 100, mode = "classification") %>%

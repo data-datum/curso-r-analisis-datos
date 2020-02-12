@@ -27,11 +27,7 @@ class: inverse, center
 &lt;br&gt; Página web del curso en &lt;https://curso-r-fca.netlify.com&gt; 🌟
 
 ---
-class:center, inverse
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" /&gt;
-
----
 
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
@@ -39,6 +35,71 @@ class:center, inverse
 # Flujo de Ciencia de Datos 📌
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos.png" width="100%" align="center" /&gt;
+
+
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
+
+
+# Es el proceso de desarrollo de una herramienta matemática o modelo que genera una predicción precisa. 
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+
+
+# Ejemplos de modelos predictivos
+1. ¿Cuántas copias venderá este libro?
+1. ¿Es este mail spam?
+1. Basada en elecciones pasadas, ¿esta película interesará al usuario?
+1. ¿Tendrá este paciente una enfermedad especial?
+
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Partes del modelo predictivo
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/partes-modelo.png" width="100%" align="center" /&gt;
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Terminología
+
+* __Muestra, punto, observación, instancia__ se refiere a una unidad de análisis.
+* __Set de entrenamiento__ son los datos utilizados para el modelado. 
+* __Set de prueba__ son los datos utilizados para medir el desempeño del modelo, entre un conjunto de candidatos. 
+* __Atributos, predictores, variables independientes o descriptores__ son los datos de entrada para la ecuación de predicción.
+* __Salida, variable dependiente, variable respuesta, clase, o "target"__ es la cantidad a ser predicha. 
+* __Datos categóricos, también conocidos como nominales o atributos__ toman valores específicos que no tienen escala. Ejemplo: bueno/malo, rojo/azul, etc. 
+* __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, número de baños, son datos continuos. Si bien el número de baños no puede ser fraccionaria, se considera como un dato continuo. 
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Modelización supervisada
+
+### Clasificación: la variable respuesta es una clase, es decir, una variable cualitativa 
+En el dataset iris, el tipo de flor, iris setosa, versicolor, virginica.
+### Regresión: la variable respuesta es un valor cuantitativo (un valor numérico a predecir). 
+Predicción de precios de casas, según variables como el barrio en el que pertenecen, número de cuartos, si es de más de un piso, etc. 
+
+
+---
+class:center, inverse
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" /&gt;
 
 
 ---
@@ -112,44 +173,6 @@ library(tidymodels)
 ## x recipes::yj_trans() masks scales::yj_trans()
 ```
 
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
-
-# Modelado Predictivo - Definición y Ejemplos
-
-
----
-
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
-
-# Partes del modelo predictivo
-
-
-
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
-
-# Terminología
-
-* __Muestra, punto, observación, instancia__ se refiere a una unidad de análisis.
-* __Set de entrenamiento__ son los datos utilizados para el modelado. 
-* __Set de prueba__ son los datos utilizados para medir el desempeño del modelo, entre un conjunto de candidatos. 
-* __Atributos, predictores, variables independientes o descriptores__ son los datos de entrada para la ecuación de predicción.
-* __Salida, variable dependiente, variable dependiente, variable respuesta, clase, o target__ es la cantidad a ser predicha. 
-* __Datos categóricos, también conocidos como nominales, atributos o datos discretos__ toman valores específicos que no tienen escala. Ejemplo: bueno/malo, rojo/azul, etc. 
-* __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, número de baños, son datos continuos. Si bien el número de baños no puede ser fraccionaria, se considera como un dato continuo. 
-
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
-
-# Modelización supervisada
-
-### Clasificación: la variable respuesta es una clase, es decir, una variable cualitativa 
-En el dataset iris, el tipo de flor, iris setosa, versicolor, virginica.
-### Regresión: la variable respuesta es un valor cuantitativo (un valor numérico a predecir). 
-Predicción de precios de casas, según variables como el barrio en el que pertenecen, número de cuartos, si es de más de un piso, etc. 
-
-
 
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
@@ -162,7 +185,7 @@ class: center, middle
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
-# Dataset: Iris
+# Datos: Iris
 
 * Conjunto de datos muy popular en análisis multivariado
 
@@ -245,6 +268,14 @@ class: inverse, center
 
 # `División de datos`
 
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
+
+# Entrenamiento / Prueba
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" /&gt;
+
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
@@ -265,21 +296,12 @@ iris_split
 ```
 
 
-Estos son los datos de training/testing/total 
+Estos son los datos de entrenamiento/prueba/total 
 
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
 
-# Entrenamiento / Prueba
-
-
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" /&gt;
-
-
-
----
 class: inverse, center
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="60%" align="center" /&gt;
@@ -381,6 +403,7 @@ iris_recipe
 
 ## juice()
 - **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
+
 #### juice() aplicamos a los datos de entrenamiento
 
 ```r
@@ -396,12 +419,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -1.11       -0.189       -1.22 setosa 
-## 2       -1.36        0.241       -1.22 setosa 
-## 3       -0.983       1.10        -1.22 setosa 
-## 4       -1.48        0.672       -1.09 setosa 
-## 5       -0.983       0.672       -1.22 setosa 
-## 6       -0.485       1.32        -1.22 setosa
+## 1       -1.48        0.366       -1.38 setosa 
+## 2       -1.60        0.132       -1.38 setosa 
+## 3       -1.10        1.30        -1.38 setosa 
+## 4       -0.609       2.00        -1.12 setosa 
+## 5       -1.60        0.833       -1.25 setosa 
+## 6       -1.10        0.833       -1.38 setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -413,17 +436,7 @@ head(iris_training)
 ## bake()
 - **bake()** toma un recipiente entreanado y aplica las operaciones a un set de datos para crear la matriz de diseño. 
 
-### Matriz de diseño (Design Matrix)
-
-En estadística, una matriz de diseño (también conocida como matriz regresora, o matriz de modelo) es una matriz de valores de variables explicativas de un set de objetos, generalmente denotada por X. Cada fila representa un objeto individual, con las columnas representando a las variables y sus valores específicos para cada objeto. 
-
-.footnote[https://tidymodels.github.io/recipes/reference/bake.html y https://tidymodels.github.io/recipes/
-]
-
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt; 
-
-### bake() aplicamos a los datos de prueba
+#### bake() aplicamos a los datos de prueba
 
 ```r
 iris_testing &lt;- iris_recipe %&gt;%
@@ -439,16 +452,16 @@ iris_testing
 ## # A tibble: 60 x 4
 ##    Sepal.Length Sepal.Width Petal.Width Species
 ##           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1       -0.858      0.887       -1.22  setosa 
-##  2       -1.48       0.0263      -1.22  setosa 
-##  3       -0.485      1.75        -0.963 setosa 
-##  4       -1.73      -0.404       -1.22  setosa 
-##  5       -1.11       0.0263      -1.36  setosa 
-##  6       -1.23       0.672       -1.22  setosa 
-##  7       -1.23      -0.189       -1.36  setosa 
-##  8       -1.85      -0.189       -1.36  setosa 
-##  9       -0.485      1.75        -0.963 setosa 
-## 10       -1.48       1.10        -1.22  setosa 
+##  1       -0.981       1.07        -1.38 setosa 
+##  2       -1.23       -0.101       -1.38 setosa 
+##  3       -1.23        0.132       -1.51 setosa 
+##  4       -1.35        0.833       -1.38 setosa 
+##  5       -1.97       -0.101       -1.51 setosa 
+##  6       -0.237       3.17        -1.12 setosa 
+##  7       -0.981       1.07        -1.25 setosa 
+##  8       -0.237       1.77        -1.25 setosa 
+##  9       -0.981       1.77        -1.25 setosa 
+## 10       -1.60        1.30        -1.38 setosa 
 ## # ... with 50 more rows
 ```
 
@@ -513,9 +526,9 @@ Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
 - Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
 - Se puede entrenar cualquier modelo de clasificación o regresión
 - Partes:
-* Crear la especificación (create specification)
-* Establecer el motor (set engine)
-* Ajuste (fit)
+1. Crear la especificación (create specification)
+1. Establecer el motor (set engine)
+1. Ajuste (fit)
 
 
 ```r
@@ -533,7 +546,7 @@ iris_ranger
 ```
 ## parsnip model object
 ## 
-## Fit time:  0ms 
+## Fit time:  20ms 
 ## Ranger result
 ## 
 ## Call:
@@ -547,7 +560,7 @@ iris_ranger
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.03322345
+## OOB prediction error (Brier s.):  0.06859598
 ```
 
 
@@ -567,7 +580,7 @@ iris_rf
 ```
 ## parsnip model object
 ## 
-## Fit time:  0ms 
+## Fit time:  21ms 
 ## 
 ## Call:
 ##  randomForest(x = as.data.frame(x), y = y, ntree = ~100) 
@@ -575,12 +588,12 @@ iris_rf
 ##                      Number of trees: 100
 ## No. of variables tried at each split: 1
 ## 
-##         OOB estimate of  error rate: 2.22%
+##         OOB estimate of  error rate: 6.67%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
-## setosa         33          0         0  0.00000000
-## versicolor      0         30         1  0.03225806
-## virginica       0          1        25  0.03846154
+## setosa         28          0         0  0.00000000
+## versicolor      0         28         2  0.06666667
+## virginica       0          4        28  0.12500000
 ```
 
 
@@ -625,16 +638,16 @@ iris_ranger %&gt;%
 ## # A tibble: 60 x 5
 ##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
 ##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -0.858      0.887       -1.22  setosa 
-##  2 setosa            -1.48       0.0263      -1.22  setosa 
-##  3 setosa            -0.485      1.75        -0.963 setosa 
-##  4 setosa            -1.73      -0.404       -1.22  setosa 
-##  5 setosa            -1.11       0.0263      -1.36  setosa 
-##  6 setosa            -1.23       0.672       -1.22  setosa 
-##  7 setosa            -1.23      -0.189       -1.36  setosa 
-##  8 setosa            -1.85      -0.189       -1.36  setosa 
-##  9 setosa            -0.485      1.75        -0.963 setosa 
-## 10 setosa            -1.48       1.10        -1.22  setosa 
+##  1 setosa            -0.981       1.07        -1.38 setosa 
+##  2 setosa            -1.23       -0.101       -1.38 setosa 
+##  3 setosa            -1.23        0.132       -1.51 setosa 
+##  4 setosa            -1.35        0.833       -1.38 setosa 
+##  5 setosa            -1.97       -0.101       -1.51 setosa 
+##  6 setosa            -0.237       3.17        -1.12 setosa 
+##  7 setosa            -0.981       1.07        -1.25 setosa 
+##  8 setosa            -0.237       1.77        -1.25 setosa 
+##  9 setosa            -0.981       1.77        -1.25 setosa 
+## 10 setosa            -1.60        1.30        -1.38 setosa 
 ## # ... with 50 more rows
 ```
 
@@ -663,8 +676,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.917
-## 2 kap      multiclass     0.874
+## 1 accuracy multiclass     0.95 
+## 2 kap      multiclass     0.925
 ```
 
 ---
@@ -684,8 +697,8 @@ iris_rf %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.917
-## 2 kap      multiclass     0.874
+## 1 accuracy multiclass     0.95 
+## 2 kap      multiclass     0.925
 ```
 
 ---
@@ -702,16 +715,16 @@ iris_ranger %&gt;%
 ## # A tibble: 60 x 3
 ##    .pred_setosa .pred_versicolor .pred_virginica
 ##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
-##  1        0.993           0.0065         0      
-##  2        0.966           0.0282         0.0055 
-##  3        0.968           0.0185         0.0140 
-##  4        0.839           0.120          0.0419 
-##  5        0.936           0.0349         0.0288 
-##  6        0.995           0              0.00475
-##  7        0.935           0.0528         0.0117 
-##  8        0.935           0.0528         0.0117 
-##  9        0.968           0.0185         0.0140 
-## 10        0.999           0              0.001  
+##  1        0.997          0.00111         0.002  
+##  2        0.905          0.0587          0.0366 
+##  3        0.946          0.0301          0.0240 
+##  4        0.997          0.00278         0      
+##  5        0.982          0.0129          0.00543
+##  6        0.835          0.149           0.0168 
+##  7        0.997          0.00111         0.002  
+##  8        0.805          0.167           0.0282 
+##  9        0.976          0               0.0238 
+## 10        0.992          0               0.0075 
 ## # ... with 50 more rows
 ```
 ---
@@ -730,16 +743,16 @@ iris_probs
 ## # A tibble: 60 x 7
 ##    .pred_setosa .pred_versicolor .pred_virginica Sepal.Length Sepal.Width
 ##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-##  1        0.993           0.0065         0             -0.858      0.887 
-##  2        0.966           0.0282         0.0055        -1.48       0.0263
-##  3        0.968           0.0185         0.0140        -0.485      1.75  
-##  4        0.839           0.120          0.0419        -1.73      -0.404 
-##  5        0.936           0.0349         0.0288        -1.11       0.0263
-##  6        0.995           0              0.00475       -1.23       0.672 
-##  7        0.935           0.0528         0.0117        -1.23      -0.189 
-##  8        0.935           0.0528         0.0117        -1.85      -0.189 
-##  9        0.968           0.0185         0.0140        -0.485      1.75  
-## 10        0.999           0              0.001         -1.48       1.10  
+##  1        0.997          0.00111         0.002         -0.981       1.07 
+##  2        0.905          0.0587          0.0366        -1.23       -0.101
+##  3        0.946          0.0301          0.0240        -1.23        0.132
+##  4        0.997          0.00278         0             -1.35        0.833
+##  5        0.982          0.0129          0.00543       -1.97       -0.101
+##  6        0.835          0.149           0.0168        -0.237       3.17 
+##  7        0.997          0.00111         0.002         -0.981       1.07 
+##  8        0.805          0.167           0.0282        -0.237       1.77 
+##  9        0.976          0               0.0238        -0.981       1.77 
+## 10        0.992          0               0.0075        -1.60        1.30 
 ## # ... with 50 more rows, and 2 more variables: Petal.Width &lt;dbl&gt;, Species &lt;fct&gt;
 ```
 
@@ -756,13 +769,13 @@ iris_probs %&gt;%
 ```
 
 ```
-## Observations: 142
+## Observations: 145
 ## Variables: 5
 ## $ .level          &lt;chr&gt; "setosa", "setosa", "setosa", "setosa", "setosa", "...
-## $ .n              &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 15, 16, 1...
-## $ .n_events       &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 15, 16, 1...
-## $ .percent_tested &lt;dbl&gt; 0.000000, 1.666667, 3.333333, 5.000000, 6.666667, 8...
-## $ .percent_found  &lt;dbl&gt; 0.000000, 5.882353, 11.764706, 17.647059, 23.529412...
+## $ .n              &lt;dbl&gt; 0, 2, 5, 6, 7, 9, 10, 11, 14, 15, 16, 17, 18, 19, 2...
+## $ .n_events       &lt;dbl&gt; 0, 2, 5, 6, 7, 9, 10, 11, 14, 15, 16, 17, 18, 19, 2...
+## $ .percent_tested &lt;dbl&gt; 0.000000, 3.333333, 8.333333, 10.000000, 11.666667,...
+## $ .percent_found  &lt;dbl&gt; 0.000000, 9.090909, 22.727273, 27.272727, 31.818182...
 ```
 
 
@@ -820,10 +833,10 @@ predict(iris_ranger, iris_testing, type = "prob") %&gt;%
 ## # A tibble: 4 x 3
 ##   .metric     .estimator .estimate
 ##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy    multiclass     0.917
-## 2 kap         multiclass     0.874
-## 3 mn_log_loss multiclass     0.310
-## 4 roc_auc     hand_till      0.962
+## 1 accuracy    multiclass     0.95 
+## 2 kap         multiclass     0.925
+## 3 mn_log_loss multiclass     0.220
+## 4 roc_auc     hand_till      0.983
 ```
 
 ---

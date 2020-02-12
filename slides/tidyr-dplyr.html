@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>tidyr-dplyr.utf8</title>
     <meta charset="utf-8" />
@@ -37,9 +37,9 @@ class: inverse, center
 
 class: inverse, center
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="30%" align="center" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="50%" align="center" /&gt;
 
-# Ordenar datos con tidyr
+# `Ordenar datos con tidyr`
 
 ---
 
@@ -79,7 +79,14 @@ Cuando hablamos de datos ordenados son referimos a:
 # Funciones principales de tidyr
 
 ## pivot_longer()
+_antes spread()_
+
+--
+
 ## pivot_wider()
+_antes gather()_
+
+--
 ## unite()
 ## separate()
 
@@ -91,13 +98,27 @@ Cuando hablamos de datos ordenados son referimos a:
 
 --
 
-# pivot_longer()
+## `pivot_longer()`
 --
 
 
 ```r
+pivot_longer(data, #dataset
+             cols, #columnas para reordenar
+             names_to = "xxx", #a partir de columnas colapsadas
+             values_to = "yyy") #a partir de datos en celdas
+```
+
+.footnote[[*]
+Mas información en https://tidyr.tidyverse.org/reference/pivot_longer.html
+]
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+
+
+```r
 library(tidyr)
-head(relig_income)
+head(relig_income) #encabezado del dataset
 ```
 
 ```
@@ -114,15 +135,19 @@ head(relig_income)
 ## #   know/refused` &lt;dbl&gt;
 ```
 
+
 ---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
 
-# pivot_longer()
+## `pivot_longer()`
 
 
 ```r
-pivot_longer(relig_income, -religion, names_to = "income", values_to = "count")
+relig_income %&gt;%   #datos para ordenar 
+  pivot_longer(-religion, #columnas para reordenar 
+               names_to = "income", #columnas colapsadas
+               values_to = "count") #el conteo de los casos
 ```
 
 ```
@@ -143,17 +168,31 @@ pivot_longer(relig_income, -religion, names_to = "income", values_to = "count")
 ```
 
 
+
 ---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 ### Multiples variables están en una sola columna
-#### (esas variables pasarán a ser las nuevas variables)
+#### (esas variables pasarán a ser las nuevas columnas)
 
 --
 
-# pivot_wider()
+## `pivot_wider()`
 --
+
+```r
+pivot_wider(data, #dataset
+            names_from = #de donde se crean las columnas
+            values_from = #de donde obtengo los valores
+```
+
+
+.footnote[[*]
+Mas información en https://tidyr.tidyverse.org/reference/pivot_wider.html
+]
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 
 ```r
@@ -182,8 +221,9 @@ fish_encounters
 
 
 ```r
-fish_encounters %&gt;%
-  pivot_wider(names_from = station, values_from = seen)
+fish_encounters %&gt;% #ingreso de los datos 
+  pivot_wider(names_from = station, 
+              values_from = seen)
 ```
 
 ```
@@ -217,9 +257,9 @@ background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png
 background-size: cover
 class: center, middle
 
-# pivot_longer() 
+# `pivot_longer()` 
 # y 
-# pivot_wider() 
+# `pivot_wider()` 
 # son operaciones inversas
 
 
@@ -237,7 +277,7 @@ class: center, middle, inverse
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
 
-# separate()
+# `separate()`
 
 * Lo utilizamos para separar columnas
 
@@ -269,8 +309,12 @@ storms
 &lt;br&gt; &lt;br&gt;
 
 ```r
-str2&lt;-tidyr::separate(storms, date, c("year", "month", "day"), sep="-")
-str2
+library(tidyr)
+str2&lt;- #creo un objeto de R
+  storms %&gt;% # a partir del dataset ´storms`
+  separate(`date`, #la columna `date`
+           c("year", "month", "day"), sep="-") # divido en 3
+str2 #invoco el objeto creado
 ```
 
 ```
@@ -295,7 +339,10 @@ str2
 
 
 ```r
-unite(str2, "date", year, month, day, sep="-")
+str3 &lt;- str2 %&gt;% #objeto creado anteriormente
+  unite("date", #se crea la columna `date`
+        year, month, day, sep="-") #a partir de otras tres 
+str3
 ```
 
 ```
@@ -310,12 +357,22 @@ unite(str2, "date", year, month, day, sep="-")
 ## 6 Arthur     45     1010 1996-06-17
 ```
 
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# `unite()` 
+# y 
+# `separate()` 
+# son operaciones inversas
+
 
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# Dataset 
+# Dataset: gapminder
 
 
 ```r
@@ -332,7 +389,7 @@ library(gapminder)
 
 # Funciones útiles
 
-## head()
+## `head()`
 
 ```r
 head(gapminder)
@@ -356,7 +413,7 @@ head(gapminder)
 
 #Funciones Útiles 
 
-## tail()
+## `tail()`
 
 
 
@@ -382,7 +439,7 @@ tail(gapminder)
 
 #Funciones Útiles
 
-## glimpse()
+## `glimpse()`
 
 ```r
 dplyr::glimpse(gapminder)
@@ -404,7 +461,7 @@ dplyr::glimpse(gapminder)
 
 #Funciones Útiles
 
-## slice()
+## `slice()`
 
 
 ```r
@@ -423,7 +480,7 @@ dplyr::slice(gapminder, 5L)
 
 #Funciones Útiles
 
-## str()
+## `str()`
 
 
 ```r
@@ -444,7 +501,7 @@ str(gapminder)
 
 #Funciones Útiles
 
-## summary()
+## `summary()`
 
 
 ```r
@@ -470,58 +527,27 @@ summary(gapminder)
 ## 
 ```
 
----
-class: inverse, center
-
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/pipe.png" width="40%" align="center" /&gt;
-
-# Operador pipe
-
-
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/pipe.png" width="10%" align="right" /&gt;
-
-# Operador pipe
-
-El operador pipe nos permite concatenar funciones y objetos en R, de forma que el código tenga un aspecto más ordenado, siguiendo la filosofía de tidyverse. 
-#### Con el operador pipe
-
-```r
-library(magrittr)
-gapminder %&gt;%
-  filter(country=="Argentina")%&gt;%
-  select(gdpPercap, year) %&gt;%
-  head(3)
-```
-
-#### Sin el operador pipe
-
-```r
-head(select(filter(gapminder, country=="Argentina"), gdpPercap, year), 3)
-```
-
-
 
 ---
 class: inverse, center
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="40%" align="center" /&gt;
 
-# Manipular datos con dplyr
+# `Manipular datos con dplyr`
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# select()
+# `select()`
 
 * La función select() nos permite extraer columnas 
 
 
 ```r
 library(dplyr)
-gapminder %&gt;%
-  select(country, lifeExp, gdpPercap) %&gt;%
-  head()
+gapminder %&gt;% #datos para trabajar
+  `select`(country, lifeExp, gdpPercap) %&gt;% #elijo columnas
+  head() #encabezado con los 6 primeros casos
 ```
 
 ```
@@ -540,10 +566,18 @@ gapminder %&gt;%
 .footnote[[*]
 Mas información en https://dplyr.tidyverse.org/reference/select.html]
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# Operadores Lógicos
+
+
+
+
+---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# filter()
+# `filter()`
 
 * La función filter() nos permite extraer filas mediante un criterio lógico
 
@@ -551,9 +585,9 @@ Para ello utilizamos los siguientes operadores: &gt;, &gt;=, &lt;, =&lt;, ==, !=
 
 
 ```r
-gapminder %&gt;%
-  filter(lifeExp &gt; 80) %&gt;%
-  head(3)
+gapminder %&gt;% #datos para trabajar
+  `filter`(lifeExp &gt; 80) %&gt;% #filas con expectativa mayor a 80 años
+  head(3) #encabezado de 3 primeros casos
 ```
 
 ```
@@ -573,29 +607,29 @@ Mas información en https://dplyr.tidyverse.org/reference/filter.html]
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# filter()
+# `filter()`
 
 
 Podemos filtrar según múltiples condiciones:
 - Se cumplen ambas condiciones 
 
 ```r
-filter(condicion1, condicion2)
+filter(condicion1`,` condicion2)
 ```
 - Se cumple la condición 1 solamente
 
 ```r
-filter(condicion1, !condicion2)
+filter(condicion1, `!`condicion2)
 ```
 - Se cumplen la condición 1 y/ o la condición 2
 
 ```r
-filter(condicion1 | condicion2)
+filter(condicion1 `|` condicion2)
 ```
 - Se cumple una u otra condición, pero no ambas (disyunción exclusiva)
 
 ```r
-filter(xor(condicion1, condicion2))
+filter(`xor`(condicion1, condicion2))
 ```
 
 
@@ -610,17 +644,25 @@ class: center, middle, inverse
 # 🔧 DEMO 💻
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# `select()`: extraer columnas
+# `filter()`: extraer filas siguiendo una condición lógica
+
+---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# mutate()
+# `mutate()`
 
-* Permite crear nuevas variables
+* Permite crear nuevas variables a partir de una operación
 
 
 ```r
-gapminder %&gt;%
-  mutate(gdp = pop * gdpPercap) %&gt;%
+gapminder %&gt;% 
+  `mutate`(gdp = pop * gdpPercap) %&gt;% #creo columna `gdp`
   head()
 ```
 
@@ -644,13 +686,59 @@ Más información en https://dplyr.tidyverse.org/reference/mutate.html]
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# summarize() y group_by()
+# `arrange()`
+
+* Permite ordenar filas según una variable
+
+
+```r
+gapminder %&gt;%
+  `arrange`(year, country) %&gt;% #ordeno según año y país
+  head(4)
+```
+
+```
+## # A tibble: 4 x 6
+##   country     continent  year lifeExp     pop gdpPercap
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8 8425333      779.
+## 2 Albania     Europe     1952    55.2 1282697     1601.
+## 3 Algeria     Africa     1952    43.1 9279525     2449.
+## 4 Angola      Africa     1952    30.0 4232095     3521.
+```
+
+.footnote[[*] 
+Más información en https://dplyr.tidyverse.org/reference/arrange.html]
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-size: cover
+class: center, middle, inverse
+
+
+# 🔧 DEMO 💻
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# `mutate()`: crea nuevas variables a partir de una operación
+# `arrange()`: ordenar filas por variables
+
+
+
+---
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+#  `group_by()` y `summarize()`
 
 
 ```r
 gdp_bycontinents &lt;- gapminder %&gt;%
-    group_by(continent) %&gt;%
-    summarize(mean_gdpPercap=mean(gdpPercap))
+    `group_by`(continent) %&gt;% #agrupo por continentes
+    `summarize`(mean_gdpPercap=mean(gdpPercap)) #resumo
 gdp_bycontinents
 ```
 
@@ -667,37 +755,7 @@ gdp_bycontinents
 
 .footnote[[*] 
 Más información en https://dplyr.tidyverse.org/reference/summarise.html] 
----
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
-
-# arrange()
-
-
-```r
-gapminder %&gt;%
-  arrange(year, country)
-```
-
-```
-## # A tibble: 1,704 x 6
-##    country     continent  year lifeExp      pop gdpPercap
-##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
-##  1 Afghanistan Asia       1952    28.8  8425333      779.
-##  2 Albania     Europe     1952    55.2  1282697     1601.
-##  3 Algeria     Africa     1952    43.1  9279525     2449.
-##  4 Angola      Africa     1952    30.0  4232095     3521.
-##  5 Argentina   Americas   1952    62.5 17876956     5911.
-##  6 Australia   Oceania    1952    69.1  8691212    10040.
-##  7 Austria     Europe     1952    66.8  6927772     6137.
-##  8 Bahrain     Asia       1952    50.9   120447     9867.
-##  9 Bangladesh  Asia       1952    37.5 46886859      684.
-## 10 Belgium     Europe     1952    68    8730405     8343.
-## # ... with 1,694 more rows
-```
-
-.footnote[[*] 
-Más información en https://dplyr.tidyverse.org/reference/arrange.html]
 ---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
@@ -709,14 +767,26 @@ class: center, middle, inverse
 
 ---
 
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# `group_by()`: agrupar según un determinado criterio
+# `summarize()`: cambiar la unidad de análisis
+
+
+
+---
+
 class: middle, center
 
-## select(): extraer columnas
-## filter(): extraer filas siguiendo una restricción lógica
-## mutate(): crea nuevas variables
-## summarize(): cambiar la unidad de análisis
-## group_by(): agrupar según un determinado criterio
-## arrange(): ordenar filas por variables
+## `select()`: extraer columnas
+## `filter()`: extraer filas siguiendo una condición lógica
+## `mutate()`: crea nuevas variables
+## `arrange()`: ordenar filas por variables
+## `group_by()`: agrupar según un determinado criterio
+## `summarize()`: cambiar la unidad de análisis
+
 
 
 
@@ -726,7 +796,7 @@ background-size: cover
 class: center, middle, inverse
 
 
-# 🔧 Ejercicios 💻
+# 🔧 COFFEE BREAK 💻
 
 
 ---
@@ -747,14 +817,14 @@ devtools::session_info()
 ##  collate  Spanish_Argentina.1252      
 ##  ctype    Spanish_Argentina.1252      
 ##  tz       America/Buenos_Aires        
-##  date     2020-02-05                  
+##  date     2020-02-12                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version    date       lib source                              
 ##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.1)                      
 ##  backports     1.1.5      2019-10-02 [1] CRAN (R 3.6.1)                      
-##  callr         3.3.1      2019-07-18 [1] CRAN (R 3.6.1)                      
-##  cli           1.1.0      2019-03-19 [1] CRAN (R 3.6.1)                      
+##  callr         3.4.1      2020-01-24 [1] CRAN (R 3.6.2)                      
+##  cli           2.0.1      2020-01-08 [1] CRAN (R 3.6.2)                      
 ##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.1)                      
 ##  desc          1.2.0      2018-05-01 [1] CRAN (R 3.6.1)                      
 ##  devtools      2.2.1      2019-09-24 [1] CRAN (R 3.6.2)                      
@@ -764,46 +834,45 @@ devtools::session_info()
 ##  ellipsis      0.3.0      2019-09-20 [1] CRAN (R 3.6.1)                      
 ##  emo         * 0.0.0.9000 2019-12-07 [1] Github (hadley/emo@02a5206)         
 ##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.1)                      
-##  fansi         0.4.0      2018-10-05 [1] CRAN (R 3.6.1)                      
+##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.2)                      
 ##  fontawesome * 0.1.0      2019-12-07 [1] Github (rstudio/fontawesome@2b64e31)
 ##  fs            1.3.1      2019-05-06 [1] CRAN (R 3.6.1)                      
 ##  gapminder   * 0.3.0      2017-10-31 [1] CRAN (R 3.6.2)                      
 ##  glue          1.3.1      2019-03-12 [1] CRAN (R 3.6.1)                      
 ##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.1)                      
-##  knitr         1.26       2019-11-12 [1] CRAN (R 3.6.1)                      
+##  knitr         1.28       2020-02-06 [1] CRAN (R 3.6.2)                      
 ##  lifecycle     0.1.0      2019-08-01 [1] CRAN (R 3.6.1)                      
 ##  lubridate     1.7.4      2018-04-11 [1] CRAN (R 3.6.1)                      
 ##  magrittr      1.5        2014-11-22 [1] CRAN (R 3.6.1)                      
 ##  memoise       1.1.0      2017-04-21 [1] CRAN (R 3.6.1)                      
-##  pillar        1.4.2      2019-06-29 [1] CRAN (R 3.6.1)                      
-##  pkgbuild      1.0.4      2019-08-05 [1] CRAN (R 3.6.1)                      
+##  pillar        1.4.3      2019-12-20 [1] CRAN (R 3.6.2)                      
+##  pkgbuild      1.0.6      2019-10-09 [1] CRAN (R 3.6.2)                      
 ##  pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 3.6.1)                      
 ##  pkgload       1.0.2      2018-10-29 [1] CRAN (R 3.6.1)                      
-##  prettyunits   1.0.2      2015-07-13 [1] CRAN (R 3.6.1)                      
+##  prettyunits   1.1.1      2020-01-24 [1] CRAN (R 3.6.2)                      
 ##  processx      3.4.1      2019-07-18 [1] CRAN (R 3.6.1)                      
 ##  ps            1.3.0      2018-12-21 [1] CRAN (R 3.6.1)                      
 ##  purrr         0.3.3      2019-10-18 [1] CRAN (R 3.6.1)                      
-##  R6            2.4.0      2019-02-14 [1] CRAN (R 3.6.1)                      
+##  R6            2.4.1      2019-11-12 [1] CRAN (R 3.6.2)                      
 ##  Rcpp          1.0.3      2019-11-08 [1] CRAN (R 3.6.1)                      
 ##  remotes       2.1.0      2019-06-24 [1] CRAN (R 3.6.1)                      
 ##  rlang         0.4.2      2019-11-23 [1] CRAN (R 3.6.1)                      
-##  rmarkdown     2.0        2019-12-12 [1] CRAN (R 3.6.2)                      
+##  rmarkdown     2.1        2020-01-20 [1] CRAN (R 3.6.2)                      
 ##  rprojroot     1.3-2      2018-01-03 [1] CRAN (R 3.6.1)                      
 ##  sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.6.1)                      
-##  stringi       1.4.3      2019-03-12 [1] CRAN (R 3.6.0)                      
+##  stringi       1.4.5      2020-01-11 [1] CRAN (R 3.6.2)                      
 ##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.1)                      
-##  testthat      2.2.1      2019-07-25 [1] CRAN (R 3.6.1)                      
+##  testthat      2.3.1      2019-12-01 [1] CRAN (R 3.6.2)                      
 ##  tibble        2.1.3      2019-06-06 [1] CRAN (R 3.6.1)                      
-##  tidyr       * 1.0.0      2019-09-11 [1] CRAN (R 3.6.1)                      
+##  tidyr       * 1.0.2      2020-01-24 [1] CRAN (R 3.6.2)                      
 ##  tidyselect    0.2.5      2018-10-11 [1] CRAN (R 3.6.1)                      
 ##  usethis       1.5.1      2019-07-04 [1] CRAN (R 3.6.1)                      
 ##  utf8          1.1.4      2018-05-24 [1] CRAN (R 3.6.1)                      
-##  vctrs         0.2.0      2019-07-05 [1] CRAN (R 3.6.1)                      
+##  vctrs         0.2.2      2020-01-24 [1] CRAN (R 3.6.2)                      
 ##  withr         2.1.2      2018-03-15 [1] CRAN (R 3.6.1)                      
-##  xaringan      0.13       2019-10-30 [1] CRAN (R 3.6.2)                      
-##  xfun          0.11       2019-11-12 [1] CRAN (R 3.6.1)                      
-##  yaml          2.2.0      2018-07-25 [1] CRAN (R 3.6.0)                      
-##  zeallot       0.1.0      2018-01-28 [1] CRAN (R 3.6.1)                      
+##  xaringan      0.14       2020-01-19 [1] CRAN (R 3.6.2)                      
+##  xfun          0.12       2020-01-13 [1] CRAN (R 3.6.2)                      
+##  yaml          2.2.1      2020-02-01 [1] CRAN (R 3.6.2)                      
 ## 
 ## [1] C:/Users/Roxana/Documents/R/win-library/3.6
 ## [2] C:/Program Files/R/R-3.6.2/library
@@ -814,6 +883,7 @@ devtools::session_info()
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
+"highlightSpans": true,
 "countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {

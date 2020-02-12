@@ -267,7 +267,7 @@ sonar_recipe
 ## Operations:
 ## 
 ## Down-sampling based on Class [trained]
-## Correlation filter removed V16, V17, V20 [trained]
+## Correlation filter removed V18, V49, V15, V16, V20, V46 [trained]
 ## Centering for V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, ... [trained]
 ## Scaling for V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, ... [trained]
 ```
@@ -284,24 +284,23 @@ head(sonar_training)
 ```
 
 ```
-## # A tibble: 6 x 58
-##        V1     V2     V3     V4     V5       V6       V7     V8     V9     V10
-##     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-## 1 -0.0718 -0.327 -0.579  0.574  1.16   8.56e-1  0.238    0.408  0.161  0.0799
-## 2 -0.984  -1.19  -0.956 -1.13  -0.593 -2.67e-1  0.00817 -0.356  0.257  0.325 
-## 3  1.19    0.292 -0.700 -0.558 -0.721  2.64e-1  0.137   -0.147 -0.358  0.494 
-## 4  1.23    1.91   4.42   5.17   4.60   2.13e+0 -0.963    1.15  -0.622 -0.943 
-## 5  0.859   0.418  0.757  1.25   1.22   8.22e-1  0.532   -0.622 -0.432 -0.192 
-## 6 -0.815   0.349 -0.393  0.485  0.621  2.64e-4  0.737    0.950  1.19   0.821 
-## # ... with 48 more variables: V11 &lt;dbl&gt;, V12 &lt;dbl&gt;, V13 &lt;dbl&gt;, V14 &lt;dbl&gt;,
-## #   V15 &lt;dbl&gt;, V18 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;,
-## #   V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;,
-## #   V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;,
-## #   V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;,
-## #   V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;,
-## #   V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;,
-## #   V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;,
-## #   V60 &lt;dbl&gt;, Class &lt;fct&gt;
+## # A tibble: 6 x 55
+##       V1     V2      V3     V4     V5     V6      V7      V8      V9     V10
+##    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 -0.874 -0.187 -0.493  -0.757 -1.05  -0.333  0.485  -0.0637 -0.0692  0.128 
+## 2  0.216  0.124 -0.631  -0.791 -0.556 -0.637 -0.426  -0.396   0.875   0.972 
+## 3  0.105  0.949  1.16   -0.784  0.261  1.06  -0.0692 -0.230  -0.264  -0.167 
+## 4 -0.228 -0.614 -0.0951 -0.396 -0.497 -0.871 -0.702  -0.541  -0.184   0.120 
+## 5 -0.667 -0.726  0.270   0.525 -0.616 -1.17  -1.35   -1.09   -0.314  -0.495 
+## 6 -0.147  0.232  0.189   0.270  0.590  0.798  0.794   0.317   0.0813  0.0936
+## # ... with 45 more variables: V11 &lt;dbl&gt;, V12 &lt;dbl&gt;, V13 &lt;dbl&gt;, V14 &lt;dbl&gt;,
+## #   V17 &lt;dbl&gt;, V19 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;,
+## #   V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V30 &lt;dbl&gt;,
+## #   V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;,
+## #   V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;,
+## #   V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V50 &lt;dbl&gt;,
+## #   V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;,
+## #   V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V60 &lt;dbl&gt;, Class &lt;fct&gt;
 ```
 
 
@@ -319,27 +318,27 @@ sonar_testing
 ```
 
 ```
-## # A tibble: 83 x 58
-##    Class      V1    V10    V11    V12     V13    V14     V15     V18    V19
-##    &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1 R      0.854   0.770  2.25   3.12   3.25    2.94   2.12    1.60    1.05 
-##  2 R      2.35    2.04   1.62   1.16   1.18    0.676  0.638   0.593  -1.20 
-##  3 R      0.0488  0.904  0.649  1.38   2.80    3.19   3.40    1.65    0.751
-##  4 R      0.198   1.28  -0.350 -1.33  -1.74    0.439  1.09   -0.130  -1.20 
-##  5 R     -0.540  -1.34  -1.17  -1.03  -1.15   -1.33  -1.55   -0.514  -0.745
-##  6 R     -1.14   -1.17  -1.42  -1.08  -1.03   -1.14  -1.33   -1.19   -1.50 
-##  7 R     -0.950  -0.541 -0.922 -0.912 -0.679   0.211 -0.0194  0.682   0.765
-##  8 R     -0.733   0.166 -0.471 -0.394  0.218  -0.632 -1.35   -0.299   0.262
-##  9 R      0.107  -0.853  0.224  0.924  0.0243 -0.133 -0.0143 -0.0200 -0.330
-## 10 R      0.367   0.802  0.101 -0.140 -0.215  -0.916  0.114  -0.900  -1.02 
-## # ... with 73 more rows, and 48 more variables: V2 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;,
+## # A tibble: 83 x 55
+##    Class       V1    V10    V11    V12    V13    V14     V17    V19     V2
+##    &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 R     -3.14e-1  0.121 -0.505 -0.645 -0.291 -1.43  -0.303   0.111  0.152
+##  2 R      9.63e-1  0.759  2.26   3.19   3.19   3.17   2.31    1.23   0.683
+##  3 R     -9.46e-4  3.54   3.45   3.59   2.17   1.57   1.08    1.57   0.889
+##  4 R     -8.18e-1 -0.588 -1.11  -0.328 -1.82  -0.395 -1.21   -0.275 -0.548
+##  5 R      2.52e+0  2.09   1.62   1.19   1.21   0.811  1.29   -1.04   1.18 
+##  6 R      1.20e-1  0.899  0.649  1.42   2.77   3.43   2.12    0.928  0.438
+##  7 R      2.76e-1  1.30  -0.357 -1.36  -1.58   0.565  0.474  -1.05   2.20 
+##  8 R     -1.98e-1 -0.402 -0.884 -0.589  0.896  0.466 -1.34    0.991  0.166
+##  9 R     -4.95e-1 -1.44  -1.18  -1.05  -1.02  -1.28  -0.407  -0.587 -0.541
+## 10 R     -9.24e-1 -0.609 -0.933 -0.928 -0.562  0.327  0.0166  0.942 -0.845
+## # ... with 73 more rows, and 45 more variables: V21 &lt;dbl&gt;, V22 &lt;dbl&gt;,
 ## #   V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;,
 ## #   V29 &lt;dbl&gt;, V3 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;,
 ## #   V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V4 &lt;dbl&gt;, V40 &lt;dbl&gt;,
-## #   V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V46 &lt;dbl&gt;,
-## #   V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V5 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;,
-## #   V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;,
-## #   V59 &lt;dbl&gt;, V6 &lt;dbl&gt;, V60 &lt;dbl&gt;, V7 &lt;dbl&gt;, V8 &lt;dbl&gt;, V9 &lt;dbl&gt;
+## #   V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V47 &lt;dbl&gt;,
+## #   V48 &lt;dbl&gt;, V5 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;,
+## #   V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V6 &lt;dbl&gt;, V60 &lt;dbl&gt;,
+## #   V7 &lt;dbl&gt;, V8 &lt;dbl&gt;, V9 &lt;dbl&gt;
 ```
 
 
@@ -385,13 +384,13 @@ sonar_ranger
 ## 
 ## Type:                             Probability estimation 
 ## Number of trees:                  100 
-## Sample size:                      118 
-## Number of independent variables:  57 
+## Sample size:                      112 
+## Number of independent variables:  54 
 ## Mtry:                             7 
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.1569487
+## OOB prediction error (Brier s.):  0.1432102
 ```
 
 
@@ -418,11 +417,11 @@ sonar_rf
 ##                      Number of trees: 100
 ## No. of variables tried at each split: 7
 ## 
-##         OOB estimate of  error rate: 22.03%
+##         OOB estimate of  error rate: 21.43%
 ## Confusion matrix:
 ##    M  R class.error
-## M 49 10   0.1694915
-## R 16 43   0.2711864
+## M 44 12   0.2142857
+## R 12 44   0.2142857
 ```
 
 ---
@@ -437,16 +436,16 @@ predict(sonar_ranger, sonar_testing)
 ## # A tibble: 83 x 1
 ##    .pred_class
 ##    &lt;fct&gt;      
-##  1 R          
-##  2 M          
+##  1 M          
+##  2 R          
 ##  3 R          
 ##  4 M          
-##  5 R          
+##  5 M          
 ##  6 R          
-##  7 R          
+##  7 M          
 ##  8 R          
-##  9 M          
-## 10 M          
+##  9 R          
+## 10 R          
 ## # ... with 73 more rows
 ```
 
@@ -463,27 +462,27 @@ sonar_ranger %&gt;%
 ```
 
 ```
-## # A tibble: 83 x 59
-##    .pred_class Class      V1    V10    V11    V12     V13    V14     V15     V18
-##    &lt;fct&gt;       &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-##  1 R           R      0.854   0.770  2.25   3.12   3.25    2.94   2.12    1.60  
-##  2 M           R      2.35    2.04   1.62   1.16   1.18    0.676  0.638   0.593 
-##  3 R           R      0.0488  0.904  0.649  1.38   2.80    3.19   3.40    1.65  
-##  4 M           R      0.198   1.28  -0.350 -1.33  -1.74    0.439  1.09   -0.130 
-##  5 R           R     -0.540  -1.34  -1.17  -1.03  -1.15   -1.33  -1.55   -0.514 
-##  6 R           R     -1.14   -1.17  -1.42  -1.08  -1.03   -1.14  -1.33   -1.19  
-##  7 R           R     -0.950  -0.541 -0.922 -0.912 -0.679   0.211 -0.0194  0.682 
-##  8 R           R     -0.733   0.166 -0.471 -0.394  0.218  -0.632 -1.35   -0.299 
-##  9 M           R      0.107  -0.853  0.224  0.924  0.0243 -0.133 -0.0143 -0.0200
-## 10 M           R      0.367   0.802  0.101 -0.140 -0.215  -0.916  0.114  -0.900 
-## # ... with 73 more rows, and 49 more variables: V19 &lt;dbl&gt;, V2 &lt;dbl&gt;, V21 &lt;dbl&gt;,
-## #   V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;,
-## #   V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V3 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;,
-## #   V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V4 &lt;dbl&gt;,
-## #   V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;,
-## #   V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V5 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;,
-## #   V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;,
-## #   V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V6 &lt;dbl&gt;, V60 &lt;dbl&gt;, V7 &lt;dbl&gt;, V8 &lt;dbl&gt;, V9 &lt;dbl&gt;
+## # A tibble: 83 x 56
+##    .pred_class Class       V1    V10    V11    V12    V13    V14     V17    V19
+##    &lt;fct&gt;       &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1 M           R     -3.14e-1  0.121 -0.505 -0.645 -0.291 -1.43  -0.303   0.111
+##  2 R           R      9.63e-1  0.759  2.26   3.19   3.19   3.17   2.31    1.23 
+##  3 R           R     -9.46e-4  3.54   3.45   3.59   2.17   1.57   1.08    1.57 
+##  4 M           R     -8.18e-1 -0.588 -1.11  -0.328 -1.82  -0.395 -1.21   -0.275
+##  5 M           R      2.52e+0  2.09   1.62   1.19   1.21   0.811  1.29   -1.04 
+##  6 R           R      1.20e-1  0.899  0.649  1.42   2.77   3.43   2.12    0.928
+##  7 M           R      2.76e-1  1.30  -0.357 -1.36  -1.58   0.565  0.474  -1.05 
+##  8 R           R     -1.98e-1 -0.402 -0.884 -0.589  0.896  0.466 -1.34    0.991
+##  9 R           R     -4.95e-1 -1.44  -1.18  -1.05  -1.02  -1.28  -0.407  -0.587
+## 10 R           R     -9.24e-1 -0.609 -0.933 -0.928 -0.562  0.327  0.0166  0.942
+## # ... with 73 more rows, and 46 more variables: V2 &lt;dbl&gt;, V21 &lt;dbl&gt;, V22 &lt;dbl&gt;,
+## #   V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;, V28 &lt;dbl&gt;,
+## #   V29 &lt;dbl&gt;, V3 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;, V34 &lt;dbl&gt;,
+## #   V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V4 &lt;dbl&gt;, V40 &lt;dbl&gt;,
+## #   V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;, V47 &lt;dbl&gt;,
+## #   V48 &lt;dbl&gt;, V5 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;,
+## #   V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V6 &lt;dbl&gt;, V60 &lt;dbl&gt;,
+## #   V7 &lt;dbl&gt;, V8 &lt;dbl&gt;, V9 &lt;dbl&gt;
 ```
 
 
@@ -504,8 +503,8 @@ sonar_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.819
-## 2 kap      binary         0.637
+## 1 accuracy binary         0.795
+## 2 kap      binary         0.590
 ```
 
 ---
@@ -526,7 +525,7 @@ sonar_rf %&gt;%
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy binary         0.783
-## 2 kap      binary         0.563
+## 2 kap      binary         0.565
 ```
 
 ---
@@ -543,16 +542,16 @@ sonar_ranger %&gt;%
 ## # A tibble: 83 x 2
 ##    .pred_M .pred_R
 ##      &lt;dbl&gt;   &lt;dbl&gt;
-##  1  0.474    0.526
-##  2  0.622    0.378
-##  3  0.473    0.527
-##  4  0.525    0.475
-##  5  0.153    0.847
-##  6  0.0835   0.916
-##  7  0.176    0.824
-##  8  0.352    0.648
-##  9  0.583    0.417
-## 10  0.545    0.455
+##  1   0.581   0.419
+##  2   0.463   0.537
+##  3   0.487   0.513
+##  4   0.531   0.469
+##  5   0.524   0.476
+##  6   0.443   0.557
+##  7   0.586   0.414
+##  8   0.455   0.545
+##  9   0.119   0.881
+## 10   0.336   0.664
 ## # ... with 73 more rows
 ```
 ---
@@ -568,28 +567,27 @@ sonar_probs
 ```
 
 ```
-## # A tibble: 83 x 60
-##    .pred_M .pred_R Class      V1    V10    V11    V12     V13    V14     V15
-##      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-##  1  0.474    0.526 R      0.854   0.770  2.25   3.12   3.25    2.94   2.12  
-##  2  0.622    0.378 R      2.35    2.04   1.62   1.16   1.18    0.676  0.638 
-##  3  0.473    0.527 R      0.0488  0.904  0.649  1.38   2.80    3.19   3.40  
-##  4  0.525    0.475 R      0.198   1.28  -0.350 -1.33  -1.74    0.439  1.09  
-##  5  0.153    0.847 R     -0.540  -1.34  -1.17  -1.03  -1.15   -1.33  -1.55  
-##  6  0.0835   0.916 R     -1.14   -1.17  -1.42  -1.08  -1.03   -1.14  -1.33  
-##  7  0.176    0.824 R     -0.950  -0.541 -0.922 -0.912 -0.679   0.211 -0.0194
-##  8  0.352    0.648 R     -0.733   0.166 -0.471 -0.394  0.218  -0.632 -1.35  
-##  9  0.583    0.417 R      0.107  -0.853  0.224  0.924  0.0243 -0.133 -0.0143
-## 10  0.545    0.455 R      0.367   0.802  0.101 -0.140 -0.215  -0.916  0.114 
-## # ... with 73 more rows, and 50 more variables: V18 &lt;dbl&gt;, V19 &lt;dbl&gt;, V2 &lt;dbl&gt;,
-## #   V21 &lt;dbl&gt;, V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;,
-## #   V27 &lt;dbl&gt;, V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V3 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;,
-## #   V33 &lt;dbl&gt;, V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;,
-## #   V39 &lt;dbl&gt;, V4 &lt;dbl&gt;, V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;,
-## #   V45 &lt;dbl&gt;, V46 &lt;dbl&gt;, V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V49 &lt;dbl&gt;, V5 &lt;dbl&gt;, V50 &lt;dbl&gt;,
-## #   V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;, V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;,
-## #   V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V6 &lt;dbl&gt;, V60 &lt;dbl&gt;, V7 &lt;dbl&gt;, V8 &lt;dbl&gt;,
-## #   V9 &lt;dbl&gt;
+## # A tibble: 83 x 57
+##    .pred_M .pred_R Class       V1    V10    V11    V12    V13    V14     V17
+##      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1   0.581   0.419 R     -3.14e-1  0.121 -0.505 -0.645 -0.291 -1.43  -0.303 
+##  2   0.463   0.537 R      9.63e-1  0.759  2.26   3.19   3.19   3.17   2.31  
+##  3   0.487   0.513 R     -9.46e-4  3.54   3.45   3.59   2.17   1.57   1.08  
+##  4   0.531   0.469 R     -8.18e-1 -0.588 -1.11  -0.328 -1.82  -0.395 -1.21  
+##  5   0.524   0.476 R      2.52e+0  2.09   1.62   1.19   1.21   0.811  1.29  
+##  6   0.443   0.557 R      1.20e-1  0.899  0.649  1.42   2.77   3.43   2.12  
+##  7   0.586   0.414 R      2.76e-1  1.30  -0.357 -1.36  -1.58   0.565  0.474 
+##  8   0.455   0.545 R     -1.98e-1 -0.402 -0.884 -0.589  0.896  0.466 -1.34  
+##  9   0.119   0.881 R     -4.95e-1 -1.44  -1.18  -1.05  -1.02  -1.28  -0.407 
+## 10   0.336   0.664 R     -9.24e-1 -0.609 -0.933 -0.928 -0.562  0.327  0.0166
+## # ... with 73 more rows, and 47 more variables: V19 &lt;dbl&gt;, V2 &lt;dbl&gt;, V21 &lt;dbl&gt;,
+## #   V22 &lt;dbl&gt;, V23 &lt;dbl&gt;, V24 &lt;dbl&gt;, V25 &lt;dbl&gt;, V26 &lt;dbl&gt;, V27 &lt;dbl&gt;,
+## #   V28 &lt;dbl&gt;, V29 &lt;dbl&gt;, V3 &lt;dbl&gt;, V30 &lt;dbl&gt;, V31 &lt;dbl&gt;, V32 &lt;dbl&gt;, V33 &lt;dbl&gt;,
+## #   V34 &lt;dbl&gt;, V35 &lt;dbl&gt;, V36 &lt;dbl&gt;, V37 &lt;dbl&gt;, V38 &lt;dbl&gt;, V39 &lt;dbl&gt;, V4 &lt;dbl&gt;,
+## #   V40 &lt;dbl&gt;, V41 &lt;dbl&gt;, V42 &lt;dbl&gt;, V43 &lt;dbl&gt;, V44 &lt;dbl&gt;, V45 &lt;dbl&gt;,
+## #   V47 &lt;dbl&gt;, V48 &lt;dbl&gt;, V5 &lt;dbl&gt;, V50 &lt;dbl&gt;, V51 &lt;dbl&gt;, V52 &lt;dbl&gt;, V53 &lt;dbl&gt;,
+## #   V54 &lt;dbl&gt;, V55 &lt;dbl&gt;, V56 &lt;dbl&gt;, V57 &lt;dbl&gt;, V58 &lt;dbl&gt;, V59 &lt;dbl&gt;, V6 &lt;dbl&gt;,
+## #   V60 &lt;dbl&gt;, V7 &lt;dbl&gt;, V8 &lt;dbl&gt;, V9 &lt;dbl&gt;
 ```
 
 ---
@@ -610,7 +608,7 @@ sonar_probs %&gt;%
 ## $ .n              &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
 ## $ .n_events       &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
 ## $ .percent_tested &lt;dbl&gt; 0.000000, 1.204819, 2.409639, 3.614458, 4.819277, 6...
-## $ .percent_found  &lt;dbl&gt; 0.000000, 2.222222, 4.444444, 6.666667, 8.888889, 1...
+## $ .percent_found  &lt;dbl&gt; 0.000000, 2.380952, 4.761905, 7.142857, 9.523810, 1...
 ```
 
 
@@ -656,10 +654,10 @@ predict(sonar_ranger, sonar_testing, type = "prob") %&gt;%
 ## # A tibble: 4 x 3
 ##   .metric     .estimator .estimate
 ##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy    binary         0.819
-## 2 kap         binary         0.637
-## 3 mn_log_loss binary         0.453
-## 4 roc_auc     binary         0.889
+## 1 accuracy    binary         0.795
+## 2 kap         binary         0.590
+## 3 mn_log_loss binary         0.473
+## 4 roc_auc     binary         0.904
 ```
 
 
