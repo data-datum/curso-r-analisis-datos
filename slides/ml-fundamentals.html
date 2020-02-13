@@ -54,10 +54,13 @@ class: center, middle
 
 
 # Ejemplos de modelos predictivos
-1. ¿Cuántas copias venderá este libro?
-1. ¿Es este mail spam?
-1. Basada en elecciones pasadas, ¿esta película interesará al usuario?
-1. ¿Tendrá este paciente una enfermedad especial?
+
+&lt;br&gt;
+#### Determinar si un tumor es maligno o benigno en una imagen médica. 
+#### Detectar actividad fraudulenta en transacciones de tarjeta de crédito.
+#### Identificar el código zip de letras manuscritas en un sobre. 
+#### Detectar patrones de acceso anormales en un website
+#### Identificar tópicos (temas) en posteos de blogs. 
 
 
 
@@ -287,8 +290,9 @@ class: inverse, center
 
 
 ```r
-iris_split &lt;- rsample::initial_split(iris, prop = 0.6)
-iris_split
+iris_split &lt;- iris %&gt;% #creo un objeto a partir de iris
+  `initial_split`(prop = 0.6) #60% de los datos
+iris_split 
 ```
 
 ```
@@ -352,12 +356,12 @@ Dentro de esta etapa se incluyen tareas como:
 
 
 ```r
-iris_recipe &lt;- training(iris_split) %&gt;%
-  recipe(Species~.) %&gt;%
-  step_corr(all_predictors()) %&gt;%
-  step_center(all_predictors(), -all_outcomes()) %&gt;%
-  step_scale(all_predictors(), -all_outcomes()) %&gt;%
-  prep()
+iris_recipe &lt;- `training`(iris_split) %&gt;%
+  `recipe`(Species~.) %&gt;%
+  `step_corr`(all_predictors()) %&gt;%
+  `step_center`(all_predictors(), -all_outcomes()) %&gt;%
+  `step_scale`(all_predictors(), -all_outcomes()) %&gt;%
+  `prep`()
 ```
 
 
@@ -401,13 +405,22 @@ iris_recipe
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
 
+# Orden de las operaciones
+
+
+
+
+.footnote[Mas información en https://tidymodels.github.io/recipes/articles/Ordering.html]
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
+
 ## juice()
 - **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
 
 #### juice() aplicamos a los datos de entrenamiento
 
 ```r
-iris_training &lt;- juice(iris_recipe)
+iris_training &lt;- `juice`(iris_recipe)
 ```
 
 
@@ -419,12 +432,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -1.48        0.366       -1.38 setosa 
-## 2       -1.60        0.132       -1.38 setosa 
-## 3       -1.10        1.30        -1.38 setosa 
-## 4       -0.609       2.00        -1.12 setosa 
-## 5       -1.60        0.833       -1.25 setosa 
-## 6       -1.10        0.833       -1.38 setosa
+## 1       -0.898      1.04         -1.35 setosa 
+## 2       -1.13      -0.139        -1.35 setosa 
+## 3       -1.37       0.334        -1.35 setosa 
+## 4       -1.49       0.0973       -1.35 setosa 
+## 5       -0.544      1.99         -1.08 setosa 
+## 6       -1.49       0.807        -1.22 setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -440,7 +453,7 @@ head(iris_training)
 
 ```r
 iris_testing &lt;- iris_recipe %&gt;%
-  bake(testing(iris_split)) 
+  `bake`(testing(iris_split)) 
 ```
 
 
@@ -452,16 +465,16 @@ iris_testing
 ## # A tibble: 60 x 4
 ##    Sepal.Length Sepal.Width Petal.Width Species
 ##           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1       -0.981       1.07        -1.38 setosa 
-##  2       -1.23       -0.101       -1.38 setosa 
-##  3       -1.23        0.132       -1.51 setosa 
-##  4       -1.35        0.833       -1.38 setosa 
-##  5       -1.97       -0.101       -1.51 setosa 
-##  6       -0.237       3.17        -1.12 setosa 
-##  7       -0.981       1.07        -1.25 setosa 
-##  8       -0.237       1.77        -1.25 setosa 
-##  9       -0.981       1.77        -1.25 setosa 
-## 10       -1.60        1.30        -1.38 setosa 
+##  1       -1.02       1.28         -1.35 setosa 
+##  2       -1.02       0.807        -1.35 setosa 
+##  3       -1.72      -0.376        -1.35 setosa 
+##  4       -1.13       0.0973       -1.48 setosa 
+##  5       -0.544      1.52         -1.35 setosa 
+##  6       -1.25      -0.139        -1.48 setosa 
+##  7       -0.190      3.17         -1.08 setosa 
+##  8       -0.544      1.99         -1.08 setosa 
+##  9       -1.02       0.807        -1.08 setosa 
+## 10       -1.37       0.334        -1.35 setosa 
 ## # ... with 50 more rows
 ```
 
@@ -532,13 +545,16 @@ Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
 
 
 ```r
-iris_ranger &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
-  set_engine("ranger") %&gt;%
-  fit(Species~., data = iris_training)
+iris_ranger &lt;- `rand_forest`(trees = 100, mode = "classification") %&gt;%
+  `set_engine`("ranger") %&gt;%
+  `fit`(Species~., data = iris_training)
 
 iris_ranger
 ```
 
+
+.footnote[Más información en 
+https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 {ranger}
@@ -546,7 +562,7 @@ iris_ranger
 ```
 ## parsnip model object
 ## 
-## Fit time:  20ms 
+## Fit time:  0ms 
 ## Ranger result
 ## 
 ## Call:
@@ -560,41 +576,10 @@ iris_ranger
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.06859598
+## OOB prediction error (Brier s.):  0.0646187
 ```
 
 
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
-
-{randomForest}
-
-```r
-iris_rf &lt;- rand_forest(trees = 100, mode = "classification") %&gt;%
-  set_engine("randomForest") %&gt;%
-  fit(Species~., data = iris_training)
-
-iris_rf
-```
-
-```
-## parsnip model object
-## 
-## Fit time:  21ms 
-## 
-## Call:
-##  randomForest(x = as.data.frame(x), y = y, ntree = ~100) 
-##                Type of random forest: classification
-##                      Number of trees: 100
-## No. of variables tried at each split: 1
-## 
-##         OOB estimate of  error rate: 6.67%
-## Confusion matrix:
-##            setosa versicolor virginica class.error
-## setosa         28          0         0  0.00000000
-## versicolor      0         28         2  0.06666667
-## virginica       0          4        28  0.12500000
-```
 
 
 ---
@@ -630,26 +615,29 @@ predict(iris_ranger, iris_testing)
 
 ```r
 iris_ranger %&gt;%
-  predict(iris_testing) %&gt;%
-  bind_cols(iris_testing) 
+  `predict`(iris_testing) %&gt;%
+  `bind_cols`(iris_testing) 
 ```
 
 ```
 ## # A tibble: 60 x 5
 ##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
 ##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -0.981       1.07        -1.38 setosa 
-##  2 setosa            -1.23       -0.101       -1.38 setosa 
-##  3 setosa            -1.23        0.132       -1.51 setosa 
-##  4 setosa            -1.35        0.833       -1.38 setosa 
-##  5 setosa            -1.97       -0.101       -1.51 setosa 
-##  6 setosa            -0.237       3.17        -1.12 setosa 
-##  7 setosa            -0.981       1.07        -1.25 setosa 
-##  8 setosa            -0.237       1.77        -1.25 setosa 
-##  9 setosa            -0.981       1.77        -1.25 setosa 
-## 10 setosa            -1.60        1.30        -1.38 setosa 
+##  1 setosa            -1.02       1.28         -1.35 setosa 
+##  2 setosa            -1.02       0.807        -1.35 setosa 
+##  3 setosa            -1.72      -0.376        -1.35 setosa 
+##  4 setosa            -1.13       0.0973       -1.48 setosa 
+##  5 setosa            -0.544      1.52         -1.35 setosa 
+##  6 setosa            -1.25      -0.139        -1.48 setosa 
+##  7 setosa            -0.190      3.17         -1.08 setosa 
+##  8 setosa            -0.544      1.99         -1.08 setosa 
+##  9 setosa            -1.02       0.807        -1.08 setosa 
+## 10 setosa            -1.37       0.334        -1.35 setosa 
 ## # ... with 50 more rows
 ```
+
+
+
 
 ---
 class: inverse, center
@@ -667,9 +655,9 @@ class: inverse, center
 
 ```r
 iris_ranger %&gt;%
-  predict(iris_testing) %&gt;%
-  bind_cols(iris_testing) %&gt;%
-  metrics(truth=Species, estimate=.pred_class)
+  `predict`(iris_testing) %&gt;%
+  `bind_cols`(iris_testing) %&gt;%
+  `metrics`(truth=Species, estimate=.pred_class)
 ```
 
 ```
@@ -680,26 +668,6 @@ iris_ranger %&gt;%
 ## 2 kap      multiclass     0.925
 ```
 
----
-
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
-
-### Random Forest con librería `random forest`
-
-```r
-iris_rf %&gt;%
-  predict(iris_testing) %&gt;%
-  bind_cols(iris_testing) %&gt;%
-  metrics(truth=Species, estimate=.pred_class)
-```
-
-```
-## # A tibble: 2 x 3
-##   .metric  .estimator .estimate
-##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.95 
-## 2 kap      multiclass     0.925
-```
 
 ---
 
@@ -715,16 +683,16 @@ iris_ranger %&gt;%
 ## # A tibble: 60 x 3
 ##    .pred_setosa .pred_versicolor .pred_virginica
 ##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
-##  1        0.997          0.00111         0.002  
-##  2        0.905          0.0587          0.0366 
-##  3        0.946          0.0301          0.0240 
-##  4        0.997          0.00278         0      
-##  5        0.982          0.0129          0.00543
-##  6        0.835          0.149           0.0168 
-##  7        0.997          0.00111         0.002  
-##  8        0.805          0.167           0.0282 
-##  9        0.976          0               0.0238 
-## 10        0.992          0               0.0075 
+##  1        1              0               0      
+##  2        0.992          0.00397         0.00397
+##  3        0.679          0.316           0.00525
+##  4        0.913          0.0618          0.0249 
+##  5        0.967          0.0216          0.0111 
+##  6        0.912          0.0664          0.0213 
+##  7        0.899          0.0457          0.0555 
+##  8        0.941          0.0216          0.0375 
+##  9        0.992          0.00397         0.00397
+## 10        0.946          0.0419          0.0121 
 ## # ... with 50 more rows
 ```
 ---
@@ -735,25 +703,26 @@ iris_ranger %&gt;%
 ```r
 iris_probs &lt;- iris_ranger %&gt;%
   predict(iris_testing, type = "prob") %&gt;%
-  bind_cols(iris_testing)
+  bind_cols(iris_testing) %&gt;%
+  select(.pred_setosa, .pred_versicolor, .pred_virginica, Species)
 iris_probs
 ```
 
 ```
-## # A tibble: 60 x 7
-##    .pred_setosa .pred_versicolor .pred_virginica Sepal.Length Sepal.Width
-##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-##  1        0.997          0.00111         0.002         -0.981       1.07 
-##  2        0.905          0.0587          0.0366        -1.23       -0.101
-##  3        0.946          0.0301          0.0240        -1.23        0.132
-##  4        0.997          0.00278         0             -1.35        0.833
-##  5        0.982          0.0129          0.00543       -1.97       -0.101
-##  6        0.835          0.149           0.0168        -0.237       3.17 
-##  7        0.997          0.00111         0.002         -0.981       1.07 
-##  8        0.805          0.167           0.0282        -0.237       1.77 
-##  9        0.976          0               0.0238        -0.981       1.77 
-## 10        0.992          0               0.0075        -1.60        1.30 
-## # ... with 50 more rows, and 2 more variables: Petal.Width &lt;dbl&gt;, Species &lt;fct&gt;
+## # A tibble: 60 x 4
+##    .pred_setosa .pred_versicolor .pred_virginica Species
+##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;  
+##  1        1              0               0       setosa 
+##  2        0.992          0.00397         0.00397 setosa 
+##  3        0.679          0.316           0.00525 setosa 
+##  4        0.913          0.0618          0.0249  setosa 
+##  5        0.967          0.0216          0.0111  setosa 
+##  6        0.912          0.0664          0.0213  setosa 
+##  7        0.899          0.0457          0.0555  setosa 
+##  8        0.941          0.0216          0.0375  setosa 
+##  9        0.992          0.00397         0.00397 setosa 
+## 10        0.946          0.0419          0.0121  setosa 
+## # ... with 50 more rows
 ```
 
 ---
@@ -764,18 +733,18 @@ iris_probs
 
 ```r
 iris_probs %&gt;%
-  gain_curve(.pred_setosa:.pred_virginica, truth=Species) %&gt;%
+  `gain_curve`(.pred_setosa:.pred_virginica, truth=Species) %&gt;%
   glimpse()
 ```
 
 ```
-## Observations: 145
+## Observations: 141
 ## Variables: 5
 ## $ .level          &lt;chr&gt; "setosa", "setosa", "setosa", "setosa", "setosa", "...
-## $ .n              &lt;dbl&gt; 0, 2, 5, 6, 7, 9, 10, 11, 14, 15, 16, 17, 18, 19, 2...
-## $ .n_events       &lt;dbl&gt; 0, 2, 5, 6, 7, 9, 10, 11, 14, 15, 16, 17, 18, 19, 2...
-## $ .percent_tested &lt;dbl&gt; 0.000000, 3.333333, 8.333333, 10.000000, 11.666667,...
-## $ .percent_found  &lt;dbl&gt; 0.000000, 9.090909, 22.727273, 27.272727, 31.818182...
+## $ .n              &lt;dbl&gt; 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 16, 18, 19,...
+## $ .n_events       &lt;dbl&gt; 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 16, 18, 19,...
+## $ .percent_tested &lt;dbl&gt; 0.000000, 1.666667, 5.000000, 6.666667, 8.333333, 1...
+## $ .percent_found  &lt;dbl&gt; 0.000000, 4.761905, 14.285714, 19.047619, 23.809524...
 ```
 
 
@@ -790,7 +759,7 @@ iris_probs%&gt;%
   autoplot()
 ```
 
-![](ml-fundamentals_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](ml-fundamentals_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
@@ -809,11 +778,11 @@ iris_probs%&gt;%
 
 ```r
 iris_probs%&gt;%
-  roc_curve(.pred_setosa:.pred_virginica, truth=Species) %&gt;%
-  autoplot()
+  `roc_curve`(.pred_setosa:.pred_virginica, truth=Species) %&gt;%
+  `autoplot`()
 ```
 
-![](ml-fundamentals_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+![](ml-fundamentals_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -835,8 +804,8 @@ predict(iris_ranger, iris_testing, type = "prob") %&gt;%
 ##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy    multiclass     0.95 
 ## 2 kap         multiclass     0.925
-## 3 mn_log_loss multiclass     0.220
-## 4 roc_auc     hand_till      0.983
+## 3 mn_log_loss multiclass     0.186
+## 4 roc_auc     hand_till      0.992
 ```
 
 ---
@@ -919,19 +888,18 @@ sessionInfo()
 ##  [70] shinystan_2.5.0      tidyposterior_0.0.2  yaml_2.2.1          
 ##  [73] gridExtra_2.3        loo_2.2.0            StanHeaders_2.21.0-1
 ##  [76] rpart_4.1-15         stringi_1.4.5        tokenizers_0.2.1    
-##  [79] dygraphs_1.1.1.6     randomForest_4.6-14  boot_1.3-23         
-##  [82] pkgbuild_1.0.6       lava_1.6.6           matrixStats_0.55.0  
-##  [85] rlang_0.4.2          pkgconfig_2.0.3      evaluate_0.14       
-##  [88] lattice_0.20-38      labeling_0.3         rstantools_2.0.0    
-##  [91] htmlwidgets_1.5.1    tidyselect_0.2.5     processx_3.4.1      
-##  [94] plyr_1.8.4           magrittr_1.5         R6_2.4.1            
-##  [97] generics_0.0.2       pillar_1.4.3         withr_2.1.2         
-## [100] xts_0.12-0           survival_3.1-8       nnet_7.3-12         
-## [103] janeaustenr_0.1.5    crayon_1.3.4         utf8_1.1.4          
-## [106] rmarkdown_2.1        grid_3.6.2           callr_3.4.1         
-## [109] threejs_0.3.3        digest_0.6.23        xtable_1.8-4        
-## [112] httpuv_1.5.2         stats4_3.6.2         munsell_0.5.0       
-## [115] shinyjs_1.1
+##  [79] dygraphs_1.1.1.6     boot_1.3-23          pkgbuild_1.0.6      
+##  [82] lava_1.6.6           matrixStats_0.55.0   rlang_0.4.2         
+##  [85] pkgconfig_2.0.3      evaluate_0.14        lattice_0.20-38     
+##  [88] labeling_0.3         rstantools_2.0.0     htmlwidgets_1.5.1   
+##  [91] tidyselect_0.2.5     processx_3.4.1       plyr_1.8.4          
+##  [94] magrittr_1.5         R6_2.4.1             generics_0.0.2      
+##  [97] pillar_1.4.3         withr_2.1.2          xts_0.12-0          
+## [100] survival_3.1-8       nnet_7.3-12          janeaustenr_0.1.5   
+## [103] crayon_1.3.4         utf8_1.1.4           rmarkdown_2.1       
+## [106] grid_3.6.2           callr_3.4.1          threejs_0.3.3       
+## [109] digest_0.6.23        xtable_1.8-4         httpuv_1.5.2        
+## [112] stats4_3.6.2         munsell_0.5.0        shinyjs_1.1
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -939,6 +907,7 @@ sessionInfo()
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
+"highlightSpans": true,
 "countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {

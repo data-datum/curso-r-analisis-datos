@@ -7,6 +7,7 @@ output:
     nature:
       highlightStyle: github
       highlightLines: true
+      highlightSpans: true
       countIncrementalSlides: true
 ---
 class: inverse, center

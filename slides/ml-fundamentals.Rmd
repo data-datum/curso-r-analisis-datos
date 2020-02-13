@@ -6,6 +6,7 @@ output:
     nature:
       highlightStyle: github
       highlightLines: true
+      highlightSpans: true
       countIncrementalSlides: true
 ---
 class: inverse, center
@@ -54,10 +55,13 @@ class: center, middle
 
 
 # Ejemplos de modelos predictivos
-1. ¿Cuántas copias venderá este libro?
-1. ¿Es este mail spam?
-1. Basada en elecciones pasadas, ¿esta película interesará al usuario?
-1. ¿Tendrá este paciente una enfermedad especial?
+
+<br>
+#### Determinar si un tumor es maligno o benigno en una imagen médica. 
+#### Detectar actividad fraudulenta en transacciones de tarjeta de crédito.
+#### Identificar el código zip de letras manuscritas en un sobre. 
+#### Detectar patrones de acceso anormales en un website
+#### Identificar tópicos (temas) en posteos de blogs. 
 
 
 
@@ -222,8 +226,9 @@ class: inverse, center
 
 
 ```{r } 
-iris_split <- rsample::initial_split(iris, prop = 0.6)
-iris_split
+iris_split <- iris %>% #creo un objeto a partir de iris
+  `initial_split`(prop = 0.6) #60% de los datos
+iris_split 
 ```
 
 
@@ -282,12 +287,12 @@ Dentro de esta etapa se incluyen tareas como:
 - **prep()**: Indica que hay que ejecutar todos los pasos anteriores. 
 
 ```{r } 
-iris_recipe <- training(iris_split) %>%
-  recipe(Species~.) %>%
-  step_corr(all_predictors()) %>%
-  step_center(all_predictors(), -all_outcomes()) %>%
-  step_scale(all_predictors(), -all_outcomes()) %>%
-  prep()
+iris_recipe <- `training`(iris_split) %>%
+  `recipe`(Species~.) %>%
+  `step_corr`(all_predictors()) %>%
+  `step_center`(all_predictors(), -all_outcomes()) %>%
+  `step_scale`(all_predictors(), -all_outcomes()) %>%
+  `prep`()
 
 ```
 
@@ -313,12 +318,21 @@ iris_recipe
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
 
+# Orden de las operaciones
+
+
+
+
+.footnote[Mas información en https://tidymodels.github.io/recipes/articles/Ordering.html]
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+
 ## juice()
 - **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
 
 #### juice() aplicamos a los datos de entrenamiento
 ```{r } 
-iris_training <- juice(iris_recipe)
+iris_training <- `juice`(iris_recipe)
 ```
 
 ```{r } 
@@ -337,7 +351,7 @@ head(iris_training)
 #### bake() aplicamos a los datos de prueba
 ```{r } 
 iris_testing <- iris_recipe %>%
-  bake(testing(iris_split)) 
+  `bake`(testing(iris_split)) 
 ```
 
 ```{r } 
@@ -410,13 +424,16 @@ Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
 1. Ajuste (fit)
 
 ```{r eval=FALSE} 
-iris_ranger <- rand_forest(trees = 100, mode = "classification") %>%
-  set_engine("ranger") %>%
-  fit(Species~., data = iris_training)
+iris_ranger <- `rand_forest`(trees = 100, mode = "classification") %>%
+  `set_engine`("ranger") %>%
+  `fit`(Species~., data = iris_training)
 
 iris_ranger
 ```
 
+
+.footnote[Más información en 
+https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 {ranger}
@@ -428,17 +445,6 @@ iris_ranger
 ```
 
 
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
-
-{randomForest}
-```{r } 
-iris_rf <- rand_forest(trees = 100, mode = "classification") %>%
-  set_engine("randomForest") %>%
-  fit(Species~., data = iris_training)
-
-iris_rf
-```
 
 
 ---
@@ -446,7 +452,6 @@ iris_rf
 
 ```{r } 
 predict(iris_ranger, iris_testing)
-
 ```
 
 
@@ -456,10 +461,13 @@ predict(iris_ranger, iris_testing)
 
 ```{r } 
 iris_ranger %>%
-  predict(iris_testing) %>%
-  bind_cols(iris_testing) 
+  `predict`(iris_testing) %>%
+  `bind_cols`(iris_testing) 
 
 ```
+
+
+
 
 ---
 class: inverse, center
@@ -476,22 +484,11 @@ class: inverse, center
 ### Random Forest con librería `ranger`
 ```{r } 
 iris_ranger %>%
-  predict(iris_testing) %>%
-  bind_cols(iris_testing) %>%
-  metrics(truth=Species, estimate=.pred_class)
+  `predict`(iris_testing) %>%
+  `bind_cols`(iris_testing) %>%
+  `metrics`(truth=Species, estimate=.pred_class)
 ```
 
----
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
-### Random Forest con librería `random forest`
-```{r } 
-iris_rf %>%
-  predict(iris_testing) %>%
-  bind_cols(iris_testing) %>%
-  metrics(truth=Species, estimate=.pred_class)
-```
 
 ---
 
@@ -503,12 +500,15 @@ iris_ranger %>%
 ```
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
+```{r message=FALSE, warning=FALSE, echo=FALSE} 
+library(dplyr)
+```
 
 ```{r } 
 iris_probs <- iris_ranger %>%
   predict(iris_testing, type = "prob") %>%
-  bind_cols(iris_testing)
+  bind_cols(iris_testing) %>%
+  select(.pred_setosa, .pred_versicolor, .pred_virginica, Species)
 iris_probs
 ```
 
@@ -519,7 +519,7 @@ iris_probs
 
 ```{r } 
 iris_probs %>%
-  gain_curve(.pred_setosa:.pred_virginica, truth=Species) %>%
+  `gain_curve`(.pred_setosa:.pred_virginica, truth=Species) %>%
   glimpse()
 ```
 
@@ -550,8 +550,8 @@ iris_probs%>%
 
 ```{r } 
 iris_probs%>%
-  roc_curve(.pred_setosa:.pred_virginica, truth=Species) %>%
-  autoplot()
+  `roc_curve`(.pred_setosa:.pred_virginica, truth=Species) %>%
+  `autoplot`()
 ```
 
 
