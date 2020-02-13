@@ -236,7 +236,14 @@ Estos son los datos de entrenamiento/prueba/total
 
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-size: cover
+class: center, middle
 
+# `initial_split()`: nos permite dividir el set de datos en entrenamiento y prueba
+
+
+---
 
 class: inverse, center
 
@@ -316,10 +323,29 @@ iris_recipe
 ```
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-size: cover
+class: center, middle
+
+# `recipe()`: especifico fórmula
+# `step_corr()`: remuevo las variables correlacionadas
+# `step_center()`: centrar 
+# `step_scale()`: escalar
+# `prep()`:
+
+
+---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
 
 # Orden de las operaciones
 
+1. Imputación de valores perdidos.
+1. Transformaciones para variables individuales
+1. Discretizar las variables (si no hubiera otra opción)
+1. Creación de variables latentes
+1. Creación de interacciones
+1. Normalización (centrado, escalado, etc)
+1. Transformaciones multivariadas (PCA, etc)
 
 
 
@@ -357,6 +383,43 @@ iris_testing <- iris_recipe %>%
 ```{r } 
 iris_testing
 ```
+
+
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-size: cover
+class: center, middle
+
+
+# `juice()`: formato final a datos de entrenamiento
+# `bake()`: aplicar transformaciones a datos de prueba
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# NO OLVIDAR 
+
+## Para buscar información sobre alguna función en particular
+
+```{r message=FALSE, warning=FALSE, eval=FALSE} 
+library(tidymodels)
+`?initial_split`
+`?recipe`
+`?bake`
+```
+
+
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-size: cover
+class: center, middle, inverse
+
+
+# `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
 
 
 ---
@@ -438,15 +501,38 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 {ranger}
 ```{r echo=FALSE}
-iris_ranger <- rand_forest(trees = 100, mode = "classification") %>%
-  set_engine("ranger") %>%
+iris_ranger <- rand_forest(trees = 500, mode = "classification") %>%
+  set_engine("ranger") %>% 
   fit(Species~., data = iris_training)
 iris_ranger
 ```
 
 
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-size: cover
+class: center, middle
+
+# `rand_forest()`: declaro `trees` y el `mode` (clasificación)
+# `set_engine()`: declaro que librería voy a usar
+# `fit()`:declaro la fórmula y los datos de entrada
 
 
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# `predict()`
+```{r message=FALSE, warning=FALSE, eval=FALSE} 
+predict(objeto, datos_nuevos)
+```
+
+
+* El objeto es un objeto de clase "model fit" (obtenido en el paso anterior)
+* datos_nuevos es un tibble o data.frame
+
+
+.footnote[https://tidymodels.github.io/parsnip/reference/predict.model_fit.html]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
@@ -455,18 +541,20 @@ predict(iris_ranger, iris_testing)
 ```
 
 
-
+.footnote[https://tidymodels.github.io/parsnip/reference/predict.model_fit.html]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# Usando `bind_cols()`puedo observar los datos de prueba y comparar
 
 ```{r } 
 iris_ranger %>%
   `predict`(iris_testing) %>%
   `bind_cols`(iris_testing) 
-
 ```
 
 
+.footnote[https://dplyr.tidyverse.org/reference/bind.html]
 
 
 ---
@@ -477,11 +565,51 @@ class: inverse, center
 # `Validación`
 
 ---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
+
+# Durante la validación, evaluamos el modelo predictivo
+# Esa evaluación puede ser mediante una métrica o un gráfico
+
+---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
-## 4° Paso: Validación del modelo
+## 4° Paso: Validación del modelo predictivo
 
 ### Random Forest con librería `ranger`
+```{r } 
+iris_ranger %>%
+  predict(iris_testing) %>% #predicción
+  bind_cols(iris_testing) %>% #comparar 
+  `metrics`(truth=Species, estimate=.pred_class) #métricas
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+# `predict()`
+```{r } 
+iris_ranger %>%
+  `predict`(iris_testing)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
+
+# `bind_cols()`
+```{r } 
+iris_ranger %>%
+  `predict`(iris_testing) %>%
+  `bind_cols`(iris_testing)
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
+
+# `metrics()`
 ```{r } 
 iris_ranger %>%
   `predict`(iris_testing) %>%
@@ -492,6 +620,56 @@ iris_ranger %>%
 
 ---
 
+# `sens()`
+```{r } 
+iris_ranger %>%
+  predict(iris_testing) %>%
+  bind_cols(iris_testing) %>%
+  `sens`(truth=Species, estimate=.pred_class) #sensibilidad
+```
+
+---
+# `spec()`
+
+```{r } 
+iris_ranger %>%
+  predict(iris_testing) %>%
+  bind_cols(iris_testing) %>%
+  `spec`(truth=Species, estimate=.pred_class) #especificidad
+```
+
+---
+# `precision()`
+```{r } 
+iris_ranger %>%
+  predict(iris_testing) %>%
+  bind_cols(iris_testing) %>%
+  `precision`(truth=Species, estimate=.pred_class) #precisión
+```
+
+---
+# `conf_mat()`
+
+```{r } 
+iris_ranger %>%
+  predict(iris_testing) %>%
+  bind_cols(iris_testing) %>%
+  `conf_mat`(truth=Species, estimate=.pred_class) #matriz de confusión
+```
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-size: cover
+class: center, middle
+
+# `metrics()`: exactitud y kappa
+# `sens()`: sensibilidad
+# `spec()`: especificidad
+# `precision()`: precisión
+# `conf_mat()`: matriz de confusión
+
+
+
+---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
 ```{r } 
@@ -500,39 +678,22 @@ iris_ranger %>%
 ```
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+# Obtengo las probabilidades
 ```{r message=FALSE, warning=FALSE, echo=FALSE} 
 library(dplyr)
 ```
 
 ```{r } 
 iris_probs <- iris_ranger %>%
-  predict(iris_testing, type = "prob") %>%
-  bind_cols(iris_testing) %>%
-  select(.pred_setosa, .pred_versicolor, .pred_virginica, Species)
+  `predict`(iris_testing, type = "prob") %>%
+  bind_cols(iris_testing)%>%
+  select(.pred_setosa:.pred_virginica, Species)
 iris_probs
 ```
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
-
-```{r } 
-iris_probs %>%
-  `gain_curve`(.pred_setosa:.pred_virginica, truth=Species) %>%
-  glimpse()
-```
-
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
-```{r } 
-library(yardstick)
-iris_probs%>%
-  gain_curve(.pred_setosa:.pred_virginica, truth=Species) %>%
-  autoplot()
-```
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
@@ -555,6 +716,14 @@ iris_probs%>%
 ```
 
 
+---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-size: cover
+class: center, middle
+
+# `roc_curve()`: curva ROC
+# `autoplot()`: me permite graficar
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
