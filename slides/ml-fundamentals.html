@@ -154,7 +154,7 @@ library(tidymodels)
 ```
 
 ```
-## -- Attaching packages -------------------------------------------- tidymodels 0.0.3 --
+## -- Attaching packages --------------------------------------------- tidymodels 0.0.3 --
 ```
 
 ```
@@ -167,7 +167,7 @@ library(tidymodels)
 ```
 
 ```
-## -- Conflicts ----------------------------------------------- tidymodels_conflicts() --
+## -- Conflicts ------------------------------------------------ tidymodels_conflicts() --
 ## x purrr::discard()    masks scales::discard()
 ## x dplyr::filter()     masks stats::filter()
 ## x dplyr::lag()        masks stats::lag()
@@ -264,6 +264,49 @@ str(iris)
 ##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 ```
 
+--
+
+### Importante: Este set de datos no tiene valores perdidos
+
+---
+# Visualización
+
+* Visualizar las variables nos permite ver gráficamente las distribuciones de las variables y ver si se presentan eventuales correlaciones
+
+
+```r
+library(GGally) #librería GGally
+iris %&gt;% #datos de entrada
+  ggpairs(aes(color = Species))+ theme_bw() #función ggpairs
+```
+
+---
+
+![](ml-fundamentals_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+
+---
+
+# Correlación 
+
+
+```r
+library(dplyr)
+library(corrplot) #librería corrrplot para graficar
+irisv&lt;-iris %&gt;% #ingreso de datos
+  select(-Species) #elimino variable Species
+M &lt;- cor(irisv) #calculo matriz de correlación 
+corrplot(M, method="number") #grafico
+```
+
+.footnote[https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor
+y https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html]
+---
+
+![](ml-fundamentals_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+
+
 ---
 class: inverse, center
 
@@ -279,6 +322,17 @@ class: inverse, center
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" /&gt;
 
+
+---
+
+# ¿Por qué dividimos los datos?
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/leo.png" width="100%" align="right" /&gt;
+
+
+.footnote[https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726 y 
+https://arxiv.org/pdf/1206.5538.pdf]
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" /&gt;
@@ -324,6 +378,7 @@ class: inverse, center
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes_allison.png" width="100%" align="center" /&gt;
 
 
+.footnote[https://github.com/allisonhorst/stats-illustrations]
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
 
@@ -458,12 +513,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -0.885      0.917        -1.29 setosa 
-## 2       -1.37       0.257        -1.29 setosa 
-## 3       -0.520      1.80         -1.03 setosa 
-## 4       -1.49       0.697        -1.16 setosa 
-## 5       -1.74      -0.404        -1.29 setosa 
-## 6       -1.13       0.0367       -1.42 setosa
+## 1       -0.868       1.07        -1.27 setosa 
+## 2       -1.45        0.130       -1.27 setosa 
+## 3       -1.45        0.834       -1.14 setosa 
+## 4       -0.984       0.834       -1.27 setosa 
+## 5       -1.68       -0.339       -1.27 setosa 
+## 6       -1.10        0.130       -1.40 setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -491,16 +546,16 @@ iris_testing
 ## # A tibble: 60 x 4
 ##    Sepal.Length Sepal.Width Petal.Width Species
 ##           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1       -1.13      -0.183        -1.29 setosa 
-##  2       -1.49       0.0367       -1.29 setosa 
-##  3       -1.01       1.14         -1.29 setosa 
-##  4       -1.01       0.697        -1.29 setosa 
-##  5       -0.155      1.58         -1.16 setosa 
-##  6       -0.885      1.58         -1.16 setosa 
-##  7       -0.520      0.697        -1.29 setosa 
-##  8       -0.885      1.36         -1.03 setosa 
-##  9       -1.49       1.14         -1.29 setosa 
-## 10       -1.25       0.697        -1.29 setosa 
+##  1       -1.10       -0.104       -1.27 setosa 
+##  2       -1.33        0.365       -1.27 setosa 
+##  3       -0.984       1.30        -1.27 setosa 
+##  4       -0.518       2.01        -1.01 setosa 
+##  5       -0.169       3.18        -1.01 setosa 
+##  6       -0.169       1.77        -1.14 setosa 
+##  7       -0.868       1.54        -1.01 setosa 
+##  8       -1.45        1.30        -1.27 setosa 
+##  9       -0.751       1.07        -1.27 setosa 
+## 10       -0.751       0.834       -1.27 setosa 
 ## # ... with 50 more rows
 ```
 
@@ -552,14 +607,32 @@ class: inverse, center
 
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
+
+# En esta etapa se realiza el ajuste de varios modelos
+# Cada modelo tiene variables internas propias que surgen de su expresión matemática
+# No existe el mejor modelo, siempre depende del conjunto de datos utilizado
+
+---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_allison.png" width="100%" align="center" /&gt;
 
+
+.footnote[https://github.com/allisonhorst/stats-illustrations]
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+# Árboles de decisión (Decision Trees)
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/bret-tree.png" width="100%" align="center" /&gt;
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 
 # Árboles de decisión (Decision Trees)
 
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/decision1.png" width="100%" align="center" /&gt;
 
 
 ---
@@ -569,11 +642,12 @@ class: inverse, center
 # Bosques aleatorios (Random Forest)
 
 * Random Forest usa como algoritmo base los árboles de decisión
+* Bootstrap (muestreo con reemplazo) + Bagging 
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="65%" align="center" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="100%" align="center" /&gt;
 
-.footnote[[*]
-Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
+
+
 
 
 
@@ -610,7 +684,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ```
 ## parsnip model object
 ## 
-## Fit time:  31ms 
+## Fit time:  61ms 
 ## Ranger result
 ## 
 ## Call:
@@ -624,7 +698,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.08383379
+## OOB prediction error (Brier s.):  0.06614133
 ```
 
 
@@ -657,9 +731,11 @@ predict(objeto, datos_nuevos)
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 
+# `predict()`
 
 ```r
-predict(iris_ranger, iris_testing)
+iris_ranger %&gt;%
+  `predict`(iris_testing) #predicción
 ```
 
 ```
@@ -684,29 +760,29 @@ predict(iris_ranger, iris_testing)
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 
-# Usando `bind_cols()`puedo observar los datos de prueba y comparar
+# `bind_cols()`
 
 
 ```r
 iris_ranger %&gt;%
   `predict`(iris_testing) %&gt;%
-  `bind_cols`(iris_testing) 
+  `bind_cols`(iris_testing) # me permite comparar
 ```
 
 ```
 ## # A tibble: 60 x 5
 ##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
 ##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -1.13      -0.183        -1.29 setosa 
-##  2 setosa            -1.49       0.0367       -1.29 setosa 
-##  3 setosa            -1.01       1.14         -1.29 setosa 
-##  4 setosa            -1.01       0.697        -1.29 setosa 
-##  5 setosa            -0.155      1.58         -1.16 setosa 
-##  6 setosa            -0.885      1.58         -1.16 setosa 
-##  7 setosa            -0.520      0.697        -1.29 setosa 
-##  8 setosa            -0.885      1.36         -1.03 setosa 
-##  9 setosa            -1.49       1.14         -1.29 setosa 
-## 10 setosa            -1.25       0.697        -1.29 setosa 
+##  1 setosa            -1.10       -0.104       -1.27 setosa 
+##  2 setosa            -1.33        0.365       -1.27 setosa 
+##  3 setosa            -0.984       1.30        -1.27 setosa 
+##  4 setosa            -0.518       2.01        -1.01 setosa 
+##  5 setosa            -0.169       3.18        -1.01 setosa 
+##  6 setosa            -0.169       1.77        -1.14 setosa 
+##  7 setosa            -0.868       1.54        -1.01 setosa 
+##  8 setosa            -1.45        1.30        -1.27 setosa 
+##  9 setosa            -0.751       1.07        -1.27 setosa 
+## 10 setosa            -0.751       0.834       -1.27 setosa 
 ## # ... with 50 more rows
 ```
 
@@ -747,6 +823,17 @@ class: center, middle
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" /&gt;
 
 
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+# Curvas ROC
+
+* Las curvas ROC son una poderosa herramienta gráfica para visualizar el desempeño de un algoritmo de aprendizaje a través de una variación en el criterio de decisión. 
+&lt;br&gt;&lt;br&gt;
+* Las curvas ROC se han utilizado no sólo para __estudiar el comportamiento de un algoritmo__ sino también __identificar regiones óptimas de desempeño__, __realizar la selección de modelos__, y lo más importante para __comparar y evaluar algoritmos de aprendizaje automático__. 
+&lt;br&gt;&lt;br&gt;
+* En el _eje X_ de una curva ROC tenemos el eje horizontal, que muestra la _tasa de falsos positivos (TFP)_ y el eje vertical (_eje y_) muestra la _tasa de verdaderos positivos_ de un clasificador. 
+
 
 
 ---
@@ -767,65 +854,9 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.95 
-## 2 kap      multiclass     0.924
+## 1 accuracy multiclass     0.917
+## 2 kap      multiclass     0.875
 ```
-
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
-
-# `predict()`
-
-```r
-iris_ranger %&gt;%
-  `predict`(iris_testing)
-```
-
-```
-## # A tibble: 60 x 1
-##    .pred_class
-##    &lt;fct&gt;      
-##  1 setosa     
-##  2 setosa     
-##  3 setosa     
-##  4 setosa     
-##  5 setosa     
-##  6 setosa     
-##  7 setosa     
-##  8 setosa     
-##  9 setosa     
-## 10 setosa     
-## # ... with 50 more rows
-```
-
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt; 
-
-# `bind_cols()`
-
-```r
-iris_ranger %&gt;%
-  `predict`(iris_testing) %&gt;%
-  `bind_cols`(iris_testing)
-```
-
-```
-## # A tibble: 60 x 5
-##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
-##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -1.13      -0.183        -1.29 setosa 
-##  2 setosa            -1.49       0.0367       -1.29 setosa 
-##  3 setosa            -1.01       1.14         -1.29 setosa 
-##  4 setosa            -1.01       0.697        -1.29 setosa 
-##  5 setosa            -0.155      1.58         -1.16 setosa 
-##  6 setosa            -0.885      1.58         -1.16 setosa 
-##  7 setosa            -0.520      0.697        -1.29 setosa 
-##  8 setosa            -0.885      1.36         -1.03 setosa 
-##  9 setosa            -1.49       1.14         -1.29 setosa 
-## 10 setosa            -1.25       0.697        -1.29 setosa 
-## # ... with 50 more rows
-```
-
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt; 
@@ -843,8 +874,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.95 
-## 2 kap      multiclass     0.924
+## 1 accuracy multiclass     0.917
+## 2 kap      multiclass     0.875
 ```
 
 
@@ -864,7 +895,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 sens    macro          0.953
+## 1 sens    macro          0.922
 ```
 
 ---
@@ -884,7 +915,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 spec    macro          0.975
+## 1 spec    macro          0.959
 ```
 
 ---
@@ -903,7 +934,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 precision macro          0.948
+## 1 precision macro          0.922
 ```
 
 ---
@@ -923,8 +954,8 @@ iris_ranger %&gt;%
 ##             Truth
 ## Prediction   setosa versicolor virginica
 ##   setosa         19          0         0
-##   versicolor      0         22         1
-##   virginica       0          2        16
+##   versicolor      0         18         1
+##   virginica       0          4        18
 ```
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
@@ -959,31 +990,21 @@ iris_probs
 ## # A tibble: 60 x 4
 ##    .pred_setosa .pred_versicolor .pred_virginica Species
 ##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;  
-##  1        0.866         0.118            0.0161  setosa 
-##  2        0.962         0.0260           0.0116  setosa 
-##  3        0.985         0.00953          0.00567 setosa 
-##  4        0.985         0.0122           0.00240 setosa 
-##  5        0.852         0.117            0.0306  setosa 
-##  6        0.992         0.000222         0.00748 setosa 
-##  7        0.982         0.0155           0.00290 setosa 
-##  8        0.996         0.000222         0.00427 setosa 
-##  9        0.994         0                0.00567 setosa 
-## 10        0.995         0.00267          0.00240 setosa 
+##  1        0.894          0.0702         0.0358   setosa 
+##  2        0.979          0.00983        0.0115   setosa 
+##  3        0.997          0.002          0.000622 setosa 
+##  4        0.968          0.0205         0.0118   setosa 
+##  5        0.817          0.117          0.0664   setosa 
+##  6        0.805          0.123          0.0723   setosa 
+##  7        0.997          0.0004         0.00271  setosa 
+##  8        0.999          0              0.00127  setosa 
+##  9        0.984          0.0152         0.00102  setosa 
+## 10        0.976          0.0188         0.00513  setosa 
 ## # ... with 50 more rows
 ```
 
 
 
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
-
-# Curvas ROC
-
-* Las curvas ROC son una poderosa herramienta gráfica para visualizar el desempeño de un algoritmo de aprendizaje a través de una variación en el criterio de decisión. 
-&lt;br&gt;&lt;br&gt;
-* Las curvas ROC se han utilizado no sólo para __estudiar el comportamiento de un algoritmo__ sino también __identificar regiones óptimas de desempeño__, __realizar la selección de modelos__, y lo más importante para __comparar y evaluar algoritmos de aprendizaje automático__. 
-&lt;br&gt;&lt;br&gt;
-* En el _eje X_ de una curva ROC tenemos el eje horizontal, que muestra la _tasa de falsos positivos (TFP)_ y el eje vertical (_eje y_) muestra la _tasa de verdaderos positivos_ de un clasificador. 
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
@@ -995,7 +1016,7 @@ iris_probs%&gt;%
   `autoplot`()
 ```
 
-![](ml-fundamentals_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+![](ml-fundamentals_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -1023,10 +1044,10 @@ predict(iris_ranger, iris_testing, type = "prob") %&gt;%
 ## # A tibble: 4 x 3
 ##   .metric     .estimator .estimate
 ##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy    multiclass     0.95 
-## 2 kap         multiclass     0.924
-## 3 mn_log_loss multiclass     0.210
-## 4 roc_auc     hand_till      0.990
+## 1 accuracy    multiclass     0.917
+## 2 kap         multiclass     0.875
+## 3 mn_log_loss multiclass     0.255
+## 4 roc_auc     hand_till      0.980
 ```
 
 ---
@@ -1051,6 +1072,10 @@ https://www.benjaminsorensen.me/post/modeling-with-parsnip-and-tidymodels/
 bit.ly/parsnip-rstudioconf2019 
 - Recipes for data Preprocessing - Max Kuhn (video)
 bit.ly/recipes-useR2018
+- Árboles de decisión y Random Forest
+https://bookdown.org/content/2031/ 
+- Applied Predictive Modeling 
+http://appliedpredictivemodeling.com/ 
 
 
 
@@ -1077,50 +1102,52 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] yardstick_0.0.5   tibble_2.1.3      rsample_0.0.5     tidyr_1.0.2      
-##  [5] recipes_0.1.9     purrr_0.3.3       parsnip_0.0.5     infer_0.5.1      
-##  [9] ggplot2_3.2.1     dplyr_0.8.3       dials_0.0.4       scales_1.1.0     
-## [13] broom_0.5.4       tidymodels_0.0.3  emo_0.0.0.9000    fontawesome_0.1.0
+##  [1] corrplot_0.84     GGally_1.4.0      yardstick_0.0.5   tibble_2.1.3     
+##  [5] rsample_0.0.5     tidyr_1.0.2       recipes_0.1.9     purrr_0.3.3      
+##  [9] parsnip_0.0.5     infer_0.5.1       ggplot2_3.2.1     dplyr_0.8.3      
+## [13] dials_0.0.4       scales_1.1.0      broom_0.5.4       tidymodels_0.0.3 
+## [17] emo_0.0.0.9000    fontawesome_0.1.0
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] minqa_1.2.4          colorspace_1.4-1     class_7.3-15        
-##   [4] ggridges_0.5.2       rsconnect_0.8.16     markdown_1.1        
-##   [7] base64enc_0.1-3      tidytext_0.2.2       rstudioapi_0.11     
-##  [10] farver_2.0.3         listenv_0.8.0        furrr_0.1.0         
-##  [13] xaringan_0.14        rstan_2.19.2         SnowballC_0.6.0     
-##  [16] DT_0.12              prodlim_2019.11.13   fansi_0.4.1         
-##  [19] lubridate_1.7.4      ranger_0.12.1        codetools_0.2-16    
-##  [22] splines_3.6.2        knitr_1.28           shinythemes_1.1.2   
-##  [25] bayesplot_1.7.1      nloptr_1.2.1         pROC_1.16.1         
-##  [28] shiny_1.4.0          compiler_3.6.2       backports_1.1.5     
-##  [31] assertthat_0.2.1     Matrix_1.2-18        fastmap_1.0.1       
-##  [34] lazyeval_0.2.2       cli_2.0.1            later_1.0.0         
-##  [37] htmltools_0.4.0      prettyunits_1.1.1    tools_3.6.2         
-##  [40] igraph_1.2.4.2       gtable_0.3.0         glue_1.3.1          
-##  [43] reshape2_1.4.3       Rcpp_1.0.3           DiceDesign_1.8-1    
-##  [46] vctrs_0.2.2          nlme_3.1-142         crosstalk_1.0.0     
-##  [49] timeDate_3043.102    gower_0.2.1          xfun_0.12           
-##  [52] stringr_1.4.0        globals_0.12.5       ps_1.3.0            
-##  [55] lme4_1.1-21          mime_0.9             miniUI_0.1.1.1      
-##  [58] lifecycle_0.1.0      gtools_3.8.1         tidypredict_0.4.3   
-##  [61] future_1.16.0        MASS_7.3-51.4        zoo_1.8-7           
-##  [64] ipred_0.9-9          rstanarm_2.19.2      colourpicker_1.0    
-##  [67] promises_1.1.0       parallel_3.6.2       inline_0.3.15       
-##  [70] shinystan_2.5.0      tidyposterior_0.0.2  yaml_2.2.1          
-##  [73] gridExtra_2.3        loo_2.2.0            StanHeaders_2.21.0-1
-##  [76] rpart_4.1-15         stringi_1.4.5        tokenizers_0.2.1    
-##  [79] dygraphs_1.1.1.6     boot_1.3-23          pkgbuild_1.0.6      
-##  [82] lava_1.6.6           matrixStats_0.55.0   rlang_0.4.2         
-##  [85] pkgconfig_2.0.3      evaluate_0.14        lattice_0.20-38     
-##  [88] labeling_0.3         rstantools_2.0.0     htmlwidgets_1.5.1   
-##  [91] tidyselect_0.2.5     processx_3.4.1       plyr_1.8.4          
-##  [94] magrittr_1.5         R6_2.4.1             generics_0.0.2      
-##  [97] pillar_1.4.3         withr_2.1.2          xts_0.12-0          
-## [100] survival_3.1-8       nnet_7.3-12          janeaustenr_0.1.5   
-## [103] crayon_1.3.4         utf8_1.1.4           rmarkdown_2.1       
-## [106] grid_3.6.2           callr_3.4.1          threejs_0.3.3       
-## [109] digest_0.6.23        xtable_1.8-4         httpuv_1.5.2        
-## [112] stats4_3.6.2         munsell_0.5.0        shinyjs_1.1
+##   [1] backports_1.1.5      xaringan_0.14        tidytext_0.2.2      
+##   [4] plyr_1.8.4           igraph_1.2.4.2       lazyeval_0.2.2      
+##   [7] splines_3.6.2        crosstalk_1.0.0      listenv_0.8.0       
+##  [10] SnowballC_0.6.0      rstantools_2.0.0     inline_0.3.15       
+##  [13] digest_0.6.23        htmltools_0.4.0      rsconnect_0.8.16    
+##  [16] fansi_0.4.1          magrittr_1.5         globals_0.12.5      
+##  [19] gower_0.2.1          matrixStats_0.55.0   xts_0.12-0          
+##  [22] prettyunits_1.1.1    colorspace_1.4-1     xfun_0.12           
+##  [25] callr_3.4.1          crayon_1.3.4         lme4_1.1-21         
+##  [28] survival_3.1-8       zoo_1.8-7            glue_1.3.1          
+##  [31] gtable_0.3.0         ipred_0.9-9          pkgbuild_1.0.6      
+##  [34] rstan_2.19.2         miniUI_0.1.1.1       Rcpp_1.0.3          
+##  [37] xtable_1.8-4         stats4_3.6.2         lava_1.6.6          
+##  [40] StanHeaders_2.21.0-1 prodlim_2019.11.13   DT_0.12             
+##  [43] htmlwidgets_1.5.1    threejs_0.3.3        RColorBrewer_1.1-2  
+##  [46] pkgconfig_2.0.3      reshape_0.8.8        loo_2.2.0           
+##  [49] farver_2.0.3         nnet_7.3-12          utf8_1.1.4          
+##  [52] tidyselect_0.2.5     labeling_0.3         rlang_0.4.2         
+##  [55] DiceDesign_1.8-1     reshape2_1.4.3       later_1.0.0         
+##  [58] munsell_0.5.0        tools_3.6.2          cli_2.0.1           
+##  [61] generics_0.0.2       ranger_0.12.1        ggridges_0.5.2      
+##  [64] evaluate_0.14        stringr_1.4.0        fastmap_1.0.1       
+##  [67] yaml_2.2.1           processx_3.4.1       knitr_1.28          
+##  [70] future_1.16.0        nlme_3.1-142         mime_0.9            
+##  [73] rstanarm_2.19.2      tokenizers_0.2.1     compiler_3.6.2      
+##  [76] bayesplot_1.7.1      shinythemes_1.1.2    rstudioapi_0.11     
+##  [79] tidyposterior_0.0.2  stringi_1.4.5        ps_1.3.0            
+##  [82] lattice_0.20-38      Matrix_1.2-18        nloptr_1.2.1        
+##  [85] markdown_1.1         shinyjs_1.1          vctrs_0.2.2         
+##  [88] pillar_1.4.3         lifecycle_0.1.0      furrr_0.1.0         
+##  [91] httpuv_1.5.2         R6_2.4.1             promises_1.1.0      
+##  [94] gridExtra_2.3        janeaustenr_0.1.5    codetools_0.2-16    
+##  [97] boot_1.3-23          colourpicker_1.0     MASS_7.3-51.4       
+## [100] gtools_3.8.1         assertthat_0.2.1     withr_2.1.2         
+## [103] shinystan_2.5.0      parallel_3.6.2       grid_3.6.2          
+## [106] rpart_4.1-15         timeDate_3043.102    class_7.3-15        
+## [109] minqa_1.2.4          rmarkdown_2.1        pROC_1.16.1         
+## [112] tidypredict_0.4.3    shiny_1.4.0          lubridate_1.7.4     
+## [115] base64enc_0.1-3      dygraphs_1.1.1.6
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

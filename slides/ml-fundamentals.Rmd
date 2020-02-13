@@ -201,6 +201,57 @@ summary(iris)
 str(iris)
 ```
 
+--
+
+### Importante: Este set de datos no tiene valores perdidos
+
+---
+# Visualización
+
+* Visualizar las variables nos permite ver gráficamente las distribuciones de las variables y ver si se presentan eventuales correlaciones
+
+```{r warning=FALSE, message=FALSE, eval=FALSE} 
+library(GGally) #librería GGally
+iris %>% #datos de entrada
+  ggpairs(aes(color = Species))+ theme_bw() #función ggpairs
+```
+
+---
+
+```{r warning=FALSE, message=FALSE, echo=FALSE, fig.height=9, fig.width=11} 
+library(GGally) #librería GGally
+ggpairs(iris, aes(color = Species))+ theme_bw() 
+```
+
+
+---
+
+# Correlación 
+
+```{r message=FALSE, warning=FALSE, eval=FALSE} 
+library(dplyr)
+library(corrplot) #librería corrrplot para graficar
+irisv<-iris %>% #ingreso de datos
+  select(-Species) #elimino variable Species
+M <- cor(irisv) #calculo matriz de correlación 
+corrplot(M, method="number") #grafico
+```
+
+.footnote[https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor
+y https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html]
+---
+
+```{r message=FALSE, warning=FALSE, echo=FALSE} 
+library(dplyr)
+library(corrplot)
+irisv<-iris %>%
+  select(-Species)
+M <- cor(irisv)
+corrplot(M, method="number")
+```
+
+
+
 ---
 class: inverse, center
 
@@ -216,6 +267,17 @@ class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" />
 
+
+---
+
+# ¿Por qué dividimos los datos?
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/leo.png" width="100%" align="right" />
+
+
+.footnote[https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726 y 
+https://arxiv.org/pdf/1206.5538.pdf]
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
@@ -256,6 +318,7 @@ class: inverse, center
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes_allison.png" width="100%" align="center" />
 
 
+.footnote[https://github.com/allisonhorst/stats-illustrations]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
 
@@ -431,14 +494,32 @@ class: inverse, center
 
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
+
+# En esta etapa se realiza el ajuste de varios modelos
+# Cada modelo tiene variables internas propias que surgen de su expresión matemática
+# No existe el mejor modelo, siempre depende del conjunto de datos utilizado
+
+---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_allison.png" width="100%" align="center" />
 
+
+.footnote[https://github.com/allisonhorst/stats-illustrations]
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# Árboles de decisión (Decision Trees)
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/bret-tree.png" width="100%" align="center" />
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
 # Árboles de decisión (Decision Trees)
 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/decision1.png" width="100%" align="center" />
 
 
 ---
@@ -448,11 +529,12 @@ class: inverse, center
 # Bosques aleatorios (Random Forest)
 
 * Random Forest usa como algoritmo base los árboles de decisión
+* Bootstrap (muestreo con reemplazo) + Bagging 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="65%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="100%" align="center" />
 
-.footnote[[*]
-Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
+
+
 
 
 
@@ -520,8 +602,10 @@ predict(objeto, datos_nuevos)
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
+# `predict()`
 ```{r } 
-predict(iris_ranger, iris_testing)
+iris_ranger %>%
+  `predict`(iris_testing) #predicción
 ```
 
 
@@ -529,12 +613,12 @@ predict(iris_ranger, iris_testing)
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
-# Usando `bind_cols()`puedo observar los datos de prueba y comparar
+# `bind_cols()`
 
 ```{r } 
 iris_ranger %>%
   `predict`(iris_testing) %>%
-  `bind_cols`(iris_testing) 
+  `bind_cols`(iris_testing) # me permite comparar
 ```
 
 
@@ -574,6 +658,17 @@ class: center, middle
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" />
 
 
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+# Curvas ROC
+
+* Las curvas ROC son una poderosa herramienta gráfica para visualizar el desempeño de un algoritmo de aprendizaje a través de una variación en el criterio de decisión. 
+<br><br>
+* Las curvas ROC se han utilizado no sólo para __estudiar el comportamiento de un algoritmo__ sino también __identificar regiones óptimas de desempeño__, __realizar la selección de modelos__, y lo más importante para __comparar y evaluar algoritmos de aprendizaje automático__. 
+<br><br>
+* En el _eje X_ de una curva ROC tenemos el eje horizontal, que muestra la _tasa de falsos positivos (TFP)_ y el eje vertical (_eje y_) muestra la _tasa de verdaderos positivos_ de un clasificador. 
+
 
 
 ---
@@ -588,26 +683,6 @@ iris_ranger %>%
   bind_cols(iris_testing) %>% #comparar 
   `metrics`(truth=Species, estimate=.pred_class) #métricas
 ```
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
-# `predict()`
-```{r } 
-iris_ranger %>%
-  `predict`(iris_testing)
-```
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
-
-# `bind_cols()`
-```{r } 
-iris_ranger %>%
-  `predict`(iris_testing) %>%
-  `bind_cols`(iris_testing)
-```
-
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
@@ -698,16 +773,6 @@ iris_probs
 
 
 
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
-# Curvas ROC
-
-* Las curvas ROC son una poderosa herramienta gráfica para visualizar el desempeño de un algoritmo de aprendizaje a través de una variación en el criterio de decisión. 
-<br><br>
-* Las curvas ROC se han utilizado no sólo para __estudiar el comportamiento de un algoritmo__ sino también __identificar regiones óptimas de desempeño__, __realizar la selección de modelos__, y lo más importante para __comparar y evaluar algoritmos de aprendizaje automático__. 
-<br><br>
-* En el _eje X_ de una curva ROC tenemos el eje horizontal, que muestra la _tasa de falsos positivos (TFP)_ y el eje vertical (_eje y_) muestra la _tasa de verdaderos positivos_ de un clasificador. 
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
@@ -762,6 +827,10 @@ https://www.benjaminsorensen.me/post/modeling-with-parsnip-and-tidymodels/
 bit.ly/parsnip-rstudioconf2019 
 - Recipes for data Preprocessing - Max Kuhn (video)
 bit.ly/recipes-useR2018
+- Árboles de decisión y Random Forest
+https://bookdown.org/content/2031/ 
+- Applied Predictive Modeling 
+http://appliedpredictivemodeling.com/ 
 
 
 
