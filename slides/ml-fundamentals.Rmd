@@ -454,22 +454,6 @@ class: inverse, center
 .footnote[[*]
 Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
 
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
-
-# Evaluación de un clasificador 
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/eval-clasificador.png" width="100%" align="right" />
-
-
-
----
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
-
-# Matriz de Confusión
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" />
 
 
 
@@ -576,6 +560,25 @@ class: center, middle
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
+# Evaluación de un clasificador 
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/eval-clasificador.png" width="100%" align="right" />
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
+# Matriz de Confusión
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" />
+
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
 ## 4° Paso: Validación del modelo predictivo
 
 ### Random Forest con librería `ranger`
@@ -619,6 +622,7 @@ iris_ranger %>%
 
 
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
 # `sens()`
 ```{r } 
@@ -629,6 +633,8 @@ iris_ranger %>%
 ```
 
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
+
 # `spec()`
 
 ```{r } 
@@ -639,6 +645,8 @@ iris_ranger %>%
 ```
 
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
+
 # `precision()`
 ```{r } 
 iris_ranger %>%
@@ -648,6 +656,8 @@ iris_ranger %>%
 ```
 
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+
 # `conf_mat()`
 
 ```{r } 
@@ -670,13 +680,7 @@ class: center, middle
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
-```{r } 
-iris_ranger %>%
-  predict(iris_testing, type="prob")
-```
----
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
 # Obtengo las probabilidades
@@ -692,7 +696,6 @@ iris_probs <- iris_ranger %>%
 iris_probs
 ```
 
----
 
 
 ---

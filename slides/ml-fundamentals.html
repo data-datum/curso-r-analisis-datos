@@ -458,12 +458,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -1.15      -0.0966       -1.29 setosa 
-## 2       -1.41       0.338        -1.29 setosa 
-## 3       -1.02       0.773        -1.29 setosa 
-## 4       -1.79      -0.314        -1.29 setosa 
-## 5       -1.15       0.121        -1.42 setosa 
-## 6       -0.513      1.43         -1.29 setosa
+## 1       -0.885      0.917        -1.29 setosa 
+## 2       -1.37       0.257        -1.29 setosa 
+## 3       -0.520      1.80         -1.03 setosa 
+## 4       -1.49       0.697        -1.16 setosa 
+## 5       -1.74      -0.404        -1.29 setosa 
+## 6       -1.13       0.0367       -1.42 setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -491,16 +491,16 @@ iris_testing
 ## # A tibble: 60 x 4
 ##    Sepal.Length Sepal.Width Petal.Width Species
 ##           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1       -0.897      0.991        -1.29 setosa 
-##  2       -1.54       0.121        -1.29 setosa 
-##  3       -1.02       1.21         -1.29 setosa 
-##  4       -0.513      1.86         -1.02 setosa 
-##  5       -1.54       0.773        -1.16 setosa 
-##  6       -1.28      -0.0966       -1.42 setosa 
-##  7       -1.92      -0.0966       -1.42 setosa 
-##  8       -0.897      0.991        -1.16 setosa 
-##  9       -0.513      0.773        -1.29 setosa 
-## 10       -0.897      1.43         -1.02 setosa 
+##  1       -1.13      -0.183        -1.29 setosa 
+##  2       -1.49       0.0367       -1.29 setosa 
+##  3       -1.01       1.14         -1.29 setosa 
+##  4       -1.01       0.697        -1.29 setosa 
+##  5       -0.155      1.58         -1.16 setosa 
+##  6       -0.885      1.58         -1.16 setosa 
+##  7       -0.520      0.697        -1.29 setosa 
+##  8       -0.885      1.36         -1.03 setosa 
+##  9       -1.49       1.14         -1.29 setosa 
+## 10       -1.25       0.697        -1.29 setosa 
 ## # ... with 50 more rows
 ```
 
@@ -575,22 +575,6 @@ class: inverse, center
 .footnote[[*]
 Imagen tomada de _Python Machine Learning_ (2015) Sebastian Raschka ]
 
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
-
-# Evaluación de un clasificador 
-
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/eval-clasificador.png" width="100%" align="right" /&gt;
-
-
-
----
-
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
-
-# Matriz de Confusión
-
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" /&gt;
 
 
 
@@ -626,7 +610,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ```
 ## parsnip model object
 ## 
-## Fit time:  30ms 
+## Fit time:  31ms 
 ## Ranger result
 ## 
 ## Call:
@@ -640,7 +624,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.05953806
+## OOB prediction error (Brier s.):  0.08383379
 ```
 
 
@@ -713,16 +697,16 @@ iris_ranger %&gt;%
 ## # A tibble: 60 x 5
 ##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
 ##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -0.897      0.991        -1.29 setosa 
-##  2 setosa            -1.54       0.121        -1.29 setosa 
-##  3 setosa            -1.02       1.21         -1.29 setosa 
-##  4 setosa            -0.513      1.86         -1.02 setosa 
-##  5 setosa            -1.54       0.773        -1.16 setosa 
-##  6 setosa            -1.28      -0.0966       -1.42 setosa 
-##  7 setosa            -1.92      -0.0966       -1.42 setosa 
-##  8 setosa            -0.897      0.991        -1.16 setosa 
-##  9 setosa            -0.513      0.773        -1.29 setosa 
-## 10 setosa            -0.897      1.43         -1.02 setosa 
+##  1 setosa            -1.13      -0.183        -1.29 setosa 
+##  2 setosa            -1.49       0.0367       -1.29 setosa 
+##  3 setosa            -1.01       1.14         -1.29 setosa 
+##  4 setosa            -1.01       0.697        -1.29 setosa 
+##  5 setosa            -0.155      1.58         -1.16 setosa 
+##  6 setosa            -0.885      1.58         -1.16 setosa 
+##  7 setosa            -0.520      0.697        -1.29 setosa 
+##  8 setosa            -0.885      1.36         -1.03 setosa 
+##  9 setosa            -1.49       1.14         -1.29 setosa 
+## 10 setosa            -1.25       0.697        -1.29 setosa 
 ## # ... with 50 more rows
 ```
 
@@ -745,6 +729,25 @@ class: center, middle
 
 # Durante la validación, evaluamos el modelo predictivo
 # Esa evaluación puede ser mediante una métrica o un gráfico
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+# Evaluación de un clasificador 
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/eval-clasificador.png" width="100%" align="right" /&gt;
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
+# Matriz de Confusión
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" /&gt;
+
+
+
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
@@ -810,16 +813,16 @@ iris_ranger %&gt;%
 ## # A tibble: 60 x 5
 ##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
 ##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -0.897      0.991        -1.29 setosa 
-##  2 setosa            -1.54       0.121        -1.29 setosa 
-##  3 setosa            -1.02       1.21         -1.29 setosa 
-##  4 setosa            -0.513      1.86         -1.02 setosa 
-##  5 setosa            -1.54       0.773        -1.16 setosa 
-##  6 setosa            -1.28      -0.0966       -1.42 setosa 
-##  7 setosa            -1.92      -0.0966       -1.42 setosa 
-##  8 setosa            -0.897      0.991        -1.16 setosa 
-##  9 setosa            -0.513      0.773        -1.29 setosa 
-## 10 setosa            -0.897      1.43         -1.02 setosa 
+##  1 setosa            -1.13      -0.183        -1.29 setosa 
+##  2 setosa            -1.49       0.0367       -1.29 setosa 
+##  3 setosa            -1.01       1.14         -1.29 setosa 
+##  4 setosa            -1.01       0.697        -1.29 setosa 
+##  5 setosa            -0.155      1.58         -1.16 setosa 
+##  6 setosa            -0.885      1.58         -1.16 setosa 
+##  7 setosa            -0.520      0.697        -1.29 setosa 
+##  8 setosa            -0.885      1.36         -1.03 setosa 
+##  9 setosa            -1.49       1.14         -1.29 setosa 
+## 10 setosa            -1.25       0.697        -1.29 setosa 
 ## # ... with 50 more rows
 ```
 
@@ -846,6 +849,7 @@ iris_ranger %&gt;%
 
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
 
 # `sens()`
 
@@ -864,6 +868,8 @@ iris_ranger %&gt;%
 ```
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt; 
+
 # `spec()`
 
 
@@ -882,6 +888,8 @@ iris_ranger %&gt;%
 ```
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt; 
+
 # `precision()`
 
 ```r
@@ -899,6 +907,8 @@ iris_ranger %&gt;%
 ```
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
+
 # `conf_mat()`
 
 
@@ -913,8 +923,8 @@ iris_ranger %&gt;%
 ##             Truth
 ## Prediction   setosa versicolor virginica
 ##   setosa         19          0         0
-##   versicolor      0         16         2
-##   virginica       0          1        22
+##   versicolor      0         22         1
+##   virginica       0          2        16
 ```
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
@@ -930,31 +940,7 @@ class: center, middle
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
 
-
-```r
-iris_ranger %&gt;%
-  predict(iris_testing, type="prob")
-```
-
-```
-## # A tibble: 60 x 3
-##    .pred_setosa .pred_versicolor .pred_virginica
-##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
-##  1        0.998         0.000622        0.00146 
-##  2        0.969         0.0193          0.0118  
-##  3        0.981         0.00598         0.0131  
-##  4        0.992         0.00618         0.00224 
-##  5        0.989         0.00272         0.00870 
-##  6        0.968         0.0198          0.0125  
-##  7        0.968         0.0198          0.0125  
-##  8        0.998         0.000622        0.00146 
-##  9        0.958         0.0316          0.0102  
-## 10        0.999         0.000622        0.000222
-## # ... with 50 more rows
-```
----
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
 
 # Obtengo las probabilidades
@@ -973,20 +959,19 @@ iris_probs
 ## # A tibble: 60 x 4
 ##    .pred_setosa .pred_versicolor .pred_virginica Species
 ##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;  
-##  1        0.998         0.000622        0.00146  setosa 
-##  2        0.969         0.0193          0.0118   setosa 
-##  3        0.981         0.00598         0.0131   setosa 
-##  4        0.992         0.00618         0.00224  setosa 
-##  5        0.989         0.00272         0.00870  setosa 
-##  6        0.968         0.0198          0.0125   setosa 
-##  7        0.968         0.0198          0.0125   setosa 
-##  8        0.998         0.000622        0.00146  setosa 
-##  9        0.958         0.0316          0.0102   setosa 
-## 10        0.999         0.000622        0.000222 setosa 
+##  1        0.866         0.118            0.0161  setosa 
+##  2        0.962         0.0260           0.0116  setosa 
+##  3        0.985         0.00953          0.00567 setosa 
+##  4        0.985         0.0122           0.00240 setosa 
+##  5        0.852         0.117            0.0306  setosa 
+##  6        0.992         0.000222         0.00748 setosa 
+##  7        0.982         0.0155           0.00290 setosa 
+##  8        0.996         0.000222         0.00427 setosa 
+##  9        0.994         0                0.00567 setosa 
+## 10        0.995         0.00267          0.00240 setosa 
 ## # ... with 50 more rows
 ```
 
----
 
 
 ---
@@ -1010,7 +995,7 @@ iris_probs%&gt;%
   `autoplot`()
 ```
 
-![](ml-fundamentals_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+![](ml-fundamentals_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -1040,7 +1025,7 @@ predict(iris_ranger, iris_testing, type = "prob") %&gt;%
 ##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy    multiclass     0.95 
 ## 2 kap         multiclass     0.924
-## 3 mn_log_loss multiclass     0.196
+## 3 mn_log_loss multiclass     0.210
 ## 4 roc_auc     hand_till      0.990
 ```
 
