@@ -282,10 +282,6 @@ class: center, middle, inverse
 * Lo utilizamos para separar columnas
 
 
-```r
-install.packages("devtools")
-devtools::install_github("rstudio/EDAWR")
-```
 
 
 ```r
@@ -303,6 +299,9 @@ storms
 ## 6  Arthur   45     1010 1996-06-17
 ```
 
+
+.footnote[[*]
+Mas información en https://github.com/rstudio/EDAWR]
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
 
@@ -565,13 +564,6 @@ gapminder %&gt;% #datos para trabajar
 
 .footnote[[*]
 Mas información en https://dplyr.tidyverse.org/reference/select.html]
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
-
-# Operadores Lógicos
-
-
-
 
 ---
 
@@ -614,12 +606,12 @@ Podemos filtrar según múltiples condiciones:
 - Se cumplen ambas condiciones 
 
 ```r
-filter(condicion1`,` condicion2)
+filter(condicion1`,` condicion2) 
 ```
 - Se cumple la condición 1 solamente
 
 ```r
-filter(condicion1, `!`condicion2)
+filter(condicion1, `!`condicion2) #niego la segunda condición
 ```
 - Se cumplen la condición 1 y/ o la condición 2
 
@@ -629,7 +621,7 @@ filter(condicion1 `|` condicion2)
 - Se cumple una u otra condición, pero no ambas (disyunción exclusiva)
 
 ```r
-filter(`xor`(condicion1, condicion2))
+filter(`xor`(condicion1, condicion2)) 
 ```
 
 
@@ -758,6 +750,31 @@ Más información en https://dplyr.tidyverse.org/reference/summarise.html]
 
 ---
 
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# `data %&gt;% group_by(a)`
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/group_by.png" width="100%" align="center" /&gt;
+
+.footnote[[*] 
+Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/] 
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# `data %&gt;% group_by(a) %&gt;% summarise(b)` 
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/summarise.png" width="100%" align="center" /&gt;
+
+
+
+.footnote[[*] 
+Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/] 
+
+
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
@@ -786,9 +803,6 @@ class: middle, center
 ## `arrange()`: ordenar filas por variables
 ## `group_by()`: agrupar según un determinado criterio
 ## `summarize()`: cambiar la unidad de análisis
-
-
-
 
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
