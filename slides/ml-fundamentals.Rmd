@@ -461,6 +461,15 @@ class: center, middle
 
 ---
 
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-size: cover
+class: center, middle
+
+# recipe --> prep() --> bake/juice
+# (definir) --> (estimar) --> (aplicar)
+
+
+---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
 # NO OLVIDAR 
@@ -804,6 +813,8 @@ class: center, middle
 
 # `roc_curve()`: curva ROC
 # `autoplot()`: me permite graficar
+
+
 
 
 ---
