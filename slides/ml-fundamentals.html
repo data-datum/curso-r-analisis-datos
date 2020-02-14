@@ -345,12 +345,12 @@ https://arxiv.org/pdf/1206.5538.pdf]
 
 ```r
 iris_split &lt;- iris %&gt;% #creo un objeto a partir de iris
-  `initial_split`(prop = 0.6) #60% de los datos
+  `initial_split`(prop = 0.75) #75% de los datos
 iris_split 
 ```
 
 ```
-## &lt;90/60/150&gt;
+## &lt;113/37/150&gt;
 ```
 
 
@@ -455,7 +455,7 @@ iris_recipe
 ##    outcome          1
 ##  predictor          4
 ## 
-## Training data contained 90 data points and no missing data.
+## Training data contained 113 data points and no missing data.
 ## 
 ## Operations:
 ## 
@@ -513,12 +513,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -0.868       1.07        -1.27 setosa 
-## 2       -1.45        0.130       -1.27 setosa 
-## 3       -1.45        0.834       -1.14 setosa 
-## 4       -0.984       0.834       -1.27 setosa 
-## 5       -1.68       -0.339       -1.27 setosa 
-## 6       -1.10        0.130       -1.40 setosa
+## 1       -0.891       0.920      -1.26  setosa 
+## 2       -1.39        0.238      -1.26  setosa 
+## 3       -1.02        1.15       -1.26  setosa 
+## 4       -0.517       1.83       -0.988 setosa 
+## 5       -1.51        0.692      -1.12  setosa 
+## 6       -1.02        0.692      -1.26  setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -534,32 +534,26 @@ head(iris_training)
 
 ```r
 iris_testing &lt;- iris_recipe %&gt;%
-  `bake`(testing(iris_split)) 
-```
-
-
-```r
-iris_testing
+  `bake`(testing(iris_split))
+head(iris_testing)
 ```
 
 ```
-## # A tibble: 60 x 4
-##    Sepal.Length Sepal.Width Petal.Width Species
-##           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1       -1.10       -0.104       -1.27 setosa 
-##  2       -1.33        0.365       -1.27 setosa 
-##  3       -0.984       1.30        -1.27 setosa 
-##  4       -0.518       2.01        -1.01 setosa 
-##  5       -0.169       3.18        -1.01 setosa 
-##  6       -0.169       1.77        -1.14 setosa 
-##  7       -0.868       1.54        -1.01 setosa 
-##  8       -1.45        1.30        -1.27 setosa 
-##  9       -0.751       1.07        -1.27 setosa 
-## 10       -0.751       0.834       -1.27 setosa 
-## # ... with 50 more rows
+## # A tibble: 6 x 4
+##   Sepal.Length Sepal.Width Petal.Width Species
+##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+## 1       -1.14      -0.217       -1.26  setosa 
+## 2       -1.51       0.0101      -1.26  setosa 
+## 3       -1.26      -0.217       -1.39  setosa 
+## 4       -1.89      -0.217       -1.39  setosa 
+## 5       -0.891      0.465       -0.854 setosa 
+## 6       -0.393      2.51        -1.26  setosa
 ```
 
 
+
+.footnote[https://tidymodels.github.io/recipes/reference/bake.html
+]
 ---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
@@ -582,9 +576,9 @@ class: center, middle
 
 ```r
 library(tidymodels)
-`?initial_split`
-`?recipe`
-`?bake`
+?initial_split
+?recipe
+?bake
 ```
 
 
@@ -684,7 +678,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ```
 ## parsnip model object
 ## 
-## Fit time:  61ms 
+## Fit time:  31ms 
 ## Ranger result
 ## 
 ## Call:
@@ -692,15 +686,33 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ## 
 ## Type:                             Probability estimation 
 ## Number of trees:                  500 
-## Sample size:                      90 
+## Sample size:                      113 
 ## Number of independent variables:  3 
 ## Mtry:                             1 
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.06614133
+## OOB prediction error (Brier s.):  0.05212223
 ```
 
+
+---
+
+```r
+class(iris_ranger)
+```
+
+```
+## [1] "_ranger"   "model_fit"
+```
+
+```r
+typeof(iris_ranger)
+```
+
+```
+## [1] "list"
+```
 
 ---
 
@@ -739,7 +751,7 @@ iris_ranger %&gt;%
 ```
 
 ```
-## # A tibble: 60 x 1
+## # A tibble: 37 x 1
 ##    .pred_class
 ##    &lt;fct&gt;      
 ##  1 setosa     
@@ -751,8 +763,8 @@ iris_ranger %&gt;%
 ##  7 setosa     
 ##  8 setosa     
 ##  9 setosa     
-## 10 setosa     
-## # ... with 50 more rows
+## 10 versicolor 
+## # ... with 27 more rows
 ```
 
 
@@ -770,24 +782,36 @@ iris_ranger %&gt;%
 ```
 
 ```
-## # A tibble: 60 x 5
-##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
-##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -1.10       -0.104       -1.27 setosa 
-##  2 setosa            -1.33        0.365       -1.27 setosa 
-##  3 setosa            -0.984       1.30        -1.27 setosa 
-##  4 setosa            -0.518       2.01        -1.01 setosa 
-##  5 setosa            -0.169       3.18        -1.01 setosa 
-##  6 setosa            -0.169       1.77        -1.14 setosa 
-##  7 setosa            -0.868       1.54        -1.01 setosa 
-##  8 setosa            -1.45        1.30        -1.27 setosa 
-##  9 setosa            -0.751       1.07        -1.27 setosa 
-## 10 setosa            -0.751       0.834       -1.27 setosa 
-## # ... with 50 more rows
+## # A tibble: 37 x 5
+##    .pred_class Sepal.Length Sepal.Width Petal.Width Species   
+##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     
+##  1 setosa            -1.14      -0.217       -1.26  setosa    
+##  2 setosa            -1.51       0.0101      -1.26  setosa    
+##  3 setosa            -1.26      -0.217       -1.39  setosa    
+##  4 setosa            -1.89      -0.217       -1.39  setosa    
+##  5 setosa            -0.891      0.465       -0.854 setosa    
+##  6 setosa            -0.393      2.51        -1.26  setosa    
+##  7 setosa            -0.891      0.692       -1.26  setosa    
+##  8 setosa            -1.64      -1.81        -1.12  setosa    
+##  9 setosa            -1.76       0.238       -1.26  setosa    
+## 10 versicolor        -0.144     -0.672        0.217 versicolor
+## # ... with 27 more rows
 ```
 
 
 .footnote[https://dplyr.tidyverse.org/reference/bind.html]
+
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-size: cover
+class: center, middle
+
+# `predict()`: 
+# `bind_cols()`: me permite comparar los resultados con los valores verdaderos
+
+
+
 
 
 ---
@@ -854,8 +878,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.917
-## 2 kap      multiclass     0.875
+## 1 accuracy multiclass     0.946
+## 2 kap      multiclass     0.917
 ```
 
 ---
@@ -874,8 +898,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.917
-## 2 kap      multiclass     0.875
+## 1 accuracy multiclass     0.946
+## 2 kap      multiclass     0.917
 ```
 
 
@@ -895,7 +919,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 sens    macro          0.922
+## 1 sens    macro          0.951
 ```
 
 ---
@@ -915,7 +939,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 spec    macro          0.959
+## 1 spec    macro          0.971
 ```
 
 ---
@@ -934,7 +958,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 precision macro          0.922
+## 1 precision macro          0.951
 ```
 
 ---
@@ -953,9 +977,9 @@ iris_ranger %&gt;%
 ```
 ##             Truth
 ## Prediction   setosa versicolor virginica
-##   setosa         19          0         0
-##   versicolor      0         18         1
-##   virginica       0          4        18
+##   setosa          9          0         0
+##   versicolor      0         11         1
+##   virginica       0          1        15
 ```
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
@@ -987,20 +1011,20 @@ iris_probs
 ```
 
 ```
-## # A tibble: 60 x 4
-##    .pred_setosa .pred_versicolor .pred_virginica Species
-##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;  
-##  1        0.894          0.0702         0.0358   setosa 
-##  2        0.979          0.00983        0.0115   setosa 
-##  3        0.997          0.002          0.000622 setosa 
-##  4        0.968          0.0205         0.0118   setosa 
-##  5        0.817          0.117          0.0664   setosa 
-##  6        0.805          0.123          0.0723   setosa 
-##  7        0.997          0.0004         0.00271  setosa 
-##  8        0.999          0              0.00127  setosa 
-##  9        0.984          0.0152         0.00102  setosa 
-## 10        0.976          0.0188         0.00513  setosa 
-## # ... with 50 more rows
+## # A tibble: 37 x 4
+##    .pred_setosa .pred_versicolor .pred_virginica Species   
+##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;     
+##  1       0.920           0.0626          0.0171  setosa    
+##  2       0.980           0.0168          0.00353 setosa    
+##  3       0.942           0.0481          0.0103  setosa    
+##  4       0.942           0.0481          0.0103  setosa    
+##  5       0.925           0.0603          0.0148  setosa    
+##  6       0.951           0.0303          0.0187  setosa    
+##  7       0.989           0.00761         0.00360 setosa    
+##  8       0.688           0.261           0.0513  setosa    
+##  9       0.986           0.00911         0.00522 setosa    
+## 10       0.0153          0.895           0.0893  versicolor
+## # ... with 27 more rows
 ```
 
 
@@ -1012,8 +1036,8 @@ iris_probs
 
 ```r
 iris_probs%&gt;%
-  `roc_curve`(.pred_setosa:.pred_virginica, truth=Species) %&gt;%
-  `autoplot`()
+  roc_curve(Species, .pred_setosa:.pred_virginica) %&gt;%
+  autoplot()
 ```
 
 ![](ml-fundamentals_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
@@ -1027,28 +1051,7 @@ class: center, middle
 
 # `roc_curve()`: curva ROC
 # `autoplot()`: me permite graficar
----
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
-
-
-
-```r
-predict(iris_ranger, iris_testing, type = "prob") %&gt;%
-  bind_cols(predict(iris_ranger, iris_testing)) %&gt;%
-  bind_cols(select(iris_testing, Species)) %&gt;%
-  metrics(Species, .pred_setosa:.pred_virginica, estimate = .pred_class)
-```
-
-```
-## # A tibble: 4 x 3
-##   .metric     .estimator .estimate
-##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy    multiclass     0.917
-## 2 kap         multiclass     0.875
-## 3 mn_log_loss multiclass     0.255
-## 4 roc_auc     hand_till      0.980
-```
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
@@ -1109,45 +1112,47 @@ sessionInfo()
 ## [17] emo_0.0.0.9000    fontawesome_0.1.0
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] backports_1.1.5      xaringan_0.14        tidytext_0.2.2      
-##   [4] plyr_1.8.4           igraph_1.2.4.2       lazyeval_0.2.2      
-##   [7] splines_3.6.2        crosstalk_1.0.0      listenv_0.8.0       
-##  [10] SnowballC_0.6.0      rstantools_2.0.0     inline_0.3.15       
-##  [13] digest_0.6.23        htmltools_0.4.0      rsconnect_0.8.16    
-##  [16] fansi_0.4.1          magrittr_1.5         globals_0.12.5      
-##  [19] gower_0.2.1          matrixStats_0.55.0   xts_0.12-0          
-##  [22] prettyunits_1.1.1    colorspace_1.4-1     xfun_0.12           
-##  [25] callr_3.4.1          crayon_1.3.4         lme4_1.1-21         
-##  [28] survival_3.1-8       zoo_1.8-7            glue_1.3.1          
-##  [31] gtable_0.3.0         ipred_0.9-9          pkgbuild_1.0.6      
-##  [34] rstan_2.19.2         miniUI_0.1.1.1       Rcpp_1.0.3          
-##  [37] xtable_1.8-4         stats4_3.6.2         lava_1.6.6          
-##  [40] StanHeaders_2.21.0-1 prodlim_2019.11.13   DT_0.12             
-##  [43] htmlwidgets_1.5.1    threejs_0.3.3        RColorBrewer_1.1-2  
-##  [46] pkgconfig_2.0.3      reshape_0.8.8        loo_2.2.0           
-##  [49] farver_2.0.3         nnet_7.3-12          utf8_1.1.4          
-##  [52] tidyselect_0.2.5     labeling_0.3         rlang_0.4.2         
-##  [55] DiceDesign_1.8-1     reshape2_1.4.3       later_1.0.0         
-##  [58] munsell_0.5.0        tools_3.6.2          cli_2.0.1           
-##  [61] generics_0.0.2       ranger_0.12.1        ggridges_0.5.2      
-##  [64] evaluate_0.14        stringr_1.4.0        fastmap_1.0.1       
-##  [67] yaml_2.2.1           processx_3.4.1       knitr_1.28          
-##  [70] future_1.16.0        nlme_3.1-142         mime_0.9            
-##  [73] rstanarm_2.19.2      tokenizers_0.2.1     compiler_3.6.2      
-##  [76] bayesplot_1.7.1      shinythemes_1.1.2    rstudioapi_0.11     
-##  [79] tidyposterior_0.0.2  stringi_1.4.5        ps_1.3.0            
-##  [82] lattice_0.20-38      Matrix_1.2-18        nloptr_1.2.1        
-##  [85] markdown_1.1         shinyjs_1.1          vctrs_0.2.2         
-##  [88] pillar_1.4.3         lifecycle_0.1.0      furrr_0.1.0         
-##  [91] httpuv_1.5.2         R6_2.4.1             promises_1.1.0      
-##  [94] gridExtra_2.3        janeaustenr_0.1.5    codetools_0.2-16    
-##  [97] boot_1.3-23          colourpicker_1.0     MASS_7.3-51.4       
-## [100] gtools_3.8.1         assertthat_0.2.1     withr_2.1.2         
-## [103] shinystan_2.5.0      parallel_3.6.2       grid_3.6.2          
-## [106] rpart_4.1-15         timeDate_3043.102    class_7.3-15        
-## [109] minqa_1.2.4          rmarkdown_2.1        pROC_1.16.1         
-## [112] tidypredict_0.4.3    shiny_1.4.0          lubridate_1.7.4     
-## [115] base64enc_0.1-3      dygraphs_1.1.1.6
+##   [1] backports_1.1.5      xaringan_0.14        workflows_0.1.0     
+##   [4] tidytext_0.2.2       plyr_1.8.4           igraph_1.2.4.2      
+##   [7] lazyeval_0.2.2       splines_3.6.2        crosstalk_1.0.0     
+##  [10] listenv_0.8.0        SnowballC_0.6.0      rstantools_2.0.0    
+##  [13] inline_0.3.15        digest_0.6.23        foreach_1.4.8       
+##  [16] htmltools_0.4.0      rsconnect_0.8.16     fansi_0.4.1         
+##  [19] magrittr_1.5         globals_0.12.5       gower_0.2.1         
+##  [22] matrixStats_0.55.0   xts_0.12-0           prettyunits_1.1.1   
+##  [25] colorspace_1.4-1     xfun_0.12            callr_3.4.1         
+##  [28] crayon_1.3.4         lme4_1.1-21          survival_3.1-8      
+##  [31] zoo_1.8-7            iterators_1.0.12     glue_1.3.1          
+##  [34] gtable_0.3.0         ipred_0.9-9          pkgbuild_1.0.6      
+##  [37] rstan_2.19.2         miniUI_0.1.1.1       Rcpp_1.0.3          
+##  [40] xtable_1.8-4         GPfit_1.0-8          stats4_3.6.2        
+##  [43] lava_1.6.6           StanHeaders_2.21.0-1 prodlim_2019.11.13  
+##  [46] DT_0.12              htmlwidgets_1.5.1    threejs_0.3.3       
+##  [49] RColorBrewer_1.1-2   farver_2.0.3         reshape_0.8.8       
+##  [52] pkgconfig_2.0.3      loo_2.2.0            nnet_7.3-12         
+##  [55] utf8_1.1.4           labeling_0.3         tidyselect_0.2.5    
+##  [58] rlang_0.4.2          DiceDesign_1.8-1     reshape2_1.4.3      
+##  [61] later_1.0.0          munsell_0.5.0        tools_3.6.2         
+##  [64] cli_2.0.1            generics_0.0.2       ranger_0.12.1       
+##  [67] ggridges_0.5.2       evaluate_0.14        stringr_1.4.0       
+##  [70] fastmap_1.0.1        yaml_2.2.1           processx_3.4.1      
+##  [73] knitr_1.28           future_1.16.0        nlme_3.1-142        
+##  [76] mime_0.9             rstanarm_2.19.2      rstudioapi_0.11     
+##  [79] tokenizers_0.2.1     compiler_3.6.2       bayesplot_1.7.1     
+##  [82] shinythemes_1.1.2    tidyposterior_0.0.2  lhs_1.0.1           
+##  [85] stringi_1.4.5        ps_1.3.0             lattice_0.20-38     
+##  [88] Matrix_1.2-18        nloptr_1.2.1         markdown_1.1        
+##  [91] shinyjs_1.1          vctrs_0.2.2          pillar_1.4.3        
+##  [94] lifecycle_0.1.0      furrr_0.1.0          httpuv_1.5.2        
+##  [97] R6_2.4.1             promises_1.1.0       gridExtra_2.3       
+## [100] janeaustenr_0.1.5    codetools_0.2-16     boot_1.3-23         
+## [103] colourpicker_1.0     MASS_7.3-51.4        gtools_3.8.1        
+## [106] assertthat_0.2.1     withr_2.1.2          shinystan_2.5.0     
+## [109] parallel_3.6.2       grid_3.6.2           rpart_4.1-15        
+## [112] timeDate_3043.102    class_7.3-15         minqa_1.2.4         
+## [115] rmarkdown_2.1        pROC_1.16.1          tidypredict_0.4.3   
+## [118] shiny_1.4.0          lubridate_1.7.4      base64enc_0.1-3     
+## [121] dygraphs_1.1.1.6
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

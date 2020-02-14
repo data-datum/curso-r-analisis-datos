@@ -289,7 +289,7 @@ https://arxiv.org/pdf/1206.5538.pdf]
 
 ```{r } 
 iris_split <- iris %>% #creo un objeto a partir de iris
-  `initial_split`(prop = 0.6) #60% de los datos
+  `initial_split`(prop = 0.75) #75% de los datos
 iris_split 
 ```
 
@@ -440,14 +440,14 @@ head(iris_training)
 #### bake() aplicamos a los datos de prueba
 ```{r } 
 iris_testing <- iris_recipe %>%
-  `bake`(testing(iris_split)) 
-```
-
-```{r } 
-iris_testing
+  `bake`(testing(iris_split))
+head(iris_testing)
 ```
 
 
+
+.footnote[https://tidymodels.github.io/recipes/reference/bake.html
+]
 ---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
@@ -469,9 +469,9 @@ class: center, middle
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE} 
 library(tidymodels)
-`?initial_split`
-`?recipe`
-`?bake`
+?initial_split
+?recipe
+?bake
 ```
 
 
@@ -626,6 +626,18 @@ iris_ranger %>%
 
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-size: cover
+class: center, middle
+
+# `predict()`: me permite hacer la predicción del modelo con datos nuevos
+# `bind_cols()`: me permite comparar los resultados con los valores verdaderos
+
+
+
+
+
+---
 class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.png" width="60%" align="center" />
@@ -777,10 +789,10 @@ iris_probs
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
-```{r } 
+```{r fig.height=9, fig.width=11} 
 iris_probs%>%
-  `roc_curve`(.pred_setosa:.pred_virginica, truth=Species) %>%
-  `autoplot`()
+  roc_curve(Species, .pred_setosa:.pred_virginica) %>%
+  autoplot()
 ```
 
 
@@ -792,18 +804,7 @@ class: center, middle
 
 # `roc_curve()`: curva ROC
 # `autoplot()`: me permite graficar
----
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
-
-
-```{r } 
-predict(iris_ranger, iris_testing, type = "prob") %>%
-  bind_cols(predict(iris_ranger, iris_testing)) %>%
-  bind_cols(select(iris_testing, Species)) %>%
-  metrics(Species, .pred_setosa:.pred_virginica, estimate = .pred_class)
-
-```
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
