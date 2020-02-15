@@ -44,7 +44,9 @@ class: inverse, center
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
 
 # Datos ordenados
 
@@ -59,7 +61,9 @@ Cuando hablamos de datos ordenados son referimos a:
 .footnote[https://vita.had.co.nz/papers/tidy-data.pdf]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
 
 # Ordenando datos desordenados
 
@@ -130,8 +134,8 @@ head(relig_income) #encabezado del dataset
 ```{r message=FALSE} 
 relig_income %>%   #datos para ordenar 
   pivot_longer(-religion, #columnas para reordenar 
-               names_to = "income", #columnas colapsadas
-               values_to = "count") #el conteo de los casos
+               names_to = "ingreso", #columnas colapsadas
+               values_to = "conteo") #el conteo de los casos
 ```
 
 
@@ -150,7 +154,7 @@ relig_income %>%   #datos para ordenar
 ```{r message=FALSE, eval=FALSE} 
 pivot_wider(data, #dataset
             names_from = #de donde se crean las columnas
-            values_from = #de donde obtengo los valores
+            values_from = #de donde obtengo los valores)
 ```
 
 
@@ -255,6 +259,20 @@ class: center, middle
 # `separate()` 
 # son operaciones inversas
 
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# Objetivo Principal de `tidyr()`:
+# Obtener datos ordeandos
+
+---
+
+class: center, middle
+
+# Funciones Útiles 
+# (para explorar datos)
 
 
 ---
@@ -270,10 +288,43 @@ install.packages(gapminder)
 library(gapminder)
 ```
 
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+variable <- c("country", "continent", "year", "lifeExp", "pop", "gdpPercap")
+significado <- c("país", "continente", "año", "expectativa de vida", "población", "PBIpercápita")
+table1 <- cbind(variable, significado)
+table1 %>%
+  knitr::kable(format="html")
+```
+
+
+.footnote[https://github.com/jennybc/gapminder]
+
+---
+
+```{r tidy=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+library(gganimate)
+ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  theme(legend.position = 'none') +
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year)
+```
+
+
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 # Funciones útiles
+
+--
+
+__Me permite visualizar los seis (6) primeros casos por del set de datos__
+
+--
 
 ## `head()`
 ```{r }
@@ -285,6 +336,13 @@ head(gapminder)
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 #Funciones Útiles 
+
+--
+
+__Nos permite conocer los seis (6) últimos casos del set de datos__
+
+--
+
 
 ## `tail()`
 
@@ -299,6 +357,12 @@ tail(gapminder)
 
 #Funciones Útiles
 
+--
+
+__Nos permite conocer el número de datos (filas y columnas), variables, tipo de variables, etc__
+
+--
+
 ## `glimpse()`
 ```{r message=FALSE}
 dplyr::glimpse(gapminder)
@@ -308,6 +372,12 @@ dplyr::glimpse(gapminder)
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 #Funciones Útiles
+
+--
+
+__Nos permite extraer una fila teniendo en cuenta el index(orden) de la muestra__
+
+--
 
 ## `slice()`
 
@@ -320,15 +390,32 @@ dplyr::slice(gapminder, 5L)
 
 #Funciones Útiles
 
+--
+
+__Nos permite conocer la estructura interna del set de datos__
+
+--
+
 ## `str()`
 
 ```{r }
 str(gapminder)
 ```
+
+
+.footnote[https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/str]
+
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 #Funciones Útiles
+
+--
+
+__Nos permite conocer la estadística descriptiva del conjunto de datos__
+
+--
+
 
 ## `summary()`
 
@@ -345,9 +432,25 @@ class: inverse, center
 # `Manipular datos con dplyr`
 
 ---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-size: cover
+class: center, middle
+
+# Si quisiese trabajar con algunas columnas...
+
+
+---
+
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 # `select()`
+
+--
+
+__¿Cómo selecciono las variables "país", "expectativa de vida" e "ingreso percápita"?__
+
+--
 
 * La función select() nos permite extraer columnas 
 
@@ -355,7 +458,7 @@ class: inverse, center
 library(dplyr)
 gapminder %>% #datos para trabajar
   `select`(country, lifeExp, gdpPercap) %>% #elijo columnas
-  head() #encabezado con los 6 primeros casos
+  head(5) #encabezado con los 6 primeros casos
 ```
 
 
@@ -363,10 +466,24 @@ gapminder %>% #datos para trabajar
 Mas información en https://dplyr.tidyverse.org/reference/select.html]
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-size: cover
+class: center, middle
+
+# Si quisiese trabajar con algunas filas...
+
+
+---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 # `filter()`
+
+--
+
+__¿Cuáles son los países con expectativa de vida mayor a 80 años?__
+
+--
 
 * La función filter() nos permite extraer filas mediante un criterio lógico
 
@@ -387,7 +504,6 @@ Mas información en https://dplyr.tidyverse.org/reference/filter.html]
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 # `filter()`
-
 
 Podemos filtrar según múltiples condiciones:
 - Se cumplen ambas condiciones 
@@ -427,10 +543,24 @@ class: center, middle
 # `filter()`: extraer filas siguiendo una condición lógica
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-size: cover
+class: center, middle
+
+
+# Si quisiese crear una nueva variable...
+
+---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 # `mutate()`
+
+--
+
+__¿Cómo puedo conocer el PBI a partir de la población y el PBIpercápita?__
+
+--
 
 * Permite crear nuevas variables a partir de una operación
 
@@ -445,16 +575,30 @@ gapminder %>%
 Más información en https://dplyr.tidyverse.org/reference/mutate.html]
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-size: cover
+class: center, middle
+
+
+# Si quisiese ordenar de menor a mayor los valores de una variable
+
+---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
 # `arrange()`
 
+--
+
+__¿Cuáles son los países con menor expectativa de vida?__
+
+--
+
 * Permite ordenar filas según una variable
 
 ```{r message=FALSE, warning=FALSE}
 gapminder %>%
-  `arrange`(year, country) %>% #ordeno según año y país
+  `arrange`(lifeExp) %>% #ordeno según expectativa de vida
   head(4)
 ```
 
@@ -485,6 +629,12 @@ class: center, middle
 
 #  `group_by()` y `summarize()`
 
+--
+
+__¿Cómo puedo conocer la media del PBIpercápita por continente?__
+
+--
+
 ```{r message=FALSE, warning=FALSE}
 gdp_bycontinents <- gapminder %>%
     `group_by`(continent) %>% #agrupo por continentes
@@ -511,7 +661,7 @@ Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/]
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
-# `data %>% group_by(a) %>% summarise(b)` 
+# `data %>% group_by(a) %>% summarize(b)` 
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/summarise.png" width="100%" align="center" />
 
@@ -536,7 +686,7 @@ background-size: cover
 class: center, middle
 
 # `group_by()`: agrupar según un determinado criterio
-# `summarize()`: cambiar la unidad de análisis
+# `summarize()`: resumir cambiando la unidad de análisis
 
 
 
@@ -549,7 +699,15 @@ class: middle, center
 ## `mutate()`: crea nuevas variables
 ## `arrange()`: ordenar filas por variables
 ## `group_by()`: agrupar según un determinado criterio
-## `summarize()`: cambiar la unidad de análisis
+## `summarize()`: resumir
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# Objetivo de `dplyr()`:
+# Obtener porciones de nuestros datos (subsets) que contesten una pregunta
 
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)

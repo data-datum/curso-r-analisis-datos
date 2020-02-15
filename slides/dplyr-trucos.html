@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>dplyr-trucos.utf8</title>
     <meta charset="utf-8" />
@@ -33,12 +33,11 @@ class: inverse, center
 
 
 ```r
-library(gapminder)
-library(magrittr)
-library(dplyr)
-cols&lt;-c("country", "lifeExp", "gdpPercap")
+library(dplyr) 
+library(gapminder) 
+cols&lt;-c("country", "lifeExp", "gdpPercap") #selecciono variables
 gapminder %&gt;%
-  select(!!cols)
+  select(!!cols) #selecciono según el vector creado
 ```
 
 ```
@@ -65,7 +64,7 @@ gapminder %&gt;%
 
 ```r
 gapminder %&gt;%
-  select(matches("gdp"))%&gt;%
+  select(matches("gdp"))%&gt;% #la expresión regular es "gdp"
   head
 ```
 
@@ -108,7 +107,40 @@ gapminder %&gt;%
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# select_all()
+
+# Tip 4: Si quisiera borrar una columna
+
+Con la función select y como argumento el nombre de la columna, antecedida por el signo menos. 
+
+
+```r
+gapminder %&gt;%
+  select(-pop)
+```
+
+```
+## # A tibble: 1,704 x 5
+##    country     continent  year lifeExp gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8      779.
+##  2 Afghanistan Asia       1957    30.3      821.
+##  3 Afghanistan Asia       1962    32.0      853.
+##  4 Afghanistan Asia       1967    34.0      836.
+##  5 Afghanistan Asia       1972    36.1      740.
+##  6 Afghanistan Asia       1977    38.4      786.
+##  7 Afghanistan Asia       1982    39.9      978.
+##  8 Afghanistan Asia       1987    40.8      852.
+##  9 Afghanistan Asia       1992    41.7      649.
+## 10 Afghanistan Asia       1997    41.8      635.
+## # ... with 1,694 more rows
+```
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# `select_all()`
 
 - Permite seleccionar todas las columnas y aplicar una operación a todas las columnas
 
@@ -137,36 +169,11 @@ gapminder %&gt;%
 gapminder %&gt;%
     select_all(tolower)
 ```
----
-
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
-
-# filter()
-- Si queremos realizar un filtrado según un rango, lo hacemos de la siguiente manera
-
-```r
-gapminder %&gt;%
-  select (country, lifeExp, year) %&gt;%
-  filter(lifeExp &gt;= 60, lifeExp &lt; 85) %&gt;%
-  head
-```
-
-```
-## # A tibble: 6 x 3
-##   country lifeExp  year
-##   &lt;fct&gt;     &lt;dbl&gt; &lt;int&gt;
-## 1 Albania    64.8  1962
-## 2 Albania    66.2  1967
-## 3 Albania    67.7  1972
-## 4 Albania    68.9  1977
-## 5 Albania    70.4  1982
-## 6 Albania    72    1987
-```
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# Tip 5: usar between() para especificar rangos
+# Tip 5: usar `between()` para especificar rangos
 - También podemos hacerlo combinando con between():
 
 ```r
@@ -191,7 +198,7 @@ gapminder %&gt;%
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# Tip 6: Si queremos conservar sólo la nueva columna; usamos transmute()
+# Tip 6: Si queremos conservar sólo la nueva columna; usamos `transmute()`
 
 
 ```r
@@ -216,7 +223,7 @@ gapminder %&gt;%
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-#Funciones útiles para combinar con summarise():
+#Funciones útiles para combinar con `summarise()`:
 .pull-left[
 #### rbase
 &lt;table&gt;
@@ -288,7 +295,7 @@ gapminder %&gt;%
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
-# summarise_all()
+# `summarise_all()`
 - Requiere una función que se aplicará a todas las columnas
 
 ```r
@@ -310,13 +317,13 @@ iris %&gt;%
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-#summarise_at()
+# `summarise_at()`
 - Requiere dos argumentos, uno indicando las columnas que se tendrán en cuenta, y luego la operación con la que se resumirán los datos.  
 
 ```r
 iris %&gt;%
   group_by(Species) %&gt;%
-  summarise_at(vars(contains("Sepal")), mean)
+  summarise_at(vars(contains("Sepal")), mean) 
 ```
 
 ```
@@ -328,16 +335,20 @@ iris %&gt;%
 ## 3 virginica          6.59        2.97
 ```
 
+```r
+#resumo variables que contengan #Sepal
+```
+
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-#summarise_if():
+# `summarise_if()`:
 - Requiere dos argumentos 
 
 ```r
 gapminder %&gt;%
   group_by(continent) %&gt;%
-  summarise_if(is.numeric, mean, na.rm=TRUE)
+  summarise_if(is.numeric, mean)
 ```
 
 ```
@@ -354,32 +365,31 @@ gapminder %&gt;%
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# arrange()
+# `arrange(desc())`
 
-- Podemos reordenarlos de manera descendente
+- Podemos reordenarlos de manera descendente, **me permite conocer los países con mayor exprectativa de vida**
 
 
 ```r
 gapminder %&gt;%
-  filter(year == 2007) %&gt;%
-  arrange(desc(lifeExp))
+  arrange(desc(lifeExp)) 
 ```
 
 ```
-## # A tibble: 142 x 6
+## # A tibble: 1,704 x 6
 ##    country          continent  year lifeExp       pop gdpPercap
 ##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
 ##  1 Japan            Asia       2007    82.6 127467972    31656.
 ##  2 Hong Kong, China Asia       2007    82.2   6980412    39725.
-##  3 Iceland          Europe     2007    81.8    301931    36181.
-##  4 Switzerland      Europe     2007    81.7   7554661    37506.
-##  5 Australia        Oceania    2007    81.2  20434176    34435.
-##  6 Spain            Europe     2007    80.9  40448191    28821.
-##  7 Sweden           Europe     2007    80.9   9031088    33860.
-##  8 Israel           Asia       2007    80.7   6426679    25523.
-##  9 France           Europe     2007    80.7  61083916    30470.
-## 10 Canada           Americas   2007    80.7  33390141    36319.
-## # ... with 132 more rows
+##  3 Japan            Asia       2002    82   127065841    28605.
+##  4 Iceland          Europe     2007    81.8    301931    36181.
+##  5 Switzerland      Europe     2007    81.7   7554661    37506.
+##  6 Hong Kong, China Asia       2002    81.5   6762476    30209.
+##  7 Australia        Oceania    2007    81.2  20434176    34435.
+##  8 Spain            Europe     2007    80.9  40448191    28821.
+##  9 Sweden           Europe     2007    80.9   9031088    33860.
+## 10 Israel           Asia       2007    80.7   6426679    25523.
+## # ... with 1,694 more rows
 ```
 
 ---
@@ -441,14 +451,14 @@ devtools::session_info()
 ##  collate  Spanish_Argentina.1252      
 ##  ctype    Spanish_Argentina.1252      
 ##  tz       America/Buenos_Aires        
-##  date     2020-02-05                  
+##  date     2020-02-14                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version    date       lib source                              
 ##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.1)                      
 ##  backports     1.1.5      2019-10-02 [1] CRAN (R 3.6.1)                      
-##  callr         3.3.1      2019-07-18 [1] CRAN (R 3.6.1)                      
-##  cli           1.1.0      2019-03-19 [1] CRAN (R 3.6.1)                      
+##  callr         3.4.1      2020-01-24 [1] CRAN (R 3.6.2)                      
+##  cli           2.0.1      2020-01-08 [1] CRAN (R 3.6.2)                      
 ##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.1)                      
 ##  desc          1.2.0      2018-05-01 [1] CRAN (R 3.6.1)                      
 ##  devtools      2.2.1      2019-09-24 [1] CRAN (R 3.6.2)                      
@@ -457,45 +467,44 @@ devtools::session_info()
 ##  ellipsis      0.3.0      2019-09-20 [1] CRAN (R 3.6.1)                      
 ##  emo         * 0.0.0.9000 2019-12-07 [1] Github (hadley/emo@02a5206)         
 ##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.1)                      
-##  fansi         0.4.0      2018-10-05 [1] CRAN (R 3.6.1)                      
+##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.2)                      
 ##  fontawesome * 0.1.0      2019-12-07 [1] Github (rstudio/fontawesome@2b64e31)
 ##  fs            1.3.1      2019-05-06 [1] CRAN (R 3.6.1)                      
 ##  gapminder   * 0.3.0      2017-10-31 [1] CRAN (R 3.6.2)                      
 ##  glue          1.3.1      2019-03-12 [1] CRAN (R 3.6.1)                      
 ##  highr         0.8        2019-03-20 [1] CRAN (R 3.6.1)                      
 ##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.1)                      
-##  knitr         1.26       2019-11-12 [1] CRAN (R 3.6.1)                      
+##  knitr         1.28       2020-02-06 [1] CRAN (R 3.6.2)                      
 ##  lubridate     1.7.4      2018-04-11 [1] CRAN (R 3.6.1)                      
-##  magrittr    * 1.5        2014-11-22 [1] CRAN (R 3.6.1)                      
+##  magrittr      1.5        2014-11-22 [1] CRAN (R 3.6.1)                      
 ##  memoise       1.1.0      2017-04-21 [1] CRAN (R 3.6.1)                      
-##  pillar        1.4.2      2019-06-29 [1] CRAN (R 3.6.1)                      
-##  pkgbuild      1.0.4      2019-08-05 [1] CRAN (R 3.6.1)                      
+##  pillar        1.4.3      2019-12-20 [1] CRAN (R 3.6.2)                      
+##  pkgbuild      1.0.6      2019-10-09 [1] CRAN (R 3.6.2)                      
 ##  pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 3.6.1)                      
 ##  pkgload       1.0.2      2018-10-29 [1] CRAN (R 3.6.1)                      
-##  prettyunits   1.0.2      2015-07-13 [1] CRAN (R 3.6.1)                      
+##  prettyunits   1.1.1      2020-01-24 [1] CRAN (R 3.6.2)                      
 ##  processx      3.4.1      2019-07-18 [1] CRAN (R 3.6.1)                      
 ##  ps            1.3.0      2018-12-21 [1] CRAN (R 3.6.1)                      
 ##  purrr         0.3.3      2019-10-18 [1] CRAN (R 3.6.1)                      
-##  R6            2.4.0      2019-02-14 [1] CRAN (R 3.6.1)                      
+##  R6            2.4.1      2019-11-12 [1] CRAN (R 3.6.2)                      
 ##  Rcpp          1.0.3      2019-11-08 [1] CRAN (R 3.6.1)                      
 ##  remotes       2.1.0      2019-06-24 [1] CRAN (R 3.6.1)                      
 ##  rlang         0.4.2      2019-11-23 [1] CRAN (R 3.6.1)                      
-##  rmarkdown     2.0        2019-12-12 [1] CRAN (R 3.6.2)                      
+##  rmarkdown     2.1        2020-01-20 [1] CRAN (R 3.6.2)                      
 ##  rprojroot     1.3-2      2018-01-03 [1] CRAN (R 3.6.1)                      
 ##  sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.6.1)                      
-##  stringi       1.4.3      2019-03-12 [1] CRAN (R 3.6.0)                      
+##  stringi       1.4.5      2020-01-11 [1] CRAN (R 3.6.2)                      
 ##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.1)                      
-##  testthat      2.2.1      2019-07-25 [1] CRAN (R 3.6.1)                      
+##  testthat      2.3.1      2019-12-01 [1] CRAN (R 3.6.2)                      
 ##  tibble        2.1.3      2019-06-06 [1] CRAN (R 3.6.1)                      
 ##  tidyselect    0.2.5      2018-10-11 [1] CRAN (R 3.6.1)                      
 ##  usethis       1.5.1      2019-07-04 [1] CRAN (R 3.6.1)                      
 ##  utf8          1.1.4      2018-05-24 [1] CRAN (R 3.6.1)                      
-##  vctrs         0.2.0      2019-07-05 [1] CRAN (R 3.6.1)                      
+##  vctrs         0.2.2      2020-01-24 [1] CRAN (R 3.6.2)                      
 ##  withr         2.1.2      2018-03-15 [1] CRAN (R 3.6.1)                      
-##  xaringan      0.13       2019-10-30 [1] CRAN (R 3.6.2)                      
-##  xfun          0.11       2019-11-12 [1] CRAN (R 3.6.1)                      
-##  yaml          2.2.0      2018-07-25 [1] CRAN (R 3.6.0)                      
-##  zeallot       0.1.0      2018-01-28 [1] CRAN (R 3.6.1)                      
+##  xaringan      0.14       2020-01-19 [1] CRAN (R 3.6.2)                      
+##  xfun          0.12       2020-01-13 [1] CRAN (R 3.6.2)                      
+##  yaml          2.2.1      2020-02-01 [1] CRAN (R 3.6.2)                      
 ## 
 ## [1] C:/Users/Roxana/Documents/R/win-library/3.6
 ## [2] C:/Program Files/R/R-3.6.2/library
@@ -506,6 +515,7 @@ devtools::session_info()
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
+"highlightSpans": true,
 "countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {

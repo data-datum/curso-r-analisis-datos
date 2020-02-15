@@ -43,7 +43,9 @@ class: inverse, center
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
 
 # Datos ordenados
 
@@ -58,7 +60,9 @@ Cuando hablamos de datos ordenados son referimos a:
 .footnote[https://vita.had.co.nz/papers/tidy-data.pdf]
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
 
 # Ordenando datos desordenados
 
@@ -146,24 +150,24 @@ head(relig_income) #encabezado del dataset
 ```r
 relig_income %&gt;%   #datos para ordenar 
   pivot_longer(-religion, #columnas para reordenar 
-               names_to = "income", #columnas colapsadas
-               values_to = "count") #el conteo de los casos
+               names_to = "ingreso", #columnas colapsadas
+               values_to = "conteo") #el conteo de los casos
 ```
 
 ```
 ## # A tibble: 180 x 3
-##    religion income             count
-##    &lt;chr&gt;    &lt;chr&gt;              &lt;dbl&gt;
-##  1 Agnostic &lt;$10k                 27
-##  2 Agnostic $10-20k               34
-##  3 Agnostic $20-30k               60
-##  4 Agnostic $30-40k               81
-##  5 Agnostic $40-50k               76
-##  6 Agnostic $50-75k              137
-##  7 Agnostic $75-100k             122
-##  8 Agnostic $100-150k            109
-##  9 Agnostic &gt;150k                 84
-## 10 Agnostic Don't know/refused    96
+##    religion ingreso            conteo
+##    &lt;chr&gt;    &lt;chr&gt;               &lt;dbl&gt;
+##  1 Agnostic &lt;$10k                  27
+##  2 Agnostic $10-20k                34
+##  3 Agnostic $20-30k                60
+##  4 Agnostic $30-40k                81
+##  5 Agnostic $40-50k                76
+##  6 Agnostic $50-75k               137
+##  7 Agnostic $75-100k              122
+##  8 Agnostic $100-150k             109
+##  9 Agnostic &gt;150k                  84
+## 10 Agnostic Don't know/refused     96
 ## # ... with 170 more rows
 ```
 
@@ -184,7 +188,7 @@ relig_income %&gt;%   #datos para ordenar
 ```r
 pivot_wider(data, #dataset
             names_from = #de donde se crean las columnas
-            values_from = #de donde obtengo los valores
+            values_from = #de donde obtengo los valores)
 ```
 
 
@@ -366,6 +370,20 @@ class: center, middle
 # `separate()` 
 # son operaciones inversas
 
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# Objetivo Principal de `tidyr()`:
+# Obtener datos ordeandos
+
+---
+
+class: center, middle
+
+# Funciones Útiles 
+# (para explorar datos)
 
 
 ---
@@ -383,10 +401,71 @@ install.packages(gapminder)
 library(gapminder)
 ```
 
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; variable &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; significado &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; country &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; país &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; continent &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; continente &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; year &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; año &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; lifeExp &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; expectativa de vida &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; pop &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; población &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; gdpPercap &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; PBIpercápita &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+.footnote[https://github.com/jennybc/gapminder]
+
+---
+
+
+```r
+library(gganimate)
+ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  theme(legend.position = 'none') +
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year)
+```
+
+
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # Funciones útiles
+
+--
+
+__Me permite visualizar los seis (6) primeros casos por del set de datos__
+
+--
 
 ## `head()`
 
@@ -411,6 +490,13 @@ head(gapminder)
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Funciones Útiles 
+
+--
+
+__Nos permite conocer los seis (6) últimos casos del set de datos__
+
+--
+
 
 ## `tail()`
 
@@ -438,6 +524,12 @@ tail(gapminder)
 
 #Funciones Útiles
 
+--
+
+__Nos permite conocer el número de datos (filas y columnas), variables, tipo de variables, etc__
+
+--
+
 ## `glimpse()`
 
 ```r
@@ -460,6 +552,12 @@ dplyr::glimpse(gapminder)
 
 #Funciones Útiles
 
+--
+
+__Nos permite extraer una fila teniendo en cuenta el index(orden) de la muestra__
+
+--
+
 ## `slice()`
 
 
@@ -479,6 +577,12 @@ dplyr::slice(gapminder, 5L)
 
 #Funciones Útiles
 
+--
+
+__Nos permite conocer la estructura interna del set de datos__
+
+--
+
 ## `str()`
 
 
@@ -495,10 +599,21 @@ str(gapminder)
 ##  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
 ##  $ gdpPercap: num  779 821 853 836 740 ...
 ```
+
+
+.footnote[https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/str]
+
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Funciones Útiles
+
+--
+
+__Nos permite conocer la estadística descriptiva del conjunto de datos__
+
+--
+
 
 ## `summary()`
 
@@ -535,9 +650,25 @@ class: inverse, center
 # `Manipular datos con dplyr`
 
 ---
+
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-size: cover
+class: center, middle
+
+# Si quisiese trabajar con algunas columnas...
+
+
+---
+
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `select()`
+
+--
+
+__¿Cómo selecciono las variables "país", "expectativa de vida" e "ingreso percápita"?__
+
+--
 
 * La función select() nos permite extraer columnas 
 
@@ -546,11 +677,11 @@ class: inverse, center
 library(dplyr)
 gapminder %&gt;% #datos para trabajar
   `select`(country, lifeExp, gdpPercap) %&gt;% #elijo columnas
-  head() #encabezado con los 6 primeros casos
+  head(5) #encabezado con los 6 primeros casos
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 5 x 3
 ##   country     lifeExp gdpPercap
 ##   &lt;fct&gt;         &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 Afghanistan    28.8      779.
@@ -558,7 +689,6 @@ gapminder %&gt;% #datos para trabajar
 ## 3 Afghanistan    32.0      853.
 ## 4 Afghanistan    34.0      836.
 ## 5 Afghanistan    36.1      740.
-## 6 Afghanistan    38.4      786.
 ```
 
 
@@ -566,10 +696,24 @@ gapminder %&gt;% #datos para trabajar
 Mas información en https://dplyr.tidyverse.org/reference/select.html]
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-size: cover
+class: center, middle
+
+# Si quisiese trabajar con algunas filas...
+
+
+---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `filter()`
+
+--
+
+__¿Cuáles son los países con expectativa de vida mayor a 80 años?__
+
+--
 
 * La función filter() nos permite extraer filas mediante un criterio lógico
 
@@ -600,7 +744,6 @@ Mas información en https://dplyr.tidyverse.org/reference/filter.html]
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `filter()`
-
 
 Podemos filtrar según múltiples condiciones:
 - Se cumplen ambas condiciones 
@@ -644,10 +787,24 @@ class: center, middle
 # `filter()`: extraer filas siguiendo una condición lógica
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-size: cover
+class: center, middle
+
+
+# Si quisiese crear una nueva variable...
+
+---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `mutate()`
+
+--
+
+__¿Cómo puedo conocer el PBI a partir de la población y el PBIpercápita?__
+
+--
 
 * Permite crear nuevas variables a partir de una operación
 
@@ -675,17 +832,31 @@ gapminder %&gt;%
 Más información en https://dplyr.tidyverse.org/reference/mutate.html]
 
 ---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-size: cover
+class: center, middle
+
+
+# Si quisiese ordenar de menor a mayor los valores de una variable
+
+---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `arrange()`
+
+--
+
+__¿Cuáles son los países con menor expectativa de vida?__
+
+--
 
 * Permite ordenar filas según una variable
 
 
 ```r
 gapminder %&gt;%
-  `arrange`(year, country) %&gt;% #ordeno según año y país
+  `arrange`(lifeExp) %&gt;% #ordeno según expectativa de vida
   head(4)
 ```
 
@@ -693,9 +864,9 @@ gapminder %&gt;%
 ## # A tibble: 4 x 6
 ##   country     continent  year lifeExp     pop gdpPercap
 ##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
-## 1 Afghanistan Asia       1952    28.8 8425333      779.
-## 2 Albania     Europe     1952    55.2 1282697     1601.
-## 3 Algeria     Africa     1952    43.1 9279525     2449.
+## 1 Rwanda      Africa     1992    23.6 7290203      737.
+## 2 Afghanistan Asia       1952    28.8 8425333      779.
+## 3 Gambia      Africa     1952    30    284320      485.
 ## 4 Angola      Africa     1952    30.0 4232095     3521.
 ```
 
@@ -725,6 +896,12 @@ class: center, middle
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #  `group_by()` y `summarize()`
+
+--
+
+__¿Cómo puedo conocer la media del PBIpercápita por continente?__
+
+--
 
 
 ```r
@@ -764,7 +941,7 @@ Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/]
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# `data %&gt;% group_by(a) %&gt;% summarise(b)` 
+# `data %&gt;% group_by(a) %&gt;% summarize(b)` 
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/summarise.png" width="100%" align="center" /&gt;
 
@@ -789,7 +966,7 @@ background-size: cover
 class: center, middle
 
 # `group_by()`: agrupar según un determinado criterio
-# `summarize()`: cambiar la unidad de análisis
+# `summarize()`: resumir cambiando la unidad de análisis
 
 
 
@@ -802,7 +979,15 @@ class: middle, center
 ## `mutate()`: crea nuevas variables
 ## `arrange()`: ordenar filas por variables
 ## `group_by()`: agrupar según un determinado criterio
-## `summarize()`: cambiar la unidad de análisis
+## `summarize()`: resumir
+
+---
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-size: cover
+class: center, middle
+
+# Objetivo de `dplyr()`:
+# Obtener porciones de nuestros datos (subsets) que contesten una pregunta
 
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
@@ -831,7 +1016,7 @@ devtools::session_info()
 ##  collate  Spanish_Argentina.1252      
 ##  ctype    Spanish_Argentina.1252      
 ##  tz       America/Buenos_Aires        
-##  date     2020-02-13                  
+##  date     2020-02-15                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version    date       lib source                              
@@ -853,6 +1038,7 @@ devtools::session_info()
 ##  fs            1.3.1      2019-05-06 [1] CRAN (R 3.6.1)                      
 ##  gapminder   * 0.3.0      2017-10-31 [1] CRAN (R 3.6.2)                      
 ##  glue          1.3.1      2019-03-12 [1] CRAN (R 3.6.1)                      
+##  highr         0.8        2019-03-20 [1] CRAN (R 3.6.1)                      
 ##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.1)                      
 ##  knitr         1.28       2020-02-06 [1] CRAN (R 3.6.2)                      
 ##  lifecycle     0.1.0      2019-08-01 [1] CRAN (R 3.6.1)                      
