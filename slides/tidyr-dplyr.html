@@ -874,6 +874,45 @@ gapminder %&gt;%
 Más información en https://dplyr.tidyverse.org/reference/arrange.html]
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# `arrange(desc())`
+
+--
+
+__¿Cuáles son los países con mayor expectativa de vida?__
+
+--
+
+
+- Podemos reordenarlos de manera descendente.
+
+
+```r
+gapminder %&gt;%
+  arrange(desc(lifeExp)) 
+```
+
+```
+## # A tibble: 1,704 x 6
+##    country          continent  year lifeExp       pop gdpPercap
+##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1 Japan            Asia       2007    82.6 127467972    31656.
+##  2 Hong Kong, China Asia       2007    82.2   6980412    39725.
+##  3 Japan            Asia       2002    82   127065841    28605.
+##  4 Iceland          Europe     2007    81.8    301931    36181.
+##  5 Switzerland      Europe     2007    81.7   7554661    37506.
+##  6 Hong Kong, China Asia       2002    81.5   6762476    30209.
+##  7 Australia        Oceania    2007    81.2  20434176    34435.
+##  8 Spain            Europe     2007    80.9  40448191    28821.
+##  9 Sweden           Europe     2007    80.9   9031088    33860.
+## 10 Israel           Asia       2007    80.7   6426679    25523.
+## # ... with 1,694 more rows
+```
+
+
+
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse

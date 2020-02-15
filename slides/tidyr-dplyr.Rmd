@@ -606,6 +606,27 @@ gapminder %>%
 Más información en https://dplyr.tidyverse.org/reference/arrange.html]
 
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# `arrange(desc())`
+
+--
+
+__¿Cuáles son los países con mayor expectativa de vida?__
+
+--
+
+
+- Podemos reordenarlos de manera descendente.
+
+```{r message=FALSE, warning=FALSE}
+gapminder %>%
+  arrange(desc(lifeExp)) 
+```
+
+
+
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
