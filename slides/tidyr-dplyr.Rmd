@@ -36,6 +36,21 @@ library(emo)
 
 ---
 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tibble.png" width="10%" align="right" />
+
+# data.frame vs. tibble
+- data.frame es una estructura nativas de __rbase__ y está disponible sin necesidad de instalar ningún paquete adicional. Es una estructura tabular organizada en filas y columnas. Se puede acceder a las columnas mediantes colnames() y los nombres de las filas, como rownames().
+<br>
+- tibble, sin embargo, es parte de __tidyverse__. También presenta una estructura tabular, en filas y columnas. Los tibbles eliminan los rownames por defecto, para tener mejor compatibilidad con bases de datos SQL.
+<br>
+- Ambas formas son intercambiables mediante los comandos
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+rbase::as.data.frame()
+tidyverse::as_tibble()
+```
+
+---
+
 class: inverse, center
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="50%" align="center" />
@@ -201,6 +216,18 @@ class: center, middle, inverse
 
 ---
 
+class: center, middle
+
+
+# `r emo::ji("bulb")`
+
+
+# Consigna 
+## 1. Pasar los objetos `relig2` y `fish2` a su formato original aplicando la función inversa (`pivot_longer` y `pivot_wider`) en cada caso.
+
+
+---
+
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
 
 # `separate()`
@@ -270,6 +297,10 @@ class: center, middle
 ---
 
 class: center, middle
+
+
+# `r emo::ji("mag")`
+
 
 # Funciones Útiles 
 # (para explorar datos)
@@ -535,6 +566,16 @@ class: center, middle, inverse
 # `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
 
 ---
+
+class: center, middle
+
+# `r emo::ji("bulb")`
+
+# Consigna 
+# Del dataset `gapminder` selecciono las columnas `country`, `lifeExp`, `year`, `pop` y `gdpPercap`, pero sólo de los casos de Argentina
+
+---
+
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
@@ -634,6 +675,16 @@ class: center, middle, inverse
 
 # `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
 ---
+class: center, middle
+
+# `r emo::ji("bulb")`
+
+# Consigna 
+# Cree una columna llamada `PBI`, y ordenelos según expectativa de vida en los casos de Argentina. 
+
+
+
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
@@ -699,6 +750,21 @@ class: center, middle, inverse
 
 
 # `r emo::ji("wrench")` DEMO `r emo::ji("computer")`
+
+---
+
+class: center, middle
+
+# `r emo::ji("bulb")`
+
+# Consigna 
+## 1. Calcular la media de la esperanza de vida por continente
+## 2. Repetir el mismo procedimiento pero para el año 2007 que es el último año registrado
+
+
+
+
+
 
 ---
 
