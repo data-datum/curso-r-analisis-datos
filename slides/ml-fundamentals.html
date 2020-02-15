@@ -154,7 +154,7 @@ library(tidymodels)
 ```
 
 ```
-## -- Attaching packages --------------------------------------------- tidymodels 0.0.3 --
+## -- Attaching packages --------------------------- tidymodels 0.0.3 --
 ```
 
 ```
@@ -167,7 +167,7 @@ library(tidymodels)
 ```
 
 ```
-## -- Conflicts ------------------------------------------------ tidymodels_conflicts() --
+## -- Conflicts ------------------------------ tidymodels_conflicts() --
 ## x purrr::discard()    masks scales::discard()
 ## x dplyr::filter()     masks stats::filter()
 ## x dplyr::lag()        masks stats::lag()
@@ -513,12 +513,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -0.880      1.05         -1.30 setosa 
-## 2       -1.13      -0.0776       -1.30 setosa 
-## 3       -1.38       0.372        -1.30 setosa 
-## 4       -1.51       0.147        -1.30 setosa 
-## 5       -1.01       1.27         -1.30 setosa 
-## 6       -0.504      1.95         -1.03 setosa
+## 1       -0.918      0.932        -1.30 setosa 
+## 2       -1.16      -0.156        -1.30 setosa 
+## 3       -1.53       0.0616       -1.30 setosa 
+## 4       -1.04       1.15         -1.30 setosa 
+## 5       -0.554      1.80         -1.04 setosa 
+## 6       -1.53       0.714        -1.17 setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -542,12 +542,12 @@ head(iris_testing)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -1.26      -0.0776      -1.43  setosa 
-## 2       -0.504      1.95        -1.03  setosa 
-## 3       -0.880      1.05        -1.16  setosa 
-## 4       -0.880      0.597       -0.896 setosa 
-## 5       -1.01       0.822       -1.03  setosa 
-## 6       -0.755      0.822       -1.30  setosa
+## 1      -1.40         0.279      -1.30  setosa 
+## 2      -1.77        -0.374      -1.30  setosa 
+## 3      -1.89        -0.156      -1.43  setosa 
+## 4      -0.0678       2.02       -1.30  setosa 
+## 5      -0.918        0.497      -0.906 setosa 
+## 6      -1.40         0.279      -1.30  setosa
 ```
 
 
@@ -687,7 +687,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ```
 ## parsnip model object
 ## 
-## Fit time:  141ms 
+## Fit time:  61ms 
 ## Ranger result
 ## 
 ## Call:
@@ -701,7 +701,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.07270943
+## OOB prediction error (Brier s.):  0.05474914
 ```
 
 
@@ -776,16 +776,16 @@ iris_ranger %&gt;%
 ## # A tibble: 37 x 5
 ##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
 ##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -1.26      -0.0776      -1.43  setosa 
-##  2 setosa            -0.504      1.95        -1.03  setosa 
-##  3 setosa            -0.880      1.05        -1.16  setosa 
-##  4 setosa            -0.880      0.597       -0.896 setosa 
-##  5 setosa            -1.01       0.822       -1.03  setosa 
-##  6 setosa            -0.755      0.822       -1.30  setosa 
-##  7 setosa            -0.755      2.40        -1.43  setosa 
-##  8 setosa            -1.13       0.147       -1.30  setosa 
-##  9 setosa            -1.76       0.372       -1.30  setosa 
-## 10 setosa            -0.880      1.72        -1.30  setosa 
+##  1 setosa           -1.40         0.279      -1.30  setosa 
+##  2 setosa           -1.77        -0.374      -1.30  setosa 
+##  3 setosa           -1.89        -0.156      -1.43  setosa 
+##  4 setosa           -0.0678       2.02       -1.30  setosa 
+##  5 setosa           -0.918        0.497      -0.906 setosa 
+##  6 setosa           -1.40         0.279      -1.30  setosa 
+##  7 setosa           -0.432        2.46       -1.30  setosa 
+##  8 setosa           -1.65        -1.68       -1.17  setosa 
+##  9 setosa           -1.77         0.279      -1.30  setosa 
+## 10 setosa           -1.28        -0.156      -1.17  setosa 
 ## # ... with 27 more rows
 ```
 
@@ -869,8 +869,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass         1
-## 2 kap      multiclass         1
+## 1 accuracy multiclass     0.946
+## 2 kap      multiclass     0.919
 ```
 
 ---
@@ -889,8 +889,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass         1
-## 2 kap      multiclass         1
+## 1 accuracy multiclass     0.946
+## 2 kap      multiclass     0.919
 ```
 
 
@@ -910,7 +910,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 sens    macro              1
+## 1 sens    macro          0.947
 ```
 
 ---
@@ -930,7 +930,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 spec    macro              1
+## 1 spec    macro          0.973
 ```
 
 ---
@@ -949,7 +949,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 precision macro              1
+## 1 precision macro          0.947
 ```
 
 ---
@@ -969,8 +969,8 @@ iris_ranger %&gt;%
 ##             Truth
 ## Prediction   setosa versicolor virginica
 ##   setosa         12          0         0
-##   versicolor      0          9         0
-##   virginica       0          0        16
+##   versicolor      0         11         1
+##   virginica       0          1        12
 ```
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
@@ -1005,16 +1005,16 @@ iris_probs
 ## # A tibble: 37 x 4
 ##    .pred_setosa .pred_versicolor .pred_virginica Species
 ##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;  
-##  1        0.983          0.0142          0.00291 setosa 
-##  2        1.00           0.0005          0       setosa 
-##  3        0.998          0.00025         0.00151 setosa 
-##  4        0.916          0.0684          0.0160  setosa 
-##  5        0.979          0.0115          0.00954 setosa 
-##  6        0.976          0.0146          0.00934 setosa 
-##  7        0.998          0.00225         0       setosa 
-##  8        0.962          0.0266          0.0118  setosa 
-##  9        0.992          0.00642         0.00185 setosa 
-## 10        1.00           0.00025         0       setosa 
+##  1        0.976           0.0127         0.0109  setosa 
+##  2        0.800           0.174          0.0259  setosa 
+##  3        0.942           0.0494         0.00901 setosa 
+##  4        0.811           0.138          0.0507  setosa 
+##  5        0.923           0.0601         0.0167  setosa 
+##  6        0.976           0.0127         0.0109  setosa 
+##  7        0.929           0.0594         0.0121  setosa 
+##  8        0.654           0.292          0.0539  setosa 
+##  9        0.976           0.0127         0.0109  setosa 
+## 10        0.942           0.0494         0.00901 setosa 
 ## # ... with 27 more rows
 ```
 

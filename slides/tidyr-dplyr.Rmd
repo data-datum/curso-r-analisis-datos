@@ -32,7 +32,7 @@ library(emo)
 # Flujo de Ciencia de Datos `r emo::ji("pushpin")`
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos.png" width="100%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos-dplyr.png" width="100%" align="center" />
 
 ---
 
