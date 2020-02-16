@@ -628,7 +628,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 {ranger}
-```{r echo=FALSE}
+```{r echo=FALSE, results="markup"}
 iris_ranger <- rand_forest(trees = 500, mode = "classification") %>%
   set_engine("ranger") %>% 
   fit(Species~., data = iris_training)
