@@ -48,7 +48,7 @@ class: center, middle
 # Es el proceso de desarrollo de una herramienta matemática o modelo que genera una predicción precisa. 
 # Entrenamos un modelo para encontrar esa predicción precisa. 
 
-
+.footnote[http://appliedpredictivemodeling.com/]
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
@@ -83,7 +83,7 @@ class: center, middle
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/partes-modelo.png" width="100%" align="center" />
 
 
-
+.footnote[http://appliedpredictivemodeling.com/]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
@@ -97,6 +97,7 @@ class: center, middle
 * __Datos categóricos, también conocidos como nominales o atributos__ toman valores específicos que no tienen escala. Ejemplo: bueno/malo, rojo/azul, etc. 
 * __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, etc.
 
+.footnote[http://appliedpredictivemodeling.com/]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
@@ -326,8 +327,8 @@ iris_split
 
 Estos son los datos de entrenamiento/prueba/total 
 
-__Vamos a _entrenar_ con 113 muestras__
-__Vamos a _validar_ con 37 muestras__
+* __Vamos a _entrenar_ con 113 muestras__
+* __Vamos a _validar_ con 37 muestras__
 
 
 ---
@@ -504,20 +505,6 @@ class: center, middle
 # recipe --> prep() --> bake/juice
 # (definir) --> (estimar) --> (aplicar)
 
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
-
-# NO OLVIDAR 
-
-## Para buscar información sobre alguna función en particular
-
-```{r message=FALSE, warning=FALSE, eval=FALSE} 
-library(tidymodels)
-?initial_split
-?recipe
-?bake
-```
 
 
 ---
@@ -897,7 +884,21 @@ class: center, middle
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/resumen-tidymodels.png" width="100%" align="right" />
 
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
+# NO OLVIDAR 
+
+## Para buscar información sobre alguna función en particular
+
+```{r message=FALSE, warning=FALSE, eval=FALSE} 
+library(tidymodels)
+?initial_split
+?recipe
+?bake
+?rand_forest
+?metrics
+```
 
 ---
 # Bibliografía

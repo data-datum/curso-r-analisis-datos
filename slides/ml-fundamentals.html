@@ -47,7 +47,7 @@ class: center, middle
 # Es el proceso de desarrollo de una herramienta matemática o modelo que genera una predicción precisa. 
 # Entrenamos un modelo para encontrar esa predicción precisa. 
 
-
+.footnote[http://appliedpredictivemodeling.com/]
 ---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
@@ -82,7 +82,7 @@ class: center, middle
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/partes-modelo.png" width="100%" align="center" /&gt;
 
 
-
+.footnote[http://appliedpredictivemodeling.com/]
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
@@ -96,6 +96,7 @@ class: center, middle
 * __Datos categóricos, también conocidos como nominales o atributos__ toman valores específicos que no tienen escala. Ejemplo: bueno/malo, rojo/azul, etc. 
 * __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, etc.
 
+.footnote[http://appliedpredictivemodeling.com/]
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
@@ -386,8 +387,8 @@ iris_split
 
 Estos son los datos de entrenamiento/prueba/total 
 
-__Vamos a _entrenar_ con 113 muestras__
-__Vamos a _validar_ con 37 muestras__
+* __Vamos a _entrenar_ con 113 muestras__
+* __Vamos a _validar_ con 37 muestras__
 
 
 ---
@@ -549,12 +550,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -1.05       0.996        -1.44 setosa 
-## 2       -1.18       1.22         -1.44 setosa 
-## 3       -0.690      1.91         -1.18 setosa 
-## 4       -1.30       0.0847       -1.57 setosa 
-## 5       -0.690      1.45         -1.44 setosa 
-## 6       -1.42      -0.143        -1.57 setosa
+## 1       -0.832      0.954       -1.21  setosa 
+## 2       -1.07      -0.200       -1.21  setosa 
+## 3       -1.31       0.261       -1.21  setosa 
+## 4       -1.43       0.0306      -1.21  setosa 
+## 5       -0.953      1.18        -1.21  setosa 
+## 6       -0.471      1.88        -0.952 setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -578,12 +579,12 @@ head(iris_testing)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1        -1.30     -0.143        -1.44 setosa 
-## 2        -1.54      0.313        -1.44 setosa 
-## 3        -1.66      0.0847       -1.44 setosa 
-## 4        -1.66      0.768        -1.31 setosa 
-## 5        -1.18      0.768        -1.44 setosa 
-## 6        -1.91     -0.371        -1.44 setosa
+## 1       -1.43        0.723      -1.08  setosa 
+## 2       -0.471       1.42       -1.21  setosa 
+## 3       -1.19       -0.200      -1.34  setosa 
+## 4       -0.110       3.03       -0.952 setosa 
+## 5       -0.832       0.492      -0.822 setosa 
+## 6       -1.07        1.18       -1.34  setosa
 ```
 
 
@@ -610,21 +611,6 @@ class: center, middle
 # recipe --&gt; prep() --&gt; bake/juice
 # (definir) --&gt; (estimar) --&gt; (aplicar)
 
-
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
-
-# NO OLVIDAR 
-
-## Para buscar información sobre alguna función en particular
-
-
-```r
-library(tidymodels)
-?initial_split
-?recipe
-?bake
-```
 
 
 ---
@@ -753,7 +739,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ```
 ## parsnip model object
 ## 
-## Fit time:  40ms 
+## Fit time:  31ms 
 ## Ranger result
 ## 
 ## Call:
@@ -767,7 +753,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.06236487
+## OOB prediction error (Brier s.):  0.06012405
 ```
 
 
@@ -818,9 +804,9 @@ iris_ranger %&gt;%
 ##  5 setosa     
 ##  6 setosa     
 ##  7 setosa     
-##  8 setosa     
-##  9 setosa     
-## 10 setosa     
+##  8 versicolor 
+##  9 versicolor 
+## 10 versicolor 
 ## # ... with 27 more rows
 ```
 
@@ -840,18 +826,18 @@ iris_ranger %&gt;%
 
 ```
 ## # A tibble: 37 x 5
-##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
-##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -1.30      -0.143        -1.44 setosa 
-##  2 setosa            -1.54       0.313        -1.44 setosa 
-##  3 setosa            -1.66       0.0847       -1.44 setosa 
-##  4 setosa            -1.66       0.768        -1.31 setosa 
-##  5 setosa            -1.18       0.768        -1.44 setosa 
-##  6 setosa            -1.91      -0.371        -1.44 setosa 
-##  7 setosa            -1.42       0.768        -1.44 setosa 
-##  8 setosa            -2.03      -0.143        -1.57 setosa 
-##  9 setosa            -0.204      2.14         -1.44 setosa 
-## 10 setosa            -0.690      1.91         -1.18 setosa 
+##    .pred_class Sepal.Length Sepal.Width Petal.Width Species   
+##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     
+##  1 setosa            -1.43        0.723      -1.08  setosa    
+##  2 setosa            -0.471       1.42       -1.21  setosa    
+##  3 setosa            -1.19       -0.200      -1.34  setosa    
+##  4 setosa            -0.110       3.03       -0.952 setosa    
+##  5 setosa            -0.832       0.492      -0.822 setosa    
+##  6 setosa            -1.07        1.18       -1.34  setosa    
+##  7 setosa            -1.68       -0.200      -1.21  setosa    
+##  8 versicolor         1.46        0.261       0.342 versicolor
+##  9 versicolor        -0.351      -1.82        0.213 versicolor
+## 10 versicolor         0.854      -0.662       0.472 versicolor
 ## # ... with 27 more rows
 ```
 
@@ -935,8 +921,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.946
-## 2 kap      multiclass     0.912
+## 1 accuracy multiclass     0.973
+## 2 kap      multiclass     0.957
 ```
 
 ---
@@ -955,8 +941,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.946
-## 2 kap      multiclass     0.912
+## 1 accuracy multiclass     0.973
+## 2 kap      multiclass     0.957
 ```
 
 
@@ -976,7 +962,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 sens    macro          0.919
+## 1 sens    macro          0.974
 ```
 
 .footnote[https://tidymodels.github.io/yardstick/reference/sens.html]
@@ -997,7 +983,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 spec    macro          0.975
+## 1 spec    macro          0.983
 ```
 
 
@@ -1018,7 +1004,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 precision macro          0.919
+## 1 precision macro          0.981
 ```
 
 .footnote[https://tidymodels.github.io/yardstick/reference/precision.html]
@@ -1038,9 +1024,9 @@ iris_ranger %&gt;%
 ```
 ##             Truth
 ## Prediction   setosa versicolor virginica
-##   setosa         18          0         0
-##   versicolor      0         12         1
-##   virginica       0          1         5
+##   setosa          7          0         0
+##   versicolor      0         17         1
+##   virginica       0          0        12
 ```
 
 .footnote[https://tidymodels.github.io/yardstick/reference/conf_mat.html]
@@ -1076,18 +1062,18 @@ iris_probs
 
 ```
 ## # A tibble: 37 x 4
-##    .pred_setosa .pred_versicolor .pred_virginica Species
-##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;  
-##  1        0.912          0.0731          0.0147  setosa 
-##  2        0.971          0.0218          0.00683 setosa 
-##  3        0.973          0.0219          0.00482 setosa 
-##  4        0.975          0.00940         0.0156  setosa 
-##  5        0.973          0.0116          0.0157  setosa 
-##  6        0.843          0.140           0.0167  setosa 
-##  7        0.975          0.00940         0.0156  setosa 
-##  8        0.957          0.0357          0.00696 setosa 
-##  9        0.769          0.178           0.0537  setosa 
-## 10        0.975          0.0172          0.00765 setosa 
+##    .pred_setosa .pred_versicolor .pred_virginica Species   
+##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;     
+##  1       0.994           0              0.00648  setosa    
+##  2       0.990           0.00941        0.000778 setosa    
+##  3       0.955           0.0341         0.0106   setosa    
+##  4       0.911           0.0525         0.0363   setosa    
+##  5       0.924           0.0624         0.0134   setosa    
+##  6       0.992           0.0033         0.00423  setosa    
+##  7       0.957           0.0321         0.0106   setosa    
+##  8       0.0165          0.742          0.241    versicolor
+##  9       0.0462          0.882          0.0722   versicolor
+## 10       0               0.636          0.364    versicolor
 ## # ... with 27 more rows
 ```
 
@@ -1104,7 +1090,7 @@ iris_probs%&gt;%
   autoplot()
 ```
 
-![](ml-fundamentals_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+![](ml-fundamentals_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
 
 .footnote[https://tidymodels.github.io/yardstick/reference/roc_curve.html]
 ---
@@ -1126,7 +1112,22 @@ class: center, middle
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/resumen-tidymodels.png" width="100%" align="right" /&gt;
 
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
 
+# NO OLVIDAR 
+
+## Para buscar información sobre alguna función en particular
+
+
+```r
+library(tidymodels)
+?initial_split
+?recipe
+?bake
+?rand_forest
+?metrics
+```
 
 ---
 # Bibliografía
