@@ -451,6 +451,18 @@ Más información en https://github.com/brentthorne/posterdown]
 .footnote[más información en
 https://rstudio.cloud/learn/primers y 
 https://rstudio.github.io/learnr/]
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
+
+#Tesis con thesisdown
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/thesisdown.png" width="100%" align="center" />
+
+
+.footnote[Mas información en https://github.com/ismayc/thesisdown
+Tesis disponible en https://jcrodriguez1989.github.io/tesis_doctoral/]
+
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/rmarkdown-logo.png" width="10%" align="right" />
 
