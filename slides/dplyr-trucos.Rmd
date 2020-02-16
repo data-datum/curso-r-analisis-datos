@@ -180,28 +180,6 @@ gapminder %>%
   summarise_if(is.numeric, mean)
 ```
 
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
-
-# `arrange(desc())`
-
-- Podemos reordenarlos de manera descendente, **me permite conocer los países con mayor exprectativa de vida**
-
-```{r message=FALSE, warning=FALSE}
-gapminder %>%
-  arrange(desc(lifeExp)) 
-```
-
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
-
-#Tip 7: Encontrar los top 5 valores más altos
-
-```{r message=FALSE, warning=FALSE}
-gapminder %>%
-  top_n(5, lifeExp) %>%
-  head
-```
 
 ---
 

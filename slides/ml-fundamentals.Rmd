@@ -35,7 +35,7 @@ library(emo)
 
 # Flujo de Ciencia de Datos `r emo::ji("pushpin")`
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos.png" width="100%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos-ml.png" width="100%" align="center" />
 
 
 
@@ -46,6 +46,7 @@ class: center, middle
 
 
 # Es el proceso de desarrollo de una herramienta matemática o modelo que genera una predicción precisa. 
+# Entrenamos un modelo para encontrar esa predicción precisa. 
 
 
 ---
@@ -57,11 +58,18 @@ class: center, middle
 # Ejemplos de modelos predictivos
 
 <br>
-#### Determinar si un tumor es maligno o benigno en una imagen médica. 
-#### Detectar actividad fraudulenta en transacciones de tarjeta de crédito.
-#### Identificar el código zip de letras manuscritas en un sobre. 
-#### Detectar patrones de acceso anormales en un website
-#### Identificar tópicos (temas) en posteos de blogs. 
+
+*Modelos simples 
+
+#### Determinar si un tumor es maligno o benigno en una imagen médica (clasificación en benigno/maligno).
+#### Predicción de los precios de inmuebles (regresión)
+#### Identificar el código zip de letras manuscritas en un sobre. (clasificación en letras)
+
+--
+
+*Modelos más complejos
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/ml-ejemplos.png" width="100%" align="right" />
 
 
 
@@ -87,7 +95,7 @@ class: center, middle
 * __Atributos, predictores, variables independientes o descriptores__ son los datos de entrada para la ecuación de predicción.
 * __Salida, variable dependiente, variable respuesta, clase, o "target"__ es la cantidad a ser predicha. 
 * __Datos categóricos, también conocidos como nominales o atributos__ toman valores específicos que no tienen escala. Ejemplo: bueno/malo, rojo/azul, etc. 
-* __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, número de baños, son datos continuos. Si bien el número de baños no puede ser fraccionaria, se considera como un dato continuo. 
+* __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, etc.
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
@@ -104,6 +112,27 @@ Predicción de precios de casas, según variables como el barrio en el que perte
 class:center, inverse
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" />
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# De caret a tidymodels
+
+
+
+.pull-left[
+El objetivo de caret era **unificar la sintaxis** para modelizar datos usando como base distintas librerías de R. 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/caret.png" width="100%" align="right" />
+]
+
+--
+
+.pull-right[
+El objetivo de Tidymodels es además hacerlo **en un formato ordenado**. 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="80%" align="right" />
+
+]
 
 
 ---
@@ -159,6 +188,7 @@ background-size: cover
 class: center, middle
 
 # `r emo::ji("sparkles")` Data Balanceada
+Los clases tienen los mismos números de casos
 
 
 ---
@@ -296,6 +326,9 @@ iris_split
 
 Estos son los datos de entrenamiento/prueba/total 
 
+__Vamos a _entrenar_ con 113 muestras__
+__Vamos a _validar_ con 37 muestras__
+
 
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
@@ -315,6 +348,18 @@ class: inverse, center
 
 ---
 
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
+
+# El preprocesamiento se refiere a la adición, eliminación o transformación de los datos de entrenamiento. 
+
+# La necesidad de preprocesar los datos de entrada está determinada por el tipo de modelo que se utiliza. 
+
+
+
+---
+
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes_allison.png" width="100%" align="center" />
 
 
@@ -324,23 +369,30 @@ class: inverse, center
 
 # Preprocesamiento
 
-Dentro de esta etapa se incluyen tareas como:
-### Centrado
-### Escalado
-### Remover variables que presenten alta correlación
+**_Este orden se aconseja en la documentación_**
+
+1. Imputación de valores perdidos.
+1. Transformaciones para variables individuales
+1. Discretizar las variables (si no hubiera otra opción)
+1. Creación de variables latentes
+1. Creación de interacciones
+1. Normalización (centrado, escalado, etc)
+1. Transformaciones multivariadas (PCA, etc)
+
+
+.footnote[Mas información en https://tidymodels.github.io/recipes/articles/Ordering.html]
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
 
 # Centrado y Escalado
 
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+1. Datos originales
+1. Centrar (media 0)
+1. Escalado (desvío estandar igual a 1)
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/prepro1.png" width="100%" align="right" />
 
-# Remover variables que presenten alta correlación
-
-
-
+.footnote[Imagen tomada de http://aikorea.org/cs231n/neural-networks-2/]
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
@@ -394,25 +446,9 @@ class: center, middle
 # `step_corr()`: remuevo las variables correlacionadas
 # `step_center()`: centrar 
 # `step_scale()`: escalar
-# `prep()`:
+# `prep()`: ejecutar
 
 
----
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
-
-# Orden de las operaciones
-
-1. Imputación de valores perdidos.
-1. Transformaciones para variables individuales
-1. Discretizar las variables (si no hubiera otra opción)
-1. Creación de variables latentes
-1. Creación de interacciones
-1. Normalización (centrado, escalado, etc)
-1. Transformaciones multivariadas (PCA, etc)
-
-
-
-.footnote[Mas información en https://tidymodels.github.io/recipes/articles/Ordering.html]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
 
@@ -523,6 +559,8 @@ class: center, middle
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/bret-tree.png" width="100%" align="center" />
 
+.footnote[Imagen tomada de https://www.packtpub.com/big-data-and-business-intelligence/machine-learning-r-second-edition]
+
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
@@ -530,9 +568,21 @@ class: center, middle
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/decision1.png" width="100%" align="center" />
 
-
+.footnote[https://bookdown.org/content/2031/arboles-de-decision-parte-i.html#que-son-los-arboles-de-decision]
 ---
 
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# Bosques aleatorios (Random Forest)
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/netflix-rf.png" width="100%" align="center" />
+
+
+
+.footnote[https://en.wikipedia.org/wiki/Netflix_Prize y https://static.aminer.org/pdf/PDF/000/294/514/random_decision_forests.pdf]
+
+---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
 # Bosques aleatorios (Random Forest)
@@ -542,13 +592,28 @@ class: center, middle
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="100%" align="center" />
 
-
-
-
-
-
+.footnote[https://bookdown.org/content/2031/ensambladores-random-forest-parte-i.html]
 
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+### Out-of-bag error
+
+Error de validación interna del modelo
+
+### mtry
+
+Número de variables elegidas de manera aleatoria como candidatas para cada split.
+
+### Gini index (Índice Gini)
+
+Medida de varianza entre las clases. Nos permite medir la pureza del nodo. Un nodo más puro es cuando mas similares son entre sí, los elementos clasificados. 
+
+
+.footnote[http://faculty.marshall.usc.edu/gareth-james/ISL/]
+---
+
+
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
 
@@ -557,16 +622,17 @@ class: center, middle
 - Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
 - Se puede entrenar cualquier modelo de clasificación o regresión
 - Partes:
-1. Crear la especificación (create specification)
-1. Establecer el motor (set engine)
-1. Ajuste (fit)
+1. *rand_forest()*: es el nombre de tidymodels para el modelo.
+1. *set_engine()*: especifico librería que contiene el modelo.
+1. *fit()*: ajuste de la función según la fórmula y los datos
 
 ```{r eval=FALSE} 
-iris_ranger <- `rand_forest`(trees = 100, mode = "classification") %>%
-  `set_engine`("ranger") %>%
-  `fit`(Species~., data = iris_training)
+iris_ranger <- #creo objeto de R
+  `rand_forest`(trees = 500, mode = "classification") %>%
+  `set_engine`("ranger") %>% #escifico librería
+  `fit`(Species~., data = iris_training) #ajuste
 
-iris_ranger
+iris_ranger 
 ```
 
 
@@ -728,6 +794,7 @@ iris_ranger %>%
   `sens`(truth=Species, estimate=.pred_class) #sensibilidad
 ```
 
+.footnote[https://tidymodels.github.io/yardstick/reference/sens.html]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
 
@@ -740,6 +807,8 @@ iris_ranger %>%
   `spec`(truth=Species, estimate=.pred_class) #especificidad
 ```
 
+
+.footnote[https://tidymodels.github.io/yardstick/reference/spec.html]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
 
@@ -751,6 +820,7 @@ iris_ranger %>%
   `precision`(truth=Species, estimate=.pred_class) #precisión
 ```
 
+.footnote[https://tidymodels.github.io/yardstick/reference/precision.html]
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
 
@@ -762,6 +832,9 @@ iris_ranger %>%
   bind_cols(iris_testing) %>%
   `conf_mat`(truth=Species, estimate=.pred_class) #matriz de confusión
 ```
+
+.footnote[https://tidymodels.github.io/yardstick/reference/conf_mat.html]
+
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
 background-size: cover
@@ -804,7 +877,7 @@ iris_probs%>%
   autoplot()
 ```
 
-
+.footnote[https://tidymodels.github.io/yardstick/reference/roc_curve.html]
 ---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)

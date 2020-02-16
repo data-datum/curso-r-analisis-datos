@@ -34,7 +34,7 @@ class: inverse, center
 
 # Flujo de Ciencia de Datos 📌
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos.png" width="100%" align="center" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos-ml.png" width="100%" align="center" /&gt;
 
 
 
@@ -45,6 +45,7 @@ class: center, middle
 
 
 # Es el proceso de desarrollo de una herramienta matemática o modelo que genera una predicción precisa. 
+# Entrenamos un modelo para encontrar esa predicción precisa. 
 
 
 ---
@@ -56,11 +57,18 @@ class: center, middle
 # Ejemplos de modelos predictivos
 
 &lt;br&gt;
-#### Determinar si un tumor es maligno o benigno en una imagen médica. 
-#### Detectar actividad fraudulenta en transacciones de tarjeta de crédito.
-#### Identificar el código zip de letras manuscritas en un sobre. 
-#### Detectar patrones de acceso anormales en un website
-#### Identificar tópicos (temas) en posteos de blogs. 
+
+*Modelos simples 
+
+#### Determinar si un tumor es maligno o benigno en una imagen médica (clasificación en benigno/maligno).
+#### Predicción de los precios de inmuebles (regresión)
+#### Identificar el código zip de letras manuscritas en un sobre. (clasificación en letras)
+
+--
+
+*Modelos más complejos
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/ml-ejemplos.png" width="100%" align="right" /&gt;
 
 
 
@@ -86,7 +94,7 @@ class: center, middle
 * __Atributos, predictores, variables independientes o descriptores__ son los datos de entrada para la ecuación de predicción.
 * __Salida, variable dependiente, variable respuesta, clase, o "target"__ es la cantidad a ser predicha. 
 * __Datos categóricos, también conocidos como nominales o atributos__ toman valores específicos que no tienen escala. Ejemplo: bueno/malo, rojo/azul, etc. 
-* __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, número de baños, son datos continuos. Si bien el número de baños no puede ser fraccionaria, se considera como un dato continuo. 
+* __Datos continuos__ son a base de escalas numéricas. El costo de un producto, la presión sanguínea, etc.
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
@@ -103,6 +111,27 @@ Predicción de precios de casas, según variables como el barrio en el que perte
 class:center, inverse
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" /&gt;
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# De caret a tidymodels
+
+
+
+.pull-left[
+El objetivo de caret era **unificar la sintaxis** para modelizar datos usando como base distintas librerías de R. 
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/caret.png" width="100%" align="right" /&gt;
+]
+
+--
+
+.pull-right[
+El objetivo de Tidymodels es además hacerlo **en un formato ordenado**. 
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="80%" align="right" /&gt;
+
+]
 
 
 ---
@@ -183,6 +212,7 @@ background-size: cover
 class: center, middle
 
 # ✨ Data Balanceada
+Los clases tienen los mismos números de casos
 
 
 ---
@@ -356,6 +386,9 @@ iris_split
 
 Estos son los datos de entrenamiento/prueba/total 
 
+__Vamos a _entrenar_ con 113 muestras__
+__Vamos a _validar_ con 37 muestras__
+
 
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
@@ -375,6 +408,18 @@ class: inverse, center
 
 ---
 
+background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-size: cover
+class: center, middle
+
+# El preprocesamiento se refiere a la adición, eliminación o transformación de los datos de entrenamiento. 
+
+# La necesidad de preprocesar los datos de entrada está determinada por el tipo de modelo que se utiliza. 
+
+
+
+---
+
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes_allison.png" width="100%" align="center" /&gt;
 
 
@@ -384,23 +429,30 @@ class: inverse, center
 
 # Preprocesamiento
 
-Dentro de esta etapa se incluyen tareas como:
-### Centrado
-### Escalado
-### Remover variables que presenten alta correlación
+**_Este orden se aconseja en la documentación_**
+
+1. Imputación de valores perdidos.
+1. Transformaciones para variables individuales
+1. Discretizar las variables (si no hubiera otra opción)
+1. Creación de variables latentes
+1. Creación de interacciones
+1. Normalización (centrado, escalado, etc)
+1. Transformaciones multivariadas (PCA, etc)
+
+
+.footnote[Mas información en https://tidymodels.github.io/recipes/articles/Ordering.html]
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
 
 # Centrado y Escalado
 
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
+1. Datos originales
+1. Centrar (media 0)
+1. Escalado (desvío estandar igual a 1)
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/prepro1.png" width="100%" align="right" /&gt;
 
-# Remover variables que presenten alta correlación
-
-
-
+.footnote[Imagen tomada de http://aikorea.org/cs231n/neural-networks-2/]
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
@@ -473,25 +525,9 @@ class: center, middle
 # `step_corr()`: remuevo las variables correlacionadas
 # `step_center()`: centrar 
 # `step_scale()`: escalar
-# `prep()`:
+# `prep()`: ejecutar
 
 
----
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
-
-# Orden de las operaciones
-
-1. Imputación de valores perdidos.
-1. Transformaciones para variables individuales
-1. Discretizar las variables (si no hubiera otra opción)
-1. Creación de variables latentes
-1. Creación de interacciones
-1. Normalización (centrado, escalado, etc)
-1. Transformaciones multivariadas (PCA, etc)
-
-
-
-.footnote[Mas información en https://tidymodels.github.io/recipes/articles/Ordering.html]
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" /&gt;
 
@@ -513,12 +549,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -0.918      0.932        -1.30 setosa 
-## 2       -1.16      -0.156        -1.30 setosa 
-## 3       -1.53       0.0616       -1.30 setosa 
-## 4       -1.04       1.15         -1.30 setosa 
-## 5       -0.554      1.80         -1.04 setosa 
-## 6       -1.53       0.714        -1.17 setosa
+## 1       -1.05       0.996        -1.44 setosa 
+## 2       -1.18       1.22         -1.44 setosa 
+## 3       -0.690      1.91         -1.18 setosa 
+## 4       -1.30       0.0847       -1.57 setosa 
+## 5       -0.690      1.45         -1.44 setosa 
+## 6       -1.42      -0.143        -1.57 setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -542,12 +578,12 @@ head(iris_testing)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1      -1.40         0.279      -1.30  setosa 
-## 2      -1.77        -0.374      -1.30  setosa 
-## 3      -1.89        -0.156      -1.43  setosa 
-## 4      -0.0678       2.02       -1.30  setosa 
-## 5      -0.918        0.497      -0.906 setosa 
-## 6      -1.40         0.279      -1.30  setosa
+## 1        -1.30     -0.143        -1.44 setosa 
+## 2        -1.54      0.313        -1.44 setosa 
+## 3        -1.66      0.0847       -1.44 setosa 
+## 4        -1.66      0.768        -1.31 setosa 
+## 5        -1.18      0.768        -1.44 setosa 
+## 6        -1.91     -0.371        -1.44 setosa
 ```
 
 
@@ -630,6 +666,8 @@ class: center, middle
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/bret-tree.png" width="100%" align="center" /&gt;
 
+.footnote[Imagen tomada de https://www.packtpub.com/big-data-and-business-intelligence/machine-learning-r-second-edition]
+
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 
@@ -637,9 +675,21 @@ class: center, middle
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/decision1.png" width="100%" align="center" /&gt;
 
-
+.footnote[https://bookdown.org/content/2031/arboles-de-decision-parte-i.html#que-son-los-arboles-de-decision]
 ---
 
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+# Bosques aleatorios (Random Forest)
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/netflix-rf.png" width="100%" align="center" /&gt;
+
+
+
+.footnote[https://en.wikipedia.org/wiki/Netflix_Prize y https://static.aminer.org/pdf/PDF/000/294/514/random_decision_forests.pdf]
+
+---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 
 # Bosques aleatorios (Random Forest)
@@ -649,13 +699,28 @@ class: center, middle
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="100%" align="center" /&gt;
 
-
-
-
-
-
+.footnote[https://bookdown.org/content/2031/ensambladores-random-forest-parte-i.html]
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+### Out-of-bag error
+
+Error de validación interna del modelo
+
+### mtry
+
+Número de variables elegidas de manera aleatoria como candidatas para cada split.
+
+### Gini index (Índice Gini)
+
+Medida de varianza entre las clases. Nos permite medir la pureza del nodo. Un nodo más puro es cuando mas similares son entre sí, los elementos clasificados. 
+
+
+.footnote[http://faculty.marshall.usc.edu/gareth-james/ISL/]
+---
+
+
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
 
@@ -664,17 +729,18 @@ class: center, middle
 - Para a entrenar un modelo de random forest con librería {ranger} y {randomForest} en el set de entrenamiento. 
 - Se puede entrenar cualquier modelo de clasificación o regresión
 - Partes:
-1. Crear la especificación (create specification)
-1. Establecer el motor (set engine)
-1. Ajuste (fit)
+1. *rand_forest()*: es el nombre de tidymodels para el modelo.
+1. *set_engine()*: especifico librería que contiene el modelo.
+1. *fit()*: ajuste de la función según la fórmula y los datos
 
 
 ```r
-iris_ranger &lt;- `rand_forest`(trees = 100, mode = "classification") %&gt;%
-  `set_engine`("ranger") %&gt;%
-  `fit`(Species~., data = iris_training)
+iris_ranger &lt;- #creo objeto de R
+  `rand_forest`(trees = 500, mode = "classification") %&gt;%
+  `set_engine`("ranger") %&gt;% #escifico librería
+  `fit`(Species~., data = iris_training) #ajuste
 
-iris_ranger
+iris_ranger 
 ```
 
 
@@ -687,7 +753,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ```
 ## parsnip model object
 ## 
-## Fit time:  61ms 
+## Fit time:  40ms 
 ## Ranger result
 ## 
 ## Call:
@@ -701,7 +767,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.05474914
+## OOB prediction error (Brier s.):  0.06236487
 ```
 
 
@@ -776,16 +842,16 @@ iris_ranger %&gt;%
 ## # A tibble: 37 x 5
 ##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
 ##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa           -1.40         0.279      -1.30  setosa 
-##  2 setosa           -1.77        -0.374      -1.30  setosa 
-##  3 setosa           -1.89        -0.156      -1.43  setosa 
-##  4 setosa           -0.0678       2.02       -1.30  setosa 
-##  5 setosa           -0.918        0.497      -0.906 setosa 
-##  6 setosa           -1.40         0.279      -1.30  setosa 
-##  7 setosa           -0.432        2.46       -1.30  setosa 
-##  8 setosa           -1.65        -1.68       -1.17  setosa 
-##  9 setosa           -1.77         0.279      -1.30  setosa 
-## 10 setosa           -1.28        -0.156      -1.17  setosa 
+##  1 setosa            -1.30      -0.143        -1.44 setosa 
+##  2 setosa            -1.54       0.313        -1.44 setosa 
+##  3 setosa            -1.66       0.0847       -1.44 setosa 
+##  4 setosa            -1.66       0.768        -1.31 setosa 
+##  5 setosa            -1.18       0.768        -1.44 setosa 
+##  6 setosa            -1.91      -0.371        -1.44 setosa 
+##  7 setosa            -1.42       0.768        -1.44 setosa 
+##  8 setosa            -2.03      -0.143        -1.57 setosa 
+##  9 setosa            -0.204      2.14         -1.44 setosa 
+## 10 setosa            -0.690      1.91         -1.18 setosa 
 ## # ... with 27 more rows
 ```
 
@@ -870,7 +936,7 @@ iris_ranger %&gt;%
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy multiclass     0.946
-## 2 kap      multiclass     0.919
+## 2 kap      multiclass     0.912
 ```
 
 ---
@@ -890,7 +956,7 @@ iris_ranger %&gt;%
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy multiclass     0.946
-## 2 kap      multiclass     0.919
+## 2 kap      multiclass     0.912
 ```
 
 
@@ -910,9 +976,10 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 sens    macro          0.947
+## 1 sens    macro          0.919
 ```
 
+.footnote[https://tidymodels.github.io/yardstick/reference/sens.html]
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt; 
 
@@ -930,9 +997,11 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 spec    macro          0.973
+## 1 spec    macro          0.975
 ```
 
+
+.footnote[https://tidymodels.github.io/yardstick/reference/spec.html]
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt; 
 
@@ -949,9 +1018,10 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 precision macro          0.947
+## 1 precision macro          0.919
 ```
 
+.footnote[https://tidymodels.github.io/yardstick/reference/precision.html]
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /&gt;
 
@@ -968,10 +1038,13 @@ iris_ranger %&gt;%
 ```
 ##             Truth
 ## Prediction   setosa versicolor virginica
-##   setosa         12          0         0
-##   versicolor      0         11         1
-##   virginica       0          1        12
+##   setosa         18          0         0
+##   versicolor      0         12         1
+##   virginica       0          1         5
 ```
+
+.footnote[https://tidymodels.github.io/yardstick/reference/conf_mat.html]
+
 ---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
 background-size: cover
@@ -1005,16 +1078,16 @@ iris_probs
 ## # A tibble: 37 x 4
 ##    .pred_setosa .pred_versicolor .pred_virginica Species
 ##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;  
-##  1        0.976           0.0127         0.0109  setosa 
-##  2        0.800           0.174          0.0259  setosa 
-##  3        0.942           0.0494         0.00901 setosa 
-##  4        0.811           0.138          0.0507  setosa 
-##  5        0.923           0.0601         0.0167  setosa 
-##  6        0.976           0.0127         0.0109  setosa 
-##  7        0.929           0.0594         0.0121  setosa 
-##  8        0.654           0.292          0.0539  setosa 
-##  9        0.976           0.0127         0.0109  setosa 
-## 10        0.942           0.0494         0.00901 setosa 
+##  1        0.912          0.0731          0.0147  setosa 
+##  2        0.971          0.0218          0.00683 setosa 
+##  3        0.973          0.0219          0.00482 setosa 
+##  4        0.975          0.00940         0.0156  setosa 
+##  5        0.973          0.0116          0.0157  setosa 
+##  6        0.843          0.140           0.0167  setosa 
+##  7        0.975          0.00940         0.0156  setosa 
+##  8        0.957          0.0357          0.00696 setosa 
+##  9        0.769          0.178           0.0537  setosa 
+## 10        0.975          0.0172          0.00765 setosa 
 ## # ... with 27 more rows
 ```
 
@@ -1033,7 +1106,7 @@ iris_probs%&gt;%
 
 ![](ml-fundamentals_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
 
-
+.footnote[https://tidymodels.github.io/yardstick/reference/roc_curve.html]
 ---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
