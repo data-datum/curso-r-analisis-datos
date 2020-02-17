@@ -25,7 +25,7 @@ library(emo)
 
 
 <br><br><br><br><br> Slides disponibles en <https://bit.ly/curso-r-fca> `r emo::ji("sparkles")`
-<br> Página web del curso en <https://curso-r-fca.netlify.com> `r emo::ji("star2")`
+<br> Página web del curso en <https://flor14.github.io/Curso_r_unne_2020/> `r emo::ji("star2")`
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />

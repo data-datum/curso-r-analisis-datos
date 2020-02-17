@@ -24,7 +24,7 @@ class: inverse, center
 
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt; Slides disponibles en &lt;https://bit.ly/curso-r-fca&gt; ✨
-&lt;br&gt; Página web del curso en &lt;https://curso-r-fca.netlify.com&gt; 🌟
+&lt;br&gt; Página web del curso en &lt;https://flor14.github.io/Curso_r_unne_2020/&gt; 🌟
 
 ---
 
@@ -550,12 +550,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -0.985       1.06        -1.44 setosa 
-## 2       -1.23       -0.108       -1.44 setosa 
-## 3       -1.60        0.126       -1.44 setosa 
-## 4       -1.11        1.29        -1.44 setosa 
-## 5       -0.615       2.00        -1.16 setosa 
-## 6       -1.60        0.827       -1.30 setosa
+## 1       -0.853      0.982        -1.28 setosa 
+## 2       -1.09      -0.198        -1.28 setosa 
+## 3       -1.33       0.274        -1.28 setosa 
+## 4       -1.44       0.0376       -1.28 setosa 
+## 5       -0.972      1.22         -1.28 setosa 
+## 6       -1.44       0.746        -1.15 setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -579,12 +579,12 @@ head(iris_testing)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -1.48        0.360       -1.44 setosa 
-## 2       -1.23        0.126       -1.57 setosa 
-## 3       -1.36       -0.108       -1.57 setosa 
-## 4       -0.122       2.23        -1.44 setosa 
-## 5       -0.985       1.06        -1.30 setosa 
-## 6       -0.246       1.76        -1.30 setosa
+## 1       -0.499      1.93         -1.02 setosa 
+## 2       -0.972      0.746        -1.28 setosa 
+## 3       -1.09       0.0376       -1.42 setosa 
+## 4       -1.21       0.746        -1.28 setosa 
+## 5       -1.21      -0.198        -1.42 setosa 
+## 6       -0.735      0.982        -1.28 setosa
 ```
 
 
@@ -739,7 +739,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ```
 ## parsnip model object
 ## 
-## Fit time:  51ms 
+## Fit time:  80ms 
 ## Ranger result
 ## 
 ## Call:
@@ -753,7 +753,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.06147664
+## OOB prediction error (Brier s.):  0.05072322
 ```
 
 
@@ -828,16 +828,16 @@ iris_ranger %&gt;%
 ## # A tibble: 37 x 5
 ##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
 ##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -1.48        0.360       -1.44 setosa 
-##  2 setosa            -1.23        0.126       -1.57 setosa 
-##  3 setosa            -1.36       -0.108       -1.57 setosa 
-##  4 setosa            -0.122       2.23        -1.44 setosa 
-##  5 setosa            -0.985       1.06        -1.30 setosa 
-##  6 setosa            -0.246       1.76        -1.30 setosa 
-##  7 setosa            -0.985       1.53        -1.16 setosa 
-##  8 setosa            -1.60        1.29        -1.44 setosa 
-##  9 setosa            -1.11       -0.108       -1.44 setosa 
-## 10 setosa            -0.862       1.06        -1.44 setosa 
+##  1 setosa            -0.499      1.93        -1.02  setosa 
+##  2 setosa            -0.972      0.746       -1.28  setosa 
+##  3 setosa            -1.09       0.0376      -1.42  setosa 
+##  4 setosa            -1.21       0.746       -1.28  setosa 
+##  5 setosa            -1.21      -0.198       -1.42  setosa 
+##  6 setosa            -0.735      0.982       -1.28  setosa 
+##  7 setosa            -0.735      2.40        -1.42  setosa 
+##  8 setosa            -1.56      -1.85        -1.15  setosa 
+##  9 setosa            -0.972      0.982       -0.750 setosa 
+## 10 setosa            -0.617      1.45        -1.28  setosa 
 ## # ... with 27 more rows
 ```
 
@@ -921,8 +921,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.973
-## 2 kap      multiclass     0.958
+## 1 accuracy multiclass     0.946
+## 2 kap      multiclass     0.918
 ```
 
 ---
@@ -941,8 +941,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.973
-## 2 kap      multiclass     0.958
+## 1 accuracy multiclass     0.946
+## 2 kap      multiclass     0.918
 ```
 
 
@@ -962,7 +962,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 sens    macro          0.967
+## 1 sens    macro          0.958
 ```
 
 .footnote[https://tidymodels.github.io/yardstick/reference/sens.html]
@@ -983,7 +983,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 spec    macro          0.988
+## 1 spec    macro          0.975
 ```
 
 
@@ -1004,7 +1004,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 precision macro          0.970
+## 1 precision macro          0.944
 ```
 
 .footnote[https://tidymodels.github.io/yardstick/reference/precision.html]
@@ -1024,9 +1024,9 @@ iris_ranger %&gt;%
 ```
 ##             Truth
 ## Prediction   setosa versicolor virginica
-##   setosa         17          0         0
-##   versicolor      0         10         1
-##   virginica       0          0         9
+##   setosa         11          0         0
+##   versicolor      0         10         2
+##   virginica       0          0        14
 ```
 
 .footnote[https://tidymodels.github.io/yardstick/reference/conf_mat.html]
@@ -1064,16 +1064,16 @@ iris_probs
 ## # A tibble: 37 x 4
 ##    .pred_setosa .pred_versicolor .pred_virginica Species
 ##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;  
-##  1        0.978          0.0125         0.00914  setosa 
-##  2        0.935          0.0402         0.0250   setosa 
-##  3        0.978          0.0169         0.00495  setosa 
-##  4        0.791          0.168          0.0408   setosa 
-##  5        0.995          0.00483        0.000133 setosa 
-##  6        0.794          0.179          0.0276   setosa 
-##  7        0.990          0.0045         0.00599  setosa 
-##  8        0.987          0.00025        0.0127   setosa 
-##  9        0.888          0.0960         0.0163   setosa 
-## 10        0.997          0.00252        0.000133 setosa 
+##  1        0.979          0.0146          0.00596 setosa 
+##  2        0.986          0.00802         0.00569 setosa 
+##  3        0.968          0.0216          0.0107  setosa 
+##  4        0.991          0.00306         0.00549 setosa 
+##  5        0.968          0.0210          0.0113  setosa 
+##  6        0.989          0.00877         0.00258 setosa 
+##  7        0.986          0.00810         0.00596 setosa 
+##  8        0.694          0.267           0.0389  setosa 
+##  9        0.995          0.00496         0.0002  setosa 
+## 10        0.985          0.0110          0.00358 setosa 
 ## # ... with 27 more rows
 ```
 
@@ -1147,6 +1147,13 @@ https://bookdown.org/content/2031/
 - Applied Predictive Modeling 
 http://appliedpredictivemodeling.com/ 
 
+
+
+---
+
+# ¿De donde estudio para aprender ML?
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/ml-libros.png" width="100%" align="center" /&gt;
 
 
 ---
