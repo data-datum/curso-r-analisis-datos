@@ -24,7 +24,7 @@ library(emo)
 
 
 <br><br><br><br><br> Slides disponibles en <https://bit.ly/curso-r-fca> `r emo::ji("sparkles")`
-<br> Página web del curso en <https://curso-r-fca.netlify.com> `r emo::ji("star2")`
+<br> Página web del curso en <https://flor14.github.io/Curso_r_unne_2020/> `r emo::ji("star2")`
 
 
 ---
@@ -32,11 +32,11 @@ library(emo)
 # Flujo de Ciencia de Datos `r emo::ji("pushpin")`
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos-dplyr.png" width="100%" align="center" />
+<img src="../img/flujo-ciencia-datos-dplyr.png" width="100%" align="center" />
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tibble.png" width="10%" align="right" />
+<img src="../img/tibble.png" width="10%" align="right" />
 
 # data.frame vs. tibble
 - data.frame es una estructura nativas de __rbase__ y está disponible sin necesidad de instalar ningún paquete adicional. Es una estructura tabular organizada en filas y columnas. Se puede acceder a las columnas mediantes colnames() y los nombres de las filas, como rownames().
