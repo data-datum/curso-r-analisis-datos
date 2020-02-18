@@ -1,0 +1,275 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css:  ["default", "default-fonts", "animate.css",  "hygge"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: true
+---
+class: inverse, center
+```{r , message=FALSE, warning=FALSE, include=FALSE} 
+library(fontawesome)
+library(emo)
+```
+
+# `r fa("r-project", fill = 'steelblue')`  para análisis de datos `r emo::ji("rocket")`<br> <br> 
+
+## `r emo::ji("wrench")`Ejercicios de dplyr - gapminder `r emo::ji("computer")` 
+<br> <br> <br> 
+
+.large[Roxana N. Villafañe | LEMyP | <a href='http://twitter.com/data_datum'>`r fa("twitter", fill = 'steelblue')` @data_datum</a>] <br> 
+.large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
+
+
+`r emo::ji("sparkles")`
+<br> Página web del curso en <https://flor14.github.io/Curso_r_unne_2020/> `r emo::ji("star2")`
+
+---
+
+<img src="dplyr.png" width="10%" align="right" />
+
+# 1. De gapminder seleccionar los datos correspondientes a Argentina. 
+
+
+```{r , warning=FALSE, echo=FALSE, message=FALSE}
+library(gapminder)
+library(dplyr)
+gapminder %>%
+  filter(country=="Argentina")
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+
+# Solución
+
+```{r , warning=FALSE, message=FALSE}
+gapminder %>%
+  filter(country=="Argentina")
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+
+# 2. Eliminar la columna correspondiente a la población en gapminder
+
+```{r , warning=FALSE, echo=FALSE}
+gapminder %>%
+  select(-pop)
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+
+# Solución 
+
+```{r , warning=FALSE}
+gapminder %>%
+  select(-pop)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+## 3. Seleccionar los datos correspondientes al continente americano, correspondientes del año 80 en adelante. Los datos deben estar ordenados según los años más actuales. 
+
+```{r , warning=FALSE, echo=FALSE}
+gapminder %>%
+  filter(continent=="Americas", year >= 1980) %>%
+  arrange(desc(year))
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+
+# Solución
+```{r , warning=FALSE}
+gapminder %>%
+  filter(continent=="Americas", year >= 1980) %>%
+  arrange(desc(year))
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# 4. Seleccionar las columnas correspondientes a ingresos per capita y esperanza de vida
+
+```{r , warning=FALSE, echo=FALSE}
+gapminder %>%
+  select(lifeExp, gdpPercap)
+```
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Solución 
+
+```{r , warning=FALSE}
+gapminder %>%
+  select(lifeExp, gdpPercap)
+```
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# 5. Calcular la media por continente del ingreso per cápita y la esperanza de vida. Ordenarlos de mayor a menor según la esperanza de vida.
+
+```{r , warning=FALSE, echo=FALSE}
+gapminder %>%
+  group_by(continent) %>%
+  summarize(gpd=mean(gdpPercap), lifeE=mean(lifeExp)) %>%
+  arrange(desc(lifeE))
+```
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Solución
+
+```{r , warning=FALSE}
+gapminder %>%
+  group_by(continent) %>%
+  summarize(gpd=mean(gdpPercap), lifeE=mean(lifeExp)) %>%
+  arrange(desc(lifeE))
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# 6. ¿Cuáles son los 7 países con mayor esperanza de vida en el año 2002?
+
+```{r , warning=FALSE, message=FALSE, echo=FALSE}
+gapminder %>%
+  filter(year==2002) %>%
+  arrange(desc(lifeExp)) %>%
+  head(7)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Solución
+
+```{r , warning=FALSE, message=FALSE}
+gapminder %>%
+  filter(year==2002) %>%
+  arrange(desc(lifeExp)) %>%
+  head(7)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# 7. ¿Cuáles son los países con menor esperanza de vida y menor ingreso en el año 2002?
+
+```{r , warning=FALSE, message=FALSE, echo=FALSE}
+gapminder %>%
+  filter(year==2002) %>%
+  arrange(lifeExp, gdpPercap) %>%
+  head(5)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+#Solución
+
+```{r , warning=FALSE, message=FALSE}
+gapminder %>%
+  filter(year==2002) %>%
+  arrange(lifeExp, gdpPercap) %>%
+  head(5)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# 8. En el dataset iris, poner la columna species en primer lugar
+
+### Vamos a reordenar columnas
+
+```{r , warning=FALSE, message=FALSE, echo=FALSE}
+iris %>%
+  select(Species, everything()) %>%
+  head(5)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+#Solución
+
+```{r , warning=FALSE, message=FALSE}
+iris %>%
+  select(Species, everything()) %>%
+  head(5)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# 9. Seleccionar la mitad (50%) del dataset gapminder
+
+```{r , warning=FALSE, message=FALSE, echo=FALSE}
+gapminder %>%
+  sample_frac(size=0.5)
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Solución
+
+```{r , warning=FALSE, message=FALSE}
+gapminder %>%
+  sample_frac(size=0.5)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# 10. Elegir los casos que están entre las filas 20 y 30. 
+
+```{r , warning=FALSE, message=FALSE, echo=FALSE}
+gapminder %>%
+  slice(20:30)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Solución
+
+```{r , warning=FALSE, message=FALSE}
+gapminder %>%
+  slice(20:30)
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Para seguir practicando...
+
+https://garthtarr.github.io/meatR/dplyr_ex1.html
+
+### R4DS Capítulo 5: Data Transformation
+
+https://r4ds.had.co.nz/transform.html
+
+### R4DS Capítulo 5 (en español)
+
+https://es.r4ds.hadley.nz/transform.html 
+
+### Soluciones (en inglés)
+
+https://jrnold.github.io/r4ds-exercise-solutions/transform.html 

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>dplyr-ejercicios2.utf8</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link rel="stylesheet" href="animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: inverse, center
+
+
+# &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;  para análisis de datos 🚀&lt;br&gt; &lt;br&gt; 
+
+## 🔧Ejercicios de dplyr - gapminder 💻 
+&lt;br&gt; &lt;br&gt; &lt;br&gt; 
+
+.large[Roxana N. Villafañe | LEMyP | &lt;a href='http://twitter.com/data_datum'&gt;&lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt; @data_datum&lt;/a&gt;] &lt;br&gt; 
+.large[Florencia D'Andrea | INTA-CONICET | &lt;a href="http://twitter.com/cantoflor_87"&gt; &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt; @cantoflor_87&lt;/a&gt;&lt;br&gt;] 
+
+
+✨
+&lt;br&gt; Página web del curso en &lt;https://flor14.github.io/Curso_r_unne_2020/&gt; 🌟
+
+---
+
+&lt;img src="dplyr.png" width="10%" align="right" /&gt;
+
+# 1. De gapminder seleccionar los datos correspondientes a Argentina. 
+
+
+
+```
+## # A tibble: 12 x 6
+##    country   continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Argentina Americas   1952    62.5 17876956     5911.
+##  2 Argentina Americas   1957    64.4 19610538     6857.
+##  3 Argentina Americas   1962    65.1 21283783     7133.
+##  4 Argentina Americas   1967    65.6 22934225     8053.
+##  5 Argentina Americas   1972    67.1 24779799     9443.
+##  6 Argentina Americas   1977    68.5 26983828    10079.
+##  7 Argentina Americas   1982    69.9 29341374     8998.
+##  8 Argentina Americas   1987    70.8 31620918     9140.
+##  9 Argentina Americas   1992    71.9 33958947     9308.
+## 10 Argentina Americas   1997    73.3 36203463    10967.
+## 11 Argentina Americas   2002    74.3 38331121     8798.
+## 12 Argentina Americas   2007    75.3 40301927    12779.
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+
+# Solución
+
+
+```r
+gapminder %&gt;%
+  filter(country=="Argentina")
+```
+
+```
+## # A tibble: 12 x 6
+##    country   continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Argentina Americas   1952    62.5 17876956     5911.
+##  2 Argentina Americas   1957    64.4 19610538     6857.
+##  3 Argentina Americas   1962    65.1 21283783     7133.
+##  4 Argentina Americas   1967    65.6 22934225     8053.
+##  5 Argentina Americas   1972    67.1 24779799     9443.
+##  6 Argentina Americas   1977    68.5 26983828    10079.
+##  7 Argentina Americas   1982    69.9 29341374     8998.
+##  8 Argentina Americas   1987    70.8 31620918     9140.
+##  9 Argentina Americas   1992    71.9 33958947     9308.
+## 10 Argentina Americas   1997    73.3 36203463    10967.
+## 11 Argentina Americas   2002    74.3 38331121     8798.
+## 12 Argentina Americas   2007    75.3 40301927    12779.
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+
+# 2. Eliminar la columna correspondiente a la población en gapminder
+
+
+```
+## # A tibble: 1,704 x 5
+##    country     continent  year lifeExp gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8      779.
+##  2 Afghanistan Asia       1957    30.3      821.
+##  3 Afghanistan Asia       1962    32.0      853.
+##  4 Afghanistan Asia       1967    34.0      836.
+##  5 Afghanistan Asia       1972    36.1      740.
+##  6 Afghanistan Asia       1977    38.4      786.
+##  7 Afghanistan Asia       1982    39.9      978.
+##  8 Afghanistan Asia       1987    40.8      852.
+##  9 Afghanistan Asia       1992    41.7      649.
+## 10 Afghanistan Asia       1997    41.8      635.
+## # ... with 1,694 more rows
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+
+# Solución 
+
+
+```r
+gapminder %&gt;%
+  select(-pop)
+```
+
+```
+## # A tibble: 1,704 x 5
+##    country     continent  year lifeExp gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8      779.
+##  2 Afghanistan Asia       1957    30.3      821.
+##  3 Afghanistan Asia       1962    32.0      853.
+##  4 Afghanistan Asia       1967    34.0      836.
+##  5 Afghanistan Asia       1972    36.1      740.
+##  6 Afghanistan Asia       1977    38.4      786.
+##  7 Afghanistan Asia       1982    39.9      978.
+##  8 Afghanistan Asia       1987    40.8      852.
+##  9 Afghanistan Asia       1992    41.7      649.
+## 10 Afghanistan Asia       1997    41.8      635.
+## # ... with 1,694 more rows
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+## 3. Seleccionar los datos correspondientes al continente americano, correspondientes del año 80 en adelante. Los datos deben estar ordenados según los años más actuales. 
+
+
+```
+## # A tibble: 150 x 6
+##    country            continent  year lifeExp       pop gdpPercap
+##    &lt;fct&gt;              &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1 Argentina          Americas   2007    75.3  40301927    12779.
+##  2 Bolivia            Americas   2007    65.6   9119152     3822.
+##  3 Brazil             Americas   2007    72.4 190010647     9066.
+##  4 Canada             Americas   2007    80.7  33390141    36319.
+##  5 Chile              Americas   2007    78.6  16284741    13172.
+##  6 Colombia           Americas   2007    72.9  44227550     7007.
+##  7 Costa Rica         Americas   2007    78.8   4133884     9645.
+##  8 Cuba               Americas   2007    78.3  11416987     8948.
+##  9 Dominican Republic Americas   2007    72.2   9319622     6025.
+## 10 Ecuador            Americas   2007    75.0  13755680     6873.
+## # ... with 140 more rows
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+
+# Solución
+
+```r
+gapminder %&gt;%
+  filter(continent=="Americas", year &gt;= 1980) %&gt;%
+  arrange(desc(year))
+```
+
+```
+## # A tibble: 150 x 6
+##    country            continent  year lifeExp       pop gdpPercap
+##    &lt;fct&gt;              &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1 Argentina          Americas   2007    75.3  40301927    12779.
+##  2 Bolivia            Americas   2007    65.6   9119152     3822.
+##  3 Brazil             Americas   2007    72.4 190010647     9066.
+##  4 Canada             Americas   2007    80.7  33390141    36319.
+##  5 Chile              Americas   2007    78.6  16284741    13172.
+##  6 Colombia           Americas   2007    72.9  44227550     7007.
+##  7 Costa Rica         Americas   2007    78.8   4133884     9645.
+##  8 Cuba               Americas   2007    78.3  11416987     8948.
+##  9 Dominican Republic Americas   2007    72.2   9319622     6025.
+## 10 Ecuador            Americas   2007    75.0  13755680     6873.
+## # ... with 140 more rows
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# 4. Seleccionar las columnas correspondientes a ingresos per capita y esperanza de vida
+
+
+```
+## # A tibble: 1,704 x 2
+##    lifeExp gdpPercap
+##      &lt;dbl&gt;     &lt;dbl&gt;
+##  1    28.8      779.
+##  2    30.3      821.
+##  3    32.0      853.
+##  4    34.0      836.
+##  5    36.1      740.
+##  6    38.4      786.
+##  7    39.9      978.
+##  8    40.8      852.
+##  9    41.7      649.
+## 10    41.8      635.
+## # ... with 1,694 more rows
+```
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# Solución 
+
+
+```r
+gapminder %&gt;%
+  select(lifeExp, gdpPercap)
+```
+
+```
+## # A tibble: 1,704 x 2
+##    lifeExp gdpPercap
+##      &lt;dbl&gt;     &lt;dbl&gt;
+##  1    28.8      779.
+##  2    30.3      821.
+##  3    32.0      853.
+##  4    34.0      836.
+##  5    36.1      740.
+##  6    38.4      786.
+##  7    39.9      978.
+##  8    40.8      852.
+##  9    41.7      649.
+## 10    41.8      635.
+## # ... with 1,694 more rows
+```
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# 5. Calcular la media por continente del ingreso per cápita y la esperanza de vida. Ordenarlos de mayor a menor según la esperanza de vida.
+
+
+```
+## # A tibble: 5 x 3
+##   continent    gpd lifeE
+##   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 Oceania   18622.  74.3
+## 2 Europe    14469.  71.9
+## 3 Americas   7136.  64.7
+## 4 Asia       7902.  60.1
+## 5 Africa     2194.  48.9
+```
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# Solución
+
+
+```r
+gapminder %&gt;%
+  group_by(continent) %&gt;%
+  summarize(gpd=mean(gdpPercap), lifeE=mean(lifeExp)) %&gt;%
+  arrange(desc(lifeE))
+```
+
+```
+## # A tibble: 5 x 3
+##   continent    gpd lifeE
+##   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 Oceania   18622.  74.3
+## 2 Europe    14469.  71.9
+## 3 Americas   7136.  64.7
+## 4 Asia       7902.  60.1
+## 5 Africa     2194.  48.9
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# 6. ¿Cuáles son los 7 países con mayor esperanza de vida en el año 2002?
+
+
+```
+## # A tibble: 7 x 6
+##   country          continent  year lifeExp       pop gdpPercap
+##   &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+## 1 Japan            Asia       2002    82   127065841    28605.
+## 2 Hong Kong, China Asia       2002    81.5   6762476    30209.
+## 3 Switzerland      Europe     2002    80.6   7361757    34481.
+## 4 Iceland          Europe     2002    80.5    288030    31163.
+## 5 Australia        Oceania    2002    80.4  19546792    30688.
+## 6 Italy            Europe     2002    80.2  57926999    27968.
+## 7 Sweden           Europe     2002    80.0   8954175    29342.
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# Solución
+
+
+```r
+gapminder %&gt;%
+  filter(year==2002) %&gt;%
+  arrange(desc(lifeExp)) %&gt;%
+  head(7)
+```
+
+```
+## # A tibble: 7 x 6
+##   country          continent  year lifeExp       pop gdpPercap
+##   &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+## 1 Japan            Asia       2002    82   127065841    28605.
+## 2 Hong Kong, China Asia       2002    81.5   6762476    30209.
+## 3 Switzerland      Europe     2002    80.6   7361757    34481.
+## 4 Iceland          Europe     2002    80.5    288030    31163.
+## 5 Australia        Oceania    2002    80.4  19546792    30688.
+## 6 Italy            Europe     2002    80.2  57926999    27968.
+## 7 Sweden           Europe     2002    80.0   8954175    29342.
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# 7. ¿Cuáles son los países con menor esperanza de vida y menor ingreso en el año 2002?
+
+
+```
+## # A tibble: 5 x 6
+##   country      continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;        &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Zambia       Africa     2002    39.2 10595811     1072.
+## 2 Zimbabwe     Africa     2002    40.0 11926563      672.
+## 3 Angola       Africa     2002    41.0 10866106     2773.
+## 4 Sierra Leone Africa     2002    41.0  5359092      699.
+## 5 Afghanistan  Asia       2002    42.1 25268405      727.
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+#Solución
+
+
+```r
+gapminder %&gt;%
+  filter(year==2002) %&gt;%
+  arrange(lifeExp, gdpPercap) %&gt;%
+  head(5)
+```
+
+```
+## # A tibble: 5 x 6
+##   country      continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;        &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Zambia       Africa     2002    39.2 10595811     1072.
+## 2 Zimbabwe     Africa     2002    40.0 11926563      672.
+## 3 Angola       Africa     2002    41.0 10866106     2773.
+## 4 Sierra Leone Africa     2002    41.0  5359092      699.
+## 5 Afghanistan  Asia       2002    42.1 25268405      727.
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# 8. En el dataset iris, poner la columna species en primer lugar
+
+### Vamos a reordenar columnas
+
+
+```
+##   Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1  setosa          5.1         3.5          1.4         0.2
+## 2  setosa          4.9         3.0          1.4         0.2
+## 3  setosa          4.7         3.2          1.3         0.2
+## 4  setosa          4.6         3.1          1.5         0.2
+## 5  setosa          5.0         3.6          1.4         0.2
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+#Solución
+
+
+```r
+iris %&gt;%
+  select(Species, everything()) %&gt;%
+  head(5)
+```
+
+```
+##   Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1  setosa          5.1         3.5          1.4         0.2
+## 2  setosa          4.9         3.0          1.4         0.2
+## 3  setosa          4.7         3.2          1.3         0.2
+## 4  setosa          4.6         3.1          1.5         0.2
+## 5  setosa          5.0         3.6          1.4         0.2
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# 9. Seleccionar la mitad (50%) del dataset gapminder
+
+
+```
+## # A tibble: 852 x 6
+##    country                continent  year lifeExp       pop gdpPercap
+##    &lt;fct&gt;                  &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1 Philippines            Asia       1997    68.6  75012988     2537.
+##  2 Germany                Europe     1977    72.5  78160773    20513.
+##  3 Belgium                Europe     2002    78.3  10311970    30486.
+##  4 Colombia               Americas   1982    66.7  27764644     4398.
+##  5 United States          Americas   1962    70.2 186538000    16173.
+##  6 Denmark                Europe     1977    74.7   5088419    20423.
+##  7 Jordan                 Asia       1957    45.7    746559     1886.
+##  8 Bosnia and Herzegovina Europe     1977    69.9   4086000     3528.
+##  9 Canada                 Americas   1952    68.8  14785584    11367.
+## 10 Kuwait                 Asia       1997    76.2   1765345    40301.
+## # ... with 842 more rows
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# Solución
+
+
+```r
+gapminder %&gt;%
+  sample_frac(size=0.5)
+```
+
+```
+## # A tibble: 852 x 6
+##    country            continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;              &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Oman               Asia       1962    43.2   628164     2925.
+##  2 Zimbabwe           Africa     1982    60.4  7636524      789.
+##  3 Saudi Arabia       Asia       1987    66.3 14619745    21198.
+##  4 Cameroon           Africa     1997    52.2 14195809     1694.
+##  5 Slovak Republic    Europe     2002    73.8  5410052    13639.
+##  6 Germany            Europe     1957    69.1 71019069    10188.
+##  7 Panama             Americas   1952    55.2   940080     2480.
+##  8 Benin              Africa     1962    42.6  2151895      949.
+##  9 West Bank and Gaza Asia       1952    43.2  1030585     1516.
+## 10 Albania            Europe     1992    71.6  3326498     2497.
+## # ... with 842 more rows
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# 10. Elegir los casos que están entre las filas 20 y 30. 
+
+
+```
+## # A tibble: 11 x 6
+##    country continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Albania Europe     1987    72    3075321     3739.
+##  2 Albania Europe     1992    71.6  3326498     2497.
+##  3 Albania Europe     1997    73.0  3428038     3193.
+##  4 Albania Europe     2002    75.7  3508512     4604.
+##  5 Albania Europe     2007    76.4  3600523     5937.
+##  6 Algeria Africa     1952    43.1  9279525     2449.
+##  7 Algeria Africa     1957    45.7 10270856     3014.
+##  8 Algeria Africa     1962    48.3 11000948     2551.
+##  9 Algeria Africa     1967    51.4 12760499     3247.
+## 10 Algeria Africa     1972    54.5 14760787     4183.
+## 11 Algeria Africa     1977    58.0 17152804     4910.
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# Solución
+
+
+```r
+gapminder %&gt;%
+  slice(20:30)
+```
+
+```
+## # A tibble: 11 x 6
+##    country continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Albania Europe     1987    72    3075321     3739.
+##  2 Albania Europe     1992    71.6  3326498     2497.
+##  3 Albania Europe     1997    73.0  3428038     3193.
+##  4 Albania Europe     2002    75.7  3508512     4604.
+##  5 Albania Europe     2007    76.4  3600523     5937.
+##  6 Algeria Africa     1952    43.1  9279525     2449.
+##  7 Algeria Africa     1957    45.7 10270856     3014.
+##  8 Algeria Africa     1962    48.3 11000948     2551.
+##  9 Algeria Africa     1967    51.4 12760499     3247.
+## 10 Algeria Africa     1972    54.5 14760787     4183.
+## 11 Algeria Africa     1977    58.0 17152804     4910.
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# Para seguir practicando...
+
+https://garthtarr.github.io/meatR/dplyr_ex1.html
+
+### R4DS Capítulo 5: Data Transformation
+
+https://r4ds.had.co.nz/transform.html
+
+### R4DS Capítulo 5 (en español)
+
+https://es.r4ds.hadley.nz/transform.html 
+
+### Soluciones (en inglés)
+
+https://jrnold.github.io/r4ds-exercise-solutions/transform.html
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -5889,7 +5889,7 @@ corona %&gt;%
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
-# 4. ¿Cuáles son los lugares con más coronavirus reportados a la fecha? 
+# 3. ¿Cuáles son los lugares con más coronavirus reportados a la fecha? 
 
 
 ```
@@ -6118,6 +6118,27 @@ corona %&gt;%
 
 # 6. Después de Hubei, ¿cuáles son las provincias más afectadas?
 
+
+```
+## # A tibble: 74 x 8
+## # Groups:   Province.State [54]
+##      Sno Date    Province.State Country  Last.Update  Confirmed Deaths Recovered
+##    &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;          &lt;fct&gt;    &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+##  1  1346 02/13/~ Hubei          Mainlan~ 2020-02-14 ~     51986   1426      4131
+##  2  1347 02/13/~ Guangdong      Mainlan~ 2020-02-14 ~      1261      2       332
+##  3  1348 02/13/~ Henan          Mainlan~ 2020-02-14 ~      1184     11       313
+##  4  1349 02/13/~ Zhejiang       Mainlan~ 2020-02-14 ~      1155      0       367
+##  5  1350 02/13/~ Hunan          Mainlan~ 2020-02-14 ~       988      2       352
+##  6  1351 02/13/~ Anhui          Mainlan~ 2020-02-14 ~       934      6       166
+##  7  1352 02/13/~ Jiangxi        Mainlan~ 2020-02-14 ~       900      1       187
+##  8  1353 02/13/~ Jiangsu        Mainlan~ 2020-02-14 ~       593      0       137
+##  9  1354 02/13/~ Chongqing      Mainlan~ 2020-02-13 ~       529      4       128
+## 10  1355 02/13/~ Shandong       Mainlan~ 2020-02-14 ~       519      2       111
+## # ... with 64 more rows
+```
+
+
+---
 
 ```r
 corona %&gt;%

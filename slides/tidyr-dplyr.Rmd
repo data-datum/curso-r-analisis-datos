@@ -386,7 +386,7 @@ table1 %>%
 
 ---
 
-```{r tidy=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+```{r  message=FALSE, warning=FALSE, tidy=FALSE, echo=FALSE}
 library(gganimate)
 ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
   geom_point(alpha = 0.7) +

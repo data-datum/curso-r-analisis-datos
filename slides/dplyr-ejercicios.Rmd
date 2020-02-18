@@ -94,7 +94,6 @@ summary(corona)
 # 2. Pasar todas las variables (columnas) a minúscula, y eliminar la primera columna (Sno)
 
 ```{r , warning=FALSE, echo=FALSE, message=FALSE}
-library(magrittr)
 library(dplyr)
 corona %>%
   select_all(tolower) %>%
@@ -189,6 +188,15 @@ corona %>%
 
 # 6. Después de Hubei, ¿cuáles son las provincias más afectadas?
 
+```{r , warning=FALSE, message=FALSE, echo=FALSE}
+corona %>%
+  group_by(Province.State) %>% #<<
+  filter(Date=="02/13/2020 21:15:00") %>% #<<
+  arrange(desc(Confirmed)) #<<
+```
+
+
+---
 ```{r , warning=FALSE, message=FALSE}
 corona %>%
   group_by(Province.State) %>% #<<
