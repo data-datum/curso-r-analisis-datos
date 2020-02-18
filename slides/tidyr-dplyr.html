@@ -31,11 +31,11 @@ class: inverse, center
 # Flujo de Ciencia de Datos 📌
 
 
-&lt;img src="/img/tibble.png" width="100%" align="center" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos-dplyr.png" width="100%" align="center" /&gt;
 
 ---
 
-&lt;img src="../curso-r-analisis-datos/img/tibble.png" width="10%" align="right" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tibble.png" width="10%" align="right" /&gt;
 
 # data.frame vs. tibble
 - data.frame es una estructura nativas de __rbase__ y está disponible sin necesidad de instalar ningún paquete adicional. Es una estructura tabular organizada en filas y columnas. Se puede acceder a las columnas mediantes colnames() y los nombres de las filas, como rownames().
@@ -166,24 +166,24 @@ head(relig_income) #encabezado del dataset
 ```r
 relig_income %&gt;%   #datos para ordenar 
   pivot_longer(-religion, #columnas para reordenar 
-               names_to = "ingreso", #columnas colapsadas
-               values_to = "conteo") #el conteo de los casos
+               names_to = "income", #columnas colapsadas
+               values_to = "count") #el conteo de los casos
 ```
 
 ```
 ## # A tibble: 180 x 3
-##    religion ingreso            conteo
-##    &lt;chr&gt;    &lt;chr&gt;               &lt;dbl&gt;
-##  1 Agnostic &lt;$10k                  27
-##  2 Agnostic $10-20k                34
-##  3 Agnostic $20-30k                60
-##  4 Agnostic $30-40k                81
-##  5 Agnostic $40-50k                76
-##  6 Agnostic $50-75k               137
-##  7 Agnostic $75-100k              122
-##  8 Agnostic $100-150k             109
-##  9 Agnostic &gt;150k                  84
-## 10 Agnostic Don't know/refused     96
+##    religion income             count
+##    &lt;chr&gt;    &lt;chr&gt;              &lt;dbl&gt;
+##  1 Agnostic &lt;$10k                 27
+##  2 Agnostic $10-20k               34
+##  3 Agnostic $20-30k               60
+##  4 Agnostic $30-40k               81
+##  5 Agnostic $40-50k               76
+##  6 Agnostic $50-75k              137
+##  7 Agnostic $75-100k             122
+##  8 Agnostic $100-150k            109
+##  9 Agnostic &gt;150k                 84
+## 10 Agnostic Don't know/refused    96
 ## # ... with 170 more rows
 ```
 
@@ -303,6 +303,149 @@ class: center, middle
 
 # Consigna 
 ## 1. Pasar los objetos `relig2` y `fish2` a su formato original aplicando la función inversa (`pivot_longer` y `pivot_wider`) en cada caso.
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+
+# Solución 1
+*parte1*
+
+```r
+library(tidyr)
+relig2&lt;-relig_income %&gt;% #datos para ordenar 
+  pivot_longer(-religion, #columnas para reordenar 
+               names_to = "income", #columnas colapsadas
+               values_to = "count")
+relig2
+```
+
+```
+## # A tibble: 180 x 3
+##    religion income             count
+##    &lt;chr&gt;    &lt;chr&gt;              &lt;dbl&gt;
+##  1 Agnostic &lt;$10k                 27
+##  2 Agnostic $10-20k               34
+##  3 Agnostic $20-30k               60
+##  4 Agnostic $30-40k               81
+##  5 Agnostic $40-50k               76
+##  6 Agnostic $50-75k              137
+##  7 Agnostic $75-100k             122
+##  8 Agnostic $100-150k            109
+##  9 Agnostic &gt;150k                 84
+## 10 Agnostic Don't know/refused    96
+## # ... with 170 more rows
+```
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+*parte2*
+
+```r
+relig&lt;-relig2 %&gt;%
+  pivot_wider(names_from= income, values_from=count)
+relig
+```
+
+```
+## # A tibble: 18 x 11
+##    religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k`
+##    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1 Agnostic      27        34        60        81        76       137        122
+##  2 Atheist       12        27        37        52        35        70         73
+##  3 Buddhist      27        21        30        34        33        58         62
+##  4 Catholic     418       617       732       670       638      1116        949
+##  5 Don’t k~      15        14        15        11        10        35         21
+##  6 Evangel~     575       869      1064       982       881      1486        949
+##  7 Hindu          1         9         7         9        11        34         47
+##  8 Histori~     228       244       236       238       197       223        131
+##  9 Jehovah~      20        27        24        24        21        30         15
+## 10 Jewish        19        19        25        25        30        95         69
+## 11 Mainlin~     289       495       619       655       651      1107        939
+## 12 Mormon        29        40        48        51        56       112         85
+## 13 Muslim         6         7         9        10         9        23         16
+## 14 Orthodox      13        17        23        32        32        47         38
+## 15 Other C~       9         7        11        13        13        14         18
+## 16 Other F~      20        33        40        46        49        63         46
+## 17 Other W~       5         2         3         4         2         7          3
+## 18 Unaffil~     217       299       374       365       341       528        407
+## # ... with 3 more variables: `$100-150k` &lt;dbl&gt;, `&gt;150k` &lt;dbl&gt;, `Don't
+## #   know/refused` &lt;dbl&gt;
+```
+
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+
+# Solución 
+*parte 1*
+
+```r
+fish2&lt;-fish_encounters %&gt;% #ingreso de los datos 
+  pivot_wider(names_from = station, 
+              values_from = seen)
+fish2
+```
+
+```
+## # A tibble: 19 x 12
+##    fish  Release I80_1 Lisbon  Rstr Base_TD   BCE   BCW  BCE2  BCW2   MAE   MAW
+##    &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1 4842        1     1      1     1       1     1     1     1     1     1     1
+##  2 4843        1     1      1     1       1     1     1     1     1     1     1
+##  3 4844        1     1      1     1       1     1     1     1     1     1     1
+##  4 4845        1     1      1     1       1    NA    NA    NA    NA    NA    NA
+##  5 4847        1     1      1    NA      NA    NA    NA    NA    NA    NA    NA
+##  6 4848        1     1      1     1      NA    NA    NA    NA    NA    NA    NA
+##  7 4849        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA
+##  8 4850        1     1     NA     1       1     1     1    NA    NA    NA    NA
+##  9 4851        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA
+## 10 4854        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA
+## 11 4855        1     1      1     1       1    NA    NA    NA    NA    NA    NA
+## 12 4857        1     1      1     1       1     1     1     1     1    NA    NA
+## 13 4858        1     1      1     1       1     1     1     1     1     1     1
+## 14 4859        1     1      1     1       1    NA    NA    NA    NA    NA    NA
+## 15 4861        1     1      1     1       1     1     1     1     1     1     1
+## 16 4862        1     1      1     1       1     1     1     1     1    NA    NA
+## 17 4863        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA
+## 18 4864        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA
+## 19 4865        1     1      1    NA      NA    NA    NA    NA    NA    NA    NA
+```
+
+
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+
+# Solución 
+*parte 2*
+
+
+
+```r
+fish&lt;-fish2%&gt;%
+  pivot_longer(-fish,names_to="station", values_to="seen")%&gt;%
+  na.omit() #elimino valores perdidos
+fish
+```
+
+```
+## # A tibble: 114 x 3
+##    fish  station  seen
+##    &lt;fct&gt; &lt;chr&gt;   &lt;int&gt;
+##  1 4842  Release     1
+##  2 4842  I80_1       1
+##  3 4842  Lisbon      1
+##  4 4842  Rstr        1
+##  5 4842  Base_TD     1
+##  6 4842  BCE         1
+##  7 4842  BCW         1
+##  8 4842  BCE2        1
+##  9 4842  BCW2        1
+## 10 4842  MAE         1
+## # ... with 104 more rows
+```
+
 
 
 ---
@@ -820,6 +963,38 @@ class: center, middle
 # Del dataset `gapminder` selecciono las columnas `country`, `lifeExp`, `year`, `pop` y `gdpPercap`, pero sólo de los casos de Argentina
 
 ---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+# Solución
+
+```r
+library(gapminder)
+library(dplyr)
+gapminder%&gt;%
+  select(-continent)%&gt;%
+  filter(country=="Argentina")
+```
+
+```
+## # A tibble: 12 x 5
+##    country    year lifeExp      pop gdpPercap
+##    &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Argentina  1952    62.5 17876956     5911.
+##  2 Argentina  1957    64.4 19610538     6857.
+##  3 Argentina  1962    65.1 21283783     7133.
+##  4 Argentina  1967    65.6 22934225     8053.
+##  5 Argentina  1972    67.1 24779799     9443.
+##  6 Argentina  1977    68.5 26983828    10079.
+##  7 Argentina  1982    69.9 29341374     8998.
+##  8 Argentina  1987    70.8 31620918     9140.
+##  9 Argentina  1992    71.9 33958947     9308.
+## 10 Argentina  1997    73.3 36203463    10967.
+## 11 Argentina  2002    74.3 38331121     8798.
+## 12 Argentina  2007    75.3 40301927    12779.
+```
+
+
+---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
 background-size: cover
@@ -972,6 +1147,39 @@ class: center, middle
 
 
 ---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+
+
+
+```r
+library(gapminder)
+library(dplyr)
+gapminder %&gt;%
+  mutate(gdp= pop * gdpPercap) %&gt;%
+  filter(country=="Argentina") %&gt;%
+  arrange(desc(lifeExp))
+```
+
+```
+## # A tibble: 12 x 7
+##    country   continent  year lifeExp      pop gdpPercap           gdp
+##    &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Argentina Americas   2007    75.3 40301927    12779. 515033625357.
+##  2 Argentina Americas   2002    74.3 38331121     8798. 337223430800.
+##  3 Argentina Americas   1997    73.3 36203463    10967. 397053586287.
+##  4 Argentina Americas   1992    71.9 33958947     9308. 316104097627.
+##  5 Argentina Americas   1987    70.8 31620918     9140. 289004799539.
+##  6 Argentina Americas   1982    69.9 29341374     8998. 264010673179.
+##  7 Argentina Americas   1977    68.5 26983828    10079. 271970723960.
+##  8 Argentina Americas   1972    67.1 24779799     9443. 233996596624.
+##  9 Argentina Americas   1967    65.6 22934225     8053. 184688236498.
+## 10 Argentina Americas   1962    65.1 21283783     7133. 151820757737.
+## 11 Argentina Americas   1957    64.4 19610538     6857. 134466639306.
+## 12 Argentina Americas   1952    62.5 17876956     5911. 105676319105.
+```
+
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
@@ -1061,7 +1269,49 @@ class: center, middle
 ## 2. Repetir el mismo procedimiento pero para el año 2007 que es el último año registrado
 
 
+---
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
 
+
+
+```r
+gapminder %&gt;%
+  group_by(continent) %&gt;%
+  summarise(lifeExp = median(lifeExp))
+```
+
+```
+## # A tibble: 5 x 2
+##   continent lifeExp
+##   &lt;fct&gt;       &lt;dbl&gt;
+## 1 Africa       47.8
+## 2 Americas     67.0
+## 3 Asia         61.8
+## 4 Europe       72.2
+## 5 Oceania      73.7
+```
+
+
+--
+
+
+```r
+gapminder %&gt;%
+  filter(year==2007) %&gt;%
+  group_by(continent) %&gt;%
+  summarise(lifeExp = median(lifeExp))
+```
+
+```
+## # A tibble: 5 x 2
+##   continent lifeExp
+##   &lt;fct&gt;       &lt;dbl&gt;
+## 1 Africa       52.9
+## 2 Americas     72.9
+## 3 Asia         72.4
+## 4 Europe       78.6
+## 5 Oceania      80.7
+```
 
 
 
@@ -1122,7 +1372,7 @@ devtools::session_info()
 ##  collate  Spanish_Argentina.1252      
 ##  ctype    Spanish_Argentina.1252      
 ##  tz       America/Buenos_Aires        
-##  date     2020-02-17                  
+##  date     2020-02-18                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version    date       lib source                              

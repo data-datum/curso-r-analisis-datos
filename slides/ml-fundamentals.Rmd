@@ -24,7 +24,7 @@ library(emo)
 .large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
 
 
-<br><br><br><br><br> Slides disponibles en <https://bit.ly/curso-r-fca> `r emo::ji("sparkles")`
+`r emo::ji("sparkles")`
 <br> Página web del curso en <https://flor14.github.io/Curso_r_unne_2020/> `r emo::ji("star2")`
 
 ---

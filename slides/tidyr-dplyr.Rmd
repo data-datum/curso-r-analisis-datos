@@ -23,7 +23,7 @@ library(emo)
 .large[Florencia D'Andrea | INTA-CONICET | <a href="http://twitter.com/cantoflor_87"> `r fa("twitter", fill = 'steelblue')` @cantoflor_87</a><br>] 
 
 
-<br><br><br><br><br> Slides disponibles en <https://bit.ly/curso-r-fca> `r emo::ji("sparkles")`
+`r emo::ji("sparkles")`
 <br> Página web del curso en <https://flor14.github.io/Curso_r_unne_2020/> `r emo::ji("star2")`
 
 
@@ -32,11 +32,11 @@ library(emo)
 # Flujo de Ciencia de Datos `r emo::ji("pushpin")`
 
 
-<img src="/img/tibble.png" width="100%" align="center" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos-dplyr.png" width="100%" align="center" />
 
 ---
 
-<img src="../curso-r-analisis-datos/img/tibble.png" width="10%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tibble.png" width="10%" align="right" />
 
 # data.frame vs. tibble
 - data.frame es una estructura nativas de __rbase__ y está disponible sin necesidad de instalar ningún paquete adicional. Es una estructura tabular organizada en filas y columnas. Se puede acceder a las columnas mediantes colnames() y los nombres de las filas, como rownames().
@@ -149,8 +149,8 @@ head(relig_income) #encabezado del dataset
 ```{r message=FALSE} 
 relig_income %>%   #datos para ordenar 
   pivot_longer(-religion, #columnas para reordenar 
-               names_to = "ingreso", #columnas colapsadas
-               values_to = "conteo") #el conteo de los casos
+               names_to = "income", #columnas colapsadas
+               values_to = "count") #el conteo de los casos
 ```
 
 
@@ -224,6 +224,60 @@ class: center, middle
 
 # Consigna 
 ## 1. Pasar los objetos `relig2` y `fish2` a su formato original aplicando la función inversa (`pivot_longer` y `pivot_wider`) en cada caso.
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+
+# Solución 1
+*parte1*
+```{r message=FALSE} 
+library(tidyr)
+relig2<-relig_income %>% #datos para ordenar 
+  pivot_longer(-religion, #columnas para reordenar 
+               names_to = "income", #columnas colapsadas
+               values_to = "count")
+relig2
+```
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+*parte2*
+```{r message=FALSE} 
+relig<-relig2 %>%
+  pivot_wider(names_from= income, values_from=count)
+relig
+```
+
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+
+# Solución 
+*parte 1*
+```{r } 
+fish2<-fish_encounters %>% #ingreso de los datos 
+  pivot_wider(names_from = station, 
+              values_from = seen)
+fish2
+```
+
+
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+
+# Solución 
+*parte 2*
+
+
+```{r } 
+fish<-fish2%>%
+  pivot_longer(-fish,names_to="station", values_to="seen")%>%
+  na.omit() #elimino valores perdidos
+fish
+```
+
 
 
 ---
@@ -575,6 +629,19 @@ class: center, middle
 # Del dataset `gapminder` selecciono las columnas `country`, `lifeExp`, `year`, `pop` y `gdpPercap`, pero sólo de los casos de Argentina
 
 ---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+# Solución
+```{r message=FALSE, warning=FALSE}
+library(gapminder)
+library(dplyr)
+gapminder%>%
+  select(-continent)%>%
+  filter(country=="Argentina")
+```
+
+
+---
 
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
 background-size: cover
@@ -685,6 +752,20 @@ class: center, middle
 
 
 ---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+
+
+```{r message=FALSE, warning=FALSE}
+library(gapminder)
+library(dplyr)
+gapminder %>%
+  mutate(gdp= pop * gdpPercap) %>%
+  filter(country=="Argentina") %>%
+  arrange(desc(lifeExp))
+```
+
+---
 background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
@@ -762,7 +843,25 @@ class: center, middle
 ## 2. Repetir el mismo procedimiento pero para el año 2007 que es el último año registrado
 
 
+---
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
 
+
+```{r message=FALSE, warning=FALSE}
+gapminder %>%
+  group_by(continent) %>%
+  summarise(lifeExp = median(lifeExp))
+```
+
+
+--
+
+```{r message=FALSE, warning=FALSE}
+gapminder %>%
+  filter(year==2007) %>%
+  group_by(continent) %>%
+  summarise(lifeExp = median(lifeExp))
+```
 
 
 
