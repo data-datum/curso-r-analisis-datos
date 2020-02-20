@@ -1,0 +1,39 @@
+---
+title: "examen-simulacro"
+author: "roxana"
+date: "20/2/2020"
+output: html_document
+---
+
+#Ingreso de datos
+
+El código debe estar en un chunk de R.
+Puede trabajar con iris, gapminder, mpg (millas) o diamonds.
+
+Recuerde:
+iris
+library(gapminder)
+ggplot2::mpg
+datos::millas
+ggplot2::diamonds
+
+# Gráficos
+
+Con el dataset seleccionado, realice al menos 3 gráficos apropiados a los datos en cuestión. 
+El nombre de cada chunk debe ser diferente. 
+
+### Gráfico 1
+Muestre el gráfico y el código
+
+### Gráfico 2
+Muestre sólo el gráfico. En el chunk de R escifique fig.width y fig.height
+
+### Gráfico 3
+Muestre el gráfico junto al chunk. 
+
+
+
+# Manipulación de datos
+iris: solo trabaje con iris setosa y versicolor. Filtre las filas restantes. 
+gapminder: trabaje solamente con datos de América. Filtre las filas restantes. 
+

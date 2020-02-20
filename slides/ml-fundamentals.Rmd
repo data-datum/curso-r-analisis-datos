@@ -29,8 +29,6 @@ library(emo)
 
 ---
 
-
-
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
 
 # Flujo de Ciencia de Datos `r emo::ji("pushpin")`
@@ -49,6 +47,16 @@ class: center, middle
 # Entrenamos un modelo para encontrar esa predicción precisa. 
 
 .footnote[http://appliedpredictivemodeling.com/]
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# ¿Qué es entrenar un modelo?
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/modelo-entrenado.png" width="100%" align="center" />
+
+
+.footnote[Imagen tomada del curso de Alison Pressman Hill https://conf20-intro-ml.netlify.com/]
 ---
 
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
@@ -574,12 +582,60 @@ class: center, middle
 
 # Bosques aleatorios (Random Forest)
 
-* Random Forest usa como algoritmo base los árboles de decisión
-* Bootstrap (muestreo con reemplazo) + Bagging 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="100%" align="center" />
 
-.footnote[https://bookdown.org/content/2031/ensambladores-random-forest-parte-i.html]
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest1.png" width="100%" align="center" />
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# Bosques aleatorios (Random Forest)
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest2.png" width="100%" align="center" />
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# Bosques aleatorios (Random Forest)
+
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest3.png" width="100%" align="center" />
+
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# Bosques aleatorios (Random Forest)
+
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest4.png" width="100%" align="center" />
+
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+# Bosques aleatorios (Random Forest)
+
+
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest5.png" width="100%" align="center" />
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
@@ -882,7 +938,43 @@ class: center, middle
 
 # Resumiendo
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumen-tidymodels.png" width="100%" align="right" />
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels1.png" width="100%" align="right" />
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Resumiendo
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels2.png" width="100%" align="right" />
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Resumiendo
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels3.png" width="100%" align="right" />
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Resumiendo
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels4.png" width="100%" align="right" />
+
+
+---
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+# Resumiendo
+
+<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels5.png" width="100%" align="right" />
+
+
 
 ---
 <img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />

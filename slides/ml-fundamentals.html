@@ -23,7 +23,7 @@ class: inverse, center
 .large[Florencia D'Andrea | INTA-CONICET | &lt;a href="http://twitter.com/cantoflor_87"&gt; &lt;svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt; @cantoflor_87&lt;/a&gt;&lt;br&gt;] 
 
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt; Slides disponibles en &lt;https://bit.ly/curso-r-fca&gt; ✨
+✨
 &lt;br&gt; Página web del curso en &lt;https://flor14.github.io/Curso_r_unne_2020/&gt; 🌟
 
 ---
@@ -48,6 +48,16 @@ class: center, middle
 # Entrenamos un modelo para encontrar esa predicción precisa. 
 
 .footnote[http://appliedpredictivemodeling.com/]
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# ¿Qué es entrenar un modelo?
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/modelo-entrenado.png" width="100%" align="center" /&gt;
+
+
+.footnote[Imagen tomada del curso de Alison Pressman Hill https://conf20-intro-ml.netlify.com/]
 ---
 
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
@@ -184,7 +194,7 @@ library(tidymodels)
 ```
 
 ```
-## -- Attaching packages --------------------------- tidymodels 0.0.3 --
+## -- Attaching packages ------------------------------------- tidymodels 0.0.3 --
 ```
 
 ```
@@ -197,7 +207,7 @@ library(tidymodels)
 ```
 
 ```
-## -- Conflicts ------------------------------ tidymodels_conflicts() --
+## -- Conflicts ---------------------------------------- tidymodels_conflicts() --
 ## x purrr::discard()    masks scales::discard()
 ## x dplyr::filter()     masks stats::filter()
 ## x dplyr::lag()        masks stats::lag()
@@ -550,12 +560,12 @@ head(iris_training)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -0.853      0.982        -1.28 setosa 
-## 2       -1.09      -0.198        -1.28 setosa 
-## 3       -1.33       0.274        -1.28 setosa 
-## 4       -1.44       0.0376       -1.28 setosa 
-## 5       -0.972      1.22         -1.28 setosa 
-## 6       -1.44       0.746        -1.15 setosa
+## 1       -0.991       1.05        -1.35 setosa 
+## 2       -1.49        0.344       -1.35 setosa 
+## 3       -1.12        1.28        -1.35 setosa 
+## 4       -0.612       1.98        -1.09 setosa 
+## 5       -1.12        0.811       -1.35 setosa 
+## 6       -0.612       1.51        -1.35 setosa
 ```
 
 .footnote[https://tidymodels.github.io/recipes/reference/juice.html
@@ -579,12 +589,12 @@ head(iris_testing)
 ## # A tibble: 6 x 4
 ##   Sepal.Length Sepal.Width Petal.Width Species
 ##          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-## 1       -0.499      1.93         -1.02 setosa 
-## 2       -0.972      0.746        -1.28 setosa 
-## 3       -1.09       0.0376       -1.42 setosa 
-## 4       -1.21       0.746        -1.28 setosa 
-## 5       -1.21      -0.198        -1.42 setosa 
-## 6       -0.735      0.982        -1.28 setosa
+## 1        -1.24      -0.124       -1.35 setosa 
+## 2        -1.62       0.110       -1.35 setosa 
+## 3        -1.62       0.811       -1.22 setosa 
+## 4        -1.87      -0.358       -1.35 setosa 
+## 5        -1.24       0.110       -1.49 setosa 
+## 6        -2.00      -0.124       -1.49 setosa
 ```
 
 
@@ -680,12 +690,60 @@ class: center, middle
 
 # Bosques aleatorios (Random Forest)
 
-* Random Forest usa como algoritmo base los árboles de decisión
-* Bootstrap (muestreo con reemplazo) + Bagging 
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest.png" width="100%" align="center" /&gt;
 
-.footnote[https://bookdown.org/content/2031/ensambladores-random-forest-parte-i.html]
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest1.png" width="100%" align="center" /&gt;
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+# Bosques aleatorios (Random Forest)
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest2.png" width="100%" align="center" /&gt;
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+# Bosques aleatorios (Random Forest)
+
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest3.png" width="100%" align="center" /&gt;
+
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+# Bosques aleatorios (Random Forest)
+
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest4.png" width="100%" align="center" /&gt;
+
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
+
+# Bosques aleatorios (Random Forest)
+
+
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest5.png" width="100%" align="center" /&gt;
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" /&gt;
@@ -739,7 +797,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ```
 ## parsnip model object
 ## 
-## Fit time:  80ms 
+## Fit time:  61ms 
 ## Ranger result
 ## 
 ## Call:
@@ -753,7 +811,7 @@ https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.05072322
+## OOB prediction error (Brier s.):  0.06943985
 ```
 
 
@@ -828,16 +886,16 @@ iris_ranger %&gt;%
 ## # A tibble: 37 x 5
 ##    .pred_class Sepal.Length Sepal.Width Petal.Width Species
 ##    &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
-##  1 setosa            -0.499      1.93        -1.02  setosa 
-##  2 setosa            -0.972      0.746       -1.28  setosa 
-##  3 setosa            -1.09       0.0376      -1.42  setosa 
-##  4 setosa            -1.21       0.746       -1.28  setosa 
-##  5 setosa            -1.21      -0.198       -1.42  setosa 
-##  6 setosa            -0.735      0.982       -1.28  setosa 
-##  7 setosa            -0.735      2.40        -1.42  setosa 
-##  8 setosa            -1.56      -1.85        -1.15  setosa 
-##  9 setosa            -0.972      0.982       -0.750 setosa 
-## 10 setosa            -0.617      1.45        -1.28  setosa 
+##  1 setosa            -1.24       -0.124      -1.35  setosa 
+##  2 setosa            -1.62        0.110      -1.35  setosa 
+##  3 setosa            -1.62        0.811      -1.22  setosa 
+##  4 setosa            -1.87       -0.358      -1.35  setosa 
+##  5 setosa            -1.24        0.110      -1.49  setosa 
+##  6 setosa            -2.00       -0.124      -1.49  setosa 
+##  7 setosa            -0.234       3.15       -1.09  setosa 
+##  8 setosa            -0.234       1.75       -1.22  setosa 
+##  9 setosa            -0.991       0.577      -0.956 setosa 
+## 10 setosa            -1.24        0.110      -1.35  setosa 
 ## # ... with 27 more rows
 ```
 
@@ -921,8 +979,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.946
-## 2 kap      multiclass     0.918
+## 1 accuracy multiclass     0.973
+## 2 kap      multiclass     0.959
 ```
 
 ---
@@ -941,8 +999,8 @@ iris_ranger %&gt;%
 ## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.946
-## 2 kap      multiclass     0.918
+## 1 accuracy multiclass     0.973
+## 2 kap      multiclass     0.959
 ```
 
 
@@ -962,7 +1020,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 sens    macro          0.958
+## 1 sens    macro          0.974
 ```
 
 .footnote[https://tidymodels.github.io/yardstick/reference/sens.html]
@@ -983,7 +1041,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 spec    macro          0.975
+## 1 spec    macro          0.988
 ```
 
 
@@ -1004,7 +1062,7 @@ iris_ranger %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 precision macro          0.944
+## 1 precision macro          0.970
 ```
 
 .footnote[https://tidymodels.github.io/yardstick/reference/precision.html]
@@ -1024,9 +1082,9 @@ iris_ranger %&gt;%
 ```
 ##             Truth
 ## Prediction   setosa versicolor virginica
-##   setosa         11          0         0
-##   versicolor      0         10         2
-##   virginica       0          0        14
+##   setosa         14          0         0
+##   versicolor      0         12         0
+##   virginica       0          1        10
 ```
 
 .footnote[https://tidymodels.github.io/yardstick/reference/conf_mat.html]
@@ -1064,16 +1122,16 @@ iris_probs
 ## # A tibble: 37 x 4
 ##    .pred_setosa .pred_versicolor .pred_virginica Species
 ##           &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;  
-##  1        0.979          0.0146          0.00596 setosa 
-##  2        0.986          0.00802         0.00569 setosa 
-##  3        0.968          0.0216          0.0107  setosa 
-##  4        0.991          0.00306         0.00549 setosa 
-##  5        0.968          0.0210          0.0113  setosa 
-##  6        0.989          0.00877         0.00258 setosa 
-##  7        0.986          0.00810         0.00596 setosa 
-##  8        0.694          0.267           0.0389  setosa 
-##  9        0.995          0.00496         0.0002  setosa 
-## 10        0.985          0.0110          0.00358 setosa 
+##  1        0.902          0.0738          0.0241  setosa 
+##  2        0.971          0.0207          0.00784 setosa 
+##  3        0.988          0.00463         0.00740 setosa 
+##  4        0.902          0.0841          0.0142  setosa 
+##  5        0.932          0.0482          0.0196  setosa 
+##  6        0.945          0.0428          0.0121  setosa 
+##  7        0.851          0.111           0.0386  setosa 
+##  8        0.830          0.126           0.0448  setosa 
+##  9        0.912          0.0614          0.0269  setosa 
+## 10        0.932          0.0482          0.0196  setosa 
 ## # ... with 27 more rows
 ```
 
@@ -1110,7 +1168,43 @@ class: center, middle
 
 # Resumiendo
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/resumen-tidymodels.png" width="100%" align="right" /&gt;
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels1.png" width="100%" align="right" /&gt;
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Resumiendo
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels2.png" width="100%" align="right" /&gt;
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Resumiendo
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels3.png" width="100%" align="right" /&gt;
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Resumiendo
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels4.png" width="100%" align="right" /&gt;
+
+
+---
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
+
+# Resumiendo
+
+&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels5.png" width="100%" align="right" /&gt;
+
+
 
 ---
 &lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" /&gt;
