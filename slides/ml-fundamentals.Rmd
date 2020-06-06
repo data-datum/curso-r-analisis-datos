@@ -29,16 +29,17 @@ library(emo)
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Flujo de Ciencia de Datos `r emo::ji("pushpin")`
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos-ml.png" width="100%" align="center" />
+<img src="img/flujo-ciencia-datos-ml.png" width="100%" align="center" />
 
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-image: url(img/fondo-madera.png)
 background-size: cover
 class: center, middle
 
@@ -49,17 +50,17 @@ class: center, middle
 .footnote[http://appliedpredictivemodeling.com/]
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # ¿Qué es entrenar un modelo?
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/modelo-entrenado.png" width="100%" align="center" />
+<img src="img/modelo-entrenado.png" width="100%" align="center" />
 
 
 .footnote[Imagen tomada del curso de Alison Pressman Hill https://conf20-intro-ml.netlify.com/]
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 
 
@@ -77,23 +78,23 @@ class: center, middle
 
 *Modelos más complejos
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/ml-ejemplos.png" width="100%" align="right" />
+<img src="img/ml-ejemplos.png" width="100%" align="right" />
 
 
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Partes del modelo predictivo
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/partes-modelo.png" width="100%" align="center" />
+<img src="img/partes-modelo.png" width="100%" align="center" />
 
 
 .footnote[http://appliedpredictivemodeling.com/]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Terminología
 
@@ -107,7 +108,7 @@ class: center, middle
 
 .footnote[http://appliedpredictivemodeling.com/]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Modelización supervisada
 
@@ -120,11 +121,11 @@ Predicción de precios de casas, según variables como el barrio en el que perte
 ---
 class:center, inverse
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="50%" align="middle" />
+<img src="img/tidymodels.png" width="50%" align="middle" />
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # De caret a tidymodels
 
@@ -132,21 +133,21 @@ class:center, inverse
 
 .pull-left[
 El objetivo de caret era **unificar la sintaxis** para modelizar datos usando como base distintas librerías de R. 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/caret.png" width="100%" align="right" />
+<img src="img/caret.png" width="100%" align="right" />
 ]
 
 --
 
 .pull-right[
 El objetivo de Tidymodels es además hacerlo **en un formato ordenado**. 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="80%" align="right" />
+<img src="img/tidymodels.png" width="80%" align="right" />
 
 ]
 
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-image: url(img/fondo-madera.png)
 background-size: cover
 class: center, middle
 
@@ -156,10 +157,10 @@ class: center, middle
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 <br><br>
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidym2.png" width="100%" align="center" />
+<img src="img/tidym2.png" width="100%" align="center" />
 
 --
 
@@ -171,7 +172,7 @@ class: center, middle
 - Yardstick https://tidymodels.github.io/yardstick/ 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 
 # En primer lugar instalamos tidymodels
@@ -182,7 +183,7 @@ install.packages(tidymodels)
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 
 # Librerías de Tidymodels
@@ -192,7 +193,7 @@ library(tidymodels)
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/text-msg.png)
+background-image: url(img/text-msg.png)
 background-size: cover
 class: center, middle
 
@@ -201,13 +202,13 @@ Los clases tienen los mismos números de casos
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Datos: Iris
 
 * Conjunto de datos muy popular en análisis multivariado
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/iris-species.png" width="100%" align="center" />
+<img src="img/iris-species.png" width="100%" align="center" />
 
 
 .footnote[[*]
@@ -216,7 +217,7 @@ https://archive.ics.uci.edu/ml/datasets/Iris]
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Vemos los primeros 5 casos del set de datos 
 ```{r warning=FALSE, message=FALSE} 
@@ -224,7 +225,7 @@ head(iris)
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Estadística descriptiva del set de datos
 ```{r warning=FALSE, message=FALSE} 
@@ -233,7 +234,7 @@ summary(iris)
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 ## Tenemos 150 casos o individuos (filas), 4 columnas o características (features) y 1 variable predictora (species)
 ```{r warning=FALSE, message=FALSE} 
@@ -294,17 +295,17 @@ corrplot(M, method="number")
 ---
 class: inverse, center
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="50%" align="center" />
+<img src="img/rsample.png" width="50%" align="center" />
 
 # `División de datos`
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
+<img src="img/rsample.png" width="10%" align="right" />
 
 # Entrenamiento / Prueba
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/training-testing.png" width="75%" align="center" />
+<img src="img/training-testing.png" width="75%" align="center" />
 
 
 ---
@@ -312,14 +313,14 @@ class: inverse, center
 # ¿Por qué dividimos los datos?
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/leo.png" width="100%" align="right" />
+<img src="img/leo.png" width="100%" align="right" />
 
 
 .footnote[https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726 y 
 https://arxiv.org/pdf/1206.5538.pdf]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/rsample.png" width="10%" align="right" />
+<img src="img/rsample.png" width="10%" align="right" />
 
 # 1° Paso: Dividir los datos
 
@@ -340,7 +341,7 @@ Estos son los datos de entrenamiento/prueba/total
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-image: url(img/engine3.png)
 background-size: cover
 class: center, middle
 
@@ -351,13 +352,13 @@ class: center, middle
 
 class: inverse, center
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="60%" align="center" />
+<img src="img/recipes.png" width="60%" align="center" />
 
 # `Preprocesamiento`
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-image: url(img/fondo-madera.png)
 background-size: cover
 class: center, middle
 
@@ -369,12 +370,12 @@ class: center, middle
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes_allison.png" width="100%" align="center" />
+<img src="img/recipes_allison.png" width="100%" align="center" />
 
 
 .footnote[https://github.com/allisonhorst/stats-illustrations]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+<img src="img/recipes.png" width="10%" align="right" />
 
 # Preprocesamiento
 
@@ -392,19 +393,19 @@ class: center, middle
 .footnote[Mas información en https://tidymodels.github.io/recipes/articles/Ordering.html]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+<img src="img/recipes.png" width="10%" align="right" />
 
 # Centrado y Escalado
 
 1. Datos originales
 1. Centrar (media 0)
 1. Escalado (desvío estandar igual a 1)
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/prepro1.png" width="100%" align="right" />
+<img src="img/prepro1.png" width="100%" align="right" />
 
 .footnote[Imagen tomada de http://aikorea.org/cs231n/neural-networks-2/]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+<img src="img/recipes.png" width="10%" align="right" />
 
 # 2° Paso: Preprocesamiento
 
@@ -430,7 +431,7 @@ iris_recipe <- `training`(iris_split) %>%
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+<img src="img/recipes.png" width="10%" align="right" />
 
 ```{r } 
 iris_recipe <- training(iris_split) %>%
@@ -447,7 +448,7 @@ iris_recipe
 ```
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-image: url(img/engine3.png)
 background-size: cover
 class: center, middle
 
@@ -459,7 +460,7 @@ class: center, middle
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+<img src="img/recipes.png" width="10%" align="right" />
 
 ## juice()
 - **juice()** se utiliza para darle formato final al dataset antes del procesamiento de los datos
@@ -477,7 +478,7 @@ head(iris_training)
 ]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/recipes.png" width="10%" align="right" />
+<img src="img/recipes.png" width="10%" align="right" />
 
 ## bake()
 - **bake()** toma un recipiente entreanado y aplica las operaciones a un set de datos para crear la matriz de diseño. 
@@ -495,7 +496,7 @@ head(iris_testing)
 ]
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-image: url(img/engine3.png)
 background-size: cover
 class: center, middle
 
@@ -506,7 +507,7 @@ class: center, middle
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-image: url(img/engine3.png)
 background-size: cover
 class: center, middle
 
@@ -517,7 +518,7 @@ class: center, middle
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -528,13 +529,13 @@ class: center, middle, inverse
 ---
 class: inverse, center
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_h.png" width="70%" align="center" />
+<img src="img/parsnip_h.png" width="70%" align="center" />
 
 # `Modelización`
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-image: url(img/fondo-madera.png)
 background-size: cover
 class: center, middle
 
@@ -543,102 +544,102 @@ class: center, middle
 # No existe el mejor modelo, siempre depende del conjunto de datos utilizado
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip_allison.png" width="100%" align="center" />
+<img src="img/parsnip_allison.png" width="100%" align="center" />
 
 
 .footnote[https://github.com/allisonhorst/stats-illustrations]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # Árboles de decisión (Decision Trees)
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/bret-tree.png" width="100%" align="center" />
+<img src="img/bret-tree.png" width="100%" align="center" />
 
 .footnote[Imagen tomada de https://www.packtpub.com/big-data-and-business-intelligence/machine-learning-r-second-edition]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # Árboles de decisión (Decision Trees)
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/decision1.png" width="100%" align="center" />
+<img src="img/decision1.png" width="100%" align="center" />
 
 .footnote[https://bookdown.org/content/2031/arboles-de-decision-parte-i.html#que-son-los-arboles-de-decision]
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # Bosques aleatorios (Random Forest)
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/netflix-rf.png" width="100%" align="center" />
+<img src="img/netflix-rf.png" width="100%" align="center" />
 
 
 
 .footnote[https://en.wikipedia.org/wiki/Netflix_Prize y https://static.aminer.org/pdf/PDF/000/294/514/random_decision_forests.pdf]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # Bosques aleatorios (Random Forest)
 
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest1.png" width="100%" align="center" />
+<img src="img/random-forest1.png" width="100%" align="center" />
 
 .footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # Bosques aleatorios (Random Forest)
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest2.png" width="100%" align="center" />
+<img src="img/random-forest2.png" width="100%" align="center" />
 
 .footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # Bosques aleatorios (Random Forest)
 
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest3.png" width="100%" align="center" />
-
-
-.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
-
----
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
-
-# Bosques aleatorios (Random Forest)
-
-
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest4.png" width="100%" align="center" />
+<img src="img/random-forest3.png" width="100%" align="center" />
 
 
 .footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # Bosques aleatorios (Random Forest)
 
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/random-forest5.png" width="100%" align="center" />
+<img src="img/random-forest4.png" width="100%" align="center" />
+
 
 .footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+
+<img src="img/parsnip.png" width="15%" align="right" />
+
+# Bosques aleatorios (Random Forest)
+
+
+
+<img src="img/random-forest5.png" width="100%" align="center" />
+
+.footnote[Imagen tomada de https://conf20-intro-ml.netlify.com/]
+
+---
+<img src="img/parsnip.png" width="15%" align="right" />
 
 ### Out-of-bag error
 
@@ -658,7 +659,7 @@ Medida de varianza entre las clases. Nos permite medir la pureza del nodo. Un no
 
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 ## 3° Paso: Entrenamiento del modelo
 
@@ -682,7 +683,7 @@ iris_ranger
 .footnote[Más información en 
 https://tidymodels.github.io/parsnip/articles/articles/Models.html]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 {ranger}
 ```{r echo=FALSE, results="markup"}
 iris_ranger <- rand_forest(trees = 500, mode = "classification") %>%
@@ -694,7 +695,7 @@ iris_ranger
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-image: url(img/engine3.png)
 background-size: cover
 class: center, middle
 
@@ -704,7 +705,7 @@ class: center, middle
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # `predict()`
 ```{r message=FALSE, warning=FALSE, eval=FALSE} 
@@ -718,7 +719,7 @@ predict(objeto, datos_nuevos)
 
 .footnote[https://tidymodels.github.io/parsnip/reference/predict.model_fit.html]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # `predict()`
 ```{r } 
@@ -729,7 +730,7 @@ iris_ranger %>%
 
 .footnote[https://tidymodels.github.io/parsnip/reference/predict.model_fit.html]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/parsnip.png" width="15%" align="right" />
+<img src="img/parsnip.png" width="15%" align="right" />
 
 # `bind_cols()`
 
@@ -744,7 +745,7 @@ iris_ranger %>%
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-image: url(img/engine3.png)
 background-size: cover
 class: center, middle
 
@@ -758,13 +759,13 @@ class: center, middle
 ---
 class: inverse, center
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.png" width="60%" align="center" />
+<img src="img/yardstick.png" width="60%" align="center" />
 
 # `Validación`
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-image: url(img/fondo-madera.png)
 background-size: cover
 class: center, middle
 
@@ -772,24 +773,24 @@ class: center, middle
 # Esa evaluación puede ser mediante una métrica o un gráfico
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+<img src="img/yardstick.jpg" width="10%" align="right" />
 
 # Evaluación de un clasificador 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/eval-clasificador.png" width="100%" align="right" />
+<img src="img/eval-clasificador.png" width="100%" align="right" />
 
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+<img src="img/yardstick.jpg" width="10%" align="right" />
 
 # Matriz de Confusión
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/matriz-confusion.png" width="100%" align="right" />
+<img src="img/matriz-confusion.png" width="100%" align="right" />
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+<img src="img/yardstick.jpg" width="10%" align="right" />
 
 # Curvas ROC
 
@@ -802,7 +803,7 @@ class: center, middle
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+<img src="img/yardstick.jpg" width="10%" align="right" />
 
 ## 4° Paso: Validación del modelo predictivo
 
@@ -815,7 +816,7 @@ iris_ranger %>%
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
+<img src="img/yardstick.jpg" width="10%" align="right" /> 
 
 # `metrics()`
 ```{r } 
@@ -827,7 +828,7 @@ iris_ranger %>%
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+<img src="img/yardstick.jpg" width="10%" align="right" />
 
 # `sens()`
 ```{r } 
@@ -839,7 +840,7 @@ iris_ranger %>%
 
 .footnote[https://tidymodels.github.io/yardstick/reference/sens.html]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
+<img src="img/yardstick.jpg" width="10%" align="right" /> 
 
 # `spec()`
 
@@ -853,7 +854,7 @@ iris_ranger %>%
 
 .footnote[https://tidymodels.github.io/yardstick/reference/spec.html]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" /> 
+<img src="img/yardstick.jpg" width="10%" align="right" /> 
 
 # `precision()`
 ```{r } 
@@ -865,7 +866,7 @@ iris_ranger %>%
 
 .footnote[https://tidymodels.github.io/yardstick/reference/precision.html]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+<img src="img/yardstick.jpg" width="10%" align="right" />
 
 # `conf_mat()`
 
@@ -879,7 +880,7 @@ iris_ranger %>%
 .footnote[https://tidymodels.github.io/yardstick/reference/conf_mat.html]
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-image: url(img/engine3.png)
 background-size: cover
 class: center, middle
 
@@ -893,7 +894,7 @@ class: center, middle
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+<img src="img/yardstick.jpg" width="10%" align="right" />
 
 # Obtengo las probabilidades
 ```{r message=FALSE, warning=FALSE, echo=FALSE} 
@@ -912,7 +913,7 @@ iris_probs
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/yardstick.jpg" width="10%" align="right" />
+<img src="img/yardstick.jpg" width="10%" align="right" />
 
 ```{r fig.height=9, fig.width=11} 
 iris_probs%>%
@@ -923,7 +924,7 @@ iris_probs%>%
 .footnote[https://tidymodels.github.io/yardstick/reference/roc_curve.html]
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/engine3.png)
+background-image: url(img/engine3.png)
 background-size: cover
 class: center, middle
 
@@ -934,50 +935,50 @@ class: center, middle
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Resumiendo
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels1.png" width="100%" align="right" />
+<img src="img/resumiendo-tidymodels1.png" width="100%" align="right" />
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Resumiendo
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels2.png" width="100%" align="right" />
-
-
----
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
-
-# Resumiendo
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels3.png" width="100%" align="right" />
-
----
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
-
-# Resumiendo
-
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels4.png" width="100%" align="right" />
+<img src="img/resumiendo-tidymodels2.png" width="100%" align="right" />
 
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # Resumiendo
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/resumiendo-tidymodels5.png" width="100%" align="right" />
+<img src="img/resumiendo-tidymodels3.png" width="100%" align="right" />
+
+---
+
+<img src="img/tidymodels.png" width="10%" align="right" />
+
+# Resumiendo
+
+<img src="img/resumiendo-tidymodels4.png" width="100%" align="right" />
+
+
+---
+
+<img src="img/tidymodels.png" width="10%" align="right" />
+
+# Resumiendo
+
+<img src="img/resumiendo-tidymodels5.png" width="100%" align="right" />
 
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidymodels.png" width="10%" align="right" />
+<img src="img/tidymodels.png" width="10%" align="right" />
 
 # NO OLVIDAR 
 
@@ -1016,7 +1017,7 @@ http://appliedpredictivemodeling.com/
 
 # ¿De donde estudio para aprender ML?
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/ml-libros.png" width="100%" align="center" />
+<img src="img/ml-libros.png" width="100%" align="center" />
 
 
 ---

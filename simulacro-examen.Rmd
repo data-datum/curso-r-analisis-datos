@@ -23,17 +23,12 @@ Con el dataset seleccionado, realice al menos 3 gráficos apropiados a los datos
 El nombre de cada chunk debe ser diferente. 
 
 ### Gráfico 1
-Muestre el gráfico y el código
+Muestre el gráfico y el código. Oculte todos los mensajes y precauciones.
 
 ### Gráfico 2
 Muestre sólo el gráfico. En el chunk de R escifique fig.width y fig.height
 
 ### Gráfico 3
-Muestre el gráfico junto al chunk. 
+Muestre el gráfico y el código. 
 
-
-
-# Manipulación de datos
-iris: solo trabaje con iris setosa y versicolor. Filtre las filas restantes. 
-gapminder: trabaje solamente con datos de América. Filtre las filas restantes. 
 
