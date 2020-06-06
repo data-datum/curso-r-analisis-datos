@@ -35,8 +35,7 @@ library(emo)
 ## Coronavirus 2020
 
 ```{r message=FALSE} 
-library(readr)
-corona <-read.csv("C://Users/Roxana/curso-r-analisis-datos/data/2019_nCov_data.csv")
+corona <-read.csv("nCoV_data.csv")
 ```
 ---
 <img src="img/hex-dplyr.png" width="10%" align="right" />
@@ -199,7 +198,7 @@ corona %>%
 ---
 ```{r , warning=FALSE, message=FALSE}
 corona %>%
-  group_by(Province.State) %>% #<<
+  group_by("Province/State") %>% #<<
   filter(Date=="02/13/2020 21:15:00") %>% #<<
   arrange(desc(Confirmed)) #<<
 ```

@@ -28,7 +28,7 @@ class: inverse, center
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # Dataset 
 
@@ -36,11 +36,10 @@ class: inverse, center
 
 
 ```r
-library(readr)
-corona &lt;-read.csv("C://Users/Roxana/curso-r-analisis-datos/data/2019_nCov_data.csv")
+corona &lt;-read.csv("nCoV_data.csv")
 ```
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # 1. Realizamos un análasis exploratorio con las funciones útiles que vimos.
 
@@ -51,7 +50,7 @@ corona &lt;-read.csv("C://Users/Roxana/curso-r-analisis-datos/data/2019_nCov_dat
 ### summary()
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
 ```r
@@ -76,7 +75,7 @@ head(corona)
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
 ```r
@@ -101,7 +100,7 @@ tail(corona)
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
 ```r
@@ -110,20 +109,20 @@ glimpse(corona)
 ```
 
 ```
-## Observations: 1,419
-## Variables: 8
-## $ Sno            &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
-## $ Date           &lt;fct&gt; 01/22/2020 12:00:00, 01/22/2020 12:00:00, 01/22/2020...
-## $ Province.State &lt;fct&gt; Anhui, Beijing, Chongqing, Fujian, Gansu, Guangdong,...
-## $ Country        &lt;fct&gt; China, China, China, China, China, China, China, Chi...
-## $ Last.Update    &lt;fct&gt; 01/22/2020 12:00:00, 01/22/2020 12:00:00, 01/22/2020...
-## $ Confirmed      &lt;dbl&gt; 1, 14, 6, 1, 0, 26, 2, 1, 4, 1, 0, 5, 0, 444, 4, 0, ...
-## $ Deaths         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
-## $ Recovered      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## Rows: 1,419
+## Columns: 8
+## $ Sno            &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…
+## $ Date           &lt;fct&gt; 01/22/2020 12:00:00, 01/22/2020 12:00:00, 01/22/2020 1…
+## $ Province.State &lt;fct&gt; Anhui, Beijing, Chongqing, Fujian, Gansu, Guangdong, G…
+## $ Country        &lt;fct&gt; China, China, China, China, China, China, China, China…
+## $ Last.Update    &lt;fct&gt; 01/22/2020 12:00:00, 01/22/2020 12:00:00, 01/22/2020 1…
+## $ Confirmed      &lt;dbl&gt; 1, 14, 6, 1, 0, 26, 2, 1, 4, 1, 0, 5, 0, 444, 4, 0, 1,…
+## $ Deaths         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Recovered      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
 ```r
@@ -144,7 +143,7 @@ str(corona)
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
 ```r
@@ -181,7 +180,7 @@ summary(corona)
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # 2. Pasar todas las variables (columnas) a minúscula, y eliminar la primera columna (Sno)
 
@@ -5887,7 +5886,7 @@ corona %&gt;%
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # 3. ¿Cuáles son los lugares con más coronavirus reportados a la fecha? 
 
@@ -5897,17 +5896,17 @@ corona %&gt;%
 ## # Groups:   Country [29]
 ##      Sno Date    Province.State Country  Last.Update  Confirmed Deaths Recovered
 ##    &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;          &lt;fct&gt;    &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-##  1  1346 02/13/~ Hubei          Mainlan~ 2020-02-14 ~     51986   1426      4131
-##  2  1347 02/13/~ Guangdong      Mainlan~ 2020-02-14 ~      1261      2       332
-##  3  1348 02/13/~ Henan          Mainlan~ 2020-02-14 ~      1184     11       313
-##  4  1349 02/13/~ Zhejiang       Mainlan~ 2020-02-14 ~      1155      0       367
-##  5  1350 02/13/~ Hunan          Mainlan~ 2020-02-14 ~       988      2       352
-##  6  1351 02/13/~ Anhui          Mainlan~ 2020-02-14 ~       934      6       166
-##  7  1352 02/13/~ Jiangxi        Mainlan~ 2020-02-14 ~       900      1       187
-##  8  1353 02/13/~ Jiangsu        Mainlan~ 2020-02-14 ~       593      0       137
-##  9  1354 02/13/~ Chongqing      Mainlan~ 2020-02-13 ~       529      4       128
-## 10  1355 02/13/~ Shandong       Mainlan~ 2020-02-14 ~       519      2       111
-## # ... with 64 more rows
+##  1  1346 02/13/… Hubei          Mainlan… 2020-02-14 …     51986   1426      4131
+##  2  1347 02/13/… Guangdong      Mainlan… 2020-02-14 …      1261      2       332
+##  3  1348 02/13/… Henan          Mainlan… 2020-02-14 …      1184     11       313
+##  4  1349 02/13/… Zhejiang       Mainlan… 2020-02-14 …      1155      0       367
+##  5  1350 02/13/… Hunan          Mainlan… 2020-02-14 …       988      2       352
+##  6  1351 02/13/… Anhui          Mainlan… 2020-02-14 …       934      6       166
+##  7  1352 02/13/… Jiangxi        Mainlan… 2020-02-14 …       900      1       187
+##  8  1353 02/13/… Jiangsu        Mainlan… 2020-02-14 …       593      0       137
+##  9  1354 02/13/… Chongqing      Mainlan… 2020-02-13 …       529      4       128
+## 10  1355 02/13/… Shandong       Mainlan… 2020-02-14 …       519      2       111
+## # … with 64 more rows
 ```
 
 
@@ -5925,22 +5924,22 @@ corona %&gt;%
 ## # Groups:   Country [29]
 ##      Sno Date    Province.State Country  Last.Update  Confirmed Deaths Recovered
 ##    &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;          &lt;fct&gt;    &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-##  1  1346 02/13/~ Hubei          Mainlan~ 2020-02-14 ~     51986   1426      4131
-##  2  1347 02/13/~ Guangdong      Mainlan~ 2020-02-14 ~      1261      2       332
-##  3  1348 02/13/~ Henan          Mainlan~ 2020-02-14 ~      1184     11       313
-##  4  1349 02/13/~ Zhejiang       Mainlan~ 2020-02-14 ~      1155      0       367
-##  5  1350 02/13/~ Hunan          Mainlan~ 2020-02-14 ~       988      2       352
-##  6  1351 02/13/~ Anhui          Mainlan~ 2020-02-14 ~       934      6       166
-##  7  1352 02/13/~ Jiangxi        Mainlan~ 2020-02-14 ~       900      1       187
-##  8  1353 02/13/~ Jiangsu        Mainlan~ 2020-02-14 ~       593      0       137
-##  9  1354 02/13/~ Chongqing      Mainlan~ 2020-02-13 ~       529      4       128
-## 10  1355 02/13/~ Shandong       Mainlan~ 2020-02-14 ~       519      2       111
-## # ... with 64 more rows
+##  1  1346 02/13/… Hubei          Mainlan… 2020-02-14 …     51986   1426      4131
+##  2  1347 02/13/… Guangdong      Mainlan… 2020-02-14 …      1261      2       332
+##  3  1348 02/13/… Henan          Mainlan… 2020-02-14 …      1184     11       313
+##  4  1349 02/13/… Zhejiang       Mainlan… 2020-02-14 …      1155      0       367
+##  5  1350 02/13/… Hunan          Mainlan… 2020-02-14 …       988      2       352
+##  6  1351 02/13/… Anhui          Mainlan… 2020-02-14 …       934      6       166
+##  7  1352 02/13/… Jiangxi        Mainlan… 2020-02-14 …       900      1       187
+##  8  1353 02/13/… Jiangsu        Mainlan… 2020-02-14 …       593      0       137
+##  9  1354 02/13/… Chongqing      Mainlan… 2020-02-13 …       529      4       128
+## 10  1355 02/13/… Shandong       Mainlan… 2020-02-14 …       519      2       111
+## # … with 64 more rows
 ```
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # 4. ¿Cuántos casos hay reportados en Taiwan?
 
@@ -5997,7 +5996,7 @@ corona %&gt;%
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # 4. ¿Cuántos casos hay reportados en Taiwan?
 
@@ -6059,7 +6058,7 @@ corona %&gt;%
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # 5. Después de China, ¿cuál es el segundo país con casos de Coronavirus?
 
@@ -6069,17 +6068,17 @@ corona %&gt;%
 ## # Groups:   Country [28]
 ##      Sno Date    Province.State   Country Last.Update Confirmed Deaths Recovered
 ##    &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;            &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-##  1  1364 02/13/~ "Diamond Prince~ Others  2020-02-14~       218      0         0
-##  2  1376 02/13/~ ""               Singap~ 2020-02-13~        58      0        15
-##  3  1377 02/13/~ "Hong Kong"      Hong K~ 2020-02-13~        53      1         1
-##  4  1378 02/13/~ ""               Thaila~ 2020-02-13~        33      0        12
-##  5  1379 02/13/~ ""               Japan   2020-02-13~        28      1         9
-##  6  1380 02/13/~ ""               South ~ 2020-02-12~        28      0         7
-##  7  1381 02/13/~ ""               Malays~ 2020-02-13~        19      0         3
-##  8  1383 02/13/~ "Taiwan"         Taiwan  2020-02-09~        18      0         1
-##  9  1384 02/13/~ ""               Germany 2020-02-13~        16      0         1
-## 10  1385 02/13/~ ""               Vietnam 2020-02-13~        16      0         7
-## # ... with 33 more rows
+##  1  1364 02/13/… "Diamond Prince… Others  2020-02-14…       218      0         0
+##  2  1376 02/13/… ""               Singap… 2020-02-13…        58      0        15
+##  3  1377 02/13/… "Hong Kong"      Hong K… 2020-02-13…        53      1         1
+##  4  1378 02/13/… ""               Thaila… 2020-02-13…        33      0        12
+##  5  1379 02/13/… ""               Japan   2020-02-13…        28      1         9
+##  6  1380 02/13/… ""               South … 2020-02-12…        28      0         7
+##  7  1381 02/13/… ""               Malays… 2020-02-13…        19      0         3
+##  8  1383 02/13/… "Taiwan"         Taiwan  2020-02-09…        18      0         1
+##  9  1384 02/13/… ""               Germany 2020-02-13…        16      0         1
+## 10  1385 02/13/… ""               Vietnam 2020-02-13…        16      0         7
+## # … with 33 more rows
 ```
 
 
@@ -6099,22 +6098,22 @@ corona %&gt;%
 ## # Groups:   Country [28]
 ##      Sno Date    Province.State   Country Last.Update Confirmed Deaths Recovered
 ##    &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;            &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-##  1  1364 02/13/~ "Diamond Prince~ Others  2020-02-14~       218      0         0
-##  2  1376 02/13/~ ""               Singap~ 2020-02-13~        58      0        15
-##  3  1377 02/13/~ "Hong Kong"      Hong K~ 2020-02-13~        53      1         1
-##  4  1378 02/13/~ ""               Thaila~ 2020-02-13~        33      0        12
-##  5  1379 02/13/~ ""               Japan   2020-02-13~        28      1         9
-##  6  1380 02/13/~ ""               South ~ 2020-02-12~        28      0         7
-##  7  1381 02/13/~ ""               Malays~ 2020-02-13~        19      0         3
-##  8  1383 02/13/~ "Taiwan"         Taiwan  2020-02-09~        18      0         1
-##  9  1384 02/13/~ ""               Germany 2020-02-13~        16      0         1
-## 10  1385 02/13/~ ""               Vietnam 2020-02-13~        16      0         7
-## # ... with 33 more rows
+##  1  1364 02/13/… "Diamond Prince… Others  2020-02-14…       218      0         0
+##  2  1376 02/13/… ""               Singap… 2020-02-13…        58      0        15
+##  3  1377 02/13/… "Hong Kong"      Hong K… 2020-02-13…        53      1         1
+##  4  1378 02/13/… ""               Thaila… 2020-02-13…        33      0        12
+##  5  1379 02/13/… ""               Japan   2020-02-13…        28      1         9
+##  6  1380 02/13/… ""               South … 2020-02-12…        28      0         7
+##  7  1381 02/13/… ""               Malays… 2020-02-13…        19      0         3
+##  8  1383 02/13/… "Taiwan"         Taiwan  2020-02-09…        18      0         1
+##  9  1384 02/13/… ""               Germany 2020-02-13…        16      0         1
+## 10  1385 02/13/… ""               Vietnam 2020-02-13…        16      0         7
+## # … with 33 more rows
 ```
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # 6. Después de Hubei, ¿cuáles son las provincias más afectadas?
 
@@ -6124,17 +6123,17 @@ corona %&gt;%
 ## # Groups:   Province.State [54]
 ##      Sno Date    Province.State Country  Last.Update  Confirmed Deaths Recovered
 ##    &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;          &lt;fct&gt;    &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-##  1  1346 02/13/~ Hubei          Mainlan~ 2020-02-14 ~     51986   1426      4131
-##  2  1347 02/13/~ Guangdong      Mainlan~ 2020-02-14 ~      1261      2       332
-##  3  1348 02/13/~ Henan          Mainlan~ 2020-02-14 ~      1184     11       313
-##  4  1349 02/13/~ Zhejiang       Mainlan~ 2020-02-14 ~      1155      0       367
-##  5  1350 02/13/~ Hunan          Mainlan~ 2020-02-14 ~       988      2       352
-##  6  1351 02/13/~ Anhui          Mainlan~ 2020-02-14 ~       934      6       166
-##  7  1352 02/13/~ Jiangxi        Mainlan~ 2020-02-14 ~       900      1       187
-##  8  1353 02/13/~ Jiangsu        Mainlan~ 2020-02-14 ~       593      0       137
-##  9  1354 02/13/~ Chongqing      Mainlan~ 2020-02-13 ~       529      4       128
-## 10  1355 02/13/~ Shandong       Mainlan~ 2020-02-14 ~       519      2       111
-## # ... with 64 more rows
+##  1  1346 02/13/… Hubei          Mainlan… 2020-02-14 …     51986   1426      4131
+##  2  1347 02/13/… Guangdong      Mainlan… 2020-02-14 …      1261      2       332
+##  3  1348 02/13/… Henan          Mainlan… 2020-02-14 …      1184     11       313
+##  4  1349 02/13/… Zhejiang       Mainlan… 2020-02-14 …      1155      0       367
+##  5  1350 02/13/… Hunan          Mainlan… 2020-02-14 …       988      2       352
+##  6  1351 02/13/… Anhui          Mainlan… 2020-02-14 …       934      6       166
+##  7  1352 02/13/… Jiangxi        Mainlan… 2020-02-14 …       900      1       187
+##  8  1353 02/13/… Jiangsu        Mainlan… 2020-02-14 …       593      0       137
+##  9  1354 02/13/… Chongqing      Mainlan… 2020-02-13 …       529      4       128
+## 10  1355 02/13/… Shandong       Mainlan… 2020-02-14 …       519      2       111
+## # … with 64 more rows
 ```
 
 
@@ -6142,33 +6141,33 @@ corona %&gt;%
 
 ```r
 corona %&gt;%
-* group_by(Province.State) %&gt;%
+* group_by("Province/State") %&gt;%
 * filter(Date=="02/13/2020 21:15:00") %&gt;%
 * arrange(desc(Confirmed))
 ```
 
 ```
-## # A tibble: 74 x 8
-## # Groups:   Province.State [54]
-##      Sno Date    Province.State Country  Last.Update  Confirmed Deaths Recovered
-##    &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;          &lt;fct&gt;    &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-##  1  1346 02/13/~ Hubei          Mainlan~ 2020-02-14 ~     51986   1426      4131
-##  2  1347 02/13/~ Guangdong      Mainlan~ 2020-02-14 ~      1261      2       332
-##  3  1348 02/13/~ Henan          Mainlan~ 2020-02-14 ~      1184     11       313
-##  4  1349 02/13/~ Zhejiang       Mainlan~ 2020-02-14 ~      1155      0       367
-##  5  1350 02/13/~ Hunan          Mainlan~ 2020-02-14 ~       988      2       352
-##  6  1351 02/13/~ Anhui          Mainlan~ 2020-02-14 ~       934      6       166
-##  7  1352 02/13/~ Jiangxi        Mainlan~ 2020-02-14 ~       900      1       187
-##  8  1353 02/13/~ Jiangsu        Mainlan~ 2020-02-14 ~       593      0       137
-##  9  1354 02/13/~ Chongqing      Mainlan~ 2020-02-13 ~       529      4       128
-## 10  1355 02/13/~ Shandong       Mainlan~ 2020-02-14 ~       519      2       111
-## # ... with 64 more rows
+## # A tibble: 74 x 9
+## # Groups:   "Province/State" [1]
+##      Sno Date  Province.State Country Last.Update Confirmed Deaths Recovered
+##    &lt;int&gt; &lt;fct&gt; &lt;fct&gt;          &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+##  1  1346 02/1… Hubei          Mainla… 2020-02-14…     51986   1426      4131
+##  2  1347 02/1… Guangdong      Mainla… 2020-02-14…      1261      2       332
+##  3  1348 02/1… Henan          Mainla… 2020-02-14…      1184     11       313
+##  4  1349 02/1… Zhejiang       Mainla… 2020-02-14…      1155      0       367
+##  5  1350 02/1… Hunan          Mainla… 2020-02-14…       988      2       352
+##  6  1351 02/1… Anhui          Mainla… 2020-02-14…       934      6       166
+##  7  1352 02/1… Jiangxi        Mainla… 2020-02-14…       900      1       187
+##  8  1353 02/1… Jiangsu        Mainla… 2020-02-14…       593      0       137
+##  9  1354 02/1… Chongqing      Mainla… 2020-02-13…       529      4       128
+## 10  1355 02/1… Shandong       Mainla… 2020-02-14…       519      2       111
+## # … with 64 more rows, and 1 more variable: `"Province/State"` &lt;chr&gt;
 ```
 
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # 7. ¿Cuántos casos hay en Australia reportados según regiones? Ordenar de manera descendente
 
@@ -6178,10 +6177,10 @@ corona %&gt;%
 ## # Groups:   Country [1]
 ##     Sno Date     Province.State  Country Last.Update  Confirmed Deaths Recovered
 ##   &lt;int&gt; &lt;fct&gt;    &lt;fct&gt;           &lt;fct&gt;   &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-## 1  1390 02/13/2~ Queensland      Austra~ 2020-02-09 ~         5      0         0
-## 2  1391 02/13/2~ New South Wales Austra~ 2020-02-13 ~         4      0         4
-## 3  1392 02/13/2~ Victoria        Austra~ 2020-02-13 ~         4      0         4
-## 4  1397 02/13/2~ South Australia Austra~ 2020-02-02 ~         2      0         0
+## 1  1390 02/13/2… Queensland      Austra… 2020-02-09 …         5      0         0
+## 2  1391 02/13/2… New South Wales Austra… 2020-02-13 …         4      0         4
+## 3  1392 02/13/2… Victoria        Austra… 2020-02-13 …         4      0         4
+## 4  1397 02/13/2… South Australia Austra… 2020-02-02 …         2      0         0
 ```
 
 ---
@@ -6199,10 +6198,10 @@ corona %&gt;%
 ## # Groups:   Province.State [4]
 ##     Sno Date     Province.State  Country Last.Update  Confirmed Deaths Recovered
 ##   &lt;int&gt; &lt;fct&gt;    &lt;fct&gt;           &lt;fct&gt;   &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-## 1  1390 02/13/2~ Queensland      Austra~ 2020-02-09 ~         5      0         0
-## 2  1391 02/13/2~ New South Wales Austra~ 2020-02-13 ~         4      0         4
-## 3  1392 02/13/2~ Victoria        Austra~ 2020-02-13 ~         4      0         4
-## 4  1397 02/13/2~ South Australia Austra~ 2020-02-02 ~         2      0         0
+## 1  1390 02/13/2… Queensland      Austra… 2020-02-09 …         5      0         0
+## 2  1391 02/13/2… New South Wales Austra… 2020-02-13 …         4      0         4
+## 3  1392 02/13/2… Victoria        Austra… 2020-02-13 …         4      0         4
+## 4  1397 02/13/2… South Australia Austra… 2020-02-02 …         2      0         0
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -6251,6 +6250,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -6268,17 +6293,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
