@@ -27,7 +27,7 @@ class: inverse, center
 &lt;br&gt; Página web del curso en &lt;https://flor14.github.io/Curso_r_unne_2020/&gt; 🌟
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Tip 1: si tenemos que seleccionar las mismas columnas varias veces
 
@@ -54,10 +54,10 @@ gapminder %&gt;%
 ##  8 Afghanistan    40.8      852.
 ##  9 Afghanistan    41.7      649.
 ## 10 Afghanistan    41.8      635.
-## # ... with 1,694 more rows
+## # … with 1,694 more rows
 ```
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Tip 2: seleccionar según una expresión regular (regex)
 
@@ -81,7 +81,7 @@ gapminder %&gt;%
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Tip 3: para reordenar columnas
 
@@ -105,7 +105,7 @@ gapminder %&gt;%
 ```
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
 # Tip 4: Si quisiera borrar una columna
@@ -132,13 +132,13 @@ gapminder %&gt;%
 ##  8 Afghanistan Asia       1987    40.8      852.
 ##  9 Afghanistan Asia       1992    41.7      649.
 ## 10 Afghanistan Asia       1997    41.8      635.
-## # ... with 1,694 more rows
+## # … with 1,694 more rows
 ```
 
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `select_all()`
 
@@ -171,7 +171,7 @@ gapminder %&gt;%
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # Tip 5: usar `between()` para especificar rangos
 - También podemos hacerlo combinando con between():
@@ -196,7 +196,7 @@ gapminder %&gt;%
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # Tip 6: Si queremos conservar sólo la nueva columna; usamos `transmute()`
 
@@ -221,7 +221,7 @@ gapminder %&gt;%
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Funciones útiles para combinar con `summarise()`:
 .pull-left[
@@ -292,7 +292,7 @@ gapminder %&gt;%
 ]
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
 # `summarise_all()`
@@ -315,7 +315,7 @@ iris %&gt;%
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `summarise_at()`
 - Requiere dos argumentos, uno indicando las columnas que se tendrán en cuenta, y luego la operación con la que se resumirán los datos.  
@@ -340,7 +340,7 @@ iris %&gt;%
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `summarise_if()`:
 - Requiere dos argumentos 
@@ -365,7 +365,7 @@ gapminder %&gt;%
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # Si tenemos dudas 
 ### Podemos consultar la documentación
@@ -389,73 +389,77 @@ devtools::session_info()
 ```
 
 ```
-## - Session info ---------------------------------------------------------------
+## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
-##  version  R version 3.6.2 (2019-12-12)
-##  os       Windows 10 x64              
-##  system   x86_64, mingw32             
-##  ui       RTerm                       
-##  language (EN)                        
-##  collate  Spanish_Argentina.1252      
-##  ctype    Spanish_Argentina.1252      
-##  tz       America/Buenos_Aires        
-##  date     2020-02-18                  
+##  version  R version 3.6.3 (2020-02-29)
+##  os       Ubuntu 20.04 LTS            
+##  system   x86_64, linux-gnu           
+##  ui       X11                         
+##  language es_AR:es                    
+##  collate  es_AR.UTF-8                 
+##  ctype    es_AR.UTF-8                 
+##  tz       America/Argentina/Cordoba   
+##  date     2020-06-05                  
 ## 
-## - Packages -------------------------------------------------------------------
+## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                              
-##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.1)                      
-##  backports     1.1.5      2019-10-02 [1] CRAN (R 3.6.1)                      
-##  callr         3.4.1      2020-01-24 [1] CRAN (R 3.6.2)                      
-##  cli           2.0.1      2020-01-08 [1] CRAN (R 3.6.2)                      
-##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.1)                      
-##  desc          1.2.0      2018-05-01 [1] CRAN (R 3.6.1)                      
-##  devtools      2.2.1      2019-09-24 [1] CRAN (R 3.6.2)                      
-##  digest        0.6.23     2019-11-23 [1] CRAN (R 3.6.1)                      
-##  dplyr       * 0.8.3      2019-07-04 [1] CRAN (R 3.6.1)                      
-##  ellipsis      0.3.0      2019-09-20 [1] CRAN (R 3.6.1)                      
-##  emo         * 0.0.0.9000 2019-12-07 [1] Github (hadley/emo@02a5206)         
-##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.1)                      
-##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.2)                      
-##  fontawesome * 0.1.0      2019-12-07 [1] Github (rstudio/fontawesome@2b64e31)
-##  fs            1.3.1      2019-05-06 [1] CRAN (R 3.6.1)                      
-##  gapminder   * 0.3.0      2017-10-31 [1] CRAN (R 3.6.2)                      
-##  glue          1.3.1      2019-03-12 [1] CRAN (R 3.6.1)                      
-##  highr         0.8        2019-03-20 [1] CRAN (R 3.6.1)                      
-##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.1)                      
-##  knitr         1.28       2020-02-06 [1] CRAN (R 3.6.2)                      
-##  lubridate     1.7.4      2018-04-11 [1] CRAN (R 3.6.1)                      
-##  magrittr      1.5        2014-11-22 [1] CRAN (R 3.6.1)                      
-##  memoise       1.1.0      2017-04-21 [1] CRAN (R 3.6.1)                      
-##  pillar        1.4.3      2019-12-20 [1] CRAN (R 3.6.2)                      
-##  pkgbuild      1.0.6      2019-10-09 [1] CRAN (R 3.6.2)                      
-##  pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 3.6.1)                      
-##  pkgload       1.0.2      2018-10-29 [1] CRAN (R 3.6.1)                      
-##  prettyunits   1.1.1      2020-01-24 [1] CRAN (R 3.6.2)                      
-##  processx      3.4.1      2019-07-18 [1] CRAN (R 3.6.1)                      
-##  ps            1.3.0      2018-12-21 [1] CRAN (R 3.6.1)                      
-##  purrr         0.3.3      2019-10-18 [1] CRAN (R 3.6.1)                      
-##  R6            2.4.1      2019-11-12 [1] CRAN (R 3.6.2)                      
-##  Rcpp          1.0.3      2019-11-08 [1] CRAN (R 3.6.1)                      
-##  remotes       2.1.0      2019-06-24 [1] CRAN (R 3.6.1)                      
-##  rlang         0.4.2      2019-11-23 [1] CRAN (R 3.6.1)                      
-##  rmarkdown     2.1        2020-01-20 [1] CRAN (R 3.6.2)                      
-##  rprojroot     1.3-2      2018-01-03 [1] CRAN (R 3.6.1)                      
-##  sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.6.1)                      
-##  stringi       1.4.5      2020-01-11 [1] CRAN (R 3.6.2)                      
-##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.1)                      
-##  testthat      2.3.1      2019-12-01 [1] CRAN (R 3.6.2)                      
-##  tibble        2.1.3      2019-06-06 [1] CRAN (R 3.6.1)                      
-##  tidyselect    0.2.5      2018-10-11 [1] CRAN (R 3.6.1)                      
-##  usethis       1.5.1      2019-07-04 [1] CRAN (R 3.6.1)                      
-##  utf8          1.1.4      2018-05-24 [1] CRAN (R 3.6.1)                      
-##  vctrs         0.2.2      2020-01-24 [1] CRAN (R 3.6.2)                      
-##  withr         2.1.2      2018-03-15 [1] CRAN (R 3.6.1)                      
-##  xaringan      0.14       2020-01-19 [1] CRAN (R 3.6.2)                      
-##  xfun          0.12       2020-01-13 [1] CRAN (R 3.6.2)                      
-##  yaml          2.2.1      2020-02-01 [1] CRAN (R 3.6.2)                      
+##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.3)                      
+##  backports     1.1.7      2020-05-13 [1] CRAN (R 3.6.3)                      
+##  callr         3.4.3      2020-03-28 [1] CRAN (R 3.6.3)                      
+##  cli           2.0.2      2020-02-28 [1] CRAN (R 3.6.3)                      
+##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.3)                      
+##  desc          1.2.0      2018-05-01 [1] CRAN (R 3.6.3)                      
+##  devtools      2.2.2      2020-02-17 [3] CRAN (R 3.6.3)                      
+##  digest        0.6.25     2020-02-23 [1] CRAN (R 3.6.3)                      
+##  dplyr       * 0.8.5      2020-03-07 [1] CRAN (R 3.6.3)                      
+##  ellipsis      0.3.1      2020-05-15 [1] CRAN (R 3.6.3)                      
+##  emo         * 0.0.0.9000 2020-05-12 [1] Github (hadley/emo@3f03b11)         
+##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.3)                      
+##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.3)                      
+##  fontawesome * 0.1.0      2020-05-12 [1] Github (rstudio/fontawesome@2b64e31)
+##  fs            1.4.1      2020-04-04 [1] CRAN (R 3.6.3)                      
+##  gapminder   * 0.3.0      2017-10-31 [1] CRAN (R 3.6.3)                      
+##  generics      0.0.2      2018-11-29 [1] CRAN (R 3.6.3)                      
+##  glue          1.4.1      2020-05-13 [1] CRAN (R 3.6.3)                      
+##  highr         0.8        2019-03-20 [1] CRAN (R 3.6.3)                      
+##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.3)                      
+##  knitr         1.28       2020-02-06 [1] CRAN (R 3.6.3)                      
+##  lifecycle     0.2.0      2020-03-06 [1] CRAN (R 3.6.3)                      
+##  lubridate     1.7.8      2020-04-06 [1] CRAN (R 3.6.3)                      
+##  magrittr      1.5        2014-11-22 [1] CRAN (R 3.6.3)                      
+##  memoise       1.1.0      2017-04-21 [3] CRAN (R 3.5.0)                      
+##  pillar        1.4.4      2020-05-05 [1] CRAN (R 3.6.3)                      
+##  pkgbuild      1.0.8      2020-05-07 [1] CRAN (R 3.6.3)                      
+##  pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 3.6.3)                      
+##  pkgload       1.1.0      2020-05-29 [1] CRAN (R 3.6.3)                      
+##  prettyunits   1.1.1      2020-01-24 [1] CRAN (R 3.6.3)                      
+##  processx      3.4.2      2020-02-09 [1] CRAN (R 3.6.3)                      
+##  ps            1.3.3      2020-05-08 [1] CRAN (R 3.6.3)                      
+##  purrr         0.3.4      2020-04-17 [1] CRAN (R 3.6.3)                      
+##  R6            2.4.1      2019-11-12 [1] CRAN (R 3.6.3)                      
+##  Rcpp          1.0.4.6    2020-04-09 [1] CRAN (R 3.6.3)                      
+##  remotes       2.1.1      2020-02-15 [1] CRAN (R 3.6.3)                      
+##  rlang         0.4.6      2020-05-02 [1] CRAN (R 3.6.3)                      
+##  rmarkdown     2.1        2020-01-20 [1] CRAN (R 3.6.3)                      
+##  rprojroot     1.3-2      2018-01-03 [1] CRAN (R 3.6.3)                      
+##  sessioninfo   1.1.1      2018-11-05 [3] CRAN (R 3.5.1)                      
+##  stringi       1.4.6      2020-02-17 [1] CRAN (R 3.6.3)                      
+##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.3)                      
+##  testthat      2.3.2      2020-03-02 [1] CRAN (R 3.6.3)                      
+##  tibble        3.0.1      2020-04-20 [1] CRAN (R 3.6.3)                      
+##  tidyselect    1.0.0      2020-01-27 [1] CRAN (R 3.6.3)                      
+##  usethis       1.5.1      2019-07-04 [3] CRAN (R 3.6.2)                      
+##  utf8          1.1.4      2018-05-24 [1] CRAN (R 3.6.3)                      
+##  vctrs         0.3.1      2020-06-05 [1] CRAN (R 3.6.3)                      
+##  withr         2.2.0      2020-04-20 [1] CRAN (R 3.6.3)                      
+##  xaringan      0.16       2020-03-31 [1] CRAN (R 3.6.3)                      
+##  xfun          0.13       2020-04-13 [1] CRAN (R 3.6.3)                      
+##  yaml          2.2.1      2020-02-01 [1] CRAN (R 3.6.3)                      
 ## 
-## [1] C:/Users/Roxana/Documents/R/win-library/3.6
-## [2] C:/Program Files/R/R-3.6.2/library
+## [1] /home/roxana/R/x86_64-pc-linux-gnu-library/3.6
+## [2] /usr/local/lib/R/site-library
+## [3] /usr/lib/R/site-library
+## [4] /usr/lib/R/library
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -505,6 +509,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -522,17 +552,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

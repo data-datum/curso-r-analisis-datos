@@ -28,7 +28,7 @@ library(emo)
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # Dataset 
 
@@ -39,7 +39,7 @@ library(readr)
 corona <-read.csv("C://Users/Roxana/curso-r-analisis-datos/data/2019_nCov_data.csv")
 ```
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # 1. Realizamos un análasis exploratorio con las funciones útiles que vimos.
 
@@ -50,21 +50,21 @@ corona <-read.csv("C://Users/Roxana/curso-r-analisis-datos/data/2019_nCov_data.c
 ### summary()
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 ```{r , warning=FALSE, message=FALSE}
 head(corona)
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 ```{r , warning=FALSE, message=FALSE}
 tail(corona)
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 ```{r , warning=FALSE, message=FALSE}
 library(dplyr)
@@ -72,7 +72,7 @@ glimpse(corona)
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 ```{r , warning=FALSE, message=FALSE}
 str(corona)
@@ -80,7 +80,7 @@ str(corona)
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 ```{r , warning=FALSE, message=FALSE}
 summary(corona)
@@ -89,7 +89,7 @@ summary(corona)
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # 2. Pasar todas las variables (columnas) a minúscula, y eliminar la primera columna (Sno)
 
@@ -114,7 +114,7 @@ corona %>%
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # 3. ¿Cuáles son los lugares con más coronavirus reportados a la fecha? 
 
@@ -136,7 +136,7 @@ corona %>%
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # 4. ¿Cuántos casos hay reportados en Taiwan?
 
@@ -148,7 +148,7 @@ corona %>%
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # 4. ¿Cuántos casos hay reportados en Taiwan?
 
@@ -160,7 +160,7 @@ corona %>%
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # 5. Después de China, ¿cuál es el segundo país con casos de Coronavirus?
 
@@ -184,7 +184,7 @@ corona %>%
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # 6. Después de Hubei, ¿cuáles son las provincias más afectadas?
 
@@ -207,7 +207,7 @@ corona %>%
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # 7. ¿Cuántos casos hay en Australia reportados según regiones? Ordenar de manera descendente
 
