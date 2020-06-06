@@ -32,11 +32,11 @@ library(emo)
 # Flujo de Ciencia de Datos `r emo::ji("pushpin")`
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos-dplyr.png" width="100%" align="center" />
+<img src="img/flujo-ciencia-datos-dplyr.png" width="100%" align="center" />
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tibble.png" width="10%" align="right" />
+<img src="img/tibble.png" width="10%" align="right" />
 
 # data.frame vs. tibble
 - data.frame es una estructura nativas de __rbase__ y está disponible sin necesidad de instalar ningún paquete adicional. Es una estructura tabular organizada en filas y columnas. Se puede acceder a las columnas mediantes colnames() y los nombres de las filas, como rownames().
@@ -53,13 +53,13 @@ tidyverse::as_tibble()
 
 class: inverse, center
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="50%" align="center" />
+<img src="img/tidyr-logo.png" width="50%" align="center" />
 
 # `Ordenar datos con tidyr`
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-image: url(img/fondo-madera.png)
 background-size: cover
 class: center, middle
 
@@ -76,7 +76,7 @@ Cuando hablamos de datos ordenados son referimos a:
 .footnote[https://vita.had.co.nz/papers/tidy-data.pdf]
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-image: url(img/fondo-madera.png)
 background-size: cover
 class: center, middle
 
@@ -94,7 +94,7 @@ class: center, middle
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 # Funciones principales de tidyr
 
@@ -112,7 +112,7 @@ _antes gather()_
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 ### Cuando los nombres de las columnas no representan nombres de las variables, sino números
 
@@ -132,7 +132,7 @@ pivot_longer(data, #dataset
 Mas información en https://tidyr.tidyverse.org/reference/pivot_longer.html
 ]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 ```{r message=FALSE}
 library(tidyr)
@@ -142,7 +142,7 @@ head(relig_income) #encabezado del dataset
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 ## `pivot_longer()`
 
@@ -157,7 +157,7 @@ relig_income %>%   #datos para ordenar
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 ### Multiples variables están en una sola columna
 #### (esas variables pasarán a ser las nuevas columnas)
@@ -177,14 +177,14 @@ pivot_wider(data, #dataset
 Mas información en https://tidyr.tidyverse.org/reference/pivot_wider.html
 ]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 ```{r message=FALSE} 
 fish_encounters
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 ```{r message=FALSE} 
 fish_encounters %>% #ingreso de los datos 
@@ -194,7 +194,7 @@ fish_encounters %>% #ingreso de los datos
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -206,7 +206,7 @@ class: center, middle
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -227,7 +227,7 @@ class: center, middle
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 # Solución 1
 *parte1*
@@ -241,7 +241,7 @@ relig2
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 *parte2*
 ```{r message=FALSE} 
 relig<-relig2 %>%
@@ -252,7 +252,7 @@ relig
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 # Solución 
 *parte 1*
@@ -265,7 +265,7 @@ fish2
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 # Solución 
 *parte 2*
@@ -282,7 +282,7 @@ fish
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 # `separate()`
 
@@ -303,7 +303,7 @@ storms
 .footnote[[*]
 Mas información en https://github.com/rstudio/EDAWR]
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 <br> <br>
 ```{r }
@@ -317,7 +317,7 @@ str2 #invoco el objeto creado
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" />
+<img src="img/tidyr-logo.png" width="10%" align="right" />
 
 # unite()
 
@@ -331,7 +331,7 @@ str3
 ```
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -341,7 +341,7 @@ class: center, middle
 # son operaciones inversas
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -361,7 +361,7 @@ class: center, middle
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # Dataset: gapminder
 
@@ -401,7 +401,7 @@ ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # Funciones útiles
 
@@ -418,7 +418,7 @@ head(gapminder)
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 #Funciones Útiles 
 
@@ -438,7 +438,7 @@ tail(gapminder)
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 #Funciones Útiles
 
@@ -454,7 +454,7 @@ dplyr::glimpse(gapminder)
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 #Funciones Útiles
 
@@ -471,7 +471,7 @@ dplyr::slice(gapminder, 5L)
 ```
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /> 
+<img src="img/hex-dplyr.png" width="10%" align="right" /> 
 
 #Funciones Útiles
 
@@ -491,7 +491,7 @@ str(gapminder)
 .footnote[https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/str]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 #Funciones Útiles
 
@@ -512,13 +512,13 @@ summary(gapminder)
 ---
 class: inverse, center
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="40%" align="center" />
+<img src="img/hex-dplyr.png" width="40%" align="center" />
 
 # `Manipular datos con dplyr`
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-image: url(img/dplyr-fondo2.png)
 background-size: cover
 class: center, middle
 
@@ -527,7 +527,7 @@ class: center, middle
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # `select()`
 
@@ -551,7 +551,7 @@ gapminder %>% #datos para trabajar
 Mas información en https://dplyr.tidyverse.org/reference/select.html]
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-image: url(img/dplyr-fondo2.png)
 background-size: cover
 class: center, middle
 
@@ -560,7 +560,7 @@ class: center, middle
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # `filter()`
 
@@ -586,7 +586,7 @@ Mas información en https://dplyr.tidyverse.org/reference/filter.html]
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # `filter()`
 
@@ -612,7 +612,7 @@ filter(`xor`(condicion1, condicion2))
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -629,7 +629,7 @@ class: center, middle
 # Del dataset `gapminder` selecciono las columnas `country`, `lifeExp`, `year`, `pop` y `gdpPercap`, pero sólo de los casos de Argentina
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # Solución
 ```{r message=FALSE, warning=FALSE}
@@ -643,7 +643,7 @@ gapminder%>%
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -651,7 +651,7 @@ class: center, middle
 # `filter()`: extraer filas siguiendo una condición lógica
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-image: url(img/dplyr-fondo2.png)
 background-size: cover
 class: center, middle
 
@@ -660,7 +660,7 @@ class: center, middle
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # `mutate()`
 
@@ -683,7 +683,7 @@ gapminder %>%
 Más información en https://dplyr.tidyverse.org/reference/mutate.html]
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-image: url(img/dplyr-fondo2.png)
 background-size: cover
 class: center, middle
 
@@ -692,7 +692,7 @@ class: center, middle
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # `arrange()`
 
@@ -714,7 +714,7 @@ gapminder %>%
 Más información en https://dplyr.tidyverse.org/reference/arrange.html]
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # `arrange(desc())`
 
@@ -735,7 +735,7 @@ gapminder %>%
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -753,7 +753,7 @@ class: center, middle
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 
 ```{r message=FALSE, warning=FALSE}
@@ -766,7 +766,7 @@ gapminder %>%
 ```
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -778,7 +778,7 @@ class: center, middle
 ---
 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 #  `group_by()` y `summarize()`
 
@@ -800,11 +800,11 @@ Más información en https://dplyr.tidyverse.org/reference/summarise.html]
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # `data %>% group_by(a)`
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/group_by.png" width="100%" align="center" />
+<img src="img/group_by.png" width="100%" align="center" />
 
 .footnote[[*] 
 Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/] 
@@ -812,11 +812,11 @@ Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/]
 
 ---
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 # `data %>% group_by(a) %>% summarize(b)` 
 
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/summarise.png" width="100%" align="center" />
+<img src="img/summarise.png" width="100%" align="center" />
 
 
 
@@ -825,7 +825,7 @@ Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/]
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -844,7 +844,7 @@ class: center, middle
 
 
 ---
-<img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" />
+<img src="img/hex-dplyr.png" width="10%" align="right" />
 
 
 ```{r message=FALSE, warning=FALSE}
@@ -867,7 +867,7 @@ gapminder %>%
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -888,7 +888,7 @@ class: middle, center
 ## `summarize()`: resumir
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -896,7 +896,7 @@ class: center, middle
 # Obtener porciones de nuestros datos (subsets) que contesten una pregunta
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 

@@ -31,11 +31,11 @@ class: inverse, center
 # Flujo de Ciencia de Datos 📌
 
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/flujo-ciencia-datos-dplyr.png" width="100%" align="center" /&gt;
+&lt;img src="img/flujo-ciencia-datos-dplyr.png" width="100%" align="center" /&gt;
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tibble.png" width="10%" align="right" /&gt;
+&lt;img src="img/tibble.png" width="10%" align="right" /&gt;
 
 # data.frame vs. tibble
 - data.frame es una estructura nativas de __rbase__ y está disponible sin necesidad de instalar ningún paquete adicional. Es una estructura tabular organizada en filas y columnas. Se puede acceder a las columnas mediantes colnames() y los nombres de las filas, como rownames().
@@ -53,13 +53,13 @@ tidyverse::as_tibble()
 
 class: inverse, center
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="50%" align="center" /&gt;
+&lt;img src="img/tidyr-logo.png" width="50%" align="center" /&gt;
 
 # `Ordenar datos con tidyr`
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-image: url(img/fondo-madera.png)
 background-size: cover
 class: center, middle
 
@@ -76,7 +76,7 @@ Cuando hablamos de datos ordenados son referimos a:
 .footnote[https://vita.had.co.nz/papers/tidy-data.pdf]
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/fondo-madera.png)
+background-image: url(img/fondo-madera.png)
 background-size: cover
 class: center, middle
 
@@ -94,7 +94,7 @@ class: center, middle
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 # Funciones principales de tidyr
 
@@ -112,7 +112,7 @@ _antes gather()_
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 ### Cuando los nombres de las columnas no representan nombres de las variables, sino números
 
@@ -133,7 +133,7 @@ pivot_longer(data, #dataset
 Mas información en https://tidyr.tidyverse.org/reference/pivot_longer.html
 ]
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 
 ```r
@@ -149,16 +149,16 @@ head(relig_income) #encabezado del dataset
 ## 2 Atheist       12        27        37        52        35        70         73
 ## 3 Buddhist      27        21        30        34        33        58         62
 ## 4 Catholic     418       617       732       670       638      1116        949
-## 5 Don’t k~      15        14        15        11        10        35         21
-## 6 Evangel~     575       869      1064       982       881      1486        949
-## # ... with 3 more variables: `$100-150k` &lt;dbl&gt;, `&gt;150k` &lt;dbl&gt;, `Don't
+## 5 Don’t k…      15        14        15        11        10        35         21
+## 6 Evangel…     575       869      1064       982       881      1486        949
+## # … with 3 more variables: `$100-150k` &lt;dbl&gt;, `&gt;150k` &lt;dbl&gt;, `Don't
 ## #   know/refused` &lt;dbl&gt;
 ```
 
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 ## `pivot_longer()`
 
@@ -184,14 +184,14 @@ relig_income %&gt;%   #datos para ordenar
 ##  8 Agnostic $100-150k            109
 ##  9 Agnostic &gt;150k                 84
 ## 10 Agnostic Don't know/refused    96
-## # ... with 170 more rows
+## # … with 170 more rows
 ```
 
 
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 ### Multiples variables están en una sola columna
 #### (esas variables pasarán a ser las nuevas columnas)
@@ -212,7 +212,7 @@ pivot_wider(data, #dataset
 Mas información en https://tidyr.tidyverse.org/reference/pivot_wider.html
 ]
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 
 ```r
@@ -233,11 +233,11 @@ fish_encounters
 ##  8 4842  BCE2        1
 ##  9 4842  BCW2        1
 ## 10 4842  MAE         1
-## # ... with 104 more rows
+## # … with 104 more rows
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 
 ```r
@@ -273,7 +273,7 @@ fish_encounters %&gt;% #ingreso de los datos
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -285,7 +285,7 @@ class: center, middle
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -306,7 +306,7 @@ class: center, middle
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 # Solución 1
 *parte1*
@@ -334,11 +334,11 @@ relig2
 ##  8 Agnostic $100-150k            109
 ##  9 Agnostic &gt;150k                 84
 ## 10 Agnostic Don't know/refused    96
-## # ... with 170 more rows
+## # … with 170 more rows
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 *parte2*
 
 ```r
@@ -355,28 +355,28 @@ relig
 ##  2 Atheist       12        27        37        52        35        70         73
 ##  3 Buddhist      27        21        30        34        33        58         62
 ##  4 Catholic     418       617       732       670       638      1116        949
-##  5 Don’t k~      15        14        15        11        10        35         21
-##  6 Evangel~     575       869      1064       982       881      1486        949
+##  5 Don’t k…      15        14        15        11        10        35         21
+##  6 Evangel…     575       869      1064       982       881      1486        949
 ##  7 Hindu          1         9         7         9        11        34         47
-##  8 Histori~     228       244       236       238       197       223        131
-##  9 Jehovah~      20        27        24        24        21        30         15
+##  8 Histori…     228       244       236       238       197       223        131
+##  9 Jehovah…      20        27        24        24        21        30         15
 ## 10 Jewish        19        19        25        25        30        95         69
-## 11 Mainlin~     289       495       619       655       651      1107        939
+## 11 Mainlin…     289       495       619       655       651      1107        939
 ## 12 Mormon        29        40        48        51        56       112         85
 ## 13 Muslim         6         7         9        10         9        23         16
 ## 14 Orthodox      13        17        23        32        32        47         38
-## 15 Other C~       9         7        11        13        13        14         18
-## 16 Other F~      20        33        40        46        49        63         46
-## 17 Other W~       5         2         3         4         2         7          3
-## 18 Unaffil~     217       299       374       365       341       528        407
-## # ... with 3 more variables: `$100-150k` &lt;dbl&gt;, `&gt;150k` &lt;dbl&gt;, `Don't
+## 15 Other C…       9         7        11        13        13        14         18
+## 16 Other F…      20        33        40        46        49        63         46
+## 17 Other W…       5         2         3         4         2         7          3
+## 18 Unaffil…     217       299       374       365       341       528        407
+## # … with 3 more variables: `$100-150k` &lt;dbl&gt;, `&gt;150k` &lt;dbl&gt;, `Don't
 ## #   know/refused` &lt;dbl&gt;
 ```
 
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 # Solución 
 *parte 1*
@@ -415,7 +415,7 @@ fish2
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 # Solución 
 *parte 2*
@@ -443,14 +443,14 @@ fish
 ##  8 4842  BCE2        1
 ##  9 4842  BCW2        1
 ## 10 4842  MAE         1
-## # ... with 104 more rows
+## # … with 104 more rows
 ```
 
 
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 # `separate()`
 
@@ -478,7 +478,7 @@ storms
 .footnote[[*]
 Mas información en https://github.com/rstudio/EDAWR]
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 &lt;br&gt; &lt;br&gt;
 
@@ -505,7 +505,7 @@ str2 #invoco el objeto creado
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/tidyr-logo.png" width="10%" align="right" /&gt;
+&lt;img src="img/tidyr-logo.png" width="10%" align="right" /&gt;
 
 # unite()
 
@@ -532,7 +532,7 @@ str3
 ```
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -542,7 +542,7 @@ class: center, middle
 # son operaciones inversas
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -562,7 +562,7 @@ class: center, middle
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # Dataset: gapminder
 
@@ -616,11 +616,14 @@ library(gapminder)
 
 ---
 
-![](tidyr-dplyr_files/figure-html/unnamed-chunk-20-1.gif)&lt;!-- --&gt;
+
+```
+## NULL
+```
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # Funciones útiles
 
@@ -650,7 +653,7 @@ head(gapminder)
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Funciones Útiles 
 
@@ -683,7 +686,7 @@ tail(gapminder)
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Funciones Útiles
 
@@ -700,18 +703,18 @@ dplyr::glimpse(gapminder)
 ```
 
 ```
-## Observations: 1,704
-## Variables: 6
-## $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...
-## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi...
-## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...
-## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 4...
-## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372,...
-## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...
+## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghani…
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia,…
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997,…
+## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.…
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 1…
+## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134,…
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Funciones Útiles
 
@@ -736,7 +739,7 @@ dplyr::slice(gapminder, 5L)
 ```
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt; 
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt; 
 
 #Funciones Útiles
 
@@ -754,20 +757,20 @@ str(gapminder)
 ```
 
 ```
-## Classes 'tbl_df', 'tbl' and 'data.frame':	1704 obs. of  6 variables:
+## tibble [1,704 × 6] (S3: tbl_df/tbl/data.frame)
 ##  $ country  : Factor w/ 142 levels "Afghanistan",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...
-##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
-##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
-##  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
-##  $ gdpPercap: num  779 821 853 836 740 ...
+##  $ year     : int [1:1704] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num [1:1704] 28.8 30.3 32 34 36.1 ...
+##  $ pop      : int [1:1704] 8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+##  $ gdpPercap: num [1:1704] 779 821 853 836 740 ...
 ```
 
 
 .footnote[https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/str]
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #Funciones Útiles
 
@@ -808,13 +811,13 @@ summary(gapminder)
 ---
 class: inverse, center
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="40%" align="center" /&gt;
+&lt;img src="img/hex-dplyr.png" width="40%" align="center" /&gt;
 
 # `Manipular datos con dplyr`
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-image: url(img/dplyr-fondo2.png)
 background-size: cover
 class: center, middle
 
@@ -823,7 +826,7 @@ class: center, middle
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `select()`
 
@@ -859,7 +862,7 @@ gapminder %&gt;% #datos para trabajar
 Mas información en https://dplyr.tidyverse.org/reference/select.html]
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-image: url(img/dplyr-fondo2.png)
 background-size: cover
 class: center, middle
 
@@ -868,7 +871,7 @@ class: center, middle
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `filter()`
 
@@ -904,7 +907,7 @@ Mas información en https://dplyr.tidyverse.org/reference/filter.html]
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `filter()`
 
@@ -934,7 +937,7 @@ filter(`xor`(condicion1, condicion2))
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -951,7 +954,7 @@ class: center, middle
 # Del dataset `gapminder` selecciono las columnas `country`, `lifeExp`, `year`, `pop` y `gdpPercap`, pero sólo de los casos de Argentina
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # Solución
 
@@ -984,7 +987,7 @@ gapminder%&gt;%
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -992,7 +995,7 @@ class: center, middle
 # `filter()`: extraer filas siguiendo una condición lógica
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-image: url(img/dplyr-fondo2.png)
 background-size: cover
 class: center, middle
 
@@ -1001,7 +1004,7 @@ class: center, middle
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `mutate()`
 
@@ -1037,7 +1040,7 @@ gapminder %&gt;%
 Más información en https://dplyr.tidyverse.org/reference/mutate.html]
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo2.png)
+background-image: url(img/dplyr-fondo2.png)
 background-size: cover
 class: center, middle
 
@@ -1046,7 +1049,7 @@ class: center, middle
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `arrange()`
 
@@ -1079,7 +1082,7 @@ gapminder %&gt;%
 Más información en https://dplyr.tidyverse.org/reference/arrange.html]
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `arrange(desc())`
 
@@ -1112,13 +1115,13 @@ gapminder %&gt;%
 ##  8 Spain            Europe     2007    80.9  40448191    28821.
 ##  9 Sweden           Europe     2007    80.9   9031088    33860.
 ## 10 Israel           Asia       2007    80.7   6426679    25523.
-## # ... with 1,694 more rows
+## # … with 1,694 more rows
 ```
 
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -1136,7 +1139,7 @@ class: center, middle
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
 
@@ -1168,7 +1171,7 @@ gapminder %&gt;%
 ```
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -1180,7 +1183,7 @@ class: center, middle
 ---
 
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 #  `group_by()` y `summarize()`
 
@@ -1214,11 +1217,11 @@ Más información en https://dplyr.tidyverse.org/reference/summarise.html]
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `data %&gt;% group_by(a)`
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/group_by.png" width="100%" align="center" /&gt;
+&lt;img src="img/group_by.png" width="100%" align="center" /&gt;
 
 .footnote[[*] 
 Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/] 
@@ -1226,11 +1229,11 @@ Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/]
 
 ---
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 # `data %&gt;% group_by(a) %&gt;% summarize(b)` 
 
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/summarise.png" width="100%" align="center" /&gt;
+&lt;img src="img/summarise.png" width="100%" align="center" /&gt;
 
 
 
@@ -1239,7 +1242,7 @@ Ejemplo tomado de https://swcarpentry.github.io/r-novice-gapminder-es/13-dplyr/]
 
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -1258,7 +1261,7 @@ class: center, middle
 
 
 ---
-&lt;img src="C://Users/Roxana/curso-r-analisis-datos/img/hex-dplyr.png" width="10%" align="right" /&gt;
+&lt;img src="img/hex-dplyr.png" width="10%" align="right" /&gt;
 
 
 
@@ -1305,7 +1308,7 @@ gapminder %&gt;%
 
 ---
 
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -1326,7 +1329,7 @@ class: middle, center
 ## `summarize()`: resumir
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/dplyr-fondo.png)
+background-image: url(img/dplyr-fondo.png)
 background-size: cover
 class: center, middle
 
@@ -1334,7 +1337,7 @@ class: center, middle
 # Obtener porciones de nuestros datos (subsets) que contesten una pregunta
 
 ---
-background-image: url(C:/Users/Roxana/curso-r-analisis-datos/img/textura-fondo.png)
+background-image: url(img/textura-fondo.png)
 background-size: cover
 class: center, middle, inverse
 
@@ -1350,91 +1353,89 @@ devtools::session_info()
 ```
 
 ```
-## - Session info ---------------------------------------------------------------
+## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
-##  version  R version 3.6.2 (2019-12-12)
-##  os       Windows 10 x64              
-##  system   x86_64, mingw32             
-##  ui       RTerm                       
-##  language (EN)                        
-##  collate  Spanish_Argentina.1252      
-##  ctype    Spanish_Argentina.1252      
-##  tz       America/Buenos_Aires        
-##  date     2020-02-18                  
+##  version  R version 3.6.3 (2020-02-29)
+##  os       Ubuntu 20.04 LTS            
+##  system   x86_64, linux-gnu           
+##  ui       X11                         
+##  language es_AR:es                    
+##  collate  es_AR.UTF-8                 
+##  ctype    es_AR.UTF-8                 
+##  tz       America/Argentina/Cordoba   
+##  date     2020-06-05                  
 ## 
-## - Packages -------------------------------------------------------------------
+## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                              
-##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.1)                      
-##  backports     1.1.5      2019-10-02 [1] CRAN (R 3.6.1)                      
-##  callr         3.4.1      2020-01-24 [1] CRAN (R 3.6.2)                      
-##  cli           2.0.1      2020-01-08 [1] CRAN (R 3.6.2)                      
-##  colorspace    1.4-1      2019-03-18 [1] CRAN (R 3.6.1)                      
-##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.1)                      
-##  desc          1.2.0      2018-05-01 [1] CRAN (R 3.6.1)                      
-##  devtools      2.2.1      2019-09-24 [1] CRAN (R 3.6.2)                      
-##  digest        0.6.23     2019-11-23 [1] CRAN (R 3.6.1)                      
-##  dplyr       * 0.8.3      2019-07-04 [1] CRAN (R 3.6.1)                      
-##  EDAWR         0.1        2020-02-03 [1] Github (rstudio/EDAWR@fbfee98)      
-##  ellipsis      0.3.0      2019-09-20 [1] CRAN (R 3.6.1)                      
-##  emo         * 0.0.0.9000 2019-12-07 [1] Github (hadley/emo@02a5206)         
-##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.1)                      
-##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.2)                      
-##  farver        2.0.3      2020-01-16 [1] CRAN (R 3.6.2)                      
-##  fontawesome * 0.1.0      2019-12-07 [1] Github (rstudio/fontawesome@2b64e31)
-##  fs            1.3.1      2019-05-06 [1] CRAN (R 3.6.1)                      
-##  gapminder   * 0.3.0      2017-10-31 [1] CRAN (R 3.6.2)                      
-##  gganimate   * 1.0.4      2019-11-18 [1] CRAN (R 3.6.2)                      
-##  ggplot2     * 3.2.1      2019-08-10 [1] CRAN (R 3.6.1)                      
-##  gifski        0.8.6      2018-09-28 [1] CRAN (R 3.6.1)                      
-##  glue          1.3.1      2019-03-12 [1] CRAN (R 3.6.1)                      
-##  gtable        0.3.0      2019-03-25 [1] CRAN (R 3.6.1)                      
-##  highr         0.8        2019-03-20 [1] CRAN (R 3.6.1)                      
-##  hms           0.5.3      2020-01-08 [1] CRAN (R 3.6.2)                      
-##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.1)                      
-##  knitr         1.28       2020-02-06 [1] CRAN (R 3.6.2)                      
-##  labeling      0.3        2014-08-23 [1] CRAN (R 3.6.0)                      
-##  lazyeval      0.2.2      2019-03-15 [1] CRAN (R 3.6.1)                      
-##  lifecycle     0.1.0      2019-08-01 [1] CRAN (R 3.6.1)                      
-##  lubridate     1.7.4      2018-04-11 [1] CRAN (R 3.6.1)                      
-##  magrittr      1.5        2014-11-22 [1] CRAN (R 3.6.1)                      
-##  memoise       1.1.0      2017-04-21 [1] CRAN (R 3.6.1)                      
-##  munsell       0.5.0      2018-06-12 [1] CRAN (R 3.6.1)                      
-##  pillar        1.4.3      2019-12-20 [1] CRAN (R 3.6.2)                      
-##  pkgbuild      1.0.6      2019-10-09 [1] CRAN (R 3.6.2)                      
-##  pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 3.6.1)                      
-##  pkgload       1.0.2      2018-10-29 [1] CRAN (R 3.6.1)                      
-##  plyr          1.8.4      2016-06-08 [1] CRAN (R 3.6.1)                      
-##  png           0.1-7      2013-12-03 [1] CRAN (R 3.6.0)                      
-##  prettyunits   1.1.1      2020-01-24 [1] CRAN (R 3.6.2)                      
-##  processx      3.4.1      2019-07-18 [1] CRAN (R 3.6.1)                      
-##  progress      1.2.2      2019-05-16 [1] CRAN (R 3.6.1)                      
-##  ps            1.3.0      2018-12-21 [1] CRAN (R 3.6.1)                      
-##  purrr         0.3.3      2019-10-18 [1] CRAN (R 3.6.1)                      
-##  R6            2.4.1      2019-11-12 [1] CRAN (R 3.6.2)                      
-##  Rcpp          1.0.3      2019-11-08 [1] CRAN (R 3.6.1)                      
-##  remotes       2.1.0      2019-06-24 [1] CRAN (R 3.6.1)                      
-##  rlang         0.4.2      2019-11-23 [1] CRAN (R 3.6.1)                      
-##  rmarkdown     2.1        2020-01-20 [1] CRAN (R 3.6.2)                      
-##  rprojroot     1.3-2      2018-01-03 [1] CRAN (R 3.6.1)                      
-##  scales        1.1.0      2019-11-18 [1] CRAN (R 3.6.2)                      
-##  sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.6.1)                      
-##  stringi       1.4.5      2020-01-11 [1] CRAN (R 3.6.2)                      
-##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.1)                      
-##  testthat      2.3.1      2019-12-01 [1] CRAN (R 3.6.2)                      
-##  tibble        2.1.3      2019-06-06 [1] CRAN (R 3.6.1)                      
-##  tidyr       * 1.0.2      2020-01-24 [1] CRAN (R 3.6.2)                      
-##  tidyselect    0.2.5      2018-10-11 [1] CRAN (R 3.6.1)                      
-##  tweenr        1.0.1      2018-12-14 [1] CRAN (R 3.6.1)                      
-##  usethis       1.5.1      2019-07-04 [1] CRAN (R 3.6.1)                      
-##  utf8          1.1.4      2018-05-24 [1] CRAN (R 3.6.1)                      
-##  vctrs         0.2.2      2020-01-24 [1] CRAN (R 3.6.2)                      
-##  withr         2.1.2      2018-03-15 [1] CRAN (R 3.6.1)                      
-##  xaringan      0.14       2020-01-19 [1] CRAN (R 3.6.2)                      
-##  xfun          0.12       2020-01-13 [1] CRAN (R 3.6.2)                      
-##  yaml          2.2.1      2020-02-01 [1] CRAN (R 3.6.2)                      
+##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.3)                      
+##  backports     1.1.7      2020-05-13 [1] CRAN (R 3.6.3)                      
+##  callr         3.4.3      2020-03-28 [1] CRAN (R 3.6.3)                      
+##  cli           2.0.2      2020-02-28 [1] CRAN (R 3.6.3)                      
+##  colorspace    1.4-1      2019-03-18 [1] CRAN (R 3.6.3)                      
+##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.3)                      
+##  desc          1.2.0      2018-05-01 [1] CRAN (R 3.6.3)                      
+##  devtools      2.2.2      2020-02-17 [3] CRAN (R 3.6.3)                      
+##  digest        0.6.25     2020-02-23 [1] CRAN (R 3.6.3)                      
+##  dplyr       * 0.8.5      2020-03-07 [1] CRAN (R 3.6.3)                      
+##  EDAWR         0.1        2020-06-06 [1] Github (rstudio/EDAWR@fbfee98)      
+##  ellipsis      0.3.1      2020-05-15 [1] CRAN (R 3.6.3)                      
+##  emo         * 0.0.0.9000 2020-05-12 [1] Github (hadley/emo@3f03b11)         
+##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.3)                      
+##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.3)                      
+##  farver        2.0.3      2020-01-16 [1] CRAN (R 3.6.3)                      
+##  fontawesome * 0.1.0      2020-05-12 [1] Github (rstudio/fontawesome@2b64e31)
+##  fs            1.4.1      2020-04-04 [1] CRAN (R 3.6.3)                      
+##  gapminder   * 0.3.0      2017-10-31 [1] CRAN (R 3.6.3)                      
+##  generics      0.0.2      2018-11-29 [1] CRAN (R 3.6.3)                      
+##  gganimate   * 1.0.5      2020-02-09 [1] CRAN (R 3.6.3)                      
+##  ggplot2     * 3.3.1      2020-05-28 [1] CRAN (R 3.6.3)                      
+##  glue          1.4.1      2020-05-13 [1] CRAN (R 3.6.3)                      
+##  gtable        0.3.0      2019-03-25 [1] CRAN (R 3.6.3)                      
+##  highr         0.8        2019-03-20 [1] CRAN (R 3.6.3)                      
+##  hms           0.5.3      2020-01-08 [1] CRAN (R 3.6.3)                      
+##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.3)                      
+##  knitr         1.28       2020-02-06 [1] CRAN (R 3.6.3)                      
+##  lifecycle     0.2.0      2020-03-06 [1] CRAN (R 3.6.3)                      
+##  lubridate     1.7.8      2020-04-06 [1] CRAN (R 3.6.3)                      
+##  magrittr      1.5        2014-11-22 [1] CRAN (R 3.6.3)                      
+##  memoise       1.1.0      2017-04-21 [3] CRAN (R 3.5.0)                      
+##  munsell       0.5.0      2018-06-12 [1] CRAN (R 3.6.3)                      
+##  pillar        1.4.4      2020-05-05 [1] CRAN (R 3.6.3)                      
+##  pkgbuild      1.0.8      2020-05-07 [1] CRAN (R 3.6.3)                      
+##  pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 3.6.3)                      
+##  pkgload       1.1.0      2020-05-29 [1] CRAN (R 3.6.3)                      
+##  prettyunits   1.1.1      2020-01-24 [1] CRAN (R 3.6.3)                      
+##  processx      3.4.2      2020-02-09 [1] CRAN (R 3.6.3)                      
+##  progress      1.2.2      2019-05-16 [1] CRAN (R 3.6.3)                      
+##  ps            1.3.3      2020-05-08 [1] CRAN (R 3.6.3)                      
+##  purrr         0.3.4      2020-04-17 [1] CRAN (R 3.6.3)                      
+##  R6            2.4.1      2019-11-12 [1] CRAN (R 3.6.3)                      
+##  Rcpp          1.0.4.6    2020-04-09 [1] CRAN (R 3.6.3)                      
+##  remotes       2.1.1      2020-02-15 [1] CRAN (R 3.6.3)                      
+##  rlang         0.4.6      2020-05-02 [1] CRAN (R 3.6.3)                      
+##  rmarkdown     2.1        2020-01-20 [1] CRAN (R 3.6.3)                      
+##  rprojroot     1.3-2      2018-01-03 [1] CRAN (R 3.6.3)                      
+##  scales        1.1.1      2020-05-11 [1] CRAN (R 3.6.3)                      
+##  sessioninfo   1.1.1      2018-11-05 [3] CRAN (R 3.5.1)                      
+##  stringi       1.4.6      2020-02-17 [1] CRAN (R 3.6.3)                      
+##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.3)                      
+##  testthat      2.3.2      2020-03-02 [1] CRAN (R 3.6.3)                      
+##  tibble        3.0.1      2020-04-20 [1] CRAN (R 3.6.3)                      
+##  tidyr       * 1.0.2      2020-01-24 [1] CRAN (R 3.6.3)                      
+##  tidyselect    1.0.0      2020-01-27 [1] CRAN (R 3.6.3)                      
+##  tweenr        1.0.1      2018-12-14 [1] CRAN (R 3.6.3)                      
+##  usethis       1.5.1      2019-07-04 [3] CRAN (R 3.6.2)                      
+##  utf8          1.1.4      2018-05-24 [1] CRAN (R 3.6.3)                      
+##  vctrs         0.3.1      2020-06-05 [1] CRAN (R 3.6.3)                      
+##  withr         2.2.0      2020-04-20 [1] CRAN (R 3.6.3)                      
+##  xaringan      0.16       2020-03-31 [1] CRAN (R 3.6.3)                      
+##  xfun          0.13       2020-04-13 [1] CRAN (R 3.6.3)                      
+##  yaml          2.2.1      2020-02-01 [1] CRAN (R 3.6.3)                      
 ## 
-## [1] C:/Users/Roxana/Documents/R/win-library/3.6
-## [2] C:/Program Files/R/R-3.6.2/library
+## [1] /home/roxana/R/x86_64-pc-linux-gnu-library/3.6
+## [2] /usr/local/lib/R/site-library
+## [3] /usr/lib/R/site-library
+## [4] /usr/lib/R/library
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -1484,6 +1485,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1501,17 +1528,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
